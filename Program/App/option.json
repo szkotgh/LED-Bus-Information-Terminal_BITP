@@ -1,21 +1,19 @@
 {
-    "serviceKey" : "Y+K/PG7BzlPBzLKybehRrc2U90kkXQbkuDj3DrFrnXRgL2UWCO8uIyaHlZPaKPsHPn0nCF2fcRP6eVnAUn4mUA==",
-    "busStationList" : [
-        {
-            "moblieNo" : "00000"
-        },
-        {
-            "moblieNo" : "47574"
-        },
-        {
-            "moblieNo" : "56151"
-        },
-        {
-            "moblieNo" : "22653"
-        },
-        {
-            "moblieNo" : "47307"
-        }
-        
-    ]
+	"busStationList": [
+		{
+			"moblieNo": "00000"
+		},
+		{
+			"moblieNo": "47574"
+		},
+		{
+			"moblieNo": "56151"
+		},
+		{
+			"moblieNo": "22653"
+		},
+		{
+			"moblieNo": "47307"
+		}
+	]
 }
