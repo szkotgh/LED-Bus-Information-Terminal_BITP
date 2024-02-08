@@ -1,4 +1,5 @@
 import requests, json, xmltodict, sys, os
+import platform
 
 def get_route_order_info(serviceKey, routeId):
     url = 'http://apis.data.go.kr/6410000/busrouteservice/getBusRouteStationList'
@@ -132,19 +133,21 @@ class ArvlBus:
         self.routeId       = routeId
         self.staOrder      = staOrder
         self.stationId     = stationId
-
-    def add_route_info(self, routeName, routeTypeCd, routeNowStaName):
-        self.routeName       = routeName
-        self.routeTypeCd     = routeTypeCd
-        self.routeNowStaName = routeNowStaName
         
+        # 곧 도착 여부
+        self.is_arvl          = False
+
+    def add_route_info(self, routeNm, routeTypeCd, routeNowStaNm):
+        self.routeNm       = routeNm
+        self.routeTypeCd   = routeTypeCd
+        self.routeNowStaNm = routeNowStaNm
+    
 class BusStation:
-    def __init__(self, stationId, stationName, mobileNo, y, x):
+    def __init__(self, stationId, stationNm, mobileNo, y, x):
         self.stationId   = stationId
-        self.stationName = stationName
+        self.stationNm = stationNm
         self.mobileNo    = mobileNo
         self.gps_y       = y
         self.gps_x       = x
+        self.arvl_bus_list = []
     
-    def create_arvl_bus_list(self, arvl_bus_list):
-        self.arvl_bus_list = arvl_bus_list
