@@ -110,6 +110,29 @@ def get_api_result_code_message(resultCode:int) -> str:
     
     return resultMessages.get(resultCode, "알 수 없는 코드입니다.")
 
+def get_open_api_result_code_message(resultCode:int) -> str:
+    resultMessages = {
+        0:  "정상",
+        1:  "어플리케이션 에러",
+        2:  "데이터베이스 에러",
+        3:  "데이터없음 에러",
+        4:  "HTTP 에러",
+        5:  "서비스 연결실패 에러",
+        10: "잘못된 요청 파라메터 에러",
+        11: "필수요청 파라메터가 없음",
+        12: "해당 오픈API서비스가 없거나 폐기됨",
+        20: "서비스 접근거부",
+        21: "일시적으로 사용할 수 없는 서비스 키",
+        22: "서비스 요청제한횟수 초과에러",
+        30: "등록되지 않은 서비스키",
+        31: "기한만료된 서비스키",
+        32: "등록되지 않은 IP",
+        33: "서명되지 않은 호출",
+        99: "기타에러"
+    }
+    
+    return resultMessages.get(resultCode, "알 수 없는 코드입니다.")
+
 
 def xml_to_dict(xml_data, indent=4) -> json:
     try:

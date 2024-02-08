@@ -35,7 +35,7 @@ def get_bus_station_list() -> list:
     
     return bus_station_list
 
-def get_arvl_bus_list(bus_station):
+def get_arvl_bus_list(bus_station:BusStation):
     # 버스도착정보 조회, 곧 도착 버스 별 정보 조회 및 추가
     arvl_bus_data = get_station_arvl_bus(serviceKey, bus_station.stationId)
     api_data_error_check_return_value = api_data_error_check(arvl_bus_data)
