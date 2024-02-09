@@ -1,5 +1,59 @@
-import requests, json, xmltodict, sys, os
-import platform
+import requests, os, sys
+
+
+try:
+    import json
+except:
+    sys.exit("json module is not installed")
+
+try:
+    import xmltodict
+except:
+    sys.exit("xmltodict module is not installed")
+
+try:
+    from gtts import gTTS
+except:
+    sys.exit("gTTS module is not installed")
+
+try:
+    import playsound
+except:
+    sys.exit("playsound module is not installed")
+
+
+class BusStation:
+    def __init__(self, stationId, stationNm, mobileNo, y, x):
+        self.stationId     = stationId      # 정류소 아이디
+        self.stationNm     = stationNm      # 정류소명
+        self.mobileNo      = mobileNo       # 정류소 모바일 번호 (5자리 숫자)
+        self.gps_y         = y              # 정류소 위도
+        self.gps_x         = x              # 정류소 경도
+        self.arvl_bus_list = []             # 정류소 곧 도착 버스 리스트
+        
+class ArvlBus:
+    def __init__(self, flag, locationNo, lowPlate, plateNo, predictTime, remainSeatCnt, routeId, staOrder, stationId):
+        self.flag          = flag           # 상태구분 (RUN: 운행 중, PASS: 운행 중, STOP: 운행종료, WAIT: 회차지 대기)
+        self.locationNo    = locationNo     # 몇 정거장 전인지
+        self.lowPlate      = lowPlate       # 저상 여부
+        self.plateNo       = plateNo        # 차량번호
+        self.predictTime   = predictTime    # 버스도착예정시간 (몇 분 후 도착 예정)
+        self.remainSeatCnt = remainSeatCnt  # 빈자리 수 (-1: 정보 없음, 1-: 빈자리 수)
+        self.routeId       = routeId        # 노선 아이디
+        self.staOrder      = staOrder       # 정류소 순번
+        self.stationId     = stationId      # 정류소 아이디
+        self.is_arvl       = False          # 곧 도착 여부
+        self.routeNm       = None           # 노선유형명
+        self.routeTypeCd   = None           # 노선유형
+        self.routeNowStaNm = None           # 노선 현재 정류소명
+
+def speak_text(text, lang='ko'):
+    filename='Program\\App\src\\temp_voice.mp3'
+    
+    tts = gTTS(text=text, lang=lang)
+    tts.save(filename)
+    playsound.playsound(filename)
+    os.remove(filename)
 
 def get_route_order_info(serviceKey, routeId):
     url = 'http://apis.data.go.kr/6410000/busrouteservice/getBusRouteStationList'
@@ -49,7 +103,6 @@ def get_station_info(serviceKey, keyword):
     }
 
     response = requests.get(url, params=params)
-    
     response.raise_for_status()
     response = xml_to_dict(response.content)
 
@@ -61,32 +114,32 @@ def api_data_error_check(response_data) -> None or int:
     if errData == None:
         # 일반 response 시
         errData = response_data['response']['msgHeader']
-        
         resultCode = int(errData['resultCode'])
         resultMsg  = get_api_result_code_message(resultCode)
         
         if resultCode == 0:
+            # 정상 작동
             return None
         
         elif resultCode == 4:
+            # 결과가 존재하지 않을 경우만
             return resultCode
         
         else:
-            print(f"{resultMsg}    {resultCode}")
+            # 이 외의 모든 에러
+            print(f"{resultCode} {resultMsg}")
             return resultCode
 
     else:
-        # OpenAPI_ServiceResponse 발생 시
+        # OpenAPI_ServiceResponse 시
         errData = errData['cmmMsgHeader']
         
         errMsg           = errData['errMsg']
         returnAuthMsg    = errData['returnAuthMsg']
         returnReasonCode = int(errData['returnReasonCode'])
         
-        print(f"{errMsg}    {returnAuthMsg}    {returnReasonCode}")
-        
+        print(f"{errMsg} {returnReasonCode} {returnAuthMsg}")
         return returnReasonCode
-
 
 def get_api_result_code_message(resultCode:int) -> str:
     resultMessages = {
@@ -144,33 +197,3 @@ def xml_to_dict(xml_data, indent=4) -> json:
 
 def cls():
     os.system('cls')
-
-class ArvlBus:
-    def __init__(self, flag, locationNo, lowPlate, plateNo, predictTime, remainSeatCnt, routeId, staOrder, stationId):
-        self.flag          = flag
-        self.locationNo    = locationNo
-        self.lowPlate      = lowPlate
-        self.plateNo       = plateNo
-        self.predictTime   = predictTime
-        self.remainSeatCnt = remainSeatCnt
-        self.routeId       = routeId
-        self.staOrder      = staOrder
-        self.stationId     = stationId
-        
-        # 곧 도착 여부
-        self.is_arvl          = False
-
-    def add_route_info(self, routeNm, routeTypeCd, routeNowStaNm):
-        self.routeNm       = routeNm
-        self.routeTypeCd   = routeTypeCd
-        self.routeNowStaNm = routeNowStaNm
-    
-class BusStation:
-    def __init__(self, stationId, stationNm, mobileNo, y, x):
-        self.stationId   = stationId
-        self.stationNm = stationNm
-        self.mobileNo    = mobileNo
-        self.gps_y       = y
-        self.gps_x       = x
-        self.arvl_bus_list = []
-    

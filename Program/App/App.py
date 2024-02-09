@@ -1,27 +1,71 @@
-import time, sys
-from src.func import *
+import time, sys, os
+import os.path as osp   
 
-cls()
 
-with open('Program\App\option.json', 'r') as f:
-    option = json.load(f)
+try:
+    from dotenv import load_dotenv
+except:
+    sys.exit("dotenv module is not installed")
 
-serviceKey = option.get('serviceKey', None)
+try:
+    from src.func import *
+except:
+    sys.exit("src.func module not found")
 
-if serviceKey == None:
-    sys.exit("Service Key is not set")
+
+# load option.json
+try:
+    with open(osp.join("Program", "App", "option.json"), 'r') as f:
+        option = json.load(f)
+except:
+    sys.exit("option.json load failed")
+
+# load serviceKey
+try:
+    load_dotenv(osp.join("Program", "App", ".env"))
+    serviceKey = os.environ["SERVICE_KEY"]
+except:
+    sys.exit("serviceKey load failed")
+
 
 def get_bus_station_list() -> list:
+    # option.json 파일 내의 busStationList 순서대로 역 정보 가져와 객체 return
     bus_station_list = []
-    for busStation in option['busStationList']:    
-        station_data = get_station_info(serviceKey, busStation['moblieNo'])
+    for busStation in option.get('busStationList', None):
+        ## 불러온 option 안에 busStationList이 없을 경우
+        if busStation == None:
+            raise Exception("The busStationList Key cannot be found in the option.json file.")
         
-        if api_data_error_check(station_data) != None:
+        ## busStationList 안에 moblieNo 불러오기
+        station_moblieNo = busStation.get('moblieNo', None)
+        ## busStationList 안에 moblieNo 이 없을 경우
+        if station_moblieNo == None:
+            raise Exception("The moblieNo Key cannot be found in the busStationList Key in the option.json file.")
+        
+        
+        
+        ## API Request
+        station_data = get_station_info(serviceKey, busStation['moblieNo'])
+        ## API Response data 결과 코드 확인
+        api_data_error_check_value = api_data_error_check(station_data)
+        if api_data_error_check_value == None:
+            ### 값이 문제 없을 경우
+            pass
+        elif api_data_error_check_value == 4:
+            ### 결과가 존재하지 않을 경우
+            print(f"Station information does not exist. (Registered moblieNo: '{station_moblieNo}')")
+            continue
+        else:
+            ### 기타 문제가 있을 경우
+            print(f"A problem occurred and the stop object could not be created. (Registered moblieNo: '{station_moblieNo}')")
             continue
         
+        
+        
+        ## 값 불러오기 및 객체 생성
         station_data = station_data['response']['msgBody']['busStationList']
 
-        # 역 중복 시 가장 첫 번째 역 선택
+        ### 역 정보 중복 시 가장 첫 번째 역 선택
         if type(station_data) == list:
             station_data = station_data[0]
         
@@ -37,50 +81,61 @@ def get_bus_station_list() -> list:
 
 def get_arvl_bus_list(bus_station:BusStation):
     # 버스도착정보 조회, 곧 도착 버스 별 정보 조회 및 추가
+    
+    
+    
+    ## API Request
     arvl_bus_data = get_station_arvl_bus(serviceKey, bus_station.stationId)
-    api_data_error_check_return_value = api_data_error_check(arvl_bus_data)
-    if api_data_error_check_return_value != None:
+    api_data_error_check_value = api_data_error_check(arvl_bus_data) # API Response data 에러 확인
+    if api_data_error_check_value == None:
+        ## 값이 문제 없을 경우
+        pass
+    elif api_data_error_check_value == 4:
         ## 도착 할 버스가 없는 경우 (4, 결과가 존재하지 않습니다)
-        if api_data_error_check_return_value == 4:
-            bus_station.arvl_bus_list.append(None)
-        
+        bus_station.arvl_bus_list.append(None)
     else:
-        ## 도착 할 버스가 없는 경우 (busArrivalList None 형태일 경우)
-        if arvl_bus_data['response']['msgBody']['busArrivalList'] == None:
-            bus_station.arvl_bus_list.append(None)
-            
-        ## 도착 할 버스가 하나 일 경우
-        elif type(arvl_bus_data['response']['msgBody']['busArrivalList']) == dict:
-            arvl_bus_data = arvl_bus_data['response']['msgBody']['busArrivalList']
-
-            flag          = arvl_bus_data.get('flag', None)
-            locationNo    = int(arvl_bus_data.get('locationNo1', None))
-            lowPlate      = arvl_bus_data.get('lowPlate1', None)
-            plateNo       = arvl_bus_data.get('plateNo', None)
-            predictTime   = arvl_bus_data.get('predictTime1', None)
-            remainSeatCnt = arvl_bus_data.get('remainSeatCnt1', None)
-            routeId       = arvl_bus_data.get('routeId', None)
-            staOrder      = int(arvl_bus_data.get('staOrder', None))
-            statioinId    = arvl_bus_data.get('stationId', None)
-            
-            bus_station.arvl_bus_list.append(ArvlBus(flag, locationNo, lowPlate, plateNo, predictTime, remainSeatCnt, routeId, staOrder, statioinId))
+        ## 기타 문제가 있을 경우
+        raise Exception(api_data_error_check_value)
+    
+    
         
-        # 도착할 버스가 여러 개인 경우
-        elif type(arvl_bus_data['response']['msgBody']['busArrivalList']) == list:
-            arvl_bus_data = arvl_bus_data['response']['msgBody']['busArrivalList']
-
-            for arvl_bus in arvl_bus_data:
-                flag          = arvl_bus.get('flag', None)
-                locationNo    = int(arvl_bus.get('locationNo1', None))
-                lowPlate      = arvl_bus.get('lowPlate1', None)
-                plateNo       = arvl_bus.get('plateNo', None)
-                predictTime   = arvl_bus.get('predictTime1', None)
-                remainSeatCnt = arvl_bus.get('remainSeatCnt1', None)
-                routeId       = arvl_bus.get('routeId', None)
-                staOrder      = int(arvl_bus.get('staOrder', None))
-                statioinId    = arvl_bus.get('stationId', None)
-                
-                bus_station.arvl_bus_list.append(ArvlBus(flag, locationNo, lowPlate, plateNo, predictTime, remainSeatCnt, routeId, staOrder, statioinId))
+    ## 도착 할 버스가 없는 경우 (busArrivalList None 형태일 경우)
+    if arvl_bus_data['response']['msgBody']['busArrivalList'] == None:
+        bus_station.arvl_bus_list.append(None)
+    
+    ## 도착 할 버스가 한 대일 경우
+    elif type(arvl_bus_data['response']['msgBody']['busArrivalList']) == dict:
+        arvl_bus_data = arvl_bus_data['response']['msgBody']['busArrivalList']
+        
+        flag          =     arvl_bus_data.get('flag', None)
+        locationNo    = int(arvl_bus_data.get('locationNo1', None))
+        lowPlate      =     arvl_bus_data.get('lowPlate1', None)
+        plateNo       =     arvl_bus_data.get('plateNo', None)
+        predictTime   = int(arvl_bus_data.get('predictTime1', None))
+        remainSeatCnt =     arvl_bus_data.get('remainSeatCnt1', None)
+        routeId       =     arvl_bus_data.get('routeId', None)
+        staOrder      = int(arvl_bus_data.get('staOrder', None))
+        statioinId    =     arvl_bus_data.get('stationId', None)
+        
+        bus_station.arvl_bus_list.append(ArvlBus(flag, locationNo, lowPlate, plateNo, predictTime, remainSeatCnt, routeId, staOrder, statioinId))
+    
+    # 도착할 버스가 여러 대인 경우
+    elif type(arvl_bus_data['response']['msgBody']['busArrivalList']) == list:
+        arvl_bus_data = arvl_bus_data['response']['msgBody']['busArrivalList']
+        for arvl_bus in arvl_bus_data:
+            flag          =     arvl_bus.get('flag', None)
+            locationNo    = int(arvl_bus.get('locationNo1', None))
+            lowPlate      =     arvl_bus.get('lowPlate1', None)
+            plateNo       =     arvl_bus.get('plateNo', None)
+            predictTime   = int(arvl_bus.get('predictTime1', None))
+            remainSeatCnt =     arvl_bus.get('remainSeatCnt1', None)
+            routeId       =     arvl_bus.get('routeId', None)
+            staOrder      = int(arvl_bus.get('staOrder', None))
+            statioinId    =     arvl_bus.get('stationId', None)
+                        
+            bus_station.arvl_bus_list.append(ArvlBus(flag, locationNo, lowPlate, plateNo, predictTime, remainSeatCnt, routeId, staOrder, statioinId))
+    
+    
     
     # 곧 도착 버스 별 부가정보 조회 및 추가, 곧 도착 여부 추가
     for arvl_bus in bus_station.arvl_bus_list:
@@ -103,9 +158,12 @@ def get_arvl_bus_list(bus_station:BusStation):
         routeTypeCd   = route_data.get('routeTypeCd', None)
         routeNowStaNm = route_order_data['response']['msgBody']['busRouteStationList'][arvl_bus.staOrder-1-arvl_bus.locationNo]['stationName']
         
-        arvl_bus.add_route_info(routeNm, routeTypeCd, routeNowStaNm)
+        ## 데이터 저장
+        arvl_bus.routeNm       = routeNm
+        arvl_bus.routeTypeCd   = routeTypeCd
+        arvl_bus.routeNowStaNm = routeNowStaNm
         
-        ## 곧 도착 여부 추가
+        ## 곧 도착 여부 (3 정거장 이전인 경우)
         if arvl_bus.locationNo < 3:
             arvl_bus.is_arvl = True
 
