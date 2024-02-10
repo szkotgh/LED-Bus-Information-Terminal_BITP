@@ -8,21 +8,21 @@ except:
     sys.exit("dotenv module is not installed")
 
 try:
-    from src.func import *
+    from API.func import *
 except:
-    sys.exit("src.func module not found")
+    sys.exit("func module not found")
 
 
 # load option.json
 try:
-    with open(osp.join("Program", "App", "option.json"), 'r') as f:
+    with open(osp.join("Program", "API", "option.json"), 'r') as f:
         option = json.load(f)
 except:
     sys.exit("option.json load failed")
 
 # load serviceKey
 try:
-    load_dotenv(osp.join("Program", "App", ".env"))
+    load_dotenv(osp.join("Program", "API", ".env"))
     serviceKey = os.environ["SERVICE_KEY"]
 except:
     sys.exit("serviceKey load failed")
