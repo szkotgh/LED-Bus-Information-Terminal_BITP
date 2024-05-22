@@ -1,6 +1,7 @@
-# LED Bus Information Terminal
-## Requirements
-* LED Matrix Pannel 64x32 p4 * 7
-* SMPS 300W
-* Raspberry Pi 4B
-* Adafruit LED Matrix Hat
+# Code for Raspberry Pi
+## Product needed
+- Raspberry Pi 4B
+- Adafruit RGB Matrix HAT + RTC
+- LED Pannel 32x64 p4 * 7
+- SMPS 5V 60A
+- ETC . . .

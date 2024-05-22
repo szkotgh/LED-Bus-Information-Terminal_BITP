@@ -1,0 +1,20 @@
+{
+	"busStationList": [
+		{
+			"moblieNo"    : "47307",
+			"stationDesc" : "[롯데리아앞]"
+		},
+		{
+			"moblieNo"    : "47574",
+			"stationDesc" : "[서울병원앞]"
+		},
+		{
+			"moblieNo"    : "56151",
+			"stationDesc" : "[정문앞]"
+		},
+		{
+			"moblieNo"    : "56154",
+			"stationDesc" : "[정문길건너]"
+		}
+	]
+}

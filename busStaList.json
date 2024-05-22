@@ -1,0 +1,27 @@
+{
+	"busStationList": [
+		{
+			"moblieNo"    : "47307",
+			"stationDesc" : "[덕영고.고림5통 방면]"
+		},
+		{
+			"moblieNo"    : "47574",
+			"stationDesc" : "[용마초교 방면]"
+		},
+		{
+			"moblieNo"    : "56151",
+			"stationDesc" : "[서울병원 방면]"
+		},
+		{
+			"moblieNo"    : "56154",
+			"stationDesc" : "[이공아트빌라 방면]"
+		},
+		{
+			"moblieNo"    : "22162",
+			"stationDescQF" : ""
+		}
+	]
+}
+
+
+
