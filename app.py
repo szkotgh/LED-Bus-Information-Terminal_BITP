@@ -1,5 +1,6 @@
 import os
 import sys
+import module.utils as utils
 import module.bus_manager as bus_manager
 import multiprocessing
 
@@ -28,5 +29,8 @@ except:
         sys.exit('serviceKey load failed')
 print(f'serviceKey load successful [{SERVICE_KEY}]')
 
-bus_manager = bus_manager.bus_info_refresh_manager(SERVICE_KEY)
-bus_manager.update_station_info()
+bus_mgr = bus_manager.bus_info_refresh_manager(SERVICE_KEY)
+bus_mgr.update_station_info()
+
+for station in bus_mgr.station_list:
+    print()

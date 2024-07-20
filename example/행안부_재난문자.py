@@ -8,7 +8,7 @@ url = "https://www.safetydata.go.kr"
 dataName = "/V2/api/DSSP-IF-00247"
 serviceKey = "K62438D807NA7877"
 
-st_num = 9776
+st_num = 10108
 while 1:
     payloads = {
         "serviceKey": serviceKey,

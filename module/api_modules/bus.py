@@ -18,7 +18,6 @@ BUS.PY
 """
 
 import sys
-import json
 import datetime
 
 try:
@@ -30,6 +29,10 @@ try:
     import xmltodict
 except:
     sys.exit("xmltodict module is not installed")
+try:
+    import module.utils as utils
+except:
+    sys.exit("module.utils module Not found")
 
 # 에러 코드
 normal_statu_code = {
@@ -156,25 +159,9 @@ BUS API REQUESTER
     """
     def __init__(self, SERVICE_KEY):
         self.SERVICE_KEY = str(SERVICE_KEY)
+        self.api_timeout = 5
         
-    def detect_response_error(self, response:dict):
-        '''
-        API 응답 에러 감지
-        ------------------
-        수신한 API에 청상
-        ### 필요인자
-        수신한 API 결과
-        ### 반환 값
-        {
-            'rstType': '<결과타입>',
-            'rstCode': '<결과코드>',
-            'rstMsg' : '<결과메세지>'
-        }
-        
-        코드 타입
-        'normal', 'openapi'
-        '''
-        
+    def detect_response_error(self, response:dict):        
         f_response = {
             'rstType': None,
             'rstCode': None,
@@ -219,6 +206,10 @@ BUS API REQUESTER
 | centerYn    |   | 중앙차로 여부 (N:일반, Y:중앙차로)        |
 | x           |   | 정류소 X 좌표 (WGS84)                     |
 | y           |   | 정류소 Y 좌표 (WGS84)                     |
+
+### 비고
+모종의 오류로 get 실패 시 None형 반환.
+데이터 중복 시 가장 첫 번쨰 데이터 반환.
         """
         
         request_url = 'http://apis.data.go.kr/6410000/busstationservice/getBusStationList'
@@ -228,28 +219,33 @@ BUS API REQUESTER
         }
         
         try:
-            response = requests.get(url=request_url, params=params)
+            response = requests.get(url=request_url, params=params, timeout=self.api_timeout)
             response.raise_for_status()
-        except:
-            
+        except Exception as ERROR:
+            print(f"API Request fail: {ERROR}")
+            return None
+        
         response = xmltodict.parse(response.content)
         
-        print(response)
+        # print(response)
         rstCode = self.detect_response_error(response)['rstCode']
         
         f_response = {}
         if rstCode in ['0', '00']:
             f_response = {
-                'queryTime'  : response['response']['msgHeader']['queryTime'],
-                'resultCode' : response['response']['msgHeader']['resultCode'],
-                'resultMsg'  : response['response']['msgHeader']['resultMessage'],
-                'result'     : response['response']['msgBody']['busStationList']
+                'queryTime'  : utils.get_now_ftime(),
+                'apiSuccess' : True,
+                'rstCode'    : rstCode,
+                'result'     : response['response']['msgBody']['busStationList'] if type(response['response']['msgBody']['busStationList']) == dict else response['response']['msgBody']['busStationList'][0]
             }
-        else {
-            f_response = {
-                
-            }
-        }
+        else:
+            # f_response = {
+            #     'queryTime'  : utils.get_now_ftime(),
+            #     'apiSuccess' : False,
+            #     'rstCode'    : rstCode,
+            #     'result'     : None
+            # }
+            return None
         
         return f_response
         
@@ -281,6 +277,9 @@ BUS API REQUESTER
 | remainSeatCnt2 |   | 빈자리수 (-1: 정보없음, 0-:빈자리 수)                                  |
 | staOrder       |   | 노선의 정류소순번                                                      |
 | flag           |   | 상태구분 (RUN: 운행중, PASS: 운행중, STOP: 운행종료, WAIT: 회차지대기) |
+
+### 비고
+모종의 오류로 get 실패 시 None형 반환
         """
         request_url = 'http://apis.data.go.kr/6410000/busarrivalservice/getBusArrivalList'
         params = {
@@ -328,6 +327,9 @@ BUS API REQUESTER
 | companyId        |   | 노선 운행 운수업체 ID                    |
 | companyName      |   | 노선 운행 운수업체 명칭                  |
 | companyTEl       |   | 노선 운행 운수업체 전화번호              |
+
+### 비고
+모종의 오류로 get 실패 시 None형 반환
         """
         request_url = 'http://apis.data.go.kr/6410000/busrouteservice/getBusRouteInfoItem'
         params = {
@@ -364,6 +366,9 @@ BUS API REQUESTER
 | turnYn      |   | 회차점 여부 (N: 일반, Y: 중앙차로)            |
 | x           |   | 정류소 X 좌표 (WGS84)                         |
 | y           |   | 정류소 Y 좌표 (WGS84)                         |
+
+### 비고
+모종의 오류로 get 실패 시 None형 반환
         """
         
         request_url = 'http://apis.data.go.kr/6410000/busrouteservice/getBusRouteStationList'

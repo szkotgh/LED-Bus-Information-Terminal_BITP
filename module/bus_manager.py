@@ -3,33 +3,61 @@ import os
 import sys
 import json
 import logging
+import datetime
 try:
     import module.api_modules.bus as bus
 except:
     sys.exit("module.api_modules.bus module Not found")
+try:
+    import module.utils as utils
+except:
+    sys.exit("module.utils module Not found")
 
 class bus_info_refresh_manager:
     def __init__(self, SERVICE_KEY):
-        self.SERVICE_KEY = SERVICE_KEY
-        self.station_list = {}
+        # logger_set
+        logger_path = os.path.join(os.getcwd(), 'log', 'bus_manager.log')
+        logger_set_level = logging.DEBUG
+        file_set_level = logging.DEBUG
+        self.logger = utils.create_logger(logger_path, logger_set_level, file_set_level)
+
+        self.logger.info('Logging start')
         
+        # init class
+        self.SERVICE_KEY = SERVICE_KEY
+        self.max_retry_api_error = 10
+        self.station_list = []
         self.bus_api_mgr = bus.bus_api_requester(self.SERVICE_KEY)
         
+        if self.max_retry_api_error < 0:
+            self.logger.error("\'retry_max_api_error\' value cannot be lower than 0.")
+            sys.exit(1)
+        
         self.regi_station_list_path = os.path.join(os.getcwd(), 'src', 'busStaList.json')
-        self.regi_station_list = {None}
+        self.regi_station_list = {}
         try:
             with open(self.regi_station_list_path, 'r') as bus_station_list:
                 self.regi_station_list = json.loads(bus_station_list.read())
             self.regi_station_list['busStationList']
-        except KeyError:
-            print(f" ! {self.regi_station_list_path} KeyError")
+            for regi_station in self.regi_station_list['busStationList']:
+                regi_station['keyword']
+                regi_station['stationDesc']
+        except FileNotFoundError as e:
+            self.logger.error(f'FileNotFoundError. Check the file \'{self.regi_station_list_path}\' : {e}')
             sys.exit(1)
-        except json.JSONDecodeError:
-            print(f" ! {self.regi_station_list_path} JSONDecodeError")
+        except json.JSONDecodeError as e:
+            self.logger.error(f'JSONDecodeError. Check the file \'{self.regi_station_list_path}\' : {e}')
             sys.exit(1)
-        except FileNotFoundError:
-            print(f" ! {self.regi_station_list_path} FileNotFoundError")
+        except KeyError as e:
+            self.logger.error(f'KeyError. Check the file \'{self.regi_station_list_path}\' : {e}')
             sys.exit(1)
+            
+        self.logger.info(f"Regi station list: {self.regi_station_list}")
+        print(" * Registered station List")
+        col = 1
+        for regi_station in self.regi_station_list.get('busStationList', None):
+            print(f"   {col}. {regi_station}")
+            col += 1
     
     def update_station_info(self) -> None:
         '''
@@ -38,13 +66,38 @@ station_list 정보 갱신 함수
 bus info refresh manager 객체 내부 station_list 값 갱신 함수.\n
 저장된 역 정보를 갱신합니다.
         '''
-        print(" * Registered station List")
-        col = 1
-        for regi_station in self.regi_station_list.get('busStationList', None):
-            print(f"   {col}. {regi_station}")
-            col += 1
         
-        print(self.bus_api_mgr.get_station_info(47312))
+        self.logger.info("[UpdateStationInfo] - Start updating . . .")
+        num = 1
+        for regi_station in self.regi_station_list.get('busStationList', None):
+            update_succes = False
+            station_info_rst = None
+            
+            for try_count in range(0, self.max_retry_api_error+1):
+                if try_count == self.max_retry_api_error:
+                    self.logger.error(f"[UpdateStationInfo] - api_request_fail updateStationInfo[{regi_station['keyword']}]")
+                    station_info_rst = None
+                    break
+                
+                station_info_rst = self.bus_api_mgr.get_station_info(regi_station['keyword'])
+                
+                if station_info_rst == None:
+                    self.logger.warning(f"[UpdateStationInfo] - api_request_fail_retry.. ({try_count+1}/{self.max_retry_api_error}) updateStationInfo[{regi_station['keyword']}]")
+                    continue
+                
+                update_succes = True        
+                break
+            
+            self.station_list.append(station_info_rst)
+            
+            if update_succes == True:
+                self.logger.info(f"[UpdateStationInfo] - Updated ({num}/{len(self.regi_station_list['busStationList'])})")
+            else:
+                self.logger.info(f"[UpdateStationInfo] - Update Fail ({num}/{len(self.regi_station_list['busStationList'])})")
+            
+            num += 1
+        
+        self.logger.info("[UpdateStationInfo] - Updating complete")
         
         return 0;
         
