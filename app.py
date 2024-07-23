@@ -1,13 +1,22 @@
 import os
 import sys
-import module.utils as utils
-import module.bus_manager as bus_manager
 import multiprocessing
 
+# import dotenv
 try:
     import dotenv
-except:
-    sys.exit('dotenv module is not installed')
+except Exception as e:
+    sys.exit(f'dotenv module import failed : {e}')
+# import module.utils
+try:
+    import module.utils as utils
+except Exception as e:
+    sys.exit(f'module.utils module import failed : {e}')
+# import module.bus_manager
+try:
+    import module.bus_manager as bus_manager
+except Exception as e:
+    sys.exit(f'module.bus_manager module import failed : {e}')
 
 # get service key
 SERVICE_KEY = None

@@ -4,14 +4,16 @@ import sys
 import json
 import logging
 import datetime
+# import module.api_modules.bus
 try:
     import module.api_modules.bus as bus
-except:
-    sys.exit("module.api_modules.bus module Not found")
+except Exception as e:
+    sys.exit(f'module.api_modules.bus module import failed : {e}')
+# import module.utils
 try:
     import module.utils as utils
-except:
-    sys.exit("module.utils module Not found")
+except Exception as e:
+    sys.exit(f'module.utils module import failed : {e}')
 
 class bus_info_refresh_manager:
     def __init__(self, SERVICE_KEY):

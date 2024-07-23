@@ -22,17 +22,17 @@ import datetime
 
 try:
     import requests
-except:
-    sys.exit("requests module is not installed")
+except Exception as e:
+    sys.exit(f'requests module import failed : {e}')
 
 try:
     import xmltodict
 except:
-    sys.exit("xmltodict module is not installed")
+    sys.exit(f'xmltodict module import failed : {e}')
 try:
     import module.utils as utils
 except:
-    sys.exit("module.utils module Not found")
+    sys.exit(f'module.utils module import failed : {e}')
 
 # 에러 코드
 normal_statu_code = {
