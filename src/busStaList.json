@@ -1,8 +1,16 @@
 {
 	"busStationList": [
 		{
-			"keyword" : "11112",
-			"stationDesc" :""
+			"keyword" : "29412",
+			"stationDesc" :"헌혈의집방"
+		},
+		{
+			"keyword" : "47307",
+			"stationDesc" :"덕영고방"
+		},
+		{
+			"keyword" : "56151",
+			"stationDesc" :"서울병원방"
 		}
 	]
 }

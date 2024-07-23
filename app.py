@@ -32,5 +32,7 @@ print(f'serviceKey load successful [{SERVICE_KEY}]')
 bus_mgr = bus_manager.bus_info_refresh_manager(SERVICE_KEY)
 bus_mgr.update_station_info()
 
+bus_mgr.update_station_arvl_bus_info()
+
 for station in bus_mgr.station_list:
-    print()
+    print(station)

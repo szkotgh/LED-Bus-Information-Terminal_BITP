@@ -21,7 +21,7 @@ class bus_info_refresh_manager:
         file_set_level = logging.DEBUG
         self.logger = utils.create_logger(logger_path, logger_set_level, file_set_level)
 
-        self.logger.info('Logging start')
+        self.logger.info(f'Logging start {__class__}')
         
         # init class
         self.SERVICE_KEY = SERVICE_KEY
@@ -101,3 +101,6 @@ bus info refresh manager 객체 내부 station_list 값 갱신 함수.\n
         
         return 0;
         
+    def update_station_arvl_bus_info(self):
+        for station in self.station_list:
+            print(f"USABI {self.bus_api_mgr.get_bus_arrival(station['result']['stationId'])}")
