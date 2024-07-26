@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, 
+    maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>BIT Content manage site</title>
+    <style>
+        body {
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+
+        img {
+            height: 400px;
+            width: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>BIT Content manage site</h1>
+    <hr>
+    <h2>알 수 없는 오류가 발생했습니다.</h2>
+
+    <img src="{{ url_for('static', filename='exception_handler.gif') }}">
+    <b id="desc"></b><br>
+    <hr>
+
+    <p><a href="/">관리페이지로</a></p>
+
+    <script>
+        let time = 5, desc = document.getElementById('desc');
+        const updateDesc = () => desc.innerText = ` ${time}초 후 자동으로 이동합니다 . . .`;
+        updateDesc();
+
+        const intervalId = setInterval(() => {
+            time--;
+            time > 0 ? updateDesc() : clearInterval(intervalId);
+        }, 1000);
+
+        setTimeout(() => location.href = '/', time * 1000);
+    </script>
+
+</body>
+
+</html>

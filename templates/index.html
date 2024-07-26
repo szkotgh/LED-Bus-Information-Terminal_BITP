@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='spinner.css') }}">
+    <title>BIT Content manage site</title>
+    <style>
+        body {
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+
+        #logs {
+            width: 90%;
+            height: 200px;
+            overflow-y: auto;
+            margin: 20px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        tbody {
+            counter-reset: rowNumber;
+        }
+        
+        .counterCell::before {
+            counter-increment: rowNumber;
+            content: counter(rowNumber);
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #e4e4e4;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .modal {
+            display: none;
+            /* 기본적으로 숨김 */
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            /* 반투명 배경 */
+            z-index: 9999;
+            /* 다른 요소 위에 표시 */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 800px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 10000;
+            /* 모달 콘텐츠를 다른 요소 위에 표시 */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content img,
+        .modal-content video,
+        .modal-content audio {
+            max-width: 100%;
+            max-height: 90vh;
+        }
+
+        .modal-content video {
+            width: 100%;
+            height: auto;
+        }
+
+        .progress-bar {
+            width: 16%;
+            background-color: #f3f3f3;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 5px;
+            background-color: #4caf50;
+            text-align: center;
+            color: white;
+            width: 0%;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>BIT 콘텐츠 관리페이지</h2>
+    <b>나의IP: {{ my_ip }}</b><br>
+    <hr>
+
+    <!-- upload -->
+    <h3>파일 업로드</h3>
+    <b>영문자와 기호만 허용됩니다. 한글명은 업로드 후 수정하세요.</b><br>
+    <b>선택 시 바로 업로드 됩니다.</b><br>
+    <b>지원 파일: {{ extensions }}</b>
+    <form id="upload-form" action="" method="post" enctype="multipart/form-data">
+        <input class="input-file" type="file" name="savefile" id="file-input"
+            accept=".mp4, .wmv, .avi, .mov, .mp3, .wav, .jpg, .jpeg, .png, .gif"><br>
+        <button id="submit-btn" type="button">업로드</button>
+    </form>
+    <!-- waiting text -->
+    <div id="uploading">
+        <b>업로드 중. 잠시만 기다려주세요 . . .</b>
+        <div class="spinner center">
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+        </div>
+    </div>
+    <hr>
+
+    <!-- file list -->
+    <h3>파일 관리</h3>
+    <b>정렬 및 재생 기준: 이름 순</b><br>
+    {% if files %}
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>파일명</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in files %}
+            <tr>
+                <td class="counterCell"></td>
+                <td>{{ file }}</td>
+                <td></td>
+                <td><button onclick="showPreviewModal('{{ file }}')">미리보기</button></td>
+                <td><button onclick="showRenameModal('{{ file }}')">파일명수정</button></td>
+                <td><a href="{{ url_for('download_file', filename=file) }}"><button>다운로드</button></a></td>
+                <td>
+                    <form action="{{ url_for('delete_file') }}" method="post" style="display:inline;" onsubmit="return confirmDelete('{{ file }}')">
+                        <input type="hidden" name="filename" value="{{ file }}">
+                        <button type="submit">삭제</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>업로드 된 파일이 없습니다.</p>
+    {% endif %}
+
+    <!-- Rename Modal -->
+    <div id="renameModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideRenameModal()">&times;</span>
+            <h2>파일명 변경</h2>
+            <b>확장자(.mp4, .jpg ...)는 영구 유지됩니다. 파일명만 입력하세요.</b><br>
+            <b>영문자, 숫자, 기호로만 입력하십시오. 1자 이상 128자 이하여야 합니다.</b><br>
+            <b>이미 존재하는 파일명과 중복되선 안됩니다.</b><br><br>
+            <p>현재 파일명: <span id="current-filename"></span></p>
+            <form id="rename-form" action="{{ url_for('rename_file') }}" method="post">
+                <input type="hidden" name="old_filename" id="old-filename">
+                <label for="new-filename">새 파일명:</label>
+                <input type="text" name="new_filename" id="new-filename" required>
+                <button type="submit">변경</button>
+                <button type="button" onclick="hideRenameModal()">취소</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hidePreviewModal()">&times;</span>
+            <div id="previewContent"></div>
+        </div>
+    </div>
+
+    <div class="usage">
+        <b>사용량: {{ total_used }} / {{ max_storage }} ({{ usage_percentage }}%)</b><br>
+        <div class="progress-bar">
+            <div class="progress-bar-fill" style="width: {{ usage_percentage }}%;"></div>
+        </div>
+    </div>
+    <hr>
+
+    <!-- logs textarea -->
+    <h3>로그 열람</h3>
+    <textarea id="logs" readonly>{{ logs }}</textarea><br>
+    <button id="init_log_btn">로그초기화</button>
+    <a href="{{ url_for('log_download') }}" download><button>로그다운로드</button></a>
+    <hr>
+
+    <a href="{{ url_for('admin_settings') }}">관리자 설정</a><br>
+    <a href="{{ url_for('logout') }}">로그아웃</a><br>
+    <a href="{{ url_for('session_clear') }}">전체 로그아웃 (본인 제외)</a><br>
+
+    <script>
+        const submit_btn = document.getElementById('submit-btn');
+        const uploading_div = document.getElementById('uploading');
+        const upload_form = document.getElementById('upload-form');
+        const file_input = document.getElementById('file-input');
+        const renameModal = document.getElementById('renameModal');
+        const oldFilenameInput = document.getElementById('old-filename');
+        const newFilenameInput = document.getElementById('new-filename');
+        const previewModal = document.getElementById('previewModal');
+        const previewContent = document.getElementById('previewContent');
+        const init_log_btn = document.getElementById('init_log_btn');
+
+        submit_btn.style.display = 'none';
+        uploading_div.style.display = 'none';
+
+        const logs = document.getElementById('logs');
+        logs.scrollTop = logs.scrollHeight;
+
+        file_input.addEventListener('change', () => {
+            if (file_input.files.length > 0) {
+                uploading_div.style.display = 'block';
+                upload_form.submit();
+            }
+        });
+
+        document.getElementById('init_log_btn').addEventListener('click', () => {
+            if (!confirm('정말 로그를 초기화하시겠습니까?\n초기화 한 로그는 복구할 수 없습니다.\n[로그다운로드] 버튼을 눌러 로그를 저장할 수 있습니다.')) {
+                return;
+            }
+
+            let admin_id = prompt('로그 초기화를 위해 관리자 아이디를 입력하세요 . . .');
+            let admin_pw = prompt('로그 초기화를 위해 관리자 비밀번호를 입력하세요 . . .');
+
+            if (!(admin_id && admin_pw)) {
+                alert('아이디와 비밀번호를 입력해주세요.');
+                return;
+            }
+
+            fetch('/log/init?admin_id=' + encodeURIComponent(admin_id) + '&admin_pw=' + encodeURIComponent(admin_pw), {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('로그 초기화 요청에 실패했습니다.');
+                    }
+                })
+                .then(data => {
+                    alert('로그가 성공적으로 초기화되었습니다.');
+                    window.location.href = '/';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('서버 오류가 발생했습니다.');
+                });
+        });
+
+        function showRenameModal(filename) {
+            oldFilenameInput.value = filename;
+            document.getElementById('current-filename').textContent = filename;
+            renameModal.style.display = 'block';
+        }
+
+        function hideRenameModal() {
+            renameModal.style.display = 'none';
+        }
+
+        function confirmDelete(filename) {
+            return confirm(filename + '\n정말 해당 파일을 삭제하시겠습니까?\n삭제 시 복구할 수 없습니다.');
+        }
+
+        function showPreviewModal(filename) {
+            const ext = filename.split('.').pop().toLowerCase();
+            let content = '';
+            const fileUrl = `view/${filename}`;
+
+            if (['mp4', 'wmv', 'avi', 'mov',].includes(ext)) {
+                content = `<h2>${filename}</h2><video controls><source src="${fileUrl}" type="video/${ext}">Your browser does not support the video tag.</video>`;
+            } else if (['jpg', 'jpeg', 'png', 'gif'].includes(ext)) {
+                content = `<h2>${filename}</h2><img src="${fileUrl}" alt="${filename}">`;
+            } else if (['mp3', 'wav'].includes(ext)) {
+                content = `<h2>${filename}</h2><audio controls><source src="${fileUrl}" type="audio/${ext}">Your browser does not support the audio element.</audio>`;
+            } else {
+                content = `<h2>${filename}</h2><p>Preview not available for this file type: ${filename}</p>`;
+            }
+
+            previewContent.innerHTML = content;
+            previewModal.style.display = 'block';
+        }
+
+        function hidePreviewModal() {
+            previewContent.innerHTML = '';
+            previewModal.style.display = 'none';
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

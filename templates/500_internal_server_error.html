@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, 
+    maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>BIT Content manage site</title>
+    <style>
+        body {
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+        
+        img {
+            height: 200px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>BIT Content manage site</h1>
+    <hr>
+
+    <h2>서버가 요청을 수행할 수 없습니다.</h2>
+    <img src="{{ url_for('static', filename='500_img.jpg') }}"><br>
+    <hr>
+    
+    <a href="/">관리페이지로</a>
+</body>
+</html>
