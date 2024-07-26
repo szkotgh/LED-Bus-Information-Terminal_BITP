@@ -10,7 +10,7 @@ import socket
 
 load_dotenv()
 
-HOST_IP = '192.168.0.6'
+HOST_IP = '192.168.1.81'
 HOST_PORT = 80
 HOST_DEBUG = False
 
