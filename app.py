@@ -41,7 +41,17 @@ print(f'serviceKey load successful [{SERVICE_KEY}]')
 bus_mgr = bus_manager.bus_info_refresh_manager(SERVICE_KEY)
 bus_mgr.update_station_info()
 
+print()
+print()
+print('UPDATE STATION ARVL BUS INFO')
 bus_mgr.update_station_arvl_bus_info()
 
-for station in bus_mgr.station_list:
-    print(station)
+print()
+print()
+print(bus_mgr.station_list)
+print()
+
+# for station in bus_mgr.station_list:
+#     if station['apiSuccess']:
+#         print("API 요청 성공된 객체")
+#     print(station)

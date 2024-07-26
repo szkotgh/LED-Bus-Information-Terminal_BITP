@@ -208,8 +208,8 @@ BUS API REQUESTER
 | y           |   | 정류소 Y 좌표 (WGS84)                     |
 
 ### 비고
-모종의 오류로 get 실패 시 None형 반환.
 데이터 중복 시 가장 첫 번쨰 데이터 반환.
+API 결과는 'result'하위에 저장. 요청 실패 시 'result' None로 반환
         """
         
         request_url = 'http://apis.data.go.kr/6410000/busstationservice/getBusStationList'
@@ -226,26 +226,29 @@ BUS API REQUESTER
             return None
         
         response = xmltodict.parse(response.content)
-        
-        # print(response)
         rstCode = self.detect_response_error(response)['rstCode']
+        rstMsg = self.detect_response_error(response)['rstMsg']
         
         f_response = {}
         if rstCode in ['0', '00']:
             f_response = {
                 'queryTime'  : utils.get_now_ftime(),
                 'apiSuccess' : True,
+                'apiParam'   : keyword,
                 'rstCode'    : rstCode,
+                'rstMsg'     : rstMsg,
                 'result'     : response['response']['msgBody']['busStationList'] if type(response['response']['msgBody']['busStationList']) == dict else response['response']['msgBody']['busStationList'][0]
             }
         else:
-            # f_response = {
-            #     'queryTime'  : utils.get_now_ftime(),
-            #     'apiSuccess' : False,
-            #     'rstCode'    : rstCode,
-            #     'result'     : None
-            # }
-            return None
+            f_response = {
+                'queryTime'  : utils.get_now_ftime(),
+                'apiSuccess' : False,
+                'apiParam'   : keyword,
+                'rstCode'    : rstCode,
+                'rstMsg'     : rstMsg,
+                'result'     : None
+            }
+            # return None
         
         return f_response
         
@@ -286,11 +289,40 @@ BUS API REQUESTER
             'serviceKey' : self.SERVICE_KEY,
             'stationId'  : str(stationId)
         }
-        response = requests.get(url=request_url, params=params)
-        response.raise_for_status()
-        response = xmltodict.parse(response.content)
         
-        return response
+        try:
+            response = requests.get(url=request_url, params=params, timeout=self.api_timeout)
+            response.raise_for_status()
+        except Exception as ERROR:
+            print(f"API Request fail: {ERROR}")
+            return None
+        
+        response = xmltodict.parse(response.content)
+        rstCode = self.detect_response_error(response)['rstCode']
+        rstMsg = self.detect_response_error(response)['rstMsg']
+        
+        f_response = {}
+        if rstCode in ['0', '00']:
+            f_response = {
+                'queryTime'  : utils.get_now_ftime(),
+                'apiSuccess' : True,
+                'apiParams'  : stationId,
+                'rstCode'    : rstCode,
+                'rstMsg'     : rstMsg,
+                'result'     : [response['response']['msgBody']['busArrivalList']] if type(response['response']['msgBody']['busArrivalList']) == dict else response['response']['msgBody']['busArrivalList']
+            }
+        else:
+            f_response = {
+                'queryTime'  : utils.get_now_ftime(),
+                'apiSuccess' : False,
+                'apiParams'  : stationId,
+                'rstCode'    : rstCode,
+                'rstMsg'     : rstMsg,
+                'result'     : None
+            }
+            # return None
+        
+        return f_response
     
     def get_bus_info(self, routeId:str) -> dict:
         r"""

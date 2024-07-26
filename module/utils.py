@@ -3,7 +3,7 @@ import logging
 from hashlib import md5
 import datetime
 
-default_time_format = '%Y%m%d%H%M%S%f'
+default_time_format = '%M.%f'
 
 def get_now_ftime(time_format: str | None = default_time_format) -> str:
     time = datetime.datetime.now()

@@ -4,6 +4,7 @@ import sys
 import json
 import logging
 import datetime
+
 # import module.api_modules.bus
 try:
     import module.api_modules.bus as bus
@@ -37,13 +38,16 @@ class bus_info_refresh_manager:
         
         self.regi_station_list_path = os.path.join(os.getcwd(), 'src', 'busStaList.json')
         self.regi_station_list = {}
+        self.station_list = []
         try:
             with open(self.regi_station_list_path, 'r') as bus_station_list:
                 self.regi_station_list = json.loads(bus_station_list.read())
             self.regi_station_list['busStationList']
             for regi_station in self.regi_station_list['busStationList']:
-                regi_station['keyword']
-                regi_station['stationDesc']
+                self.station_list.append({
+                    'keyword'     : regi_station['keyword'],
+                    'stationDesc' : regi_station['stationDesc']
+                })
         except FileNotFoundError as e:
             self.logger.error(f'FileNotFoundError. Check the file \'{self.regi_station_list_path}\' : {e}')
             sys.exit(1)
@@ -71,26 +75,26 @@ bus info refresh manager 객체 내부 station_list 값 갱신 함수.\n
         
         self.logger.info("[UpdateStationInfo] - Start updating . . .")
         num = 1
-        for regi_station in self.regi_station_list.get('busStationList', None):
+        for station in self.station_list:
             update_succes = False
             station_info_rst = None
             
             for try_count in range(0, self.max_retry_api_error+1):
                 if try_count == self.max_retry_api_error:
-                    self.logger.error(f"[UpdateStationInfo] - api_request_fail updateStationInfo[{regi_station['keyword']}]")
+                    self.logger.error(f"[UpdateStationInfo] - api_request_fail updateStationInfo[{station['keyword']}]")
                     station_info_rst = None
                     break
                 
-                station_info_rst = self.bus_api_mgr.get_station_info(regi_station['keyword'])
+                station_info_rst = self.bus_api_mgr.get_station_info(station['keyword'])
                 
                 if station_info_rst == None:
-                    self.logger.warning(f"[UpdateStationInfo] - api_request_fail_retry.. ({try_count+1}/{self.max_retry_api_error}) updateStationInfo[{regi_station['keyword']}]")
+                    self.logger.warning(f"[UpdateStationInfo] - api_request_fail_retry.. ({try_count+1}/{self.max_retry_api_error}) updateStationInfo[{station['keyword']}]")
                     continue
                 
                 update_succes = True        
                 break
             
-            self.station_list.append(station_info_rst)
+            station['stationInfo'] = station_info_rst
             
             if update_succes == True:
                 self.logger.info(f"[UpdateStationInfo] - Updated ({num}/{len(self.regi_station_list['busStationList'])})")
@@ -104,5 +108,47 @@ bus info refresh manager 객체 내부 station_list 값 갱신 함수.\n
         return 0;
         
     def update_station_arvl_bus_info(self):
+        '''
+station_list 하위 곧 도착 버스 목록 갱신 함수
+---------------------------------------------
+station_list 하위 arvlbusResult 객체 갱신 함수.
+곧 도착 버스 정보를 갱신합니다.
+        '''
+        
+        self.logger.info("[UpdateStationArvlBusInfo] - Start updating . . .")
+        num=1
         for station in self.station_list:
-            print(f"USABI {self.bus_api_mgr.get_bus_arrival(station['result']['stationId'])}")
+            update_succes = False
+            arvl_bus_rst = None
+            
+            if station['stationInfo']['apiSuccess'] == False:
+                station['arvlBusInfo'] = None
+                continue
+            
+            for try_count in range(0, self.max_retry_api_error+1):
+                if try_count == self.max_retry_api_error:
+                    self.logger.error(f"[UpdateStationArvlBusInfo] - api_request_fail UpdateStationArvlBusInfo[{station['keyword']}]")
+                    arvl_bus_rst = None
+                    break
+                
+                arvl_bus_rst = self.bus_api_mgr.get_bus_arrival(station['stationInfo']['result']['stationId'])
+                
+                if arvl_bus_rst == None:
+                    self.logger.warning(f"[UpdateStationArvlBusInfo] - api_request_fail_retry.. ({try_count+1}/{self.max_retry_api_error}) UpdateStationArvlBusInfo[{station['keyword']}]")
+                    continue
+                
+                update_succes = True        
+                break
+            
+            station['arvlBusInfo'] = arvl_bus_rst
+            
+            if update_succes == True:
+                self.logger.info(f"[UpdateStationArvlBusInfo] - Updated ({num}/{len(self.station_list)})")
+            else:
+                self.logger.info(f"[UpdateStationArvlBusInfo] - Update Fail ({num}/{len(self.station_list)})")
+            
+            num += 1
+        
+        self.logger.info("[UpdateStationArvlBusInfo] - Updating complete")
+        
+        return 0;
