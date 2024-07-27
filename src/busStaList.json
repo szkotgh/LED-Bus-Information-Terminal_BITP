@@ -2,15 +2,7 @@
 	"busStationList": [
 		{
 			"keyword" : "29412",
-			"stationDesc" :"헌혈의집方"
-		},
-		{
-			"keyword" : "47574",
-			"stationDesc" :"용마초교方"
-		},
-		{
-			"keyword" : "56151",
-			"stationDesc" :"서울병원方"
+			"stationDesc" :"헌혈의집"
 		}
 	]
 }

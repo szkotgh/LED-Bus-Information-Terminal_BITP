@@ -24,7 +24,6 @@ try:
     import requests
 except Exception as e:
     sys.exit(f'requests module import failed : {e}')
-
 try:
     import xmltodict
 except:

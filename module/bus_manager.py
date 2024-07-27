@@ -40,13 +40,15 @@ class bus_info_refresh_manager:
         self.regi_station_list = {}
         self.station_list = []
         try:
-            with open(self.regi_station_list_path, 'r') as bus_station_list:
+            with open(self.regi_station_list_path, 'r', encoding='UTF-8') as bus_station_list:
                 self.regi_station_list = json.loads(bus_station_list.read())
             self.regi_station_list['busStationList']
             for regi_station in self.regi_station_list['busStationList']:
                 self.station_list.append({
                     'keyword'     : regi_station['keyword'],
-                    'stationDesc' : regi_station['stationDesc']
+                    'stationDesc' : regi_station['stationDesc'],
+                    'stationInfo' : None,
+                    'arvlBusInfo' : None
                 })
         except FileNotFoundError as e:
             self.logger.error(f'FileNotFoundError. Check the file \'{self.regi_station_list_path}\' : {e}')
@@ -57,13 +59,11 @@ class bus_info_refresh_manager:
         except KeyError as e:
             self.logger.error(f'KeyError. Check the file \'{self.regi_station_list_path}\' : {e}')
             sys.exit(1)
+        except Exception as e:
+            self.logger.error(f'Unknown Error. Check the file \'{self.regi_station_list_path}\' : {e}')
+            sys.exit(1)
             
         self.logger.info(f"Regi station list: {self.regi_station_list}")
-        print(" * Registered station List")
-        col = 1
-        for regi_station in self.regi_station_list.get('busStationList', None):
-            print(f"   {col}. {regi_station}")
-            col += 1
     
     def update_station_info(self) -> None:
         '''
@@ -137,7 +137,7 @@ station_list 하위 arvlbusResult 객체 갱신 함수.
                     self.logger.warning(f"[UpdateStationArvlBusInfo] - api_request_fail_retry.. ({try_count+1}/{self.max_retry_api_error}) UpdateStationArvlBusInfo[{station['keyword']}]")
                     continue
                 
-                update_succes = True        
+                update_succes = True
                 break
             
             station['arvlBusInfo'] = arvl_bus_rst

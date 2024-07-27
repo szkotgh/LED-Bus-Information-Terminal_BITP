@@ -27,7 +27,7 @@ def create_logger(logger_file_path, logger_set_level=logging.DEBUG, file_set_lev
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
 
-    file_handler = logging.FileHandler(logger_file_path)
+    file_handler = logging.FileHandler(logger_file_path, 'w', encoding='UTF-8')
     file_handler.setFormatter(formatter)
     file_handler.setLevel(file_set_level)
     logger.addHandler(file_handler)
