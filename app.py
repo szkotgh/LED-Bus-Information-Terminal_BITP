@@ -18,6 +18,11 @@ try:
     import module.bus_manager as bus_manager
 except Exception as e:
     sys.exit(f'module.bus_manager module import failed : {e}')
+# import module.weather_manager
+try:
+    import module.weather_manager as weather_manager
+except Exception as e:
+    sys.exit(f'module.weather_manager module import failed : {e}')
 
 # get service key
 SERVICE_KEY = None
@@ -40,8 +45,7 @@ except:
 print(f'serviceKey load successful [{SERVICE_KEY}]')
 
 # program start
-bus_mgr = bus_manager.bus_info_refresh_manager(SERVICE_KEY)
-bus_mgr.update_station_info()
+# bus_mgr = bus_manager.bus_info_manager(SERVICE_KEY)
+weather_mgr = weather_manager.weather_info_manager(SERVICE_KEY)
 
-bus_mgr.update_station_arvl_bus_info()
-
+weather_mgr.update_weather_info()

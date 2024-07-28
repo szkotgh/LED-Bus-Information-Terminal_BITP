@@ -1,4 +1,3 @@
-
 import os
 import sys
 import json
@@ -16,13 +15,14 @@ try:
 except Exception as e:
     sys.exit(f'module.utils module import failed : {e}')
 
-class bus_info_refresh_manager:
+class bus_info_manager:
     def __init__(self, SERVICE_KEY):
-        # logger_set
-        logger_path = os.path.join(os.getcwd(), 'log', 'bus_manager.log')
+        # set logger
+        logger_name = "bus_mgr"
+        logger_path = os.path.join(os.getcwd(), 'log', 'mainlog.log')
         logger_set_level = logging.DEBUG
         file_set_level = logging.DEBUG
-        self.logger = utils.create_logger(logger_path, logger_set_level, file_set_level)
+        self.logger = utils.create_logger(logger_name, logger_path, logger_set_level, file_set_level)
 
         self.logger.info(f'Logging start {__class__}')
         

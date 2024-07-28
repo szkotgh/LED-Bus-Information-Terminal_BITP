@@ -5,21 +5,65 @@ WEATHER.PY
 기온과 미세먼지를 얻는 API를 손쉽게 호출할 수 있습니다.
 '''
 
+import json
+import os
 import sys
 import datetime
-import requests
-import xmltodict
+
+try:
+    import requests
+except Exception as e:
+    sys.exit(f'requests module import failed : {e}')
+try:
+    import xmltodict
+except:
+    sys.exit(f'xmltodict module import failed : {e}')
+try:
+    import module.utils as utils
+except:
+    sys.exit(f'module.utils module import failed : {e}')
+
+code_info = {
+    'POP' : '강수확률',
+    'PTY' : '강수형태',
+    'PCP' : '1시간 강수량',
+    'REH' : '습도',
+    'SNO' : '1시간 신적설',
+    'SKY' : '하늘상태',
+    'TMP' : '1시간 기온',
+    'TMN' : '일 최저기온',
+    'TMX' : '일 최고기온',
+    'UUU' : '풍속(동서성분)',
+    'VVV' : '풍속(남북성분)',
+    'WAV' : '파고',
+    'VEC' : '풍향',
+    'WSD' : '풍속'
+}
+
+SKY_info = {
+    '1' : '맑음',
+    '3' : '구름많음',
+    '4' : '흐림'
+}
+
+PTY_info = {
+    '0' : '없음',
+    '1' : '비',
+    '2' : '비/눈',
+    '3' : '눈',
+    '4' : '소나기',
+    '5' : '빗방울',
+    '6' : '빗방울눈날림',
+    '7' : '눈날림'
+}
 
 class weather_api_requester:
-    '''
-    날씨 API 요청 관리 객체
-    '''
     def __init__(self, SERVICE_KEY):
         self.SERVICE_KEY = SERVICE_KEY
-        self.base_url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0'
+        self.detect_response_error = utils.detect_response_error
 
-    def get_vilage_fcst(self, nx, ny, base_date, base_time, num_of_rows=1000, page_no=1, data_type='JSON'):
-        url = f"{self.base_url}/getVilageFcst"
+    def get_vilage_fcst(self, nx, ny, base_date, base_time, num_of_rows='1000', page_no='1', data_type='XML'):
+        url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'
         params = {
             'serviceKey': self.SERVICE_KEY,
             'numOfRows': num_of_rows,
@@ -30,58 +74,39 @@ class weather_api_requester:
             'nx': nx,
             'ny': ny
         }
-        response = requests.get(url, params=params)
-        if response.status_code == 200:
-            if data_type == 'JSON':
-                return response.json()
-            else:
-                return xmltodict.parse(response.content)
-        else:
+        
+        try:
+            response = requests.get(url, params=params)
             response.raise_for_status()
-
-    def get_tomorrow_weather(self, nx, ny):
-        today = datetime.datetime.today()
-        tomorrow = today + datetime.timedelta(days=1)
-        base_date = today.strftime('%Y%m%d')
+        except Exception as ERROR:
+            print(f"API Request fail: {ERROR}")
+            return None
         
-        # Determine appropriate base_time based on current time
-        current_time = today.strftime('%H%M')
-        if '2300' <= current_time or current_time < '0500':
-            base_time = '2300'
-        elif '0500' <= current_time < '1100':
-            base_time = '0500'
-        elif '1100' <= current_time < '1700':
-            base_time = '1100'
+        response = xmltodict.parse(response.text)
+        
+        detect_rst = self.detect_response_error(response)
+        rstCode = detect_rst['rstCode']
+        rstMsg = detect_rst['rstMsg']
+        
+        f_response = {}
+        if rstCode in ['0', '00']:
+            f_response = {
+                'queryTime'  : utils.get_now_ftime(),
+                'apiSuccess' : True,
+                'apiParam'   : f"nx={nx},ny={ny},base_date={base_date},base_time={base_time},num_of_rows={num_of_rows},page_no={page_no},data_type={data_type}",
+                'rstCode'    : rstCode,
+                'rstMsg'     : rstMsg,
+                'result'     : response['response']['body']['items']['item']
+            }
         else:
-            base_time = '1700'
+            f_response = {
+                'queryTime'  : utils.get_now_ftime(),
+                'apiSuccess' : False,
+                'apiParam'   : f"nx={nx},ny={ny},base_date={base_date},base_time={base_time},num_of_rows={num_of_rows},page_no={page_no},data_type={data_type}",
+                'rstCode'    : rstCode,
+                'rstMsg'     : rstMsg,
+                'result'     : None
+            }
+            # return None
         
-        tomorrow_date = tomorrow.strftime('%Y%m%d')
-
-        # Debugging: Print the request details
-        print(f"Requesting data for base_date: {base_date}, base_time: {base_time}")
-        
-        data = self.get_vilage_fcst(nx, ny, base_date, base_time)
-        
-        # Debugging: Print the response data
-        print("Response data:", data)
-        
-        # Extract weather forecast for tomorrow
-        forecast = []
-        if data['response']['header']['resultCode'] == '00':
-            items = data['response']['body']['items']['item']
-            for item in items:
-                if item['fcstDate'] == tomorrow_date:
-                    forecast.append(item)
-        else:
-            # Debugging: Print the resultCode and resultMsg if not '00'
-            print(f"Error: {data['response']['header']['resultCode']} - {data['response']['header']['resultMsg']}")
-        return forecast
-
-if __name__ == "__main__":
-    SERVICE_KEY = 'Y+K/PG7BzlPBzLKybehRrc2U90kkXQbkuDj3DrFrnXRgL2UWCO8uIyaHlZPaKPsHPn0nCF2fcRP6eVnAUn4mUA=='  # Replace with your actual service key
-    nx = 55  # Replace with actual X coordinate
-    ny = 127  # Replace with actual Y coordinate
-
-    weather_requester = weather_api_requester(SERVICE_KEY)
-    tomorrow_weather = weather_requester.get_tomorrow_weather(nx, ny)
-    print(tomorrow_weather)
+        return f_response

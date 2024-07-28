@@ -33,45 +33,6 @@ try:
 except:
     sys.exit(f'module.utils module import failed : {e}')
 
-# 에러 코드
-normal_statu_code = {
-    '0'  : '정상적으로 처리되었습니다.',
-    '1'  : '시스템 에러가 발생하였습니다.',
-    '2'  : '필수 요청 Parameter 가 존재하지 않습니다.',
-    '3'  : '필수 요청 Parameter 가 잘못되었습니다.',
-    '4'  : '결과가 존재하지 않습니다.',
-    '5'  : '필수 요청 Parameter(인증키) 가 존재하지 않습니다.',
-    '6'  : '등록되지 않은 키입니다.',
-    '7'  : '사용할 수 없는(등록은 되었으나, 일시적으로 사용 중지된) 키입니다.',
-    '8'  : '요청 제한을 초과하였습니다.',
-    '20' : '잘못된 위치로 요청하였습니다. 위경도 좌표값이 정확한지 확인하십시오.',
-    '21' : '노선번호는 1자리 이상 입력하세요.',
-    '22' : '정류소명/번호는 1자리 이상 입력하세요.',
-    '23' : '버스 도착 정보가 존재하지 않습니다.',
-    '31' : '존재하지 않는 출발 정류소 아이디(ID)/번호입니다.',
-    '32' : '존재하지 않는 도착 정류소 아이디(ID)/번호입니다.',
-    '99' : 'API 서비스 준비중입니다.',
-}
-openapi_statu_code = {
-    '00' : '정상',
-    '01' : '어플리케이션 에러',
-    '02' : '데이터베이스 에러',
-    '03' : '데이터없음 에러',
-    '04' : 'HTTP 에러',
-    '05' : '서비스 연결실패 에러',
-    '10' : '잘못된 요청 파라메터 에러',
-    '11' : '필수요청 파라메터가 없음',
-    '12' : '해당 오픈API서비스가 없거나 폐기됨',
-    '20' : '서비스 접근거부',
-    '21' : '일시적으로 사용할 수 없는 서비스 키',
-    '22' : '서비스 요청제한횟수 초과에러',
-    '30' : '등록되지 않은 서비스키',
-    '31' : '기한만료된 서비스키',
-    '32' : '등록되지 않은 IP',
-    '33' : '서명되지 않은 호출',
-    '99' : '기타에러',
-}
-
 # 노선 유형 코드
 route_type_code = {
     '11' :  '직행좌석형시내버스',
@@ -159,29 +120,7 @@ BUS API REQUESTER
     def __init__(self, SERVICE_KEY):
         self.SERVICE_KEY = str(SERVICE_KEY)
         self.api_timeout = 5
-        
-    def detect_response_error(self, response:dict):        
-        f_response = {
-            'rstType': None,
-            'rstCode': None,
-            'rstMsg' : None
-        }
-        
-        # Type 1: Normal Response
-        if 'response' in response and 'msgHeader' in response['response']:
-            msg_header = response['response']['msgHeader']
-            f_response['rstCode'] = msg_header.get('resultCode')
-            f_response['rstMsg'] = msg_header.get('resultMessage')
-            f_response['rstType'] = 'normal'
-        
-        # Type 2: OpenAPI Response
-        elif 'OpenAPI_ServiceResponse' in response and 'cmmMsgHeader' in response['OpenAPI_ServiceResponse']:
-            cmm_msg_header = response['OpenAPI_ServiceResponse']['cmmMsgHeader']
-            f_response['rstCode'] = cmm_msg_header.get('returnReasonCode')
-            f_response['rstMsg'] = cmm_msg_header.get('returnAuthMsg')
-            f_response['rstType'] = 'openapi'
-        
-        return f_response
+        self.detect_response_error = utils.detect_response_error
     
     def get_station_info(self, keyword:str) -> dict:
         r"""
