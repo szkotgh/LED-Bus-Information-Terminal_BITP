@@ -1,0 +1,81 @@
+{
+    "keyword": "47574",
+    "stationDesc": "TEST2",
+    "stationInfo": {
+        "queryTime": "20240804233542",
+        "apiSuccess": true,
+        "apiParam": "keyword=47574",
+        "rstCode": "0",
+        "rstMsg": "\uc815\uc0c1\uc801\uc73c\ub85c \ucc98\ub9ac\ub418\uc5c8\uc2b5\ub2c8\ub2e4.",
+        "result": {
+            "centerYn": "N",
+            "districtCd": "2",
+            "mobileNo": "47574",
+            "regionName": "\uc6a9\uc778",
+            "stationId": "228000434",
+            "stationName": "\uc11c\uc6b8\ubcd1\uc6d0",
+            "x": "127.21465",
+            "y": "37.23995"
+        }
+    },
+    "arvlBus": {
+        "queryTime": "20240804233542",
+        "apiSuccess": true,
+        "apiParams": "stationId=228000434",
+        "rstCode": "0",
+        "rstMsg": "\uc815\uc0c1\uc801\uc73c\ub85c \ucc98\ub9ac\ub418\uc5c8\uc2b5\ub2c8\ub2e4.",
+        "result": [
+            {
+                "flag": "PASS",
+                "locationNo1": "6",
+                "locationNo2": null,
+                "lowPlate1": "0",
+                "lowPlate2": "0",
+                "plateNo1": "\uacbd\uae3078\uc5441625",
+                "plateNo2": null,
+                "predictTime1": "4",
+                "predictTime2": null,
+                "remainSeatCnt1": "-1",
+                "remainSeatCnt2": "-1",
+                "routeId": "228000136",
+                "staOrder": "76",
+                "stationId": "228000434"
+            }
+        ]
+    },
+    "arvlBusInfo": [
+        {
+            "queryTime": "20240804233542",
+            "apiSuccess": true,
+            "apiParams": "routeId=228000136",
+            "rstCode": "0",
+            "rstMsg": "\uc815\uc0c1\uc801\uc73c\ub85c \ucc98\ub9ac\ub418\uc5c8\uc2b5\ub2c8\ub2e4.",
+            "result": {
+                "companyId": "4100600",
+                "companyName": "\uacbd\ub0a8\uc5ec\uac1d",
+                "companyTel": "031-321-3721",
+                "districtCd": "2",
+                "downFirstTime": "06:30",
+                "downLastTime": "23:10",
+                "endMobileNo": "47675",
+                "endStationId": "228000384",
+                "endStationName": "\ub9c8\uc131\ub9ac",
+                "peekAlloc": "20",
+                "regionName": "\uc6a9\uc778",
+                "routeId": "228000136",
+                "routeName": "2",
+                "routeTypeCd": "13",
+                "routeTypeName": "\uc77c\ubc18\ud615\uc2dc\ub0b4\ubc84\uc2a4",
+                "startMobileNo": "47634",
+                "startStationId": "228001552",
+                "startStationName": "(\uc784\uc2dc)\uc6a9\uc778\ud130\ubbf8\ub110",
+                "upFirstTime": "06:05",
+                "upLastTime": "22:20",
+                "nPeekAlloc": "120"
+            }
+        }
+    ],
+    "arvlBusRouteInfo": null,
+    "weatherInfo": null,
+    "finedustInfo": null
+}

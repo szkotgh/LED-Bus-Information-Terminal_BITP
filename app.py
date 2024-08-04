@@ -2,6 +2,7 @@ import os
 import sys
 import multiprocessing
 import time
+import json
 
 # import dotenv
 try:
@@ -13,16 +14,11 @@ try:
     import module.utils as utils
 except Exception as e:
     sys.exit(f'module.utils module import failed : {e}')
-# import module.bus_manager
+# import module.info_manager
 try:
-    import module.bus_manager as bus_manager
+    from module.info_manager import info_manager
 except Exception as e:
     sys.exit(f'module.bus_manager module import failed : {e}')
-# import module.weather_manager
-try:
-    import module.weather_manager as weather_manager
-except Exception as e:
-    sys.exit(f'module.weather_manager module import failed : {e}')
 
 # get service key
 SERVICE_KEY = None
@@ -44,8 +40,19 @@ except:
         sys.exit('serviceKey load failed')
 print(f'serviceKey load successful [{SERVICE_KEY}]')
 
-# program start
-# bus_mgr = bus_manager.bus_info_manager(SERVICE_KEY)
-weather_mgr = weather_manager.weather_info_manager(SERVICE_KEY)
+# get option path
+OPTION_PATH = os.path.join(os.getcwd(), 'src', 'option.json')
 
-weather_mgr.update_weather_info()
+# program start
+info_mgr = info_manager(SERVICE_KEY, OPTION_PATH)
+info_mgr.update_station_info()
+info_mgr.update_station_arvl_bus()
+info_mgr.update_station_arvl_bus_info()
+with open(os.path.join('log', 'struct.log'), 'w', encoding="UTF-8") as f:
+    f.write(json.dumps(info_mgr.station_list, indent=4))
+info_mgr.update_station_arvl_bus_route_info()
+info_mgr.update_weather_info()  
+info_mgr.update_fine_dust_info()
+
+print()
+print()

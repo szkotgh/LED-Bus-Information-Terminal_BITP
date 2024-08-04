@@ -1,3 +1,14 @@
 {
-    
+    "set_api_error_retry_count" : 10,
+    "set_api_timeout" : 5,
+    "busStationList": [
+        {
+            "keyword" : "47573",
+            "stationDesc" : "TEST1"
+        },
+        {
+            "keyword" : "47574",
+            "stationDesc" : "TEST2"
+        }
+	]
 }

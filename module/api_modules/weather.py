@@ -24,6 +24,7 @@ except:
     sys.exit(f'module.utils module import failed : {e}')
 
 code_info = {
+    'WTS' : '날씨정보', # 별도 추가 항목
     'POP' : '강수확률',
     'PTY' : '강수형태',
     'PCP' : '1시간 강수량',
@@ -40,39 +41,68 @@ code_info = {
     'WSD' : '풍속'
 }
 
+# 코드 단위 (단기예보)
+code_unit = {
+    'WTS' : None, # 별도 추가 항목
+    'POP' : '%',
+    'PTY' : '[코드값]',
+    'PCP' : '[범주 (1mm)]',
+    'REH' : '%',
+    'SNO' : '[범주 (1cm)]',
+    'SKY' : '[코드값]',
+    'TMP' : '℃',
+    'TMN' : '℃',
+    'TMX' : '℃',
+    'UUU' : 'm/s',
+    'VVV' : 'm/s',
+    'WAV' : 'M',
+    'VEC' : 'deg',
+    'WSD' : 'm/s'
+}
+
 SKY_info = {
-    '1' : '맑음',
-    '3' : '구름많음',
-    '4' : '흐림'
+    '-1' : '정보없음', # 별도 추가 항목
+    '1'  : '맑음',
+    '3'  : '구름많음',
+    '4'  : '흐림'
 }
 
 PTY_info = {
-    '0' : '없음',
-    '1' : '비',
-    '2' : '비/눈',
-    '3' : '눈',
-    '4' : '소나기',
-    '5' : '빗방울',
-    '6' : '빗방울눈날림',
-    '7' : '눈날림'
+    None : '정보없음',
+    '-1' : '정보없음', # 별도 추가 항목
+    '0'  : '없음',
+    '1'  : '비',
+    '2'  : '비/눈',
+    '3'  : '눈',
+    '4'  : '소나기',
+    '5'  : '빗방울',
+    '6'  : '빗방울눈날림',
+    '7'  : '눈날림'
+}
+
+FineDust_Grade = {
+    '-1' : '정보없음',
+    '1'  : '좋음',
+    '2'  : '보통',
+    '3'  : '나쁨',
+    '4'  : '매우나쁨'
 }
 
 class weather_api_requester:
     def __init__(self, SERVICE_KEY):
         self.SERVICE_KEY = SERVICE_KEY
-        self.detect_response_error = utils.detect_response_error
 
-    def get_vilage_fcst(self, nx, ny, base_date, base_time, num_of_rows='1000', page_no='1', data_type='XML'):
+    def get_vilage_fcst(self, nx, ny, base_date, base_time, num_of_rows='1000', page_no='1', data_type='JSON'):
         url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'
         params = {
-            'serviceKey': self.SERVICE_KEY,
-            'numOfRows': num_of_rows,
-            'pageNo': page_no,
-            'dataType': data_type,
-            'base_date': base_date,
-            'base_time': base_time,
-            'nx': nx,
-            'ny': ny
+            'serviceKey' : str(self.SERVICE_KEY),
+            'numOfRows'  : str(num_of_rows),
+            'pageNo'     : str(page_no),
+            'dataType'   : str(data_type),
+            'base_date'  : str(base_date),
+            'base_time'  : str(base_time),
+            'nx'         : str(nx),
+            'ny'         : str(ny)
         }
         
         try:
@@ -82,31 +112,76 @@ class weather_api_requester:
             print(f"API Request fail: {ERROR}")
             return None
         
-        response = xmltodict.parse(response.text)
+        response = json.loads(response.content)
         
-        detect_rst = self.detect_response_error(response)
+        detect_rst = utils.detect_response_error(response)
         rstCode = detect_rst['rstCode']
         rstMsg = detect_rst['rstMsg']
         
         f_response = {}
         if rstCode in ['0', '00']:
-            f_response = {
+            f_response.update({
                 'queryTime'  : utils.get_now_ftime(),
                 'apiSuccess' : True,
                 'apiParam'   : f"nx={nx},ny={ny},base_date={base_date},base_time={base_time},num_of_rows={num_of_rows},page_no={page_no},data_type={data_type}",
                 'rstCode'    : rstCode,
                 'rstMsg'     : rstMsg,
                 'result'     : response['response']['body']['items']['item']
-            }
+            })
         else:
-            f_response = {
+            f_response.update({
                 'queryTime'  : utils.get_now_ftime(),
                 'apiSuccess' : False,
                 'apiParam'   : f"nx={nx},ny={ny},base_date={base_date},base_time={base_time},num_of_rows={num_of_rows},page_no={page_no},data_type={data_type}",
                 'rstCode'    : rstCode,
                 'rstMsg'     : rstMsg,
                 'result'     : None
-            }
-            # return None
+            })
+        
+        return f_response
+    
+    def get_fine_dust_info(self, returnType="xml", sidoName="경기", ver="1.0"):
+        url = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty"
+        params = {
+            "serviceKey" : self.SERVICE_KEY,
+            "returnType" : returnType,
+            "numOfRows"  : 1000,
+            "pageNo"     : 1,
+            "sidoName"   : sidoName,
+            "ver"        : ver,
+        }
+        
+        try:
+            response = requests.get(url, params=params)
+            response.raise_for_status()
+        except Exception as ERROR:
+            print(f"API Request fail: {ERROR}")
+            return None
+        
+        response = xmltodict.parse(response.content)
+        
+        detect_rst = utils.detect_response_error(response)
+        rstCode = detect_rst['rstCode']
+        rstMsg = detect_rst['rstMsg']
+        
+        f_response = {}
+        if rstCode in ['0', '00']:
+            f_response.update({
+                'queryTime'  : utils.get_now_ftime(),
+                'apiSuccess' : True,
+                'apiParam'   : f"returnType={returnType},sidoName={sidoName},ver={ver}",
+                'rstCode'    : rstCode,
+                'rstMsg'     : rstMsg,
+                'result'     : response['response']['body']['items']['item']
+            })
+        else:
+            f_response.update({
+                'queryTime'  : utils.get_now_ftime(),
+                'apiSuccess' : False,
+                'apiParam'   : f"returnType={returnType},sidoName={sidoName},ver={ver}",
+                'rstCode'    : rstCode,
+                'rstMsg'     : rstMsg,
+                'result'     : None
+            })
         
         return f_response
