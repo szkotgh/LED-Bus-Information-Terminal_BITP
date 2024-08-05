@@ -2712,3 +2712,190 @@ KST 08/05/24 14:30:48 INFO [info_mgr] >  * Regi station list : [{'keyword': '475
 KST 08/05/24 14:30:53 INFO [info_mgr] > Created Logger. (info_mgr)
 KST 08/05/24 14:30:53 INFO [info_mgr] > Logging start. <class 'module.info_manager.info_manager'>
 KST 08/05/24 14:30:53 INFO [info_mgr] >  * Regi station list : [{'keyword': '47573', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 14:53:27 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 14:53:27 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 14:53:27 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 14:54:27 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 14:54:27 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 14:54:27 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/1)
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/1)
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/1)
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/1)
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000183](1/8)[29450](1/1)
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/8)[228000183](1/1)[29450]
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000271](2/8)[29450](1/1)
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/8)[228000271](1/1)[29450]
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](3/8)[29450](1/1)
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/8)[228000238](1/1)[29450]
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](4/8)[29450](1/1)
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/8)[228000005](1/1)[29450]
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](5/8)[29450](1/1)
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/8)[228000038](1/1)[29450]
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000020](6/8)[29450](1/1)
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/8)[228000020](1/1)[29450]
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000113](7/8)[29450](1/1)
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/8)[228000113](1/1)[29450]
+KST 08/05/24 14:54:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](8/8)[29450](1/1)
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/8)[228000001](1/1)[29450]
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/1)
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/1)
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/1)
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/1)
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/1)
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/1)
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/1)
+KST 08/05/24 14:54:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/05/24 14:54:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/1)
+KST 08/05/24 14:54:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/05/24 14:54:29 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/05/24 14:54:29 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/1)
+KST 08/05/24 14:54:29 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [29450](1/1)
+KST 08/05/24 14:54:29 INFO [info_mgr] > [UpdateWeatherInfo] - Updating complete.
+KST 08/05/24 14:54:29 INFO [info_mgr] > [UpdateFineDustInfo] - Start updating . . . 
+KST 08/05/24 14:54:29 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [29450](1/1)
+KST 08/05/24 14:54:30 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [29450](1/1)
+KST 08/05/24 14:54:30 INFO [info_mgr] > [UpdateFineDustInfo] - Updating complete.
+KST 08/05/24 15:54:25 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 15:54:25 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 15:54:25 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 15:55:30 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 15:55:30 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 15:55:30 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 15:58:00 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 15:58:00 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 15:58:00 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:00:33 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:00:33 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:00:33 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:14:22 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:14:22 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:14:22 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:14:41 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:14:41 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:14:41 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:15:16 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:15:16 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:15:16 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:15:17 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:15:17 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:15:17 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:15:18 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:15:18 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:15:18 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:15:18 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:15:18 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:15:18 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:15:29 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:15:29 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:15:29 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:15:34 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:15:34 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:15:34 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:16:16 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:16:16 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:16:16 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:16:21 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:16:21 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:16:21 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:16:36 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:16:36 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:16:36 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:17:02 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:17:02 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:17:02 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:17:10 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:17:10 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:17:10 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:18:41 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:18:41 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:18:41 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:19:10 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:19:10 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:19:10 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:19:14 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:19:14 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:19:14 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:19:25 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:19:25 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:19:25 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:22:29 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:22:29 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:22:29 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:29:43 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:29:43 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:29:43 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:29:47 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:29:47 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:29:47 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:30:37 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:30:37 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:30:37 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:31:14 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:31:14 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:31:14 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:31:15 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:31:15 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:31:15 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:31:27 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:31:27 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:31:27 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:31:31 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:31:31 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:31:31 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:31:35 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:31:35 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:31:35 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 16:31:55 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 16:31:55 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 16:31:55 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 17:53:25 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 17:53:25 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 17:53:25 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 17:56:33 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 17:56:33 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 17:56:33 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 17:57:19 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 17:57:19 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 17:57:19 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 17:59:12 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 17:59:12 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 17:59:12 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 17:59:51 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 17:59:51 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 17:59:51 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 18:00:30 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 18:00:30 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 18:00:30 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 18:01:25 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 18:01:25 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 18:01:25 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 18:02:14 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 18:02:14 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 18:02:14 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 18:06:02 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 18:06:02 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 18:06:02 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 18:06:22 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 18:06:22 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 18:06:22 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 18:07:13 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 18:07:13 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 18:07:13 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/05/24 18:08:13 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/05/24 18:08:13 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/05/24 18:08:13 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]

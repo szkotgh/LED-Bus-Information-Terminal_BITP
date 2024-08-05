@@ -21,7 +21,7 @@ except Exception as e:
     sys.exit(f'module.api_modules.bus module import failed : {e}')
 
 # info_manager class
-class info_manager:
+class InfoManager:
     def __init__(self, SERVICE_KEY, OPTION_PATH:str):
         # Set logger
         logger_name = "info_mgr"

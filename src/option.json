@@ -3,12 +3,8 @@
     "set_api_timeout" : 5,
     "busStationList": [
         {
-            "keyword" : "47573",
+            "keyword" : "29450",
             "stationDesc" : "TEST1"
-        },
-        {
-            "keyword" : "47574",
-            "stationDesc" : "TEST2"
         }
 	]
 }
