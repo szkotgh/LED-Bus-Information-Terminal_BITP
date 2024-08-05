@@ -409,9 +409,6 @@ API 결과는 'result'하위에 저장. 요청 실패 시 'result' None로 반�
         
         response = xmltodict.parse(response.content)
         
-        with open('./log/transit_route.log', 'w', 'UTF-8') as log:
-            log.write(response)
-        
         detect_rst = utils.detect_response_error(response)
         rstCode = detect_rst['rstCode']
         rstMsg = detect_rst['rstMsg']
@@ -424,7 +421,7 @@ API 결과는 'result'하위에 저장. 요청 실패 시 'result' None로 반�
                 'apiParams'  : f"routeId={routeId}",
                 'rstCode'    : rstCode,
                 'rstMsg'     : rstMsg,
-                'result'     : response['response']['msgBody']['busRouteInfoItem']
+                'result'     : [response['response']['msgBody']['busRouteStationList']] if (response['response']['msgBody']['busRouteStationList']) == dict else response['response']['msgBody']['busRouteStationList']
             }
         else:
             f_response = {

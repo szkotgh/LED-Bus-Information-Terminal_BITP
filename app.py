@@ -43,16 +43,20 @@ print(f'serviceKey load successful [{SERVICE_KEY}]')
 # get option path
 OPTION_PATH = os.path.join(os.getcwd(), 'src', 'option.json')
 
+print("internet connection" if utils.check_internet_connection() else "No internet connection. Please check your network connection.")
+
 # program start
 info_mgr = info_manager(SERVICE_KEY, OPTION_PATH)
-info_mgr.update_station_info()
-info_mgr.update_station_arvl_bus()
-info_mgr.update_station_arvl_bus_info()
-with open(os.path.join('log', 'struct.log'), 'w', encoding="UTF-8") as f:
-    f.write(json.dumps(info_mgr.station_list, indent=4))
-info_mgr.update_station_arvl_bus_route_info()
-info_mgr.update_weather_info()  
-info_mgr.update_fine_dust_info()
+with open(os.path.join('log', 'struct.log'), 'r', encoding="UTF-8") as f:
+    info_mgr.station_datas = json.loads(f.read())
+# info_mgr.update_station_info()
+# info_mgr.update_station_arvl_bus()
+# info_mgr.update_station_arvl_bus_info()
+# info_mgr.update_station_arvl_bus_route_info()
+# info_mgr.update_weather_info()  
+# info_mgr.update_fine_dust_info()
+
+
 
 print()
 print()

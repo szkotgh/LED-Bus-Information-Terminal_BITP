@@ -1,9 +1,12 @@
 import os
+import sys
 import logging
 from hashlib import md5
 import datetime
 try:
     import requests
+except Exception as e:
+    sys.exit(f"requests module import failed: {e}")
 
 log_time_format = "%Z %x %X"
 log_format = "%(asctime)s %(levelname)s [%(name)s] > %(message)s"
@@ -92,13 +95,14 @@ def detect_response_error(response:dict):
         'rstMsg'  : None
     }
     
+    
     # Type 1: Normal Response
     if 'response' in response and 'msgHeader' in response['response']:
         msg_header = response['response']['msgHeader']
         f_response.update({
             'detect'  : True,
             'rstCode' : msg_header.get('resultCode', '-1'),
-            'rstMsg'  : msg_header.get('resultMessage', normalapi_error_code.get(msg_header.get('resultCode', '-1'))),
+            'rstMsg'  : msg_header.get('resultMessage', '-1'),
             'rstType' : 'normal'
         })
     
@@ -108,7 +112,7 @@ def detect_response_error(response:dict):
         f_response.update({
             'detect'  : True,
             'rstCode' : msg_header.get('resultCode', '-1'),
-            'rstMsg'  : msg_header.get('resultMessage', normalapi_error_code.get(msg_header.get('resultCode', '-1'))),
+            'rstMsg'  : msg_header.get('resultMessage', '-1'),
             'rstType' : 'normal'
         })
     
@@ -118,7 +122,7 @@ def detect_response_error(response:dict):
         f_response.update({
             'detect'  : True,
             'rstCode' : cmm_msg_header.get('returnReasonCode', '-1'),
-            'rstMsg'  : cmm_msg_header.get('returnAuthMsg', openapi_error_code.get(msg_header.get('resultCode', '-1'))),
+            'rstMsg'  : cmm_msg_header.get('returnAuthMsg', '-1'),
             'rstType' : 'openapi'
         })
     
@@ -128,7 +132,7 @@ def detect_response_error(response:dict):
         f_response.update({
             'detect'  : True,
             'rstCode' : msg_header.get('resultCode', '-1'),
-            'rstMsg'  : msg_header.get('resultMsg', openapi_error_code.get(msg_header.get('resultCode', '-1'))),
+            'rstMsg'  : msg_header.get('resultMsg', '-1'),
             'rstType' : 'openapi'
         })
     
@@ -136,12 +140,9 @@ def detect_response_error(response:dict):
 
 def check_internet_connection():
     try:
-        response = requests.get("http://www.google.com", timeout=5)
-        if response.status_code == 200:
-            return True
-    except requests.ConnectionError:
-        print(get_log_datef(), "[Check_Internet_Connection]", "Connection Error")
-        return False
+        requests.get("http://www.google.com", timeout=1)
+        print("[Check_Internet_Connection]", "Connection Error")
+        return True
     except:
-        print(get_log_datef(), "[Check_Internet_Connection]", "Connection Error")
+        print("[Check_Internet_Connection]", "Connection Error")
         return False
