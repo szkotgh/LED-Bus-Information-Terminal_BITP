@@ -112,7 +112,11 @@ class weather_api_requester:
             print(f"API Request fail: {ERROR}")
             return None
         
-        response = json.loads(response.content)
+        try:
+            response = json.loads(response.content)
+        except Exception as ERROR:
+            print(f"API Request fail: {ERROR}")
+            return None
         
         detect_rst = utils.detect_response_error(response)
         rstCode = detect_rst['rstCode']

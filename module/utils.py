@@ -1,8 +1,12 @@
 import os
 import sys
 import logging
+import json
+import base64
 from hashlib import md5
+import dotenv
 import datetime
+import subprocess
 try:
     import requests
 except Exception as e:
@@ -65,6 +69,14 @@ def convert_ftime(ftime_str: str, time_format: str | None = default_time_format)
     time = datetime.datetime.strptime(ftime_str, time_format)
     return time
 
+def get_ip() -> str:
+    try:
+        ip = subprocess.check_output(['hostname', '-I']).decode('utf-8').strip()
+        ip_address = ip if ip else "address not found"
+    except Exception:
+        ip_address = "address not found"
+    return ip_address
+
 def create_logger(logger_name, logger_file_path='log/mainlog.log', logger_set_level=logging.DEBUG, file_set_level=logging.DEBUG) -> logging.Logger:    
     logger = logging.getLogger(logger_name)
     logger.setLevel(logger_set_level)
@@ -82,6 +94,27 @@ def create_logger(logger_name, logger_file_path='log/mainlog.log', logger_set_le
     logger.info(f"Created Logger. ({logger_name})")
     
     return logger
+
+def load_environ(_env_path:str, _key_name:str):
+    print(f".env Path=\'{_env_path}\'")
+    try:
+        dotenv.load_dotenv(_env_path, override=True)
+        environ_key = os.environ[f'{_key_name}']
+    except:
+        try:
+            print(f'Failed to load {_key_name}(.env).')
+            environ_key = input(f' * Enter your {_key_name} below.\n   > ')
+            if environ_key == '' or environ_key == None:
+                raise Exception(f'Failed to load {_key_name}(.env).')
+            with open(_env_path, 'a') as envfile:
+                envfile.write(f'{_key_name}={environ_key}\n')
+                envfile.close()
+            print(f'{_key_name} is stored in .env [{environ_key}].')
+        except Exception as e:
+            print(f'\n{_key_name} load failed : {e}')
+            sys.exit(f'{_key_name} load failed')
+    print(f'{_key_name} load successful [{environ_key}]')
+    return environ_key
 
 def gen_hash(data:str | None = None) -> str:
     hash_value = md5(data.encode('utf8')).hexdigest()
@@ -146,3 +179,44 @@ def check_internet_connection():
     except:
         print("[Check_Internet_Connection]", "Connection Error")
         return False
+    
+def text_to_speech(_text):
+    api_key = 'AIzaSyBQ5CwmM5_l9VTsOgB1Ih6ej94Aw-I3JDw'
+    url = f"https://texttospeech.googleapis.com/v1/text:synthesize?key={api_key}"
+    data = {
+        "input": {
+            "text": _text,
+        },
+        "voice": {
+            "languageCode": "ko-KR",
+            "name": "ko-KR-Standard-A",
+        },
+        "audioConfig": {
+            "audioEncoding": "MP3",
+            "pitch": -1.0,
+            "speakingRate": 1.0
+        },
+    }
+    headers = {
+        "Content-Type": "application/json; charset=UTF-8",
+    }
+    
+    try:
+        response = requests.post(url, headers=headers, data=json.dumps(data))
+        
+        if response.status_code == 200:
+            res = response.json()
+            audio_content = res["audioContent"]
+            
+            # base64 디코딩
+            audio_data = base64.b64decode(audio_content)
+            
+            # 파일로 저장
+            with open(os.path.join('src', 'audio', 'output.mp3'), "wb") as audio_file:
+                audio_file.write(audio_data)
+            
+            print("[TTS] Output Complete")
+        else:
+            print(f"[TTS] Status Error: {response.status_code}")
+    except Exception as e:
+        print(f"[TTS] Error: {e}")

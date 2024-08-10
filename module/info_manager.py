@@ -22,7 +22,7 @@ except Exception as e:
 
 # info_manager class
 class InfoManager:
-    def __init__(self, SERVICE_KEY, OPTION_PATH:str):
+    def __init__(self, _SERVICE_KEY, _OPTIONS:dict):
         # Set logger
         logger_name = "info_mgr"
         logger_path = os.path.join(os.getcwd(), 'log', 'mainlog.log')
@@ -32,16 +32,11 @@ class InfoManager:
         self.logger.info(f'Logging start. {__class__}')
         
         # Init class
-        self.SERVICE_KEY = SERVICE_KEY
-        self.OPTION_PATH = OPTION_PATH
-        try:
-            with open(OPTION_PATH, 'r', encoding='UTF-8') as option_file:
-                self.OPTION = json.load(option_file)
-        except Exception as e:
-            self.logger.error(f'Failed to load option file. Check the file \'{OPTION_PATH}\' : {e}')
-            sys.exit(1)
-        self.API_ERROR_RETRY_COUNT = self.OPTION.get('set_api_error_retry_count', 10)
-        self.API_TIMEOUT = self.OPTION.get('set_api_timeout', 5)
+        self.SERVICE_KEY = _SERVICE_KEY
+        print(" * InfoManager Regi SERVICE_KEY : ", self.SERVICE_KEY)
+        self.OPTIONS = _OPTIONS
+        self.API_ERROR_RETRY_COUNT = self.OPTIONS.get('set_api_error_retry_count', 10)
+        self.API_TIMEOUT = self.OPTIONS.get('set_api_timeout', 5)
         
         # Bus info init
         self.station_datas = []
@@ -53,7 +48,7 @@ class InfoManager:
         
         self.station_datas = []
         try:
-            for station in self.OPTION['busStationList']:
+            for station in self.OPTIONS['busStationList']:
                 self.station_datas.append({
                     'keyword'          : station['keyword'],
                     'stationDesc'      : station['stationDesc'],
@@ -65,7 +60,7 @@ class InfoManager:
                     'finedustInfo'     : None
                 })
         except Exception as e:
-            self.logger.error(f'Failed to load key \'busStationList\'. Check the file \'{OPTION_PATH}\' : {e}')
+            self.logger.error(f'Failed to load key \'busStationList\'. Check the file \'{_OPTIONS}\' : {e}')
             sys.exit(1)
             
         self.logger.info(f" * Regi station list : {self.station_datas}")
@@ -74,7 +69,7 @@ class InfoManager:
         self.today_weather_info = []
         self.tomorrow_weather_info = []
         self.tomorrow_need_info = []
-        self.weather_api_mgr = weather_api.weather_api_requester(SERVICE_KEY)
+        self.weather_api_mgr = weather_api.weather_api_requester(_SERVICE_KEY)
     
     def update_station_info(self) -> None:
         self.logger.info("[UpdateStationInfo] - Start updating . . .")
@@ -102,7 +97,6 @@ class InfoManager:
                 break
             
             if update_succes == False:
-                
                 self.logger.info(f"[UpdateStationInfo] - Update Fail. [{station['keyword']}]({num}/{len(self.station_datas)})")
                 
             elif station_info_rst['apiSuccess'] == False:
@@ -226,8 +220,9 @@ class InfoManager:
         for station in self.station_datas:
             num += 1
             
-            with open('./log/station.log', 'w', encoding='UTF-8') as f:
-                f.write(json.dumps(station, indent=4))
+            if self.OPTIONS.get('api_logging', False):
+                with open('./log/station.log', 'w', encoding='UTF-8') as f:
+                    f.write(json.dumps(station, indent=4))
             
             if station.get('arvlBus', None) == None:
                 station['arvlBusRouteInfo'] = None
@@ -422,8 +417,9 @@ class InfoManager:
                 self.logger.info(f"[UpdateFineDustInfo] - Updating . . . [{station['keyword']}]({num}/{len(self.station_datas)})")
                 fine_dust_rst = self.weather_api_mgr.get_fine_dust_info(sidoName=sido_name)
                 
-                with open(os.path.join('log', 'dust.log'), 'w', encoding="UTF-8") as f:
-                    f.write(json.dumps(fine_dust_rst, indent=4))
+                if self.OPTIONS.get('api_logging', False):
+                    with open(os.path.join('log', 'dust.log'), 'w', encoding="UTF-8") as f:
+                        f.write(json.dumps(fine_dust_rst, indent=4))
                 
                 if fine_dust_rst == None:
                     self.logger.warning(f"[UpdateFineDustInfo] - API Request fail. retry . . . [{station['keyword']}]({try_count+1}/{self.API_ERROR_RETRY_COUNT})")

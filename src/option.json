@@ -1,10 +1,15 @@
 {
     "set_api_error_retry_count" : 10,
     "set_api_timeout" : 5,
+    "api_logging" : false,
     "busStationList": [
         {
-            "keyword" : "29450",
+            "keyword" : "47307",
             "stationDesc" : "TEST1"
+        },
+        {
+            "keyword" : "00000",
+            "stationDesc" : "TEST2"
         }
 	]
 }
