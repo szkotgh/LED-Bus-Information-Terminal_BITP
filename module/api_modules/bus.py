@@ -151,7 +151,17 @@ BUS API REQUESTER
 데이터 중복 시 가장 첫 번쨰 데이터 반환.
 API 결과는 'result'하위에 저장. 요청 실패 시 'result' None로 반환
         """
+        # default response
+        f_response = {
+            'queryTime'  : utils.get_now_ftime(),
+            'apiSuccess' : False,
+            'apiParam'   : f"keyword={keyword}",
+            'rstCode'    : -1,
+            'rstMsg'     : utils.get_rst_msg(-1),
+            'result'     : None
+        }
         
+        # request
         request_url = 'http://apis.data.go.kr/6410000/busstationservice/getBusStationList'
         params = {
             'serviceKey' : str(self.SERVICE_KEY),
@@ -162,8 +172,7 @@ API 결과는 'result'하위에 저장. 요청 실패 시 'result' None로 반�
             response = requests.get(url=request_url, params=params, timeout=self.api_timeout)
             response.raise_for_status()
         except Exception as ERROR:
-            print(f"API Request fail: {ERROR}")
-            return None
+            return f_response
         
         response = xmltodict.parse(response.content)
         
@@ -173,26 +182,20 @@ API 결과는 'result'하위에 저장. 요청 실패 시 'result' None로 반�
         
         f_response = {}
         if rstCode in ['0', '00']:
-            f_response = {}
-        if rstCode in ['0', '00']:
-            f_response = {
+            f_response.update({
                 'queryTime'  : utils.get_now_ftime(),
                 'apiSuccess' : True,
                 'apiParam'   : f"keyword={keyword}",
                 'rstCode'    : rstCode,
                 'rstMsg'     : rstMsg,
                 'result'     : response['response']['msgBody']['busStationList'] if type(response['response']['msgBody']['busStationList']) == dict else response['response']['msgBody']['busStationList'][0]
-            }
+            })
         else:
-            f_response = {
+            f_response.update({
                 'queryTime'  : utils.get_now_ftime(),
-                'apiSuccess' : False,
-                'apiParam'   : f"keyword={keyword}",
                 'rstCode'    : rstCode,
                 'rstMsg'     : rstMsg,
-                'result'     : None
-            }
-            # return None
+            })
         
         return f_response
         
@@ -228,6 +231,16 @@ API 결과는 'result'하위에 저장. 요청 실패 시 'result' None로 반�
 ### 비고
 모종의 오류로 get 실패 시 None형 반환
         """
+        # default response
+        f_response = {
+            'queryTime'  : utils.get_now_ftime(),
+            'apiSuccess' : False,
+            'apiParams'  : f"stationId={stationId}",
+            'rstCode'    : -1,
+            'rstMsg'     : utils.get_rst_msg(-1),
+            'result'     : None
+        }
+        
         request_url = 'http://apis.data.go.kr/6410000/busarrivalservice/getBusArrivalList'
         params = {
             'serviceKey' : str(self.SERVICE_KEY),

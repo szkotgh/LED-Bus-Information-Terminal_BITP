@@ -8,11 +8,6 @@ import subprocess
 current_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
 print(current_dir)
 
-# import dotenv
-try:
-    import dotenv
-except Exception as e:
-    sys.exit(f'dotenv module import failed : {e}')
 # import module.utils
 try:
     import module.utils as utils

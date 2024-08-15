@@ -77,6 +77,18 @@ def get_ip() -> str:
         ip_address = "address not found"
     return ip_address
 
+def get_rst_msg(rst_code, api_type: str = 'normal') -> str:
+    '''
+    api_type: 'normal' or 'openapi'
+    '''
+    rst_code = str(rst_code)
+    if api_type == 'normal':
+        return normalapi_error_code.get(rst_code, '결과를 알 수 없습니다.')
+    elif api_type == 'openapi':
+        return openapi_error_code.get(rst_code, '결과를 알 수 없습니다.')
+    else:
+        return '결과를 알 수 없습니다.'
+
 def create_logger(logger_name, logger_file_path='log/mainlog.log', logger_set_level=logging.DEBUG, file_set_level=logging.DEBUG) -> logging.Logger:    
     logger = logging.getLogger(logger_name)
     logger.setLevel(logger_set_level)
@@ -128,44 +140,51 @@ def detect_response_error(response:dict):
         'rstMsg'  : None
     }
     
-    
     # Type 1: Normal Response
     if 'response' in response and 'msgHeader' in response['response']:
         msg_header = response['response']['msgHeader']
+        rst_code = msg_header.get('resultCode', '-1')
+        rst_msg = get_rst_msg(rst_code)
         f_response.update({
             'detect'  : True,
-            'rstCode' : msg_header.get('resultCode', '-1'),
-            'rstMsg'  : msg_header.get('resultMessage', '-1'),
+            'rstCode' : rst_code,
+            'rstMsg'  : rst_msg,
             'rstType' : 'normal'
         })
     
     # Type 2: Normal Response 2 (weather(weather) api)
     elif 'response' in response and 'header' in response['response']:
         msg_header = response['response']['header']
+        rst_code = msg_header.get('resultCode', '-1')
+        rst_msg = get_rst_msg(rst_code)
         f_response.update({
             'detect'  : True,
-            'rstCode' : msg_header.get('resultCode', '-1'),
-            'rstMsg'  : msg_header.get('resultMessage', '-1'),
+            'rstCode' : rst_code,
+            'rstMsg'  : rst_msg,
             'rstType' : 'normal'
         })
     
     # Type 3: OpenAPI Response
     elif 'OpenAPI_ServiceResponse' in response and 'cmmMsgHeader' in response['OpenAPI_ServiceResponse']:
         cmm_msg_header = response['OpenAPI_ServiceResponse']['cmmMsgHeader']
+        rst_code = cmm_msg_header.get('resultCode', '-1')
+        rst_msg = get_rst_msg(rst_code, 'openapi')
         f_response.update({
             'detect'  : True,
-            'rstCode' : cmm_msg_header.get('returnReasonCode', '-1'),
-            'rstMsg'  : cmm_msg_header.get('returnAuthMsg', '-1'),
+            'rstCode' : rst_code,
+            'rstMsg'  : rst_msg,
             'rstType' : 'openapi'
         })
     
     # Type 4: OpenAPI Response 2 (weather(fine dust) api)
     elif 'response' in response and 'header' in response['response']:
         msg_header = response['response']['header']
+        rst_code = msg_header.get('resultCode', '-1')
+        rst_msg = get_rst_msg(rst_code, 'openapi')
         f_response.update({
             'detect'  : True,
-            'rstCode' : msg_header.get('resultCode', '-1'),
-            'rstMsg'  : msg_header.get('resultMsg', '-1'),
+            'rstCode' : rst_code,
+            'rstMsg'  : rst_msg,
             'rstType' : 'openapi'
         })
     
