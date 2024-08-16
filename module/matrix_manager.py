@@ -13,32 +13,32 @@ try:
     import module.utils as utils
 except Exception as e:
     sys.exit(f'module.utils module import failed : {e}')
-# # import rgbmatrix
-# try:
-#     from rgbmatrix import RGBMatrix, RGBMatrixOptions
-# except Exception as e:
-#     sys.exit(f'RGBMatrix module import failed : {e}')
+# import rgbmatrix
+try:
+    from rgbmatrix import RGBMatrix, RGBMatrixOptions
+except Exception as e:
+    sys.exit(f'RGBMatrix module import failed : {e}')
 
 class MatrixManager:
     def __init__(self, station_datas: dict | None = []) -> None:
-        # # Configuration for the matrix
-        # # https://github.com/hzeller/rpi-rgb-led-matrix/blob/master/include/led-matrix.h#L57
-        # options = RGBMatrixOptions()
-        # options.hardware_mapping = 'adafruit-hat'  # If you have an Adafruit HAT: 'adafruit-hat'
-        # options.rows = 32
-        # options.cols = 64
-        # options.chain_length = 7
-        # # https://github.com/hzeller/rpi-rgb-led-matrix/tree/master/examples-api-use#remapping-coordinates
-        # options.pixel_mapper_config = "V-mapper;Rotate:90"
-        # options.pwm_lsb_nanoseconds = 50
-        # options.gpio_slowdown = 4
-        # options.pwm_bits = 5
-        # options.pwm_dither_bits = 0
-        # options.show_refresh_rate = False
-        # self.matrix = RGBMatrix(options = options)
+        # Configuration for the matrix
+        # https://github.com/hzeller/rpi-rgb-led-matrix/blob/master/include/led-matrix.h#L57
+        options = RGBMatrixOptions()
+        options.hardware_mapping = 'adafruit-hat'  # If you have an Adafruit HAT: 'adafruit-hat'
+        options.rows = 32
+        options.cols = 64
+        options.chain_length = 7
+        # https://github.com/hzeller/rpi-rgb-led-matrix/tree/master/examples-api-use#remapping-coordinates
+        options.pixel_mapper_config = "V-mapper;Rotate:90"
+        options.pwm_lsb_nanoseconds = 50
+        options.gpio_slowdown = 4
+        options.pwm_bits = 5
+        options.pwm_dither_bits = 0
+        options.show_refresh_rate = False
+        self.matrix = RGBMatrix(options = options)
         
-        # self.size = (self.matrix.width, self.matrix.height)
-        self.size = (224, 64)
+        self.size = (self.matrix.width, self.matrix.height)
+        # self.size = (224, 64)
         
         self.font8  = ImageFont.truetype(os.path.join('fonts', 'SCDream4.otf'), 8)
         self.font10 = ImageFont.truetype(os.path.join('fonts', 'SCDream4.otf'), 11)
@@ -181,17 +181,16 @@ class MatrixManager:
         if station_desc != None: station_title += f" {station_desc}"
         station_align = self.get_text_align_space(station_title, self.font12)
         
-        # # arvl bus data parsing
-        # arvl_bus_infos = []
-        # if station_arvl_bus != None:
-        #     if station_arvl_bus.get('apiSuccess') == False:
-        #         pass
+        # arvl bus data parsing
+        arvl_bus_infos = []
+        if station_arvl_bus != None:
+            if station_arvl_bus.get('apiSuccess') == False:
+                pass
                 
-        # for i in range(0, len(station_arvl_bus.get('result'))):
-        #     info = {}
-        #     if (station_arvl_bus != None) and (station_arvl_bus):
-        #         pass
-        
+        for i in range(0, len(station_arvl_bus.get('result'))):
+            info = {}
+            if (station_arvl_bus != None) and (station_arvl_bus):
+                pass
         
         # create display
         display = Image.new('RGB', self.size, "black")
@@ -215,6 +214,7 @@ class MatrixManager:
         pm10value = None
         pm25value = None
         grade_str = ["좋음", "보통", "나쁨", "매우나쁨"]
+        
         grade_color = ["aqua", "lime", "yellow", "orange"]
         pm10_grade = None
         pm25_grade = None
@@ -256,7 +256,37 @@ class MatrixManager:
                 draw.text((x_loca_row[2], y_loca_row[1]), grade_str[pm10_grade], grade_color[pm10_grade], self.font14b)
             if pm25_grade != None:
                 draw.text((x_loca_row[2], y_loca_row[2]), grade_str[pm25_grade], grade_color[pm25_grade], self.font14b)
-            draw.text((x_loca_row[2], y_loca_row[3]), "3~2", "white", self.font14b)
+            
+            if station_weather_info.get('apiSuccess', False):
+                weather_str = '정보없음'
+                weather_info = station_weather_info.get('result', None)
+                if weather_info != None:
+                    weather_tmn = None
+                    weather_tmx = None
+                    weather_wts = None
+                    
+                    for weather_item in weather_info:
+                        if weather_item == None:
+                            break
+                        
+                        item_category = weather_item.get('category', None)
+                        
+                        if item_category == "TMN":
+                            weather_tmn = weather_item.get('fcstValue', None)
+                        elif item_category == "TMX":
+                            weather_tmx = weather_item.get('fcstValue', None)
+                        elif item_category == "WTS":
+                            weather_wts = weather_item.get('fcstValue', None)
+                        else:
+                            continue
+                        
+                    if weather_tmn != None and weather_tmx != None and weather_wts != None:
+                        weather_str = f"{weather_tmn}~{weather_tmx}℃ {weather_wts}"
+                    elif weather_tmn != None and weather_tmx != None:
+                        weather_str = f"{weather_tmn}~{weather_tmx}℃"
+                
+                draw.text((x_loca_row[2], y_loca_row[3]), f"{weather_str}", "white", self.font14b)
+                    
 
             self.refresh(display)
             time.sleep(0.1)
@@ -290,5 +320,5 @@ class MatrixManager:
     
     def refresh(self, display):
         # save image
-        display.save('./display.png')
-        # self.matrix.SetImage(display.convert('RGB'))
+        # display.save('./display.png')
+        self.matrix.SetImage(display.convert('RGB'))

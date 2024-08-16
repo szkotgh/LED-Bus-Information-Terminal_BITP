@@ -6,20 +6,20 @@ import os
 pygame.mixer.init()
 
 # Load music and notice
-music_path = "/home/admin/BITP_v2/src/audio/music_2.mp3"
-notice_ef_path = "/home/admin/BITP_v2/src/audio/notice_effect.mp3"
-notice_path = "/home/admin/BITP_v2/src/audio/notice_1.mp3"
-notice_path2 = "/home/admin/BITP_v2/src/audio/notice.mp3"
+music_path = "/home/admin/BITP/src/audio/music1.mp3"
+notice_ef_path = "/home/admin/BITP/src/audio/notice_effect.mp3"
+notice_path = "/home/admin/BITP/src/audio/notice_1.mp3"
+notice_path2 = "/home/admin/BITP/src/audio/notice.mp3"
 
 # Set initial volume levels
 music_volume = 1
 notice_volume = 1
 notice_effect = True
 
-# # Load and play music
-# pygame.mixer.music.load(music_path)
-# pygame.mixer.music.set_volume(music_volume)
-# pygame.mixer.music.play(-1)  # Play music on loop
+# Load and play music
+pygame.mixer.music.load(music_path)
+pygame.mixer.music.set_volume(music_volume)
+pygame.mixer.music.play(-1)  # Play music on loop
 
 # Function to play notice and adjust volume
 def play_notice(notice_path, music_volume, notice_volume, fade_duration=1):
@@ -61,8 +61,8 @@ if __name__ == "__main__":
         while True:
             # Simulate some waiting time before playing notice
             time.sleep(5)
-            play_notice(notice_path2, music_volume, notice_volume)
-            play_notice(notice_path, music_volume, notice_volume)
+            # play_notice(notice_path2, music_volume, notice_volume)
+            # play_notice(notice_path, music_volume, notice_volume)
     except KeyboardInterrupt:
         # Stop the music when the program is interrupted
         pygame.mixer.music.stop()

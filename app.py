@@ -52,15 +52,15 @@ except Exception as e:
 # program start
 info_manager = InfoManager(SERVICE_KEY, OPTIONS)
 matrix_manager = MatrixManager()
-# speaker_manager = SpeakerManager()
-serialKey = '-'.join([SERIAL_KEY[i:i+4] for i in range(0, len(SERIAL_KEY), 4)])
-print(f"prdc_id: {serialKey}")
-for i in range(100, -1, -1):
-    matrix_manager.show_text_page([f"BIT가 시작됩니다 . . . ({(i/10)}s)", "", f"{utils.get_now_ftime()}", f"IP={utils.get_ip()}", f"(v2.1.16) {serialKey}"], 0, 0.1)
-# show test page
-matrix_manager.show_test_page(0, 1)
-matrix_manager.show_test_page(1, 3)
-matrix_manager.show_test_page(2, 3)
+# # speaker_manager = SpeakerManager()
+# serialKey = '-'.join([SERIAL_KEY[i:i+4] for i in range(0, len(SERIAL_KEY), 4)])
+# print(f"prdc_id: {serialKey}")
+# for i in range(100, -1, -1):
+#     matrix_manager.show_text_page([f"BIT가 시작됩니다 . . . ({(i/10)}s)", "", f"{utils.get_now_ftime()}", f"IP={utils.get_ip()}", f"(v2.1.16) {serialKey}"], 0, 0.1)
+# # show test page
+# matrix_manager.show_test_page(0, 1)
+# matrix_manager.show_test_page(1, 3)
+# matrix_manager.show_test_page(2, 3)
 
 # with open(os.path.join('log', 'struct.log'), 'r', encoding="UTF-8") as f:
 #     info_manager.station_datas = json.loads(f.read())
