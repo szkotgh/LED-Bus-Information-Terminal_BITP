@@ -128,6 +128,9 @@ def load_environ(_env_path:str, _key_name:str):
     print(f'{_key_name} load successful [{environ_key}]')
     return environ_key
 
+def verify_product(SERIAL_KEY):
+    pass
+
 def gen_hash(data:str | None = None) -> str:
     hash_value = md5(data.encode('utf8')).hexdigest()
     return str(hash_value)

@@ -13,31 +13,32 @@ try:
     import module.utils as utils
 except Exception as e:
     sys.exit(f'module.utils module import failed : {e}')
-# import rgbmatrix
-try:
-    from rgbmatrix import RGBMatrix, RGBMatrixOptions
-except Exception as e:
-    sys.exit(f'RGBMatrix module import failed : {e}')
+# # import rgbmatrix
+# try:
+#     from rgbmatrix import RGBMatrix, RGBMatrixOptions
+# except Exception as e:
+#     sys.exit(f'RGBMatrix module import failed : {e}')
 
 class MatrixManager:
     def __init__(self, station_datas: dict | None = []) -> None:
-        # Configuration for the matrix
-        # https://github.com/hzeller/rpi-rgb-led-matrix/blob/master/include/led-matrix.h#L57
-        options = RGBMatrixOptions()
-        options.hardware_mapping = 'adafruit-hat'  # If you have an Adafruit HAT: 'adafruit-hat'
-        options.rows = 32
-        options.cols = 64
-        options.chain_length = 7
-        # https://github.com/hzeller/rpi-rgb-led-matrix/tree/master/examples-api-use#remapping-coordinates
-        options.pixel_mapper_config = "V-mapper;Rotate:90"
-        options.pwm_lsb_nanoseconds = 50
-        options.gpio_slowdown = 4
-        options.pwm_bits = 5
-        options.pwm_dither_bits = 0
-        options.show_refresh_rate = False
-        self.matrix = RGBMatrix(options = options)
+        # # Configuration for the matrix
+        # # https://github.com/hzeller/rpi-rgb-led-matrix/blob/master/include/led-matrix.h#L57
+        # options = RGBMatrixOptions()
+        # options.hardware_mapping = 'adafruit-hat'  # If you have an Adafruit HAT: 'adafruit-hat'
+        # options.rows = 32
+        # options.cols = 64
+        # options.chain_length = 7
+        # # https://github.com/hzeller/rpi-rgb-led-matrix/tree/master/examples-api-use#remapping-coordinates
+        # options.pixel_mapper_config = "V-mapper;Rotate:90"
+        # options.pwm_lsb_nanoseconds = 50
+        # options.gpio_slowdown = 4
+        # options.pwm_bits = 5
+        # options.pwm_dither_bits = 0
+        # options.show_refresh_rate = False
+        # self.matrix = RGBMatrix(options = options)
         
-        self.size = (self.matrix.width, self.matrix.height)
+        # self.size = (self.matrix.width, self.matrix.height)
+        self.size = (224, 64)
         
         self.font8  = ImageFont.truetype(os.path.join('fonts', 'SCDream4.otf'), 8)
         self.font10 = ImageFont.truetype(os.path.join('fonts', 'SCDream4.otf'), 11)
@@ -275,7 +276,6 @@ class MatrixManager:
             
             canvas = Image.new('RGB', self.size, "black")
             draw = ImageDraw.Draw(canvas)
-            ## 안티에일리어싱 해제
             draw.fontmode="1"
             
             draw.text((1, 1), text[0], "white", self.font26)
@@ -290,5 +290,5 @@ class MatrixManager:
     
     def refresh(self, display):
         # save image
-        # display.save('./display.png')
-        self.matrix.SetImage(display.convert('RGB'))
+        display.save('./display.png')
+        # self.matrix.SetImage(display.convert('RGB'))
