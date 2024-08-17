@@ -82,23 +82,25 @@ info_manager.update_station_arvl_bus_route_info()
 for i in range(19, 25):
     matrix_manager.show_text_page([f"정보를 불러오고 있습니다.", "-" * i + " " * (36 - i)], 0, 0.1)
 
-info_manager.update_weather_info() 
+# info_manager.update_weather_info() 
 for i in range(25, 31):
     matrix_manager.show_text_page([f"정보를 불러오고 있습니다.", "-" * i + " " * (36 - i)], 0, 0.1)
 
-info_manager.update_fine_dust_info()
+# info_manager.update_fine_dust_info()
 for i in range(31, 37):
     matrix_manager.show_text_page([f"정보를 불러오고 있습니다.", "-" * i + " " * (36 - i)], 0, 0.1)
 
 
 # # show etc print
-matrix_manager.show_text_page(["한국환경공단 에어코리아 대기오염 정보", "데이터는 실시간 관측된 자료이며, 측정소 현지 사정이나 데이터의 수신상태에 따라 미수신 될 수 있음.", "", "", "출처/데이터 오류 가능성 고지"])
+# matrix_manager.show_text_page(["한국환경공단 에어코리아 대기오염 정보", "데이터는 실시간 관측된 자료이며, 측정소 현지 사정이나 데이터의 수신상태에 따라 미수신 될 수 있음.", "", "", "출처/데이터 오류 가능성 고지"])
 
 # show main content
 matrix_manager.update_station_info(info_manager.station_datas)
 while 1:
     for i in range(0, len(info_manager.station_datas)):
-        matrix_manager.show_station_page(i)
+        try: matrix_manager.show_station_etc_page(10)
+        except Exception as e: matrix_manager.show_text_page(["SHOW STATION ETC PAGE", "에러가 발생했습니다.", "", "", f"{e}"], 1, 1)
+        # matrix_manager.show_station_page(i)
     print("ROOF END")
     
 print()

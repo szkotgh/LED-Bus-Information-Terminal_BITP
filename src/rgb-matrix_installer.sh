@@ -21,7 +21,9 @@ fi
 HAS_PYTHON2=$( [ ! $(which python2) ] ; echo $?)
 HAS_PYTHON3=$( [ ! $(which python3) ] ; echo $?)
 
-clear
+# # BITP Config
+# clear
+# # BITP Config end
 
 echo "This script installs software for the Adafruit"
 echo "RGB Matrix Bonnet or HAT for Raspberry Pi."
@@ -293,12 +295,14 @@ if [ $INSTALL_RTC -ne 0 ]; then
 	echo "ref: https://learn.adafruit.com/adding-a-real-time-clock-to-raspberry-pi/set-rtc-time#sync-time-from-pi-to-rtc"
 fi
 echo
-echo -n "REBOOT NOW? [y/n] "
-read
-if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
-	echo "Exiting without reboot."
-	exit 0
-fi
-echo "Reboot process started..."
-reboot
-sleep infinity
+# # BITP Config
+# echo -n "REBOOT NOW? [y/n] "
+# read
+# if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
+# 	echo "Exiting without reboot."
+# 	exit 0
+# fi
+# echo "Reboot process started..."
+# reboot
+# sleep infinity
+# # BITP Config end

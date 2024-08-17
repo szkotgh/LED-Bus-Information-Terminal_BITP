@@ -1,0 +1,10 @@
+[Unit]
+Description=Bus Information Terminal Project
+After=multi-user.target
+
+[Service]
+Type=forking
+ExecStart=/bin/bash /home/admin/BITP/BITP_Stater.sh
+
+[Install]
+WantedBy=multi-user.target

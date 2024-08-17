@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 import time
@@ -156,22 +157,20 @@ class MatrixManager:
     
     def show_station_page(self, _show_station_num: int):        
         station_data = self.station_datas[_show_station_num]
+        with open('./log/struct.log', 'w', encoding='UTF-8') as f:
+            f.write(json.dumps(station_data))
         
         station_keyword = station_data.get('keyword', '읽기실패')
-        station_desc = station_data.get('stationDesc', None)
-        station_info = station_data.get('stationInfo', None)
-        station_arvl_bus = station_data.get('arvlBus', None)
-        station_arvl_bus_info = station_data.get('arvlBusInfo', None)
-        station_arvl_bus_route_info = station_data.get('arvlBusRouteInfo', None)
-        station_weather_info = station_data.get('weatherInfo', None)
-        station_finedust_info = station_data.get('finedustInfo', None)
+        station_desc = station_data.get('stationDesc', {'apiSuccess': False})
+        station_info = station_data.get('stationInfo', {'apiSuccess': False})
+        station_arvl_bus = station_data.get('arvlBus', {'apiSuccess': False})
+        station_arvl_bus_info = station_data.get('arvlBusInfo', {'apiSuccess': False})
+        station_arvl_bus_route_info = station_data.get('arvlBusRouteInfo', {'apiSuccess': False})
         
         # station title data parsing
         if station_info == None or station_info.get('apiSuccess') == False:
             rst_msg = station_info.get('rstMsg', "알 수 없는 오류입니다.")
             rst_code = station_info.get('rstCode', "-1")
-            if rst_msg == None: rst_msg = "알 수 없는 오류입니다."
-            if rst_code == None: rst_code = "-1"
             self.show_text_page([f"스테이션 페이지 [{_show_station_num+1}]", "데이터 오류. 페이지를 표시할 수 없습니다.", "", f"KEYWORD={station_keyword}", f"({rst_code}) {rst_msg}"])
             self.show_text_page([f"스테이션 페이지 [{_show_station_num+1}]", "데이터 오류. 페이지를 표시할 수 없습니다.", "", f"KEYWORD={station_keyword}", f"({rst_code}) {rst_msg}"])
             return 1
@@ -183,14 +182,12 @@ class MatrixManager:
         
         # arvl bus data parsing
         arvl_bus_infos = []
-        if station_arvl_bus != None:
-            if station_arvl_bus.get('apiSuccess') == False:
-                pass
-                
-        for i in range(0, len(station_arvl_bus.get('result'))):
-            info = {}
-            if (station_arvl_bus != None) and (station_arvl_bus):
-                pass
+        print(station_arvl_bus)
+        if station_arvl_bus.get('apiSuccess') == True:
+            for i in range(0, len(station_arvl_bus.get('result'))):
+                info = {}
+                if (station_arvl_bus != None) and (station_arvl_bus):
+                    pass
         
         # create display
         display = Image.new('RGB', self.size, "black")
@@ -207,15 +204,25 @@ class MatrixManager:
         self.refresh(display)
         time.sleep(5)
         
-        # show etc info
-        y_loca_row = [1, 16, 32, 48]
-        x_loca_row = [0, 70, 77]
-        #finedust info parsing 
+        
+    
+    def show_station_etc_page(self, _show_station_num: int, _repeat: int = 50):
+        station_data = self.station_datas[_show_station_num]
+        station_weather_info = station_data.get('weatherInfo', {'apiSuccess': False})
+        if station_weather_info == None: station_weather_info = {'apiSuccess': False}
+        station_finedust_info = station_data.get('finedustInfo', {'apiSuccess': False})
+        if station_finedust_info == None: station_finedust_info = {'apiSuccess': False}
+        
+        y_loca_row  = [1, 16, 32, 48]
+        x_loca_row  = [0, 70, 77]
+        w_info      = ['월', '화', '수', '목', '금', '토', '일']
+        grade_str   = ["좋음", "보통", "나쁨", "매우나쁨"]
+        grade_color = ["aqua", "lime", "yellow", "orange"]
+        
+        # finedust info parsing 
         pm10value = None
         pm25value = None
-        grade_str = ["좋음", "보통", "나쁨", "매우나쁨"]
         
-        grade_color = ["aqua", "lime", "yellow", "orange"]
         pm10_grade = None
         pm25_grade = None
         if station_finedust_info != None:
@@ -235,7 +242,8 @@ class MatrixManager:
                     elif pm25value < 76: pm25_grade = 2
                     else: pm25_grade = 3
         
-        for i in range(0, 50):
+        # create display
+        for i in range(0, _repeat):
             display = Image.new('RGB', self.size, "black")
             draw = ImageDraw.Draw(display)
             draw.fontmode = "1"
@@ -257,7 +265,7 @@ class MatrixManager:
             if pm25_grade != None:
                 draw.text((x_loca_row[2], y_loca_row[2]), grade_str[pm25_grade], grade_color[pm25_grade], self.font14b)
             
-            if station_weather_info.get('apiSuccess', False):
+            if station_weather_info.get('apiSuccess', False) == True:
                 weather_str = '정보없음'
                 weather_info = station_weather_info.get('result', None)
                 if weather_info != None:
