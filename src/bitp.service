@@ -1,10 +1,13 @@
 [Unit]
 Description=Bus Information Terminal Project
+Documentation=https://github.com/suzukaotto/LED-Bus-Information-Terminal_BITP.git
 After=multi-user.target
 
 [Service]
-Type=forking
+Type=simple
 ExecStart=/bin/bash /home/admin/BITP/BITP_Stater.sh
+Restart=always
+RestartSec=5
 
 [Install]
 WantedBy=multi-user.target

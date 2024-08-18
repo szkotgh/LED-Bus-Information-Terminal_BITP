@@ -12,5 +12,5 @@ DIR="$( cd "$( dirname "$0" )" && pwd -P )"
 echo BITP Program Path=\'$DIR\'
 cd $DIR
 
-# Start the BITP program
-sudo python3 bitp_app.py
+# Start the BITP program without sudo
+python3 bitp_app.py

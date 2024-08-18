@@ -7,12 +7,12 @@ if [ $(id -u) -ne 0 ]; then
     exit 1
 fi
 
-echo "This shell script will reboot after execution."
+echo "This BITP_Installer will reboot after execution."
 echo -n "Do you want to continue? [y/n] "
 read
 if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
     echo "Exit by refusing reboot."
-    exit 0
+    exit 1
 fi
 
 # Get the path of the script
@@ -90,3 +90,4 @@ for ((i=5; i>=1; i--)); do
 done
 echo "Reboot process started..."
 reboot
+sleep infinity
