@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>BIT Content manage site</title>
+    <style>
+        body {
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>관리자 설정 변경</h1>
+    <hr>
+
+    <h3>관리자 설정 변경 규칙</h3>
+    <h4>아이디</h4>
+    <b>영문자, 기호, 숫자로만 작성되어야 합니다.</b><br>
+    <b>공백은 허용되지 않습니다.</b><br>
+    <b>4자 이상 64자 이하여야 합니다.</b><br>
+
+    <h4>비밀번호</h4>
+    <b>영문자, 기호, 숫자로만 작성되어야 합니다.</b><br>
+    <b>공백은 허용되지 않습니다.</b><br>
+    <b>8자 이상 256자 이하여야 합니다.</b><br>
+    <hr>
+
+    <form method="post" action="{{ url_for('admin_settings') }}"
+        onsubmit="return confirm('관리자 정보를 정말 변경하시겠습니까?\n변경한 정보를 잊으면 다시 로그인 할 수 없습니다.')">
+        <label for="old-id">관리자 아이디:</label>
+        <input id="old-id" type="text" name="old_id" required><br>
+        <label for="old-pw">관리자 비밀번호:</label>
+        <input id="old-pw" type="password" name="old-pw" required><input type="checkbox" id="old-pw-visible"
+            onclick="toggleOldPasswordVisible()"><label for="old-pw-visible">비밀번호 보기</label><br>
+
+        <label for="id">변경할 관리자 아이디:</label>
+        <input id="id" type="text" name="id" required><br>
+        <label for="pw">변경할 관리자 비밀번호:</label>
+        <input id="pw" type="password" name="pw" required><input type="checkbox" id="pw-visible"
+            onclick="togglePasswordVisible()"><label for="pw-visible">비밀번호 보기</label><br>
+        <button type="submit">설정 적용</button>
+    </form>
+    <hr>
+
+    <p><a href="{{ url_for('main') }}">돌아가기</a></p>
+
+    <script>
+        function toggleOldPasswordVisible() {
+            const oldPasswordInput = document.getElementById('old-pw')
+            oldPasswordInput.type = (oldPasswordInput.type === "password") ? "text" : "password";
+        }
+
+        function togglePasswordVisible() {
+            const passwordInput = document.getElementById('pw');
+            passwordInput.type = (passwordInput.type === "password") ? "text" : "password";
+        }
+
+    </script>
+</body>
+
+</html>

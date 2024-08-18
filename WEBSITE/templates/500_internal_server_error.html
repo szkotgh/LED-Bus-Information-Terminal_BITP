@@ -21,11 +21,25 @@
 <body>
     <h1>BIT Content manage site</h1>
     <hr>
-    
-    <h2>URL을 확인하세요.</h2>
-    <img src="{{ url_for('static', filename='404_img.jpg') }}"><br>
-    <hr>
 
+    <h2>요청을 수행할 수 없습니다.</h2>
+    <img src="{{ url_for('static', filename='500_img.jpg') }}">
+    <b id="desc"></b><br><br>
+    <hr>
+    
     <a href="/">관리페이지로</a>
+
+    <script>
+        let time = 5, desc = document.getElementById('desc');
+        const updateDesc = () => desc.innerText = ` ${time}초 후 자동으로 이동합니다 . . .`;
+        updateDesc();
+
+        const intervalId = setInterval(() => {
+            time--;
+            time > 0 ? updateDesc() : clearInterval(intervalId);
+        }, 1000);
+
+        setTimeout(() => location.href = '/', time * 1000);
+    </script>
 </body>
 </html>

@@ -122,7 +122,7 @@
     <b>지원 파일: {{ extensions }}</b>
     <form id="upload-form" action="" method="post" enctype="multipart/form-data">
         <input class="input-file" type="file" name="savefile" id="file-input"
-            accept=".mp4, .wmv, .avi, .mov, .mp3, .wav, .jpg, .jpeg, .png, .gif"><br>
+            accept=".mp4, .wmv, .avi, .mov, .mp3, .wav, .jpg, .jpeg, .png, .gif .txt"><br>
         <button id="submit-btn" type="button">업로드</button>
     </form>
     <!-- waiting text -->
@@ -227,8 +227,7 @@
     <hr>
 
     <a href="{{ url_for('admin_settings') }}">관리자 설정</a><br>
-    <a href="{{ url_for('logout') }}">로그아웃</a><br>
-    <a href="{{ url_for('session_clear') }}">전체 로그아웃 (본인 제외)</a><br>
+    <a href="{{ url_for('logout') }}">로그아웃</a><b>&nbsp;|&nbsp;</b><a href="{{ url_for('session_clear') }}">전체 로그아웃</a><br>
 
     <script>
         const submit_btn = document.getElementById('submit-btn');
@@ -261,36 +260,36 @@
             }
 
             let admin_id = prompt('로그 초기화를 위해 관리자 아이디를 입력하세요 . . .');
+            if (!admin_id) {
+                alert('아이디를 입력하세요.');
+                return;
+            }
             let admin_pw = prompt('로그 초기화를 위해 관리자 비밀번호를 입력하세요 . . .');
-
-            if (!(admin_id && admin_pw)) {
-                alert('아이디와 비밀번호를 입력해주세요.');
+            if (!admin_pw) {
+                alert('비밀번호를 입력하세요.');
                 return;
             }
 
-            fetch('/log/init?admin_id=' + encodeURIComponent(admin_id) + '&admin_pw=' + encodeURIComponent(admin_pw), {
-                method: 'DELETE'
+            fetch('/log/init', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ admin_id: admin_id, admin_pw: admin_pw })
             })
                 .then(response => {
                     if (response.ok) {
-                        return response.json();
+                        alert('로그가 성공적으로 초기화되었습니다.');
+                        window.location.href = '/';
                     } else {
-                        throw new Error('로그 초기화 요청에 실패했습니다.');
+                        alert('로그 초기화에 실패했습니다.');
+                        window.location.href = '/';
                     }
                 })
-                .then(data => {
-                    alert('로그가 성공적으로 초기화되었습니다.');
-                    window.location.href = '/';
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('서버 오류가 발생했습니다.');
-                });
         });
 
         function showRenameModal(filename) {
             oldFilenameInput.value = filename;
             document.getElementById('current-filename').textContent = filename;
+            document.getElementById('new-filename').value = filename.split('.').slice(0, -1).join('.');
             renameModal.style.display = 'block';
         }
 
@@ -308,13 +307,13 @@
             const fileUrl = `view/${filename}`;
 
             if (['mp4', 'wmv', 'avi', 'mov',].includes(ext)) {
-                content = `<h2>${filename}</h2><video controls><source src="${fileUrl}" type="video/${ext}">Your browser does not support the video tag.</video>`;
+                content = `<h2>${filename}</h2><video controls><source src="${fileUrl}" type="video/${ext}">브라우저가 해당 비디오를 지원하지 않습니다.</video>`;
             } else if (['jpg', 'jpeg', 'png', 'gif'].includes(ext)) {
                 content = `<h2>${filename}</h2><img src="${fileUrl}" alt="${filename}">`;
             } else if (['mp3', 'wav'].includes(ext)) {
-                content = `<h2>${filename}</h2><audio controls><source src="${fileUrl}" type="audio/${ext}">Your browser does not support the audio element.</audio>`;
+                content = `<h2>${filename}</h2><audio controls><source src="${fileUrl}" type="audio/${ext}">브라우저가 해당 오디오를 지원하지 않습니다.</audio>`;
             } else {
-                content = `<h2>${filename}</h2><p>Preview not available for this file type: ${filename}</p>`;
+                content = `<h2>${filename}</h2><p>이 파일 유형에 대한 미리보기를 제공할 수 없습니다: ${filename}</p>`;
             }
 
             previewContent.innerHTML = content;
@@ -325,8 +324,6 @@
             previewContent.innerHTML = '';
             previewModal.style.display = 'none';
         }
-
-
 
     </script>
 
