@@ -22,7 +22,7 @@ cd $DIR
 
 # install module
 echo "Installing requirement python modules..."
-if sudo apt install python3-xmltodict && sudo apt install python3-dotenv; then
+if sudo apt install python3-xmltodict && sudo apt install python3-dotenv; && sudo apt install python3-flask; then
     echo "Python modules installed successfully."
 else
     echo

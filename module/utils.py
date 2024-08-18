@@ -65,6 +65,10 @@ def get_now_ftime(time_format: str | None = default_time_format) -> str:
     f_time = time.strftime(time_format)
     return f_time
 
+def get_now_iso_time() -> str:
+    time = datetime.datetime.now()
+    return time.isoformat()
+
 def convert_ftime(ftime_str: str, time_format: str | None = default_time_format) -> datetime.datetime:
     time = datetime.datetime.strptime(ftime_str, time_format)
     return time
@@ -196,10 +200,10 @@ def detect_response_error(response:dict):
 def check_internet_connection():
     try:
         requests.get("http://www.google.com", timeout=1)
-        print("[Check_Internet_Connection]", "Connection Error")
+        print("[Check_Internet_Connection]", "Connection Success")
         return True
-    except:
-        print("[Check_Internet_Connection]", "Connection Error")
+    except Exception as e:
+        print("[Check_Internet_Connection]", f"Connection Error: {e}")
         return False
     
 def text_to_speech(_text):

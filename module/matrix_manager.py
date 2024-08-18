@@ -41,6 +41,12 @@ class MatrixManager:
         self.size = (self.matrix.width, self.matrix.height)
         # self.size = (224, 64)
         
+        # class var init
+        self.station_datas = station_datas
+        self.station_data_len = 0
+        self.network_connected = False
+        
+        # font load
         self.font8  = ImageFont.truetype(os.path.join('fonts', 'SCDream4.otf'), 8)
         self.font10 = ImageFont.truetype(os.path.join('fonts', 'SCDream4.otf'), 11)
         self.font12 = ImageFont.truetype(os.path.join('fonts', 'SCDream4.otf'), 12)
@@ -49,12 +55,24 @@ class MatrixManager:
         self.font16 = ImageFont.truetype(os.path.join('fonts', 'SCDream5.otf'), 16)
         self.font26 = ImageFont.truetype(os.path.join('fonts', 'SCDream8.otf'), 26)
         
-        self.station_datas = station_datas
-        self.station_data_len = 0
+        # icon load
+        self.bus_icon_path = os.path.join('src', 'icon', 'bus.png')
+        self.bus_lp_icon_path = os.path.join('src', 'icon', 'bus_lp.png')
+        self.no_wifi_icon_path = os.path.join('src', 'icon', 'no_wifi.png')
+        
         
     def update_station_info(self, station_datas: dict) -> None:
         self.station_datas = station_datas
         self.station_data_len = len(station_datas)
+    
+    def check_internet_connection(self) -> bool:
+        try:
+            utils.check_internet_connection()
+            self.network_connected = True
+            return True
+        except:
+            self.network_connected = False
+            return False
     
     def get_text_volume(self, text, font) -> int:
         dummy_img = Image.new('RGB', (1, 1))
@@ -73,13 +91,13 @@ class MatrixManager:
         if _test_type == 0:
             for color in test_color:
                 draw.rectangle(((0, 0), (self.size[0], self.size[1])), color)
-                self.refresh(display)
+                self.refresh(display, status_prt=False)
                 time.sleep(_delay_time)
         elif _test_type == 1:
             for i in range(0, self.size[0]):
                 for j in range(0, self.size[1]):
                     draw.point((i, j), test_color[(i+j) % 4])
-                self.refresh(display)
+                self.refresh(display, status_prt=False)
                 time.sleep(0.01)
             time.sleep(_delay_time)
         elif _test_type == 2:
@@ -87,12 +105,12 @@ class MatrixManager:
                 draw.line((0, y, self.size[0], y), fill='white')
             for x in range(0, self.size[0], 9):
                 draw.line((x, 0, x, self.size[1]), fill='white')
-            self.refresh(display)
+            self.refresh(display, status_prt=False)
             time.sleep(_delay_time)
         draw.rectangle(((0, 0), (self.size[0], self.size[1])), "black")
-        self.refresh(display)
+        self.refresh(display, status_prt=False)
         
-    def show_text_page(self, _set_text: str | list = "", _first_show_time: int | float = 1, _end_show_time: int | float = 1):
+    def show_text_page(self, _set_text: str | list = "", _first_show_time: int | float = 1, _end_show_time: int | float = 1, _repeat: int = 1, _status_prt: bool = True):
         if isinstance(_set_text, str):
             texts = [_set_text]
         elif isinstance(_set_text, list):
@@ -105,53 +123,54 @@ class MatrixManager:
         draw = ImageDraw.Draw(canvas)
         draw.fontmode = "1"
 
-        for i, text in enumerate(texts):
-            x_loca_row = [0, 13, 26, 39, 51]
-            if i < len(x_loca_row):
-                draw.text((1, x_loca_row[i]), str(text), "white", self.font12)
-
-        self.refresh(canvas)
-        time.sleep(_first_show_time)
-
-        moving_texts = [text for text, width in zip(texts, text_widths) if width > display_width]
-        initial_positions = {text: self.size[0] for text in moving_texts}
-
-        if not moving_texts:
-            time.sleep(_end_show_time)
-            if isinstance(_set_text, list) and ( len(_set_text) > 5 ):
-                self.show_text_page(_set_text[5:], _first_show_time, _end_show_time)
-            return 0
-
-        while True:
-            canvas = Image.new('RGB', self.size, "black")
-            draw = ImageDraw.Draw(canvas)
-            draw.fontmode = "1"
-
-            all_texts_moved = True
+        for repeat in range(_repeat):
             for i, text in enumerate(texts):
-                if text in moving_texts:
-                    position_x = initial_positions[text]
-                    if position_x + self.get_text_volume(text, self.font12) > 0:
-                        draw.text((position_x, i * 13), str(text), "white", self.font12)
-                        all_texts_moved = False
-                else:
-                    x_loca_row = [0, 13, 26, 39, 51]
-                    if i < len(x_loca_row):
-                        draw.text((1, x_loca_row[i]), str(text), "white", self.font12)
+                x_loca_row = [0, 13, 26, 39, 51]
+                if i < len(x_loca_row):
+                    draw.text((1, x_loca_row[i]), str(text), "white", self.font12)
 
-            self.refresh(canvas)
+            self.refresh(canvas, status_prt=_status_prt)
+            time.sleep(_first_show_time)
 
-            time.sleep(0.01)
+            moving_texts = [text for text, width in zip(texts, text_widths) if width > display_width]
+            initial_positions = {text: self.size[0] for text in moving_texts}
 
-            for text in moving_texts:
-                initial_positions[text] -= 1
-
-            if all_texts_moved:
+            if not moving_texts:
                 time.sleep(_end_show_time)
-                break
+                if isinstance(_set_text, list) and ( len(_set_text) > 5 ):
+                    self.show_text_page(_set_text[5:], _first_show_time, _end_show_time)
+                return 0
+
+            while True:
+                canvas = Image.new('RGB', self.size, "black")
+                draw = ImageDraw.Draw(canvas)
+                draw.fontmode = "1"
+
+                all_texts_moved = True
+                for i, text in enumerate(texts):
+                    if text in moving_texts:
+                        position_x = initial_positions[text]
+                        if position_x + self.get_text_volume(text, self.font12) > 0:
+                            draw.text((position_x, i * 13), str(text), "white", self.font12)
+                            all_texts_moved = False
+                    else:
+                        x_loca_row = [0, 13, 26, 39, 51]
+                        if i < len(x_loca_row):
+                            draw.text((1, x_loca_row[i]), str(text), "white", self.font12)
+
+                self.refresh(canvas, status_prt=_status_prt)
+
+                time.sleep(0.01)
+
+                for text in moving_texts:
+                    initial_positions[text] -= 1
+
+                if all_texts_moved:
+                    time.sleep(_end_show_time)
+                    break
         
         if isinstance(_set_text, list) and ( len(_set_text) > 5 ):
-            self.show_text_page(_set_text[5:], _first_show_time, _end_show_time)
+            self.show_text_page(_set_text[5:], _first_show_time, _end_show_time, _repeat)
         
         return 0
     
@@ -161,7 +180,7 @@ class MatrixManager:
             f.write(json.dumps(station_data))
         
         station_keyword = station_data.get('keyword', '읽기실패')
-        station_desc = station_data.get('stationDesc', {'apiSuccess': False})
+        station_desc = station_data.get('stationDesc', None)
         station_info = station_data.get('stationInfo', {'apiSuccess': False})
         station_arvl_bus = station_data.get('arvlBus', {'apiSuccess': False})
         station_arvl_bus_info = station_data.get('arvlBusInfo', {'apiSuccess': False})
@@ -169,10 +188,9 @@ class MatrixManager:
         
         # station title data parsing
         if station_info == None or station_info.get('apiSuccess') == False:
-            rst_msg = station_info.get('rstMsg', "알 수 없는 오류입니다.")
             rst_code = station_info.get('rstCode', "-1")
-            self.show_text_page([f"스테이션 페이지 [{_show_station_num+1}]", "데이터 오류. 페이지를 표시할 수 없습니다.", "", f"KEYWORD={station_keyword}", f"({rst_code}) {rst_msg}"])
-            self.show_text_page([f"스테이션 페이지 [{_show_station_num+1}]", "데이터 오류. 페이지를 표시할 수 없습니다.", "", f"KEYWORD={station_keyword}", f"({rst_code}) {rst_msg}"])
+            rst_msg = station_info.get('rstMsg', "알 수 없는 오류입니다.")
+            self.show_text_page([f"스테이션 페이지 [{_show_station_num}]", "데이터 오류. 페이지를 표시할 수 없습니다: 필수 데이터가 없습니다.", "", f"KEYWORD={station_keyword}", f"({rst_code}) {rst_msg}"], _repeat=2)
             return 1
         
         station_title = f"{station_info['result'].get('stationName', '역이름이없습니다')}"
@@ -182,11 +200,33 @@ class MatrixManager:
         
         # arvl bus data parsing
         arvl_bus_infos = []
-        print(station_arvl_bus)
         if station_arvl_bus.get('apiSuccess') == True:
             for i in range(0, len(station_arvl_bus.get('result'))):
-                info = {}
-                if (station_arvl_bus != None) and (station_arvl_bus):
+                bus_info = {}
+                
+                print(f"arvlbus: {station_arvl_bus}")
+                print(f"arvlbusinfo: {station_arvl_bus_info}")
+                print(f"arvlbusrouteinfo: {station_arvl_bus_route_info}")
+                
+                # arvl bus parsing
+                if station_arvl_bus.get('apiSuccess', False) == True:
+                    arvl_bus = station_arvl_bus.get('result', None)
+                    if arvl_bus == None or arvl_bus == []:
+                        arvl_bus_infos.append(None)
+                        continue
+                    arvl_bus = arvl_bus[i]
+                    bus_info.update(arvl_bus)
+
+                # arvl bus info parsing
+                if (station_arvl_bus_info == None or station_arvl_bus_info == []) == False:
+                    arvl_bus_info = station_arvl_bus_info[i]
+                    if ((arvl_bus_info == None) or (arvl_bus_info.get('apiSuccess', False) == False)) == False:
+                        arvl_bus_info = arvl_bus_info[i]
+                        bus_info.update(arvl_bus_info)
+                        print("UPDATED!!!!!!!!!!")
+                
+                # arvl bus route info parsing
+                if station_arvl_bus_route_info.get('apiSuccess', False) == True:
                     pass
         
         # create display
@@ -326,7 +366,17 @@ class MatrixManager:
             time.sleep(0.005)
         time.sleep(1.5)
     
-    def refresh(self, display):
-        # save image
+    def refresh(self, display, status_prt: bool = True):
+        # network status print
+        if ((self.network_connected == False) and (status_prt == True)):
+            set_loca = [125, 35]
+            no_wifi_icon = Image.open(self.no_wifi_icon_path)
+            draw = ImageDraw.Draw(display)
+            draw.fontmode="1"
+            draw.rectangle([(set_loca[0], set_loca[1]), (set_loca[0]+95, set_loca[1]+25)], outline="white", fill="black")
+            draw.bitmap((set_loca[0]+1, set_loca[1]+1),  no_wifi_icon, "red");
+            draw.text((set_loca[0]+25, set_loca[1]+2), "인터넷 연결을", "white", self.font10)
+            draw.text((set_loca[0]+25 , set_loca[1]+13), "확인해주세요.", "white", self.font10)
+        
         # display.save('./display.png')
         self.matrix.SetImage(display.convert('RGB'))

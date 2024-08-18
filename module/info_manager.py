@@ -88,6 +88,7 @@ class InfoManager:
                 
                 self.logger.info(f"[UpdateStationInfo] - Updating . . . [{station['keyword']}]({num}/{len(self.station_datas)})")
                 station_info_rst = self.bus_api_mgr.get_station_info(station['keyword'])
+                print(station_info_rst)
                 
                 if station_info_rst == None:
                     self.logger.warning(f"[UpdateStationInfo] - API Request fail. retry . . . ({try_count+1}/{self.API_ERROR_RETRY_COUNT})[{station['keyword']}]")
@@ -119,7 +120,7 @@ class InfoManager:
             update_succes = False
             arvl_bus_rst = None
             
-            if station['stationInfo'] == None or station['stationInfo']['apiSuccess'] == False:
+            if station['stationInfo']['apiSuccess'] == False:
                 arvl_bus_rst = None
                 continue
             

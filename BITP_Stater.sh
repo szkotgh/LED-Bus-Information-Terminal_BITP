@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Check if the script is running as root
+# Check if the script is running as root(service).
 if [ $(id -u) -ne 0 ]; then
     echo "BITP Stater must be run as root."
     echo "Try 'sudo bash $0'"

@@ -171,7 +171,7 @@ API 결과는 'result'하위에 저장. 요청 실패 시 'result' None로 반�
         try:
             response = requests.get(url=request_url, params=params, timeout=self.api_timeout)
             response.raise_for_status()
-        except Exception as ERROR:
+        except:
             return f_response
         
         response = xmltodict.parse(response.content)
@@ -193,8 +193,11 @@ API 결과는 'result'하위에 저장. 요청 실패 시 'result' None로 반�
         else:
             f_response.update({
                 'queryTime'  : utils.get_now_ftime(),
+                'apiSuccess' : False,
+                'apiParam'   : f"keyword={keyword}",
                 'rstCode'    : rstCode,
                 'rstMsg'     : rstMsg,
+                'result'     : None
             })
         
         return f_response
