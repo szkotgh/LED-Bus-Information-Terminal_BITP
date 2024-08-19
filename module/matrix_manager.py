@@ -221,13 +221,19 @@ class MatrixManager:
                 if (station_arvl_bus_info == None or station_arvl_bus_info == []) == False:
                     arvl_bus_info = station_arvl_bus_info[i]
                     if ((arvl_bus_info == None) or (arvl_bus_info.get('apiSuccess', False) == False)) == False:
-                        arvl_bus_info = arvl_bus_info[i]
+                        arvl_bus_info = arvl_bus_info.get('result', None)
                         bus_info.update(arvl_bus_info)
-                        print("UPDATED!!!!!!!!!!")
                 
                 # arvl bus route info parsing
-                if station_arvl_bus_route_info.get('apiSuccess', False) == True:
-                    pass
+                if (station_arvl_bus_route_info == None or station_arvl_bus_route_info == []) == False:
+                    arvl_bus_route_info = station_arvl_bus_route_info[i]
+                    if ((arvl_bus_route_info == None) or (arvl_bus_route_info.get('apiSuccess', False) == False)) == False:
+                        arvl_bus_route_info = arvl_bus_route_info.get('result', None)
+                        arvl_bus_staOrder = bus_info.get('staOrder', None)
+                        arvl_bus_locationNo1 = bus_info.get('locationNo1', None)
+                        if arvl_bus_route_info != None and arvl_bus_staOrder != None and arvl_bus_locationNo1 != None:
+                            bus_now_station_info = arvl_bus_route_info[(int(arvl_bus_staOrder)-1) - int(arvl_bus_locationNo1)]
+                            bus_info.update({"nowStationName" : bus_now_station_info.get('stationName', None)})
         
         # create display
         display = Image.new('RGB', self.size, "black")
