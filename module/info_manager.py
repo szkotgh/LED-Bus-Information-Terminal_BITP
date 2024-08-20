@@ -337,6 +337,10 @@ class InfoManager:
                 self.logger.info(f"[UpdateWeatherInfo] - Update Fail. [{station['keyword']}]({num}/{len(self.station_datas)})")
             
             elif update_succes == True:
+                # print(f"FFFFFF: {weather_rst}")
+                with open('./log/weather.log', 'w', encoding='UTF-8') as f:
+                    f.write(json.dumps(weather_rst, indent=4))
+                
                 today_weather_info = []
                 tomorrow_weather_info = []
                 tomorrow_need_info = []

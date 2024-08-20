@@ -92,7 +92,7 @@ class weather_api_requester:
     def __init__(self, SERVICE_KEY):
         self.SERVICE_KEY = SERVICE_KEY
 
-    def get_vilage_fcst(self, nx, ny, base_date, base_time, num_of_rows='400', page_no='1', data_type='JSON'):
+    def get_vilage_fcst(self, nx, ny, base_date, base_time, num_of_rows='1000', page_no='1', data_type='JSON'):
         url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'
         params = {
             'serviceKey' : str(self.SERVICE_KEY),
@@ -101,8 +101,8 @@ class weather_api_requester:
             'dataType'   : str(data_type),
             'base_date'  : str(base_date),
             'base_time'  : str(base_time),
-            'nx'         : str(nx),
-            'ny'         : str(ny)
+            'nx'         : str(ny),      # ? bus api 부분에서 nx, ny를 거꾸로 줌...
+            'ny'         : str(nx)
         }
         
         try:
@@ -132,6 +132,7 @@ class weather_api_requester:
                 'rstMsg'     : rstMsg,
                 'result'     : response['response']['body']['items']['item']
             })
+            print(f"nx={nx},ny={ny},base_date={base_date},base_time={base_time},num_of_rows={num_of_rows},page_no={page_no},data_type={data_type}")
         else:
             f_response.update({
                 'queryTime'  : utils.get_now_ftime(),

@@ -296,8 +296,6 @@ class MatrixManager:
                 bus_info.update({"remainSeatGradeColor": arvl_bus_remainSeatGradeColor})
                 arvl_bus_infos.append(bus_info)
         
-        print(f"ASDLASMLDSAD: {arvl_bus_infos}")
-        
         # create display
         display = Image.new('RGB', self.size, "black")
         draw = ImageDraw.Draw(display)
@@ -336,7 +334,7 @@ class MatrixManager:
                     
                     draw.text((x_loca_col_bus_arvl[0], y_loca_row[4]), "곧도착:", "white", self.font12)
                     draw.text((x_loca_col_bus_arvl[1], y_loca_row[4]), arvl_str, "white", self.font12)
-                    
+
                     self.refresh(display)
                 time.sleep(0.05)
         
@@ -423,11 +421,11 @@ class MatrixManager:
                             weather_wts = weather_item.get('fcstValue', None)
                         else:
                             continue
-                        
+                    
                     if weather_tmn != None and weather_tmx != None and weather_wts != None:
-                        weather_str = f"{weather_tmn}~{weather_tmx}℃ {weather_wts}"
+                        weather_str = f"{str(weather_tmn)[:-2]}~{str(weather_tmx)[:-2]}℃ ({weather_wts})"
                     elif weather_tmn != None and weather_tmx != None:
-                        weather_str = f"{weather_tmn}~{weather_tmx}℃"
+                        weather_str = f"{str(weather_tmn)[:-2]}~{str(weather_tmx)[:-2]}℃"
                 
                 draw.text((x_loca_col[2], y_loca_row[3]), f"{weather_str}", "white", self.font14b)
                     
