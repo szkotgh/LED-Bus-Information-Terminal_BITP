@@ -15870,3 +15870,1416 @@ KST 08/20/24 08:42:44 INFO [info_mgr] > [UpdateFineDustInfo] - Updating complete
 대한민국 표준시 08/20/24 22:49:39 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [47574](2/2)
 대한민국 표준시 08/20/24 22:49:40 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [47574](2/2)
 대한민국 표준시 08/20/24 22:49:40 INFO [info_mgr] > [UpdateFineDustInfo] - Updating complete.
+KST 08/21/24 08:25:17 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:25:17 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:25:17 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:25:17 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:25:17 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:25:17 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:17 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:25:17 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:17 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:25:17 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:25:17 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:25:17 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:25:17 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:25:17 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:25:17 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:17 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:25:17 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:17 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:25:17 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:25:17 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/8)[29450](1/2)
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/8)[228000394](1/2)[29450]
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/8)[29450](1/2)
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/8)[228000238](1/2)[29450]
+KST 08/21/24 08:25:18 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](3/8)[29450](1/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/8)[228000395](1/2)[29450]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](4/8)[29450](1/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/8)[228000001](1/2)[29450]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](5/8)[29450](1/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/8)[228000005](1/2)[29450]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000156](6/8)[29450](1/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/8)[228000156](1/2)[29450]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](7/8)[29450](1/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/8)[228000038](1/2)[29450]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](8/8)[29450](1/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/8)[228000071](1/2)[29450]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000200](1/5)[47574](2/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/5)[228000200](2/2)[47574]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](2/5)[47574](2/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/5)[228000409](2/2)[47574]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](3/5)[47574](2/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/8)[29450](1/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/5)[228000021](2/2)[47574]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](4/5)[47574](2/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/8)[228000394](1/2)[29450]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/8)[29450](1/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/5)[228000133](2/2)[47574]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](5/5)[47574](2/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/8)[228000238](1/2)[29450]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](3/8)[29450](1/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/5)[228000136](2/2)[47574]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/8)[228000395](1/2)[29450]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](4/8)[29450](1/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/8)[228000001](1/2)[29450]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](5/8)[29450](1/2)
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/8)[228000005](1/2)[29450]
+KST 08/21/24 08:25:19 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000156](6/8)[29450](1/2)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/8)[228000156](1/2)[29450]
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](7/8)[29450](1/2)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/8)[228000038](1/2)[29450]
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](8/8)[29450](1/2)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/8)[228000071](1/2)[29450]
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000200](1/5)[47574](2/2)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/5)[228000200](2/2)[47574]
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](2/5)[47574](2/2)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/5)[228000409](2/2)[47574]
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](3/5)[47574](2/2)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/5)[228000021](2/2)[47574]
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](4/5)[47574](2/2)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/5)[228000133](2/2)[47574]
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](5/5)[47574](2/2)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/5)[228000136](2/2)[47574]
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:20 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:21 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:22 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:22 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:25:22 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:22 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:22 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:22 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:22 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:22 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:22 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:22 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:22 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:25:22 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:25:22 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:22 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:22 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:22 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:25:23 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:23 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:25:23 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:25:23 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:25:24 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:24 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:25:24 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:24 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:25:25 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:25 INFO [info_mgr] > [UpdateWeatherInfo] - Updating complete.
+KST 08/21/24 08:25:26 INFO [info_mgr] > [UpdateFineDustInfo] - Start updating . . . 
+KST 08/21/24 08:25:26 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:25:27 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:27 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:25:27 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:27 INFO [info_mgr] > [UpdateFineDustInfo] - Updating complete.
+KST 08/21/24 08:25:34 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:34 INFO [info_mgr] > [UpdateWeatherInfo] - Updating complete.
+KST 08/21/24 08:25:35 INFO [info_mgr] > [UpdateFineDustInfo] - Start updating . . . 
+KST 08/21/24 08:25:35 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:25:36 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:25:36 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:25:36 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:25:36 INFO [info_mgr] > [UpdateFineDustInfo] - Updating complete.
+KST 08/21/24 08:26:56 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:26:56 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:26:56 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:26:56 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:26:56 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:26:56 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:26:56 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:26:56 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:26:56 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:26:57 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:26:57 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:26:57 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:26:57 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:26:57 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:26:57 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/8)[29450](1/2)
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/8)[228000394](1/2)[29450]
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/8)[29450](1/2)
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/8)[228000238](1/2)[29450]
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](3/8)[29450](1/2)
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/8)[228000395](1/2)[29450]
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](4/8)[29450](1/2)
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/8)[228000001](1/2)[29450]
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](5/8)[29450](1/2)
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/8)[228000005](1/2)[29450]
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000156](6/8)[29450](1/2)
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/8)[228000156](1/2)[29450]
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](7/8)[29450](1/2)
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/8)[228000038](1/2)[29450]
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](8/8)[29450](1/2)
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/8)[228000071](1/2)[29450]
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000200](1/5)[47574](2/2)
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/5)[228000200](2/2)[47574]
+KST 08/21/24 08:26:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](2/5)[47574](2/2)
+KST 08/21/24 08:26:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/5)[228000409](2/2)[47574]
+KST 08/21/24 08:26:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](3/5)[47574](2/2)
+KST 08/21/24 08:26:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/5)[228000021](2/2)[47574]
+KST 08/21/24 08:26:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](4/5)[47574](2/2)
+KST 08/21/24 08:26:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/5)[228000133](2/2)[47574]
+KST 08/21/24 08:26:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](5/5)[47574](2/2)
+KST 08/21/24 08:26:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/5)[228000136](2/2)[47574]
+KST 08/21/24 08:26:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:27:02 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:27:02 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:27:08 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:27:08 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:27:08 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:27:08 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:27:08 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:27:08 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:08 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:27:09 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:09 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:27:09 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:27:09 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:27:09 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:27:09 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:27:09 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:27:09 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:27:10 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:27:10 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/8)[29450](1/2)
+KST 08/21/24 08:27:10 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/8)[228000394](1/2)[29450]
+KST 08/21/24 08:27:10 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/8)[29450](1/2)
+KST 08/21/24 08:27:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/8)[228000238](1/2)[29450]
+KST 08/21/24 08:27:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](3/8)[29450](1/2)
+KST 08/21/24 08:27:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/8)[228000395](1/2)[29450]
+KST 08/21/24 08:27:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](4/8)[29450](1/2)
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/8)[228000001](1/2)[29450]
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](5/8)[29450](1/2)
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/8)[228000005](1/2)[29450]
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000156](6/8)[29450](1/2)
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/8)[228000156](1/2)[29450]
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](7/8)[29450](1/2)
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/8)[228000038](1/2)[29450]
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](8/8)[29450](1/2)
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/8)[228000071](1/2)[29450]
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000200](1/5)[47574](2/2)
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/5)[228000200](2/2)[47574]
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](2/5)[47574](2/2)
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/5)[228000409](2/2)[47574]
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](3/5)[47574](2/2)
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/5)[228000021](2/2)[47574]
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](4/5)[47574](2/2)
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/5)[228000133](2/2)[47574]
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](5/5)[47574](2/2)
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/5)[228000136](2/2)[47574]
+KST 08/21/24 08:27:15 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:27:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:27:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:17 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:27:18 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:27:18 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:27:25 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:27:25 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:27:25 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:27:25 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:27:25 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:27:25 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:25 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:27:25 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:25 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:27:25 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:27:25 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:27:26 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:27:26 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:27:26 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:27:26 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:27:26 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:27:26 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/8)[29450](1/2)
+KST 08/21/24 08:27:26 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/8)[228000394](1/2)[29450]
+KST 08/21/24 08:27:26 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/8)[29450](1/2)
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/8)[228000238](1/2)[29450]
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](3/8)[29450](1/2)
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/8)[228000395](1/2)[29450]
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](4/8)[29450](1/2)
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/8)[228000001](1/2)[29450]
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](5/8)[29450](1/2)
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/8)[228000005](1/2)[29450]
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000156](6/8)[29450](1/2)
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/8)[228000156](1/2)[29450]
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](7/8)[29450](1/2)
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/8)[228000038](1/2)[29450]
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](8/8)[29450](1/2)
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/8)[228000071](1/2)[29450]
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000200](1/5)[47574](2/2)
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/5)[228000200](2/2)[47574]
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](2/5)[47574](2/2)
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/5)[228000409](2/2)[47574]
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](3/5)[47574](2/2)
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/5)[228000021](2/2)[47574]
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](4/5)[47574](2/2)
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/5)[228000133](2/2)[47574]
+KST 08/21/24 08:27:27 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](5/5)[47574](2/2)
+KST 08/21/24 08:27:28 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/5)[228000136](2/2)[47574]
+KST 08/21/24 08:27:28 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:27:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:27:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:28 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:29 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:30 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:30 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:30 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:30 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:30 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:30 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:27:30 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:27:30 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:27:38 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:27:38 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:27:38 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:27:38 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:27:38 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:27:39 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:39 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:27:39 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:39 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:27:39 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:27:39 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:27:39 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:27:39 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:27:40 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:27:40 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:27:40 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:27:40 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/8)[29450](1/2)
+KST 08/21/24 08:27:40 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/8)[228000394](1/2)[29450]
+KST 08/21/24 08:27:40 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/8)[29450](1/2)
+KST 08/21/24 08:27:40 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/8)[228000238](1/2)[29450]
+KST 08/21/24 08:27:40 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](3/8)[29450](1/2)
+KST 08/21/24 08:27:40 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/8)[228000395](1/2)[29450]
+KST 08/21/24 08:27:40 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](4/8)[29450](1/2)
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/8)[228000001](1/2)[29450]
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](5/8)[29450](1/2)
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/8)[228000005](1/2)[29450]
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000156](6/8)[29450](1/2)
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/8)[228000156](1/2)[29450]
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](7/8)[29450](1/2)
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/8)[228000038](1/2)[29450]
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](8/8)[29450](1/2)
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/8)[228000071](1/2)[29450]
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000200](1/5)[47574](2/2)
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/5)[228000200](2/2)[47574]
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](2/5)[47574](2/2)
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/5)[228000409](2/2)[47574]
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](3/5)[47574](2/2)
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/5)[228000021](2/2)[47574]
+KST 08/21/24 08:27:41 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](4/5)[47574](2/2)
+KST 08/21/24 08:27:42 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/5)[228000133](2/2)[47574]
+KST 08/21/24 08:27:42 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](5/5)[47574](2/2)
+KST 08/21/24 08:27:42 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/5)[228000136](2/2)[47574]
+KST 08/21/24 08:27:42 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:27:43 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:27:43 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:43 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:43 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:43 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:43 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:43 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:43 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:43 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:43 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:43 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:43 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:27:45 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:27:45 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:27:52 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:27:52 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:27:52 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:27:52 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:27:52 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:27:52 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:52 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:27:52 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:52 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:27:53 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:27:53 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:27:53 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:27:53 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:27:53 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:27:53 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/8)[29450](1/2)
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/8)[228000394](1/2)[29450]
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/8)[29450](1/2)
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/8)[228000238](1/2)[29450]
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](3/8)[29450](1/2)
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/8)[228000395](1/2)[29450]
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](4/8)[29450](1/2)
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/8)[228000001](1/2)[29450]
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](5/8)[29450](1/2)
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/8)[228000005](1/2)[29450]
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000156](6/8)[29450](1/2)
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/8)[228000156](1/2)[29450]
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](7/8)[29450](1/2)
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/8)[228000038](1/2)[29450]
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](8/8)[29450](1/2)
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/8)[228000071](1/2)[29450]
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000200](1/5)[47574](2/2)
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/5)[228000200](2/2)[47574]
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](2/5)[47574](2/2)
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/5)[228000409](2/2)[47574]
+KST 08/21/24 08:27:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](3/5)[47574](2/2)
+KST 08/21/24 08:27:55 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/5)[228000021](2/2)[47574]
+KST 08/21/24 08:27:55 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](4/5)[47574](2/2)
+KST 08/21/24 08:27:55 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/5)[228000133](2/2)[47574]
+KST 08/21/24 08:27:55 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](5/5)[47574](2/2)
+KST 08/21/24 08:27:55 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/5)[228000136](2/2)[47574]
+KST 08/21/24 08:27:55 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:27:55 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:27:55 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:55 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:55 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:27:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:27:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:27:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:27:58 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:27:58 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:28:04 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:28:04 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:28:04 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:28:04 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:28:04 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:28:05 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:05 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:28:05 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:28:05 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:28:06 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:28:06 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:28:06 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:28:06 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:28:06 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:28:06 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:28:11 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:28:11 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:28:11 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:28:11 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:28:11 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:28:11 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:11 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:28:11 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:28:11 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:28:12 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:28:12 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:28:12 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:28:12 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:28:12 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:28:12 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/8)[29450](1/2)
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/8)[228000394](1/2)[29450]
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/8)[29450](1/2)
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/8)[228000238](1/2)[29450]
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](3/8)[29450](1/2)
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/8)[228000395](1/2)[29450]
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](4/8)[29450](1/2)
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/8)[228000001](1/2)[29450]
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](5/8)[29450](1/2)
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/8)[228000005](1/2)[29450]
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000156](6/8)[29450](1/2)
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/8)[228000156](1/2)[29450]
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](7/8)[29450](1/2)
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/8)[228000038](1/2)[29450]
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](8/8)[29450](1/2)
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/8)[228000071](1/2)[29450]
+KST 08/21/24 08:28:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000200](1/5)[47574](2/2)
+KST 08/21/24 08:28:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/5)[228000200](2/2)[47574]
+KST 08/21/24 08:28:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](2/5)[47574](2/2)
+KST 08/21/24 08:28:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/5)[228000409](2/2)[47574]
+KST 08/21/24 08:28:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](3/5)[47574](2/2)
+KST 08/21/24 08:28:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/5)[228000021](2/2)[47574]
+KST 08/21/24 08:28:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](4/5)[47574](2/2)
+KST 08/21/24 08:28:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/5)[228000133](2/2)[47574]
+KST 08/21/24 08:28:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](5/5)[47574](2/2)
+KST 08/21/24 08:28:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/5)[228000136](2/2)[47574]
+KST 08/21/24 08:28:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:28:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:28:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:28:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:28:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:28:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:28:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:28:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:28:17 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:28:17 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:28:30 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:28:30 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:28:30 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:28:30 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:28:30 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:28:30 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:30 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:28:30 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:28:30 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:28:31 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:28:31 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:28:31 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:28:31 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:28:31 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:28:31 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:28:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:28:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/9)[29450](1/2)
+KST 08/21/24 08:28:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/9)[228000394](1/2)[29450]
+KST 08/21/24 08:28:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/9)[29450](1/2)
+KST 08/21/24 08:28:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/9)[228000238](1/2)[29450]
+KST 08/21/24 08:28:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000246](3/9)[29450](1/2)
+KST 08/21/24 08:28:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/9)[228000246](1/2)[29450]
+KST 08/21/24 08:28:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](4/9)[29450](1/2)
+KST 08/21/24 08:28:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/9)[228000395](1/2)[29450]
+KST 08/21/24 08:28:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](5/9)[29450](1/2)
+KST 08/21/24 08:28:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/9)[228000001](1/2)[29450]
+KST 08/21/24 08:28:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](6/9)[29450](1/2)
+KST 08/21/24 08:28:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/9)[228000005](1/2)[29450]
+KST 08/21/24 08:28:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000156](7/9)[29450](1/2)
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/9)[228000156](1/2)[29450]
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](8/9)[29450](1/2)
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/9)[228000038](1/2)[29450]
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](9/9)[29450](1/2)
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (9/9)[228000071](1/2)[29450]
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000200](1/5)[47574](2/2)
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/5)[228000200](2/2)[47574]
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](2/5)[47574](2/2)
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/5)[228000409](2/2)[47574]
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](3/5)[47574](2/2)
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/5)[228000021](2/2)[47574]
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](4/5)[47574](2/2)
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/5)[228000133](2/2)[47574]
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](5/5)[47574](2/2)
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/5)[228000136](2/2)[47574]
+KST 08/21/24 08:28:33 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:28:34 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:28:34 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:34 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:34 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:34 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:34 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:34 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:34 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:34 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:34 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:35 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:35 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:35 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:35 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:35 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:35 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:35 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:35 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:35 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:35 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:35 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:28:35 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:28:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:28:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:28:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:28:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:28:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:28:37 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:28:37 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:28:38 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:38 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:28:38 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:28:38 INFO [info_mgr] > [UpdateWeatherInfo] - Updating complete.
+KST 08/21/24 08:28:39 INFO [info_mgr] > [UpdateFineDustInfo] - Start updating . . . 
+KST 08/21/24 08:28:39 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:28:40 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:28:40 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:28:40 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:28:40 INFO [info_mgr] > [UpdateFineDustInfo] - Updating complete.
+KST 08/21/24 08:29:52 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:29:52 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:29:52 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:29:52 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:29:52 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:29:52 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:29:52 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:29:52 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:29:52 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:29:52 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:29:52 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:29:52 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:29:52 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:29:53 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:29:53 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:29:53 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:29:53 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/9)[29450](1/2)
+KST 08/21/24 08:29:53 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/9)[228000394](1/2)[29450]
+KST 08/21/24 08:29:53 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/9)[29450](1/2)
+KST 08/21/24 08:29:53 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/9)[228000238](1/2)[29450]
+KST 08/21/24 08:29:53 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000246](3/9)[29450](1/2)
+KST 08/21/24 08:29:53 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/9)[228000246](1/2)[29450]
+KST 08/21/24 08:29:53 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](4/9)[29450](1/2)
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/9)[228000395](1/2)[29450]
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](5/9)[29450](1/2)
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/9)[228000001](1/2)[29450]
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](6/9)[29450](1/2)
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/9)[228000005](1/2)[29450]
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000156](7/9)[29450](1/2)
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/9)[228000156](1/2)[29450]
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](8/9)[29450](1/2)
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/9)[228000038](1/2)[29450]
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](9/9)[29450](1/2)
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (9/9)[228000071](1/2)[29450]
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000200](1/5)[47574](2/2)
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/5)[228000200](2/2)[47574]
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](2/5)[47574](2/2)
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/5)[228000409](2/2)[47574]
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](3/5)[47574](2/2)
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/5)[228000021](2/2)[47574]
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](4/5)[47574](2/2)
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/5)[228000133](2/2)[47574]
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](5/5)[47574](2/2)
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/5)[228000136](2/2)[47574]
+KST 08/21/24 08:29:54 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:29:55 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:29:55 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:29:55 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:29:55 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:29:55 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:29:55 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:29:55 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:29:55 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:29:55 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:29:55 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:29:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:29:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:29:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:29:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:29:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:29:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:29:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:29:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:29:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:29:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:29:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:29:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:29:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:29:56 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:29:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:29:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:29:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:29:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:29:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:29:57 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:29:57 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:29:57 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:29:58 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:29:58 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:30:00 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:30:00 INFO [info_mgr] > [UpdateWeatherInfo] - Updating complete.
+KST 08/21/24 08:30:01 INFO [info_mgr] > [UpdateFineDustInfo] - Start updating . . . 
+KST 08/21/24 08:30:01 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:30:02 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:30:02 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:30:03 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:30:03 INFO [info_mgr] > [UpdateFineDustInfo] - Updating complete.
+KST 08/21/24 08:32:06 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:32:06 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:32:06 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:32:06 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:32:06 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:32:06 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:32:06 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:32:06 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:32:06 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:32:07 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:32:07 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:32:07 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:32:07 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:32:07 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:32:07 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:32:07 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:32:07 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/10)[29450](1/2)
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/10)[228000394](1/2)[29450]
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/10)[29450](1/2)
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/10)[228000238](1/2)[29450]
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000246](3/10)[29450](1/2)
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/10)[228000246](1/2)[29450]
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](4/10)[29450](1/2)
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/10)[228000395](1/2)[29450]
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000113](5/10)[29450](1/2)
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/10)[228000113](1/2)[29450]
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](6/10)[29450](1/2)
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/10)[228000001](1/2)[29450]
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](7/10)[29450](1/2)
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/10)[228000005](1/2)[29450]
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000156](8/10)[29450](1/2)
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/10)[228000156](1/2)[29450]
+KST 08/21/24 08:32:08 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](9/10)[29450](1/2)
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (9/10)[228000038](1/2)[29450]
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](10/10)[29450](1/2)
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (10/10)[228000071](1/2)[29450]
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000200](1/7)[47574](2/2)
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/7)[228000200](2/2)[47574]
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](2/7)[47574](2/2)
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/7)[228000409](2/2)[47574]
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000108](3/7)[47574](2/2)
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/7)[228000108](2/2)[47574]
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](4/7)[47574](2/2)
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/7)[228000021](2/2)[47574]
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000029](5/7)[47574](2/2)
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/7)[228000029](2/2)[47574]
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](6/7)[47574](2/2)
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/7)[228000133](2/2)[47574]
+KST 08/21/24 08:32:09 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](7/7)[47574](2/2)
+KST 08/21/24 08:32:10 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/7)[228000136](2/2)[47574]
+KST 08/21/24 08:32:10 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:32:10 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:32:10 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:10 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:32:10 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:10 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:32:10 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:32:11 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:12 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:32:12 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:12 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:32:12 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:12 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:32:12 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:12 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:32:12 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:12 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:32:12 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:12 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:32:12 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:32:12 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:32:12 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:32:13 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:32:13 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:32:14 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:32:14 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:32:15 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:32:15 INFO [info_mgr] > [UpdateWeatherInfo] - Updating complete.
+KST 08/21/24 08:32:15 INFO [info_mgr] > [UpdateFineDustInfo] - Start updating . . . 
+KST 08/21/24 08:32:15 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:32:16 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:32:16 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:32:17 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:32:17 INFO [info_mgr] > [UpdateFineDustInfo] - Updating complete.
+KST 08/21/24 08:33:55 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:33:55 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:33:55 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:33:56 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:33:56 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:33:56 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:33:56 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:33:56 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:33:56 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:33:57 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:33:57 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:33:57 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:33:57 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:33:57 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:33:57 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:33:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:33:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/9)[29450](1/2)
+KST 08/21/24 08:33:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/9)[228000394](1/2)[29450]
+KST 08/21/24 08:33:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/9)[29450](1/2)
+KST 08/21/24 08:33:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/9)[228000238](1/2)[29450]
+KST 08/21/24 08:33:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000246](3/9)[29450](1/2)
+KST 08/21/24 08:33:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/9)[228000246](1/2)[29450]
+KST 08/21/24 08:33:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](4/9)[29450](1/2)
+KST 08/21/24 08:33:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/9)[228000395](1/2)[29450]
+KST 08/21/24 08:33:58 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000113](5/9)[29450](1/2)
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/9)[228000113](1/2)[29450]
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](6/9)[29450](1/2)
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/9)[228000001](1/2)[29450]
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](7/9)[29450](1/2)
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/9)[228000005](1/2)[29450]
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](8/9)[29450](1/2)
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/9)[228000038](1/2)[29450]
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](9/9)[29450](1/2)
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (9/9)[228000071](1/2)[29450]
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](1/6)[47574](2/2)
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/6)[228000409](2/2)[47574]
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000108](2/6)[47574](2/2)
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/6)[228000108](2/2)[47574]
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](3/6)[47574](2/2)
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/6)[228000021](2/2)[47574]
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000029](4/6)[47574](2/2)
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/6)[228000029](2/2)[47574]
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](5/6)[47574](2/2)
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/6)[228000133](2/2)[47574]
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](6/6)[47574](2/2)
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/6)[228000136](2/2)[47574]
+KST 08/21/24 08:33:59 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:34:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:34:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:34:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:34:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:34:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:34:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:34:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:34:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:34:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:34:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:34:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:34:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:34:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:34:00 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:34:01 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:34:02 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:34:02 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:34:03 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:34:03 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:34:07 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:34:07 INFO [info_mgr] > [UpdateWeatherInfo] - Updating complete.
+KST 08/21/24 08:34:07 INFO [info_mgr] > [UpdateFineDustInfo] - Start updating . . . 
+KST 08/21/24 08:34:07 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:34:08 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:34:08 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:34:09 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:34:09 INFO [info_mgr] > [UpdateFineDustInfo] - Updating complete.
+KST 08/21/24 08:41:40 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:41:40 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:41:40 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:41:40 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:41:40 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:41:41 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:41:41 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:41:41 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:41:41 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:41:41 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:41:41 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:41:41 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:41:41 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:41:42 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:41:42 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:41:42 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:41:42 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/9)[29450](1/2)
+KST 08/21/24 08:41:42 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/9)[228000394](1/2)[29450]
+KST 08/21/24 08:41:42 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/9)[29450](1/2)
+KST 08/21/24 08:41:42 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/9)[228000238](1/2)[29450]
+KST 08/21/24 08:41:42 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000246](3/9)[29450](1/2)
+KST 08/21/24 08:41:42 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/9)[228000246](1/2)[29450]
+KST 08/21/24 08:41:42 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](4/9)[29450](1/2)
+KST 08/21/24 08:41:43 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/9)[228000395](1/2)[29450]
+KST 08/21/24 08:41:43 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000113](5/9)[29450](1/2)
+KST 08/21/24 08:41:43 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/9)[228000113](1/2)[29450]
+KST 08/21/24 08:41:43 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](6/9)[29450](1/2)
+KST 08/21/24 08:41:43 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/9)[228000001](1/2)[29450]
+KST 08/21/24 08:41:43 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](7/9)[29450](1/2)
+KST 08/21/24 08:41:43 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/9)[228000005](1/2)[29450]
+KST 08/21/24 08:41:43 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](8/9)[29450](1/2)
+KST 08/21/24 08:41:43 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/9)[228000038](1/2)[29450]
+KST 08/21/24 08:41:43 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](9/9)[29450](1/2)
+KST 08/21/24 08:41:43 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (9/9)[228000071](1/2)[29450]
+KST 08/21/24 08:41:43 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](1/6)[47574](2/2)
+KST 08/21/24 08:41:43 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/6)[228000409](2/2)[47574]
+KST 08/21/24 08:41:43 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000108](2/6)[47574](2/2)
+KST 08/21/24 08:41:44 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/6)[228000108](2/2)[47574]
+KST 08/21/24 08:41:44 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](3/6)[47574](2/2)
+KST 08/21/24 08:41:44 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/6)[228000021](2/2)[47574]
+KST 08/21/24 08:41:44 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000029](4/6)[47574](2/2)
+KST 08/21/24 08:41:44 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/6)[228000029](2/2)[47574]
+KST 08/21/24 08:41:44 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](5/6)[47574](2/2)
+KST 08/21/24 08:41:44 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/6)[228000133](2/2)[47574]
+KST 08/21/24 08:41:44 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](6/6)[47574](2/2)
+KST 08/21/24 08:41:44 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/6)[228000136](2/2)[47574]
+KST 08/21/24 08:41:44 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:41:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:41:44 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:41:45 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:41:46 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:41:46 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:41:46 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:41:46 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:41:46 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:41:46 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:41:46 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:41:46 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:41:46 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:41:46 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:41:46 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:41:46 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:41:47 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:41:47 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:41:48 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:41:48 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:41:49 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:41:49 INFO [info_mgr] > [UpdateWeatherInfo] - Updating complete.
+KST 08/21/24 08:41:50 INFO [info_mgr] > [UpdateFineDustInfo] - Start updating . . . 
+KST 08/21/24 08:41:50 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:41:50 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:41:50 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:41:51 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:41:51 INFO [info_mgr] > [UpdateFineDustInfo] - Updating complete.
+KST 08/21/24 08:42:35 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:42:35 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:42:35 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:42:35 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:42:35 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:42:35 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:42:35 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:42:35 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:42:35 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:42:35 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:42:35 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:42:36 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:42:36 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:42:36 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:42:36 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:42:36 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:42:36 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/9)[29450](1/2)
+KST 08/21/24 08:42:36 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/9)[228000394](1/2)[29450]
+KST 08/21/24 08:42:36 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/9)[29450](1/2)
+KST 08/21/24 08:42:36 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/9)[228000238](1/2)[29450]
+KST 08/21/24 08:42:36 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000246](3/9)[29450](1/2)
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/9)[228000246](1/2)[29450]
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](4/9)[29450](1/2)
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/9)[228000395](1/2)[29450]
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000113](5/9)[29450](1/2)
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/9)[228000113](1/2)[29450]
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](6/9)[29450](1/2)
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/9)[228000001](1/2)[29450]
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](7/9)[29450](1/2)
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/9)[228000005](1/2)[29450]
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](8/9)[29450](1/2)
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/9)[228000038](1/2)[29450]
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](9/9)[29450](1/2)
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (9/9)[228000071](1/2)[29450]
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](1/6)[47574](2/2)
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/6)[228000409](2/2)[47574]
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000108](2/6)[47574](2/2)
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/6)[228000108](2/2)[47574]
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](3/6)[47574](2/2)
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/6)[228000021](2/2)[47574]
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000029](4/6)[47574](2/2)
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/6)[228000029](2/2)[47574]
+KST 08/21/24 08:42:37 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](5/6)[47574](2/2)
+KST 08/21/24 08:42:38 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/6)[228000133](2/2)[47574]
+KST 08/21/24 08:42:38 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](6/6)[47574](2/2)
+KST 08/21/24 08:42:38 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/6)[228000136](2/2)[47574]
+KST 08/21/24 08:42:38 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:42:38 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:42:38 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:42:38 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:42:38 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:42:38 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:42:38 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:42:39 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:42:40 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:42:40 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:42:40 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:42:40 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:42:40 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:42:40 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:42:40 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:42:40 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:42:41 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:42:41 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:42:42 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:42:42 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:42:43 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:42:43 INFO [info_mgr] > [UpdateWeatherInfo] - Updating complete.
+KST 08/21/24 08:42:43 INFO [info_mgr] > [UpdateFineDustInfo] - Start updating . . . 
+KST 08/21/24 08:42:43 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:42:44 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:42:44 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:42:45 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:42:45 INFO [info_mgr] > [UpdateFineDustInfo] - Updating complete.
+KST 08/21/24 08:44:11 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:44:11 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:44:11 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:44:11 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:44:11 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:44:11 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:11 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:44:11 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:44:11 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:44:12 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:44:12 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:44:12 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:44:12 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:44:12 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:44:12 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/9)[29450](1/2)
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/9)[228000394](1/2)[29450]
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/9)[29450](1/2)
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/9)[228000238](1/2)[29450]
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000246](3/9)[29450](1/2)
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/9)[228000246](1/2)[29450]
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](4/9)[29450](1/2)
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/9)[228000395](1/2)[29450]
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000113](5/9)[29450](1/2)
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/9)[228000113](1/2)[29450]
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](6/9)[29450](1/2)
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/9)[228000001](1/2)[29450]
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](7/9)[29450](1/2)
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/9)[228000005](1/2)[29450]
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](8/9)[29450](1/2)
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/9)[228000038](1/2)[29450]
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](9/9)[29450](1/2)
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (9/9)[228000071](1/2)[29450]
+KST 08/21/24 08:44:13 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](1/6)[47574](2/2)
+KST 08/21/24 08:44:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/6)[228000409](2/2)[47574]
+KST 08/21/24 08:44:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000108](2/6)[47574](2/2)
+KST 08/21/24 08:44:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/6)[228000108](2/2)[47574]
+KST 08/21/24 08:44:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](3/6)[47574](2/2)
+KST 08/21/24 08:44:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/6)[228000021](2/2)[47574]
+KST 08/21/24 08:44:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000029](4/6)[47574](2/2)
+KST 08/21/24 08:44:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/6)[228000029](2/2)[47574]
+KST 08/21/24 08:44:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](5/6)[47574](2/2)
+KST 08/21/24 08:44:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/6)[228000133](2/2)[47574]
+KST 08/21/24 08:44:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](6/6)[47574](2/2)
+KST 08/21/24 08:44:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/6)[228000136](2/2)[47574]
+KST 08/21/24 08:44:14 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:44:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:44:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:15 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:44:16 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:44:17 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:44:17 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:44:18 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:18 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:44:19 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:44:19 INFO [info_mgr] > [UpdateWeatherInfo] - Updating complete.
+KST 08/21/24 08:44:19 INFO [info_mgr] > [UpdateFineDustInfo] - Start updating . . . 
+KST 08/21/24 08:44:19 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:44:20 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:20 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:44:21 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:44:21 INFO [info_mgr] > [UpdateFineDustInfo] - Updating complete.
+KST 08/21/24 08:44:26 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:44:26 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:44:26 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:44:26 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:44:26 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:44:26 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:26 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:44:31 INFO [info_mgr] > [UpdateStationInfo] - Update Fail. [47574](2/2)
+KST 08/21/24 08:44:31 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:44:31 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:44:31 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:44:31 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:44:31 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:44:31 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:44:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:44:32 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/9)[29450](1/2)
+KST 08/21/24 08:44:34 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/9)[228000394](1/2)[29450]
+KST 08/21/24 08:44:34 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/9)[29450](1/2)
+KST 08/21/24 08:44:34 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/9)[228000238](1/2)[29450]
+KST 08/21/24 08:44:34 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000246](3/9)[29450](1/2)
+KST 08/21/24 08:44:34 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/9)[228000246](1/2)[29450]
+KST 08/21/24 08:44:34 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](4/9)[29450](1/2)
+KST 08/21/24 08:44:34 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/9)[228000395](1/2)[29450]
+KST 08/21/24 08:44:34 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000113](5/9)[29450](1/2)
+KST 08/21/24 08:44:35 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/9)[228000113](1/2)[29450]
+KST 08/21/24 08:44:35 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](6/9)[29450](1/2)
+KST 08/21/24 08:44:35 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/9)[228000001](1/2)[29450]
+KST 08/21/24 08:44:35 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](7/9)[29450](1/2)
+KST 08/21/24 08:44:35 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/9)[228000005](1/2)[29450]
+KST 08/21/24 08:44:35 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](8/9)[29450](1/2)
+KST 08/21/24 08:44:35 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/9)[228000038](1/2)[29450]
+KST 08/21/24 08:44:35 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](9/9)[29450](1/2)
+KST 08/21/24 08:44:35 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (9/9)[228000071](1/2)[29450]
+KST 08/21/24 08:44:35 WARNING [info_mgr] > [UpdateStationArvlBusInfo] - Skip. [47574](2/2)
+KST 08/21/24 08:44:35 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:44:35 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:44:35 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:36 WARNING [info_mgr] > [UpdateStationArvlBusRouteInfo] - Skip. [47574](2/2)
+KST 08/21/24 08:44:36 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:44:37 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:44:37 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:44:38 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:38 WARNING [info_mgr] > [UpdateWeatherInfo] - Skip. [47574](2/2)
+KST 08/21/24 08:44:38 INFO [info_mgr] > [UpdateWeatherInfo] - Updating complete.
+KST 08/21/24 08:44:39 INFO [info_mgr] > [UpdateFineDustInfo] - Start updating . . . 
+KST 08/21/24 08:44:39 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:44:39 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:44:39 WARNING [info_mgr] > [UpdateFineDustInfo] - Skip. [47574](2/2)
+KST 08/21/24 08:44:39 INFO [info_mgr] > [UpdateFineDustInfo] - Updating complete.
+KST 08/21/24 08:45:01 INFO [info_mgr] > Created Logger. (info_mgr)
+KST 08/21/24 08:45:01 INFO [info_mgr] > Logging start. <class 'module.info_manager.InfoManager'>
+KST 08/21/24 08:45:01 INFO [info_mgr] >  * Regi station list : [{'keyword': '29450', 'stationDesc': 'TEST1', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}, {'keyword': '47574', 'stationDesc': 'TEST2', 'stationInfo': None, 'arvlBus': None, 'arvlBusInfo': [], 'arvlBusRouteInfo': [], 'weatherInfo': None, 'finedustInfo': None}]
+KST 08/21/24 08:45:01 INFO [info_mgr] > [UpdateStationInfo] - Start updating . . .
+KST 08/21/24 08:45:01 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:45:01 INFO [info_mgr] > [UpdateStationInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:45:01 INFO [info_mgr] > [UpdateStationInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:45:01 INFO [info_mgr] > [UpdateStationInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:45:01 INFO [info_mgr] > [UpdateStationInfo] - Updating complete.
+KST 08/21/24 08:45:02 INFO [info_mgr] > [UpdateStationArvlBus] - Start updating . . . 
+KST 08/21/24 08:45:02 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [29450](1/2)
+KST 08/21/24 08:45:02 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [29450](1/2)
+KST 08/21/24 08:45:02 INFO [info_mgr] > [UpdateStationArvlBus] - Updating . . . [47574](2/2)
+KST 08/21/24 08:45:02 INFO [info_mgr] > [UpdateStationArvlBus] - Updated. [47574](2/2)
+KST 08/21/24 08:45:02 INFO [info_mgr] > [UpdateStationArvlBus] - Updating complete.
+KST 08/21/24 08:45:03 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Start updating . . . 
+KST 08/21/24 08:45:03 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000394](1/9)[29450](1/2)
+KST 08/21/24 08:45:03 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/9)[228000394](1/2)[29450]
+KST 08/21/24 08:45:03 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000238](2/9)[29450](1/2)
+KST 08/21/24 08:45:03 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/9)[228000238](1/2)[29450]
+KST 08/21/24 08:45:03 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000246](3/9)[29450](1/2)
+KST 08/21/24 08:45:03 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/9)[228000246](1/2)[29450]
+KST 08/21/24 08:45:03 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000395](4/9)[29450](1/2)
+KST 08/21/24 08:45:04 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/9)[228000395](1/2)[29450]
+KST 08/21/24 08:45:04 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000113](5/9)[29450](1/2)
+KST 08/21/24 08:45:04 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/9)[228000113](1/2)[29450]
+KST 08/21/24 08:45:04 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000001](6/9)[29450](1/2)
+KST 08/21/24 08:45:04 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/9)[228000001](1/2)[29450]
+KST 08/21/24 08:45:04 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000005](7/9)[29450](1/2)
+KST 08/21/24 08:45:04 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (7/9)[228000005](1/2)[29450]
+KST 08/21/24 08:45:04 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000038](8/9)[29450](1/2)
+KST 08/21/24 08:45:04 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (8/9)[228000038](1/2)[29450]
+KST 08/21/24 08:45:04 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000071](9/9)[29450](1/2)
+KST 08/21/24 08:45:04 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (9/9)[228000071](1/2)[29450]
+KST 08/21/24 08:45:04 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000409](1/6)[47574](2/2)
+KST 08/21/24 08:45:04 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (1/6)[228000409](2/2)[47574]
+KST 08/21/24 08:45:04 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000108](2/6)[47574](2/2)
+KST 08/21/24 08:45:05 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (2/6)[228000108](2/2)[47574]
+KST 08/21/24 08:45:05 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000021](3/6)[47574](2/2)
+KST 08/21/24 08:45:05 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (3/6)[228000021](2/2)[47574]
+KST 08/21/24 08:45:05 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000029](4/6)[47574](2/2)
+KST 08/21/24 08:45:05 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (4/6)[228000029](2/2)[47574]
+KST 08/21/24 08:45:05 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000133](5/6)[47574](2/2)
+KST 08/21/24 08:45:05 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (5/6)[228000133](2/2)[47574]
+KST 08/21/24 08:45:05 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating [228000136](6/6)[47574](2/2)
+KST 08/21/24 08:45:05 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updated. (6/6)[228000136](2/2)[47574]
+KST 08/21/24 08:45:05 INFO [info_mgr] > [UpdateStationArvlBusInfo] - Updating complete.
+KST 08/21/24 08:45:06 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Start updating . . . 
+KST 08/21/24 08:45:06 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:45:06 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:45:06 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:45:06 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:45:06 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:45:06 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:45:06 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:45:06 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:45:06 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:45:06 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:45:06 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:45:07 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:45:07 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:45:07 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:45:07 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:45:07 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:45:07 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:45:08 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:45:08 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:45:08 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:45:08 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:45:08 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:45:08 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:45:08 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:45:08 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:45:08 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:45:08 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:45:08 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:45:08 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating . . . [](/)
+KST 08/21/24 08:45:09 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:45:09 INFO [info_mgr] > [UpdateStationArvlBusRouteInfo] - Updating complete.
+KST 08/21/24 08:45:09 INFO [info_mgr] > [updateWeatherInfo] - Start updating . . . 
+KST 08/21/24 08:45:09 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:45:10 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:45:10 INFO [info_mgr] > [UpdateWeatherInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:45:23 INFO [info_mgr] > [UpdateWeatherInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:45:23 INFO [info_mgr] > [UpdateWeatherInfo] - Updating complete.
+KST 08/21/24 08:45:23 INFO [info_mgr] > [UpdateFineDustInfo] - Start updating . . . 
+KST 08/21/24 08:45:23 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [29450](1/2)
+KST 08/21/24 08:45:24 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [29450](1/2)
+KST 08/21/24 08:45:24 INFO [info_mgr] > [UpdateFineDustInfo] - Updating . . . [47574](2/2)
+KST 08/21/24 08:45:25 INFO [info_mgr] > [UpdateFineDustInfo] - Updated. [47574](2/2)
+KST 08/21/24 08:45:25 INFO [info_mgr] > [UpdateFineDustInfo] - Updating complete.
