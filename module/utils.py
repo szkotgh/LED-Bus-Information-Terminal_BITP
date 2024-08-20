@@ -73,13 +73,19 @@ def convert_ftime(ftime_str: str, time_format: str | None = default_time_format)
     time = datetime.datetime.strptime(ftime_str, time_format)
     return time
 
-def get_ip() -> str:
+def get_ip(_defalut:str = "N/A") -> str:
     try:
         ip = subprocess.check_output(['hostname', '-I']).decode('utf-8').strip()
-        ip_address = ip if ip else "address not found"
+        ip_address = ip if ip else _defalut
     except Exception:
-        ip_address = "address not found"
+        ip_address = _defalut
     return ip_address
+
+def chunk_list(lst: list, _chunk_size=3, _default: str | dict | None = None) -> list:
+    if not lst:
+        return [] if (_default is None) else _default
+    
+    return [lst[i:i + _chunk_size] for i in range(0, len(lst), _chunk_size)]
 
 def get_rst_msg(rst_code, api_type: str = 'normal') -> str:
     '''

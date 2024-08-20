@@ -132,7 +132,6 @@ class weather_api_requester:
                 'rstMsg'     : rstMsg,
                 'result'     : response['response']['body']['items']['item']
             })
-            print(f"nx={nx},ny={ny},base_date={base_date},base_time={base_time},num_of_rows={num_of_rows},page_no={page_no},data_type={data_type}")
         else:
             f_response.update({
                 'queryTime'  : utils.get_now_ftime(),

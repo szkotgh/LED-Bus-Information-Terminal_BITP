@@ -230,9 +230,6 @@ API 결과는 'result'하위에 저장. 요청 실패 시 'result' None로 반�
 | remainSeatCnt2 |   | 빈자리수 (-1: 정보없음, 0-:빈자리 수)                                  |
 | staOrder       |   | 노선의 정류소순번                                                      |
 | flag           |   | 상태구분 (RUN: 운행중, PASS: 운행중, STOP: 운행종료, WAIT: 회차지대기) |
-
-### 비고
-모종의 오류로 get 실패 시 None형 반환
         """
         # default response
         f_response = {

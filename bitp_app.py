@@ -56,7 +56,10 @@ matrix_manager = MatrixManager()
 serialKey = '-'.join([SERIAL_KEY[i:i+4] for i in range(0, len(SERIAL_KEY), 4)])
 print(f"prdc_id: {serialKey}")
 # for i in range(100, -1, -1):
-#     matrix_manager.show_text_page([f"BIT가 시작됩니다 . . . ({(i/10)}s)", "", f"{utils.get_now_ftime()}", f"IP={utils.get_ip()}", f"(v2.1.16) {serialKey}"], 0, 0.1, _status_prt=False)
+#     sec_str = i/10
+#     if sec_str >= 5:
+#         sec_str = int(sec_str)
+#     matrix_manager.show_text_page([f"BIT가 시작됩니다 . . . ({sec_str}s)", "", f"{utils.get_now_ftime()}", f"IP={utils.get_ip()}", f"(v2.1.16) {serialKey}"], 0, 0.1, _status_prt=False)
 # # show test page
 # matrix_manager.show_test_page(0, 1)
 # matrix_manager.show_test_page(1, 3)
@@ -98,7 +101,7 @@ for i in range(31, 37):
 matrix_manager.update_station_info(info_manager.station_datas)
 while 1:
     for i in range(0, len(info_manager.station_datas)):
-        for i in range(0, 3):
+        for _repeat in range(0, 3):
             # try:
             matrix_manager.show_station_page(i)
             # except Exception as e: matrix_manager.show_text_page(["SHOW STATION PAGE", "에러가 발생하였습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2); print(f"SHOW STATION PAGE ERROR: {e}")
