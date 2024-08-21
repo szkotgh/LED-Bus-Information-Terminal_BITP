@@ -230,7 +230,7 @@ class InfoManager:
                 self.logger.warning(f"[UpdateStationArvlBusRouteInfo] - Skip. [{station['keyword']}]({num}/{len(self.station_datas)})")
                 continue
             
-            elif not (station['arvlBus']['rstCode'] in ['0', '00']):
+            elif not (station['arvlBus']['rstCode'] in ['0', '006']):
                 station['arvlBusRouteInfo'] = None
                 self.logger.warning(f"[UpdateStationArvlBusRouteInfo] - Skip. Not a good status code({station['arvlBus']['rstCode']}). [{station['keyword']}]({num}/{len(self.station_datas)})")
                 continue

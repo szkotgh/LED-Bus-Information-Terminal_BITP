@@ -102,9 +102,11 @@ matrix_manager.update_station_info(info_manager.station_datas)
 while 1:
     for i in range(0, len(info_manager.station_datas)):
         for _repeat in range(0, 3):
+
             matrix_manager.check_internet_connection()
-            try: matrix_manager.show_station_page(i)
-            except Exception as e: matrix_manager.show_text_page(["SHOW STATION PAGE", "에러가 발생하였습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2); print(f"SHOW STATION PAGE ERROR: {e}")
+            # try: 
+            matrix_manager.show_station_page(i)
+            # except Exception as e: matrix_manager.show_text_page(["SHOW STATION PAGE", "에러가 발생하였습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2); print(f"SHOW STATION PAGE ERROR: {e}")
             try: matrix_manager.show_station_etc_page(i)
             except Exception as e: matrix_manager.show_text_page(["SHOW STATION ETC PAGE", "에러가 발생했습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2); print(f"SHOW STATION ETC PAGE ERROR: {e}")
     print("ROOF END")

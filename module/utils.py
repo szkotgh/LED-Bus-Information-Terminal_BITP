@@ -17,7 +17,7 @@ log_format = "%(asctime)s %(levelname)s [%(name)s] > %(message)s"
 default_time_format = "%Y%m%d%H%M%S"
 
 normalapi_error_code = {
-    '-1' : '결과를 알 수 없습니다.',
+    '-1' : '알 수 없는 오류입니다.',
     '0'  : '정상적으로 처리되었습니다.',
     '1'  : '시스템 에러가 발생하였습니다.',
     '2'  : '필수 요청 Parameter 가 존재하지 않습니다.',
@@ -37,7 +37,7 @@ normalapi_error_code = {
 }
 
 openapi_error_code = {
-    '-1' : '결과를 알 수 없습니다.',
+    '-1' : '알 수 없는 오류입니다.',
     '00' : '정상',
     '01' : '어플리케이션 에러',
     '02' : '데이터베이스 에러',

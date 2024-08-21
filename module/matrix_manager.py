@@ -14,32 +14,32 @@ try:
     import module.utils as utils
 except Exception as e:
     sys.exit(f'module.utils module import failed : {e}')
-# import rgbmatrix
-try:
-    from rgbmatrix import RGBMatrix, RGBMatrixOptions
-except Exception as e:
-    sys.exit(f'RGBMatrix module import failed : {e}')
+# # import rgbmatrix
+# try:
+#     from rgbmatrix import RGBMatrix, RGBMatrixOptions
+# except Exception as e:
+#     sys.exit(f'RGBMatrix module import failed : {e}')
 
 class MatrixManager:
     def __init__(self, station_datas: dict | None = []) -> None:
-        # Configuration for the matrix
-        # https://github.com/hzeller/rpi-rgb-led-matrix/blob/master/include/led-matrix.h#L57
-        options = RGBMatrixOptions()
-        options.hardware_mapping = 'adafruit-hat'  # If you have an Adafruit HAT: 'adafruit-hat'
-        options.rows = 32
-        options.cols = 64
-        options.chain_length = 7
-        # https://github.com/hzeller/rpi-rgb-led-matrix/tree/master/examples-api-use#remapping-coordinates
-        options.pixel_mapper_config = "V-mapper;Rotate:90"
-        options.pwm_lsb_nanoseconds = 50
-        options.gpio_slowdown = 4
-        options.pwm_bits = 5
-        options.pwm_dither_bits = 0
-        options.show_refresh_rate = False
-        self.matrix = RGBMatrix(options = options)
+        # # Configuration for the matrix
+        # # https://github.com/hzeller/rpi-rgb-led-matrix/blob/master/include/led-matrix.h#L57
+        # options = RGBMatrixOptions()
+        # options.hardware_mapping = 'adafruit-hat'  # If you have an Adafruit HAT: 'adafruit-hat'
+        # options.rows = 32
+        # options.cols = 64
+        # options.chain_length = 7
+        # # https://github.com/hzeller/rpi-rgb-led-matrix/tree/master/examples-api-use#remapping-coordinates
+        # options.pixel_mapper_config = "V-mapper;Rotate:90"
+        # options.pwm_lsb_nanoseconds = 50
+        # options.gpio_slowdown = 4
+        # options.pwm_bits = 5
+        # options.pwm_dither_bits = 0
+        # options.show_refresh_rate = False
+        # self.matrix = RGBMatrix(options = options)
         
-        self.size = (self.matrix.width, self.matrix.height)
-        # self.size = (224, 64)
+        # self.size = (self.matrix.width, self.matrix.height)
+        self.size = (224, 64)
         
         # class var init
         self.station_datas = station_datas
@@ -231,21 +231,20 @@ class MatrixManager:
                         arvl_bus_infos.append(None)
                         continue
                     arvl_bus = arvl_bus[i]
-                    bus_info.update(arvl_bus)
+                    
+                    if int(arvl_bus.get('locationNo1')) <= 3:
+                        arvl_bus['isArvl'] = True
+                    else:
+                        arvl_bus['isArvl'] = False
 
+                
                 # arvl bus info parsing
                 if (station_arvl_bus_info == None or station_arvl_bus_info == []) == False:
                     arvl_bus_info = station_arvl_bus_info[i]
-                    if ((arvl_bus_info == None) or (arvl_bus_info.get('apiSuccess', False) == False)) == False:
-                        arvl_bus_info = arvl_bus_info.get('result', None)
-                        if arvl_bus_info.get('locationNo1', None) != None:
-                            if arvl_bus_info['locationNo1'] <= 3:
-                                bus_info.update({'isArvl' : True})
-                            else:
-                                bus_info.update({'isArvl' : False})
-                        else:
-                            bus_info.update({'isArvl' : False})
+                    if ((arvl_bus_info == None) or (arvl_bus_info.get('apiSuccess', False))) == False:
+                        arvl_bus_info = arvl_bus_info.get('result')
                         bus_info.update(arvl_bus_info)
+                
                 
                 # arvl bus route info parsing
                 if (station_arvl_bus_route_info == None or station_arvl_bus_route_info == []) == False:
@@ -258,6 +257,7 @@ class MatrixManager:
                             bus_now_station_info = arvl_bus_route_info[(int(arvl_bus_staOrder)-1) - int(arvl_bus_locationNo1)]
                             bus_info.update({"nowStationId" : bus_now_station_info.get('stationId', None)})
                             bus_info.update({"nowStationName" : bus_now_station_info.get('stationName', None)})
+                
                 
                 arvl_bus_remainSeatCnt1 = bus_info.get('remainSeatCnt1', '-1')
                 arvl_bus_routeTypeCd = bus_info.get('routeTypeCd', None)
@@ -295,6 +295,8 @@ class MatrixManager:
                 
                 bus_info.update({"remainSeatGrade": arvl_bus_remainSeatGrade})
                 bus_info.update({"remainSeatGradeColor": arvl_bus_remainSeatGradeColor})
+                
+                
                 arvl_bus_infos.append(bus_info)
         
         # create display
@@ -320,14 +322,15 @@ class MatrixManager:
             else:
                 normal_infos.append(arvl_bus_info)
         
-        
-        for bus_dict_list in utils.chunk_list(normal_infos):
+        for bus_data_list in utils.chunk_list(normal_infos):
             arvl_bus_station_str_loca = []; [arvl_bus_station_str_loca.append({'x_loca': x_loca_col[4], 'overflow': False}) for _ in range(3)]
             print(f"ASASAS: {arvl_bus_station_str_loca}")
             for frame in range(0, 120):
                 draw.rectangle([(0, y_loca_row[1]), (self.size[0], y_loca_row[4]-1)], outline="black", fill="black")
                 
-                for index, bus_dict in enumerate(bus_dict_list):
+                for index, bus_dict in enumerate(bus_data_list):
+                    print(f"GGGGGG: {bus_dict}")
+                    
                     bus_routeTypeCd = bus_dict.get("routeTypeCd", "-1")
                     
                     draw.bitmap((x_loca_col[0], y_loca_row[index+1]), self.bus_icon, bus_icon_color.get(bus_routeTypeCd, "white"));
@@ -335,7 +338,7 @@ class MatrixManager:
                     draw.text((x_loca_col[2], y_loca_row[index+1]), bus_dict.get('remainSeatGrade'), bus_dict.get('remainSeatGradeColor'), self.font12)
                     draw.text((x_loca_col[3], y_loca_row[index+1]), f"{bus_dict.get('predictTime1', '')}분", "aqua", self.font12)
                     draw.text((arvl_bus_station_str_loca[index]['x_loca'], y_loca_row[index+1]), f"{bus_dict.get('nowStationName', '')}", "white", self.font12)
-                    
+                
                 draw.text((x_loca_col_bus_arvl[0], y_loca_row[4]), "곧도착:", "white", self.font12)
                 draw.text((x_loca_col_bus_arvl[1], y_loca_row[4]), arvl_str, "white", self.font12)
 
@@ -475,5 +478,5 @@ class MatrixManager:
             draw.text((set_loca[0]+25, set_loca[1]+2), "인터넷 연결을", "white", self.font10)
             draw.text((set_loca[0]+25 , set_loca[1]+13), "확인해주세요.", "white", self.font10)
         
-        # display.save('./display.png')
-        self.matrix.SetImage(display.convert('RGB'))
+        display.save('./display.png')
+        # self.matrix.SetImage(display.convert('RGB'))
