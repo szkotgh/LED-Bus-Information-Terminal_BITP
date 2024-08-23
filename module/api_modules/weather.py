@@ -90,9 +90,22 @@ FineDust_Grade = {
 
 class weather_api_requester:
     def __init__(self, SERVICE_KEY):
+        self.logger = utils.create_logger('weather_api_module')
         self.SERVICE_KEY = SERVICE_KEY
 
     def get_vilage_fcst(self, nx, ny, base_date, base_time, num_of_rows='1000', page_no='1', data_type='JSON'):
+        # default response
+        f_response = {
+            'queryTime'  : utils.get_now_ftime(),
+            'apiSuccess' : False,
+            'apiParams'  : f"nx={nx},ny={ny},base_date={base_date},base_time={base_time},num_of_rows={num_of_rows},page_no={page_no},data_type={data_type}",
+            'errorOcrd'  : False,
+            'errorMsg'   : None,
+            'rstCode'    : -1,
+            'rstMsg'     : utils.get_rst_msg(-1),
+            'result'     : None
+        }
+        
         url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'
         params = {
             'serviceKey' : str(self.SERVICE_KEY),
@@ -109,20 +122,17 @@ class weather_api_requester:
             response = requests.get(url, params=params)
             response.raise_for_status()
         except Exception as ERROR:
-            print(f"API Request fail: {ERROR}")
-            return None
+            f_response['errorOcrd'] = True
+            f_response['errorMsg']  = str(ERROR)
+            return f_response
         
-        try:
-            response = json.loads(response.content)
-        except Exception as ERROR:
-            print(f"API Request fail: {ERROR}")
-            return None
+        response.text
+        response = xmltodict.parse(response.text)
         
         detect_rst = utils.detect_response_error(response)
         rstCode = detect_rst['rstCode']
         rstMsg = detect_rst['rstMsg']
         
-        f_response = {}
         if rstCode in ['0', '00']:
             f_response.update({
                 'queryTime'  : utils.get_now_ftime(),
@@ -132,7 +142,6 @@ class weather_api_requester:
                 'rstMsg'     : rstMsg,
                 'result'     : response['response']['body']['items']['item']
             })
-            print(f"nx={nx},ny={ny},base_date={base_date},base_time={base_time},num_of_rows={num_of_rows},page_no={page_no},data_type={data_type}")
         else:
             f_response.update({
                 'queryTime'  : utils.get_now_ftime(),
@@ -146,6 +155,18 @@ class weather_api_requester:
         return f_response
     
     def get_fine_dust_info(self, returnType="xml", sidoName="경기", ver="1.0"):
+        # default response
+        f_response = {
+            'queryTime'  : utils.get_now_ftime(),
+            'apiSuccess' : False,
+            'apiParams'  : f"returnType={returnType},sidoName={sidoName},ver={ver}",
+            'errorOcrd'  : False,
+            'errorMsg'   : None,
+            'rstCode'    : -1,
+            'rstMsg'     : utils.get_rst_msg(-1),
+            'result'     : None
+        }
+        
         url = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty"
         params = {
             "serviceKey" : self.SERVICE_KEY,
@@ -160,8 +181,9 @@ class weather_api_requester:
             response = requests.get(url, params=params)
             response.raise_for_status()
         except Exception as ERROR:
-            print(f"API Request fail: {ERROR}")
-            return None
+            f_response['errorOcrd'] = True
+            f_response['errorMsg']  = str(ERROR)
+            return f_response
         
         response = xmltodict.parse(response.content)
         
@@ -169,7 +191,6 @@ class weather_api_requester:
         rstCode = detect_rst['rstCode']
         rstMsg = detect_rst['rstMsg']
         
-        f_response = {}
         if rstCode in ['0', '00']:
             f_response.update({
                 'queryTime'  : utils.get_now_ftime(),

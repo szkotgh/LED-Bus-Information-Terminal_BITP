@@ -42,6 +42,7 @@ class MatrixManager:
         self.size = (224, 64)
         
         # class var init
+        self.logger = utils.create_logger('matrix_manager')
         self.station_datas = station_datas
         self.station_data_len = 0
         self.network_connected = False
@@ -201,13 +202,17 @@ class MatrixManager:
         
         station_keyword = station_data.get('keyword', '읽기실패')
         station_desc = station_data.get('stationDesc', None)
-        station_info = station_data.get('stationInfo', {'apiSuccess': False})
-        station_arvl_bus = station_data.get('arvlBus', {'apiSuccess': False})
-        station_arvl_bus_info = station_data.get('arvlBusInfo', {'apiSuccess': False})
-        station_arvl_bus_route_info = station_data.get('arvlBusRouteInfo', {'apiSuccess': False})
+        station_info = station_data.get('stationInfo')
+        station_arvl_bus = station_data.get('arvlBus')
+        station_arvl_bus_info = station_data.get('arvlBusInfo')
+        station_arvl_bus_route_info = station_data.get('arvlBusRouteInfo')
         
         # station title data parsing
-        if station_info == None or station_info.get('apiSuccess') == False:
+        if station_info.get('errorOcrd') == True:
+            self.show_text_page([f"스테이션 페이지 [{_show_station_num}]", "API 오류. 페이지를 표시할 수 없습니다.", "", f"KEYWORD={station_keyword}", f"{station_info.get('errorMsg', '오류메시지 없음')}"], _repeat=2)
+            return 1
+        
+        if station_info.get('apiSuccess') == False:
             rst_code = station_info.get('rstCode', "-1")
             rst_msg = station_info.get('rstMsg', "알 수 없는 오류입니다.")
             self.show_text_page([f"스테이션 페이지 [{_show_station_num}]", "데이터 오류. 페이지를 표시할 수 없습니다: 필수 데이터가 없습니다.", "", f"KEYWORD={station_keyword}", f"({rst_code}) {rst_msg}"], _repeat=2)
@@ -244,7 +249,6 @@ class MatrixManager:
                     if ((arvl_bus_info == None) or (arvl_bus_info.get('apiSuccess', False))) == False:
                         arvl_bus_info = arvl_bus_info.get('result')
                         bus_info.update(arvl_bus_info)
-                
                 
                 # arvl bus route info parsing
                 if (station_arvl_bus_route_info == None or station_arvl_bus_route_info == []) == False:
@@ -295,7 +299,6 @@ class MatrixManager:
                 
                 bus_info.update({"remainSeatGrade": arvl_bus_remainSeatGrade})
                 bus_info.update({"remainSeatGradeColor": arvl_bus_remainSeatGradeColor})
-                
                 
                 arvl_bus_infos.append(bus_info)
         
@@ -349,10 +352,8 @@ class MatrixManager:
     
     def show_station_etc_page(self, _show_station_num: int, _repeat: int = 50):
         station_data = self.station_datas[_show_station_num]
-        station_weather_info = station_data.get('weatherInfo', {'apiSuccess': False})
-        if station_weather_info == None: station_weather_info = {'apiSuccess': False}
-        station_finedust_info = station_data.get('finedustInfo', {'apiSuccess': False})
-        if station_finedust_info == None: station_finedust_info = {'apiSuccess': False}
+        station_weather_info = station_data.get('weatherInfo')
+        station_finedust_info = station_data.get('finedustInfo')
         
         x_loca_col  = [0, 70, 77]
         y_loca_row  = [1, 16, 32, 48]

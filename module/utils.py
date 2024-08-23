@@ -13,7 +13,7 @@ except Exception as e:
     sys.exit(f"requests module import failed: {e}")
 
 log_time_format = "%Z %x %X"
-log_format = "%(asctime)s %(levelname)s [%(name)s] > %(message)s"
+log_format = "%(asctime)s %(levelname)s > %(message)s"
 default_time_format = "%Y%m%d%H%M%S"
 
 normalapi_error_code = {
@@ -99,7 +99,10 @@ def get_rst_msg(rst_code, api_type: str = 'normal') -> str:
     else:
         return '결과를 알 수 없습니다.'
 
-def create_logger(logger_name, logger_file_path='log/mainlog.log', logger_set_level=logging.DEBUG, file_set_level=logging.DEBUG) -> logging.Logger:    
+def create_logger(logger_name, logger_file_path=None, logger_set_level=logging.DEBUG, file_set_level=logging.DEBUG) -> logging.Logger:    
+    if logger_file_path == None:
+        logger_file_path = os.path.join('log', f'{logger_name}.log')
+    
     logger = logging.getLogger(logger_name)
     logger.setLevel(logger_set_level)
     formatter = logging.Formatter(log_format, datefmt=log_time_format)
@@ -113,7 +116,7 @@ def create_logger(logger_name, logger_file_path='log/mainlog.log', logger_set_le
     file_handler.setLevel(file_set_level)
     logger.addHandler(file_handler)
     
-    logger.info(f"Created Logger. ({logger_name})")
+    logger.info(f"Logging start. [{logger_name}]")
     
     return logger
 

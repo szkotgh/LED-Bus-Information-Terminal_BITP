@@ -24,11 +24,7 @@ except Exception as e:
 class InfoManager:
     def __init__(self, _SERVICE_KEY, _OPTIONS:dict):
         # Set logger
-        logger_name = "info_mgr"
-        logger_path = os.path.join(os.getcwd(), 'log', 'mainlog.log')
-        logger_set_level = logging.DEBUG
-        file_set_level = logging.DEBUG
-        self.logger = utils.create_logger(logger_name, logger_path, logger_set_level, file_set_level)
+        self.logger = utils.create_logger('info_manager')
         self.logger.info(f'Logging start. {__class__}')
         
         # Init class
@@ -88,9 +84,8 @@ class InfoManager:
                 
                 self.logger.info(f"[UpdateStationInfo] - Updating . . . [{station['keyword']}]({num}/{len(self.station_datas)})")
                 station_info_rst = self.bus_api_mgr.get_station_info(station['keyword'])
-                print(station_info_rst)
                 
-                if station_info_rst == None:
+                if station_info_rst['errorOcrd'] == True:
                     self.logger.warning(f"[UpdateStationInfo] - API Request fail. retry . . . ({try_count+1}/{self.API_ERROR_RETRY_COUNT})[{station['keyword']}]")
                     continue
                 
@@ -133,7 +128,7 @@ class InfoManager:
                 self.logger.info(f"[UpdateStationArvlBus] - Updating . . . [{station['keyword']}]({num}/{len(self.station_datas)})")
                 arvl_bus_rst = self.bus_api_mgr.get_bus_arrival(station['stationInfo']['result']['stationId'])
                 
-                if arvl_bus_rst == None:
+                if arvl_bus_rst['errorOcrd'] == True:
                     self.logger.warning(f"[UpdateStationArvlBus] - API Request fail. retry . . . [{station['keyword']}]({try_count+1}/{self.API_ERROR_RETRY_COUNT})")
                     continue
                 
@@ -192,7 +187,7 @@ class InfoManager:
                     self.logger.info(f"[UpdateStationArvlBusInfo] - Updating [{arvlBus['routeId']}]({num_b}/{len(station['arvlBus']['result'])})[{station['keyword']}]({num}/{len(self.station_datas)})")
                     arvl_bus_info_rst = self.bus_api_mgr.get_bus_info(routeId)
                     
-                    if arvl_bus_info_rst == None:
+                    if arvl_bus_info_rst['errorOcrd'] == True:
                         self.logger.warning(f"[UpdateStationArvlBusInfo] - API Request fail. retry . . . ({try_count+1}/{self.API_ERROR_RETRY_COUNT})({num_b}/{len(station['arvlBus']['result'])})[{arvlBus['routeId']}]({num}/{len(self.station_datas)})[{station['keyword']}]")
                         continue
                     
@@ -257,7 +252,7 @@ class InfoManager:
                     self.logger.info(f"[UpdateStationArvlBusRouteInfo] - Updating . . . [](/)")
                     arvl_bus_info_rst = self.bus_api_mgr.get_bus_transit_route(routeId)
                     
-                    if arvl_bus_info_rst == None:
+                    if arvl_bus_info_rst['errorOcrd'] == True:
                         self.logger.warning(f"[UpdateStationArvlBusRouteInfo] - API Request fail. retry . . . [{station['keyword']}]({try_count+1}/{self.API_ERROR_RETRY_COUNT})")
                         continue
                     
@@ -323,7 +318,7 @@ class InfoManager:
                 self.logger.info(f"[UpdateWeatherInfo] - Updating . . . [{station['keyword']}]({num}/{len(self.station_datas)})")
                 weather_rst = self.weather_api_mgr.get_vilage_fcst(station_nx, station_ny, today_date, sel_base_time)
                 
-                if weather_rst == None:
+                if weather_rst['errorOcrd'] == True:
                     self.logger.warning(f"[UpdateWeatherInfo] - API Request fail. retry . . . [{station['keyword']}]({try_count+1}/{self.API_ERROR_RETRY_COUNT})")
                     continue
                 
@@ -337,10 +332,6 @@ class InfoManager:
                 self.logger.info(f"[UpdateWeatherInfo] - Update Fail. [{station['keyword']}]({num}/{len(self.station_datas)})")
             
             elif update_succes == True:
-                # print(f"FFFFFF: {weather_rst}")
-                # with open('./log/weather.log', 'w', encoding='UTF-8') as f:
-                #     f.write(json.dumps(weather_rst, indent=4))
-                
                 today_weather_info = []
                 tomorrow_weather_info = []
                 tomorrow_need_info = []
@@ -422,11 +413,7 @@ class InfoManager:
                 self.logger.info(f"[UpdateFineDustInfo] - Updating . . . [{station['keyword']}]({num}/{len(self.station_datas)})")
                 fine_dust_rst = self.weather_api_mgr.get_fine_dust_info(sidoName=sido_name)
                 
-                if self.OPTIONS.get('api_logging', False):
-                    with open(os.path.join('log', 'dust.log'), 'w', encoding="UTF-8") as f:
-                        f.write(json.dumps(fine_dust_rst, indent=4))
-                
-                if fine_dust_rst == None:
+                if fine_dust_rst['errorOcrd'] == True:
                     self.logger.warning(f"[UpdateFineDustInfo] - API Request fail. retry . . . [{station['keyword']}]({try_count+1}/{self.API_ERROR_RETRY_COUNT})")
                     continue
                 
@@ -453,4 +440,13 @@ class InfoManager:
                 self.logger.info(f"[UpdateFineDustInfo] - Updated. [{station['keyword']}]({num}/{len(self.station_datas)})")
         
         self.logger.info("[UpdateFineDustInfo] - Updating complete.")
+        return 0
+
+    def update_all_info(self):
+        self.update_station_info()
+        self.update_station_arvl_bus()
+        self.update_station_arvl_bus_info()
+        self.update_station_arvl_bus_route_info()
+        # self.update_weather_info()
+        # self.update_fine_dust_info()
         return 0

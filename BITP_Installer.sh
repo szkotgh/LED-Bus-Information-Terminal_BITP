@@ -15,8 +15,10 @@ if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
     exit 1
 fi
 
-# Get the path of the script
+CMDLINE_FILE="/boot/firmware/cmdline.txt"
 DIR="$( cd "$( dirname "$0" )" && pwd -P )"
+
+# Get the path of the script
 echo BITP Program Path=\'$DIR\'
 cd $DIR
 
@@ -77,7 +79,17 @@ echo
 #     echo "BITP installation failed."
 #     exit 1
 # fi
-# echo
+# echo\
+
+# Add isolcpus=3 option to cmdline.txt
+if grep -q "isolcpus=3" "$CMDLINE_FILE"; then
+    echo "isolcpus=3 option already exists."
+else
+    echo "Adding isolcpus=3 option to $CMDLINE_FILE..."
+    sed -i 's/$/ isolcpus=3/' "$CMDLINE_FILE"
+    echo "isolcpus=3 option added successfully."
+fi
+echo
 
 # complete installation
 echo "BITP installation completed successfully."
