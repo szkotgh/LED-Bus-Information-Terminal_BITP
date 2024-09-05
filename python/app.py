@@ -401,8 +401,6 @@ class matrixManager:
             if i == 1:
                 time.sleep(1)
             time.sleep(0.005)
-            
-        
         time.sleep(1.5)
     
     def refresh(self, canvas: Image.Image, status_prt=True):

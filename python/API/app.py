@@ -70,17 +70,15 @@ def get_bus_station_list() -> list:
         if type(station_data) == list:
             station_data = station_data[0]
         
-        stationId =       station_data.get('stationId', None)
-        stationNm =       station_data.get('stationName', None)
-        mobileNo  =       station_data.get('mobileNo', None)
+        stationId = str(station_data.get('stationId', None))
+        stationNm = str(station_data.get('stationName', None))
+        mobileNo  = str(station_data.get('mobileNo', None))
         gps_y     = float(station_data.get('y', None))
         gps_x     = float(station_data.get('x', None))
         
         bus_station_list.append(BusStation(stationId, stationNm, stationDesc, mobileNo, gps_y, gps_x))
     
     return bus_station_list
-
-        
 
 def get_arvl_bus_list(bus_station:BusStation):
     # 버스도착정보 조회, 곧 도착 버스 별 정보 조회 및 추가
