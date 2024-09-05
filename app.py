@@ -11,6 +11,8 @@ from dotenv import load_dotenv, set_key, find_dotenv
 load_dotenv()
 
 # Configuration
+SERVER_IP = 'localhost'
+SERVER_PORT = 80
 UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
 ALLOWED_EXTENSIONS = ['mp4', 'wmv', 'avi', 'mov', 'mp3', 'wav', 'jpg', 'jpeg', 'png', 'gif', 'txt']
 LOG_FILE = os.path.join(os.getcwd(), 'log', 'bit-web-server.log')
@@ -378,16 +380,14 @@ def judg_admin_credentials(_input_id: str, _input_pw: str) -> bool:
 
 def initialize_admin():
     if not os.environ.get('ADMIN_ID') or not os.environ.get('ADMIN_PW'):
-        username = 'admin'
-        password = '12341234'
-        new_username_hash = generate_password_hash(username)
-        new_password_hash = generate_password_hash(password)
-        update_env('ADMIN_ID', new_username_hash)
-        update_env('ADMIN_PW', new_password_hash)
+        init_username_hash = 'scrypt:32768:8:1$XCyXHS2UO1qjsBbu$c94f35f4886641f57b057a5a0d3446ef15a8edda73c97a6464bd552ec9b4f44178928f56bbfd33243ad190da093ee6cca5ebe324a9212cbe5ce7d1185dafe2d3'
+        init_password_hash = 'scrypt:32768:8:1$CI8UJcNVUSr6gnmn$d407d1aea3de748812252fad80a575cf67cc07c548e7913acc07b3dfc12434b3614fa576a9f283afee8f92df2c90e96bc01754aa7ea0078d91e2ff9300bab738'
+        update_env('ADMIN_ID', init_username_hash)
+        update_env('ADMIN_PW', init_password_hash)
         log_message('관리자 계정 초기화됨.', write_for_server=True)
 
 if __name__ == '__main__':
     log_message('서버 시작됨', write_for_server=True)
     initialize_admin()
-    app.run(host='192.168.1.10', port=80, debug=True)
+    app.run(host=SERVER_IP, port=SERVER_PORT, debug=True)
     log_message('서버 종료됨', write_for_server=True)
