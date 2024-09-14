@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<h1>파일 업로드</h1>
+<p>업로드할 파일을 선택하세요.</p>
+
+<form id="upload-form" enctype="multipart/form-data">
+    <input class="form-control" type="file" name="file" id="file-input"><br>
+    <button id="upload-button" type="submit" class="btn btn-primary">업로드</button>
+</form><br>
+<div id="progress" style="background-color: lightgray; border: 1px solid black; border-radius: 5px; display: none;">
+    <div id="progress-bar" style="width: 0%; height: 25px;">&nbsp;<span id="progress-bar-text" style="color: white;"></span></div>
+</div>
+<div id="status"></div>
+
+<hr>
+<a href="/file">홈으로</a>
+
+<script>
+    const UPLOAD_URL = '/file/upload';
+    const uploadBtn = document.getElementById('upload-button');
+    const fileInput = document.getElementById('file-input');
+
+    document.getElementById('upload-form').onsubmit = (event) => {
+        event.preventDefault();
+
+        const progress = document.getElementById('progress');
+        const progress_bar = document.getElementById('progress-bar');
+        const progress_bar_text = document.getElementById('progress-bar-text');
+        const progress_status = document.getElementById('status');
+        
+        let redirect_cancel = false
+
+        let file = fileInput.files[0];
+        let formData = new FormData();
+        formData.append('file', file);
+
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', UPLOAD_URL, true);
+
+        uploadBtn.disabled = true;
+        fileInput.disabled = true;
+        progress.style.display = 'block';
+
+        xhr.upload.onprogress = (event) => {
+            if (event.lengthComputable) {
+                let percentComplete = (event.loaded / event.total) * 100;
+                progress_bar.style.backgroundColor = 'green';
+                progress_bar.style.width = percentComplete + '%';
+                progress_status.innerText = "업로드 중... " + percentComplete.toFixed(2) + '%';
+
+                if (percentComplete >= 100) {
+                    setTimeout(() => {
+                        if (redirect_cancel == true)
+                            return
+                        window.location.href = '/file'
+                    }, 2000)
+                }
+            }
+        };
+
+        xhr.onload = () => {
+            if (xhr.status == 200) {
+                let response = JSON.parse(xhr.responseText);
+                progress_status.innerText = '업로드 성공.';
+                progress_bar.style.backgroundColor = 'green';
+            } else if (xhr.status == 413) {
+                progress_bar.style.backgroundColor = 'orange';
+                progress_status.innerText = '파일이 너무 큽니다.';
+                redirect_cancel = true
+            } else {
+                progress_bar.style.backgroundColor = 'red';
+                progress_status.innerText = '업로드에 실패했습니다.';
+            }
+            
+            uploadBtn.disabled = false;
+            fileInput.disabled = false;
+
+            if (redirect_cancel == true)
+                return
+            window.location.href = '/file'
+        };
+
+        xhr.send(formData);
+    };
+</script>
+{% endblock %}

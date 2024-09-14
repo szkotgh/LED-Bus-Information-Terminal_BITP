@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<style>
+    .progress-bar {
+        width: 16%;
+        background-color: #f3f3f3;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    .progress-bar-fill {
+        height: 5px;
+        background-color: #4caf50;
+        text-align: center;
+        color: white;
+        width: 0%;
+    }
+
+    video, img, audio {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .bar-wrapper {
+        height: 300px;
+        position: relative;
+    }
+    .bar {
+        position: relative;
+        bottom: 0;
+        width: 5px;
+        display: inline-block;
+        border: 1px solid red;
+        height: 5px;
+        border-bottom: 3px solid #fff;
+    }
+</style>
+ 
+<h1>파일 관리</h1>
+<hr>
+
+<!-- preview modal -->
+<div id="preview-modal" class="modal fade preview-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">미리보기</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="preview-modal-content"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- file list -->
+<h3>파일 목록</h3>
+<p>업로드된 파일 목록입니다. <a href='/file'>새로고침</a></p>
+<table id="files-table" class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">파일이름</th>
+            <th scope="col">파일용량</th>
+            <th scope="col">상태</th>
+            <th scope="col">저장일시</th>
+            <th scope="col">만든이</th>
+            <th scope="col">미리보기</th>
+            <th scope="col">다운로드</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if files %}
+        {% for file in files %}
+        <tr>
+            <th scope="row"></th>
+            <td>{{ file['orgName'] }}</td>
+            <td>{{ file['fSize'] }}</td>
+            {% if file['status'] == 'idle' %}
+                <td style="color:gray;">대기</td>
+            {% elif file['status'] == 'playing' %}
+                <td style="color:red;">재생 중</td>
+            {% elif file['status'] == 'next-play' %}
+                <td style="color:orange;">다음 재생</td>
+            {% elif file['status'] == 'lock' %}
+                <td style="color:orange;">잠김</td>
+            {% else %}
+                <td style="color:gray;">알 수 없음</td>
+            {% endif %}
+            <td>{{ file['uploadFTime'] }}</td>
+            <td>{{ file['uploader_id'] }}({{ file['uploader_name'] }})</td>
+            <td><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target=".preview-modal" onclick="showPreviewModal('{{ file['saveName'] }}', '{{ file['orgName'] }}')">미리보기</button></td>
+            <td><a href="/file/download/{{ file['saveName'] }}">다운로드</a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <th scope="row"></th>
+            <td colspan="4">업로드된 파일이 없습니다.</td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+<div class="usage">
+    <b>사용량: {{ usage }} / {{ max_usage }} ({{ usage_per }}%)</b><br>
+    <div class="progress-bar">
+        <div class="progress-bar-fill" style="width: {{ usage_per }}%;"></div>
+    </div>
+</div>
+<hr>
+
+<!-- functions -->
+<h3><a href='/file/upload'>파일 업로드</a></h3>
+<p>파일을 업로드하세요.</p>
+
+<h3><a href='/file/delete'>파일 삭제</a></h3>
+<p>파일을 삭제하세요.</p>
+
+<hr>
+<a href="/">홈으로</a>
+
+<script>
+    const previewModal = document.getElementById('preview-modal')
+    const previewModalContent = document.getElementById('preview-modal-content')
+
+    document.addEventListener('DOMContentLoaded', () => {            
+        previewModal.addEventListener('hidden.bs.modal', (e) => {
+            previewModalContent.textContent = '';
+        });
+    });
+
+    function showPreviewModal(filename, orgname) {
+        const ext = filename.split('.').pop().toLowerCase();
+        const fileUrl = `view/${filename}`;
+        
+        const video_exts = ['mp4', 'wmv', 'avi', 'mov',]
+        const image_exts = ['jpg', 'jpeg', 'png', 'gif',]
+        const music_exts = ['mp3', 'wav']
+
+        let content = `<h2>${orgname}</h2><hr>`;
+        if (video_exts.includes(ext)) {
+            content += `<video controls><source src="${fileUrl}" type="video/${ext}">브라우저가 해당 비디오를 지원하지 않습니다.</video>`;
+        } else if (image_exts.includes(ext)) {
+            content += `<img src="${fileUrl}" alt="${orgname}">`;
+        } else if (music_exts.includes(ext)) {
+            // content += `<canvas id="canvas" width="400px" height="100%"></canvas><br>`;
+            content += `<audio id='audio' controls><source src="${fileUrl}" type="audio/${ext}">브라우저가 해당 오디오를 지원하지 않습니다.</audio>`;
+        } else {
+            content += `<p>미리보기를 지원하지 않는 파일입니다: ${orgname}</p>`;
+        }
+
+        console.log(content)
+
+        previewModalContent.innerHTML = content;
+    }
+</script>
+{% endblock %}

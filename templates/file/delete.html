@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<h1>파일 삭제</h1>
+<p>삭제할 파일 정보를 선택하세요.</p>
+<form action="/file/delete" accept-charset="utf-8" name="userdelform" method="POST">
+    <div class="mb-3">
+    <label for="del_file" class="form-label">파일</label>
+    <select class="form-control" id="del_file" name="del_file" required>
+    {% if files %}
+    {% for file in files %}
+        <option value="{{file['saveName']}}"><b>{{file['orgName']}}</b> | {{file['fSize']}} ({{file['uploadFTime']}})</option>        
+    {% endfor %}
+    {% else %}
+    <option disabled selected>업로드된 파일이 없습니다</option>
+    {% endif %}
+    </select>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-danger" {% if not files %}disabled{% endif %}>삭제하기</button>
+</form>
+
+<hr>
+<a href="/file">홈으로</a>
+{% endblock %}

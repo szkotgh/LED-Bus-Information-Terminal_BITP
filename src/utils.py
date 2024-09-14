@@ -1,21 +1,49 @@
-import datetime
+from datetime import datetime
 import hashlib
+import json
 import os
-import socket
+import random
 import subprocess
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
-ALLOWED_EXTENSIONS = ['mp4', 'wmv', 'avi', 'mov', 'mp3', 'wav', 'jpg', 'jpeg', 'png', 'gif', 'txt']
+UPLOAD_FOLDER_PATH = os.path.join(os.getcwd(), 'uploads')
+FILE_INFO_PATH = os.path.join(os.getcwd(), 'db', 'file_infos.json')
+ALLOWED_EXTENSIONS = ['mp4', 'wmv', 'avi', 'mov', 'mp3', 'wav', 'jpg', 'jpeg', 'png', 'gif']
 LOG_FILE = os.path.join(os.getcwd(), 'log', 'bit-web-server.log')
-MAX_STORAGE = 1024 * 1024 * 1024 * 1.5  # 1.5GB
+MAX_UPLOAD_SIZE = 1024 * 1024 * 1024 * 2  # 1GB
+MAX_STORAGE = 1024 * 1024 * 1024 * 2  # 1.5GB
+SPECIAL_USERID = ['admin', 'gaon']
+
+def get_upload_folder_useage() -> int:
+    if not os.path.exists(UPLOAD_FOLDER_PATH):
+        return 0
+    
+    return sum(os.path.getsize(os.path.join(UPLOAD_FOLDER_PATH, f)) for f in os.listdir(UPLOAD_FOLDER_PATH) if os.path.isfile(os.path.join(UPLOAD_FOLDER_PATH, f)))
+
+def get_file_infos() -> dict:
+    if not os.path.exists(FILE_INFO_PATH):
+        return {}
+    
+    with open(FILE_INFO_PATH, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 def get_now_iso_ftime() -> str:
-    now = datetime.datetime.now()
+    now = datetime.now()
     return now.isoformat()
 
 def get_now_ftime(_format = '%Y%m%d%H%M%S') -> str:
-    now = datetime.datetime.now()
+    now = datetime.now()
     return now.strftime(_format)
+
+def convert_now_ftime(_time_str: str, _format = '%Y%m%d%H%M%S') -> datetime:
+    return datetime.strptime(_time_str, _format)
+
+def convert_file_fsize(_size: int) -> str:
+    size_unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB', 'BB', 'NB', 'DB']
+    
+    for unit in size_unit:
+        if _size < 1024:
+            return f'{_size:.2f}{unit}'
+        _size /= 1024
 
 def get_local_ip(_defalut:str = "N/A") -> str:
     try:
@@ -30,6 +58,6 @@ def get_client_ip(request) -> str:
         return request.headers.getlist("X-Forwarded-For")[0]
     return request.remote_addr
 
-def gen_hash(data: str) -> str:
+def gen_hash(data: str | None = str(random.randbytes)) -> str:
     return hashlib.sha256(data.encode('utf-8')).hexdigest()
     

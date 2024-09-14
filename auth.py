@@ -1,10 +1,11 @@
 from functools import wraps
 from flask import session, redirect, url_for, flash
+from datetime import timedelta
 import sqlite3
 import base64
 import src.utils as utils
 
-user_db = sqlite3.connect('user.db', check_same_thread=False)
+user_db = sqlite3.connect('./db/user.db', check_same_thread=False)
 user_cursor = user_db.cursor()
 
 # level 정보
@@ -17,7 +18,7 @@ CREATE TABLE IF NOT EXISTS USERS (
     ID TEXT PRIMARY KEY,
     PW TEXT,
     NAME TEXT,
-    LEVEL INTEGER DEFAULT 9
+    LEVEL INTEGER DEFAULT 1
 )
 ''')
 user_db.commit()
@@ -27,9 +28,25 @@ def login_required(f):
     def decorated_function(*args, **kwargs):
         if 'username' not in session:
             flash('로그인 후 이용하세요.', 'warning')
-            return redirect(url_for('login'))
+            return redirect(url_for('login'), 401)
         
-        session['lastworktime'] = utils.get_current_time() # Save current time in session
+        is_id_exist = False
+        for row in user_cursor.execute('SELECT * FROM USERS'):
+            if row[0] == session.get('userid'):
+                is_id_exist = True
+                break
+        if is_id_exist == False:
+            session.clear()
+            flash('존재하지 않는 계정입니다. 다시 로그인하세요.', 'error')
+            return redirect(url_for('login'), 401)
+        
+        if 'lastworktime' in session:
+            if utils.convert_now_ftime(session['lastworktime']) < utils.convert_now_ftime(utils.get_now_ftime()) - timedelta(minutes=5):
+                session.clear()
+                flash('세션이 만료되었습니다. 다시 로그인하세요.', 'error')
+                return redirect(url_for('login'), 401)
+        
+        session['lastworktime'] = utils.get_now_ftime()
         
         return f(*args, **kwargs)
     return decorated_function
@@ -38,23 +55,22 @@ def check_login(_input_id, _input_pw):
     if [None, ''] in [[_input_id, _input_pw]]:
         return False
     
+    _input_id = str(_input_id)
+    _input_pw = str(_input_pw)
+    
     for row in user_cursor.execute('SELECT * FROM USERS'):
         if row[0] == _input_id and row[1] == utils.gen_hash(_input_pw):
-            return row[2], row[3] # (NAME, LEVEL)
+            #      (NAME, LEVEL)
+            return row[2], row[3]
 
     return False
 
 def regi_account(_regi_id, _regi_pw, _regi_name, _regi_level):
-    if [None, ''] in [[_regi_id, _regi_pw, _regi_name]]:
-        return False
-    
     _regi_pw_hash = utils.gen_hash(_regi_pw)
-    
-    if _regi_level == None or (_regi_level not in ["0", "1", "9"]):
-        _regi_level = 9
     
     user_cursor.execute('SELECT * FROM USERS WHERE ID=?', (_regi_id,))
     if user_cursor.fetchone():
+        flash("이미 존재하는 아이디입니다.", 'error')
         return False
     
     user_cursor.execute('INSERT OR IGNORE INTO USERS (ID, PW, NAME, LEVEL) VALUES (?, ?, ?, ?)', (_regi_id, _regi_pw_hash, _regi_name, _regi_level))
@@ -62,22 +78,13 @@ def regi_account(_regi_id, _regi_pw, _regi_name, _regi_level):
     
     return True
 
-def del_account(_del_id, _del_pw, user_level):
-    if [None, ''] in [[_del_id, _del_pw]]:
+def del_account(_del_id):
+    user_cursor.execute('DELETE FROM USERS WHERE ID=?', (_del_id, ))
+    user_db.commit()
+    if user_cursor.rowcount == 0:
+        flash("존재하지 않는 아이디입니다.", 'error')
         return False
-    
-    rst = check_login(_del_id, _del_pw)
-    if rst != False:
-        if rst[1] < user_level:
-            flash("권한이 없습니다.", 'error')
-            return False
-        
-        user_cursor.execute('DELETE FROM USERS WHERE ID=?', (_del_id, ))
-        user_db.commit()
-        return True
-    else:
-        flash("아이디/비밀번호 오류입니다.", 'error')
-        return False
+    return True
 
 def get_account():
     accounts = []
