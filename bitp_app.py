@@ -54,16 +54,16 @@ speaker_manager = SpeakerManager()
 f_serialKey = '-'.join([SERIAL_KEY[i:i+4] for i in range(0, len(SERIAL_KEY), 4)])
 logger.info(f"start BITP")
 print(f"prdc_id: {f_serialKey}")
-# for i in range(100, -1, -1):
-#     sec_str = i/10
-#     if sec_str >= 5:
-#         sec_str = int(sec_str)
-#     matrix_manager.show_text_page([f"BIT가 시작됩니다 . . . ({sec_str}s)", "", f"{utils.get_now_ftime()}", f"IP={utils.get_ip()}", f"(v2.1.16) {f_serialKey}"], 0, 0.1, _status_prt=False)
+for i in range(100, -1, -1):
+    sec_str = i/10
+    if sec_str >= 5:
+        sec_str = int(sec_str)
+    matrix_manager.show_text_page([f"BIT가 시작됩니다 . . . ({sec_str}s)", "", f"{utils.get_now_ftime()}", f"IP={utils.get_ip()}", f"(v2.1.16) {f_serialKey}"], 0, 0.1, _status_prt=False)
 
-# # show test page
-# matrix_manager.show_test_page(0, 1)
-# matrix_manager.show_test_page(1, 3)
-# matrix_manager.show_test_page(2, 3)
+# show test page
+matrix_manager.show_test_page(0, 1)
+matrix_manager.show_test_page(1, 3)
+matrix_manager.show_test_page(2, 3)
 
 matrix_manager.show_text_page(["정보를 불러오는 중입니다 . . . "])
 info_manager.update_all_info()
