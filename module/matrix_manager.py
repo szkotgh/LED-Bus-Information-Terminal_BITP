@@ -223,7 +223,7 @@ class MatrixManager:
         if station_desc != None: station_title += f" {station_desc}"
         station_align = self.get_text_align_space(station_title, self.font12)
         
-        # arvl bus data parsing
+                # arvl bus data parsing
         arvl_bus_infos = []
         if station_arvl_bus.get('apiSuccess') == True:
             for i in range(0, len(station_arvl_bus.get('result'))):
@@ -241,7 +241,7 @@ class MatrixManager:
                         arvl_bus['isArvl'] = True
                     else:
                         arvl_bus['isArvl'] = False
-
+        
                 
                 # arvl bus info parsing
                 if (station_arvl_bus_info == None or station_arvl_bus_info == []) == False:
@@ -313,6 +313,8 @@ class MatrixManager:
         
         draw.text((station_align, y_loca_row[0]), station_title, "white", self.font12)
         
+        with open('./log/struct.log', 'w', encoding='UTF-8') as f:
+            f.write(json.dumps(arvl_bus_infos, indent=4))
         arvl_bus_infos = sorted(arvl_bus_infos, key=lambda info: int(info["predictTime1"]))
         
         arvl_infos = []

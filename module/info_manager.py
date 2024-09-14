@@ -249,7 +249,7 @@ class InfoManager:
                         update_succes = False
                         break
                     
-                    self.logger.info(f"[UpdateStationArvlBusRouteInfo] - Updating . . . [](/)")
+                    self.logger.info(f"[UpdateStationArvlBusRouteInfo] - Updating . . . [{station['keyword']}]({num}/{len(self.station_datas)})")
                     arvl_bus_info_rst = self.bus_api_mgr.get_bus_transit_route(routeId)
                     
                     if arvl_bus_info_rst['errorOcrd'] == True:
