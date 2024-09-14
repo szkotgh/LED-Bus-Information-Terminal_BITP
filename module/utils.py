@@ -98,6 +98,9 @@ def get_rst_msg(rst_code, api_type: str = 'normal') -> str:
         return '결과를 알 수 없습니다.'
 
 def create_logger(logger_name, logger_file_path=None, logger_set_level=logging.DEBUG, file_set_level=logging.DEBUG) -> logging.Logger:    
+    if not os.path.exists('log'):
+        os.makedirs('log')
+    
     if logger_file_path == None:
         logger_file_path = os.path.join('log', f'{logger_name}.log')
     
