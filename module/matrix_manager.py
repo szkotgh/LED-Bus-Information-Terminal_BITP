@@ -180,16 +180,19 @@ class MatrixManager:
     
     def show_station_page(self, _show_station_num: int):        
         station_data = self.station_datas[_show_station_num]
-        # # write log
-        # with open('./log/struct.log', 'w', encoding='UTF-8') as f:
-        #     f.write(json.dumps(station_data))
+        # write log
+        with open('./log/first-struct.log', 'w', encoding='UTF-8') as f:
+            f.write(json.dumps(station_data))
+        # # read log
+        # with open('./log/first-struct.log', 'r', encoding='UTF-8') as f:
+        #     station_data = json.loads(f.read())
         
-        remain_cnt_grade = ['여유', '보통', '혼잡', '매우혼잡']
-        #                         여유       보통    혼잡    매우혼잡  숫자  미정
-        remain_cnt_grade_color = ['magenta', 'lime', 'yellow', 'red', 'red', 'lime']
-        remain_cnt_number_print_route_type = ['11', '43', '51']
+        # remain_cnt_grade = ['여유', '보통', '혼잡', '매우혼잡']
+        # #                         여유       보통    혼잡    매우혼잡  숫자  미정
+        # remain_cnt_grade_color = ['magenta', 'lime', 'yellow', 'red', 'red', 'lime']
+        # remain_cnt_number_print_route_type = ['11', '43', '51']
         
-        bus_icon_color = {
+        bus_type_color = {
             None : "white",       # 모를 때
             "-1" : "white",       
             "11" : "red",         # 직행좌석형시내버스 (5001, 5005)
@@ -209,98 +212,82 @@ class MatrixManager:
         
         # station title data parsing
         if station_info.get('errorOcrd') == True:
-            self.show_text_page([f"스테이션 페이지 [{_show_station_num}]", "API 오류. 페이지를 표시할 수 없습니다.", "", f"KEYWORD={station_keyword}", f"{station_info.get('errorMsg', '오류메시지 없음')}"], _repeat=2)
+            self.show_text_page([f"스테이션 페이지 [{_show_station_num}]", "API 오류. 페이지를 표시할 수 없습니다.", "", f"KEYWORD={station_keyword}", f"{station_info.get('errorMsg', '알 수 없는 오류입니다.')}"], _repeat=2)
             return 1
-        
         if station_info.get('apiSuccess') == False:
             rst_code = station_info.get('rstCode', "-1")
             rst_msg = station_info.get('rstMsg', "알 수 없는 오류입니다.")
             self.show_text_page([f"스테이션 페이지 [{_show_station_num}]", "데이터 오류. 페이지를 표시할 수 없습니다: 필수 데이터가 없습니다.", "", f"KEYWORD={station_keyword}", f"({rst_code}) {rst_msg}"], _repeat=2)
             return 1
         
-        station_title = f"{station_info['result'].get('stationName', '역이름이없습니다')}"
-        if station_info['result'].get('mobileNo', None) != None: station_title += f" [{station_info['result']['mobileNo']}]"
-        if station_desc != None: station_title += f" {station_desc}"
-        station_align = self.get_text_align_space(station_title, self.font12)
-        
-                # arvl bus data parsing
+        station_title = f"{station_info['result'].get('stationName', '')}"
+        if station_info['result'].get('mobileNo', None) != None:
+            station_title += f" [{station_info['result']['mobileNo']}]"
+        if station_desc != None:
+            station_title += f" {station_desc}"
+            
+        # arvl bus data parsing
         arvl_bus_infos = []
         if station_arvl_bus.get('apiSuccess') == True:
-            for i in range(0, len(station_arvl_bus.get('result'))):
-                bus_info = {}
-                
-                # arvl bus parsing
-                if station_arvl_bus.get('apiSuccess', False) == True:
-                    arvl_bus = station_arvl_bus.get('result', None)
-                    if arvl_bus == None or arvl_bus == []:
-                        arvl_bus_infos.append(None)
-                        continue
-                    arvl_bus = arvl_bus[i]
-                    
-                    if int(arvl_bus.get('locationNo1')) <= 3:
-                        arvl_bus['isArvl'] = True
-                    else:
-                        arvl_bus['isArvl'] = False
-        
+            for index, arvl_bus in enumerate(station_arvl_bus.get('result')):
+                bus_info = arvl_bus
                 
                 # arvl bus info parsing
-                if (station_arvl_bus_info == None or station_arvl_bus_info == []) == False:
-                    arvl_bus_info = station_arvl_bus_info[i]
-                    if ((arvl_bus_info == None) or (arvl_bus_info.get('apiSuccess', False))) == False:
-                        arvl_bus_info = arvl_bus_info.get('result')
-                        bus_info.update(arvl_bus_info)
+                arvl_bus_info = station_arvl_bus_info[index]
+                if arvl_bus_info.get('apiSuccess', False):
+                    bus_info.update(arvl_bus_info.get('result'))
                 
-                # arvl bus route info parsing
-                if (station_arvl_bus_route_info == None or station_arvl_bus_route_info == []) == False:
-                    arvl_bus_route_info = station_arvl_bus_route_info[i]
-                    if ((arvl_bus_route_info == None) or (arvl_bus_route_info.get('apiSuccess', False) == False)) == False:
-                        arvl_bus_route_info = arvl_bus_route_info.get('result', None)
-                        arvl_bus_staOrder = bus_info.get('staOrder', None)
-                        arvl_bus_locationNo1 = bus_info.get('locationNo1', None)
-                        if arvl_bus_route_info != None and arvl_bus_staOrder != None and arvl_bus_locationNo1 != None:
-                            bus_now_station_info = arvl_bus_route_info[(int(arvl_bus_staOrder)-1) - int(arvl_bus_locationNo1)]
-                            bus_info.update({"nowStationId" : bus_now_station_info.get('stationId', None)})
-                            bus_info.update({"nowStationName" : bus_now_station_info.get('stationName', None)})
+                arvl_bus_route_info = station_arvl_bus_route_info[index]
+                if arvl_bus_route_info.get('apiSuccess', False):
+                    bus_info.update({"route_list": arvl_bus_route_info.get('result')})
                 
-                
-                arvl_bus_remainSeatCnt1 = bus_info.get('remainSeatCnt1', '-1')
-                arvl_bus_routeTypeCd = bus_info.get('routeTypeCd', None)
-                # remain seat grade parsing
-                ## 정보 없음
-                if arvl_bus_remainSeatCnt1 == '-1':
-                    arvl_bus_remainSeatGrade = ''
-                    arvl_bus_remainSeatGradeColor = remain_cnt_grade_color[5]
-                ## 정보 있음
+                # adding bus info
+                ## isArvl check
+                if int(arvl_bus.get('locationNo1')) <= 3:
+                    arvl_bus['isArvl'] = True
                 else:
-                    if arvl_bus_routeTypeCd == '':
-                        arvl_bus_remainSeatGrade = f"({arvl_bus_remainSeatCnt1})"
-                        arvl_bus_remainSeatGradeColor = remain_cnt_grade_color[5]
-                    elif arvl_bus_routeTypeCd in remain_cnt_number_print_route_type:
-                        arvl_bus_remainSeatGrade = f"({arvl_bus_remainSeatCnt1})"
-                        arvl_bus_remainSeatGradeColor = remain_cnt_grade_color[4]
-                    else:
-                        #          대형버스 중형버스 소형버스
-                        # 여유     25명이하 20명이하 10명이하
-                        # 보통     26~40명  21~35명  11~20명
-                        # 혼잡     41~55명  36~50명  21~25명
-                        # 매우혼잡 56명이상 51명이상 26명이상
-                        if int(arvl_bus_remainSeatCnt1) <= 10:
-                            arvl_bus_remainSeatGrade = remain_cnt_grade[0]
-                            arvl_bus_remainSeatGradeColor = remain_cnt_grade_color[0]
-                        elif int(arvl_bus_remainSeatCnt1) <= 20:
-                            arvl_bus_remainSeatGrade = remain_cnt_grade[1]
-                            arvl_bus_remainSeatGradeColor = remain_cnt_grade_color[1]
-                        elif int(arvl_bus_remainSeatCnt1) <= 25:
-                            arvl_bus_remainSeatGrade = remain_cnt_grade[2]
-                            arvl_bus_remainSeatGradeColor = remain_cnt_grade_color[2]
-                        else:
-                            arvl_bus_remainSeatGrade = remain_cnt_grade[3]
-                            arvl_bus_remainSeatGradeColor = remain_cnt_grade_color[3]
+                    arvl_bus['isArvl'] = False
                 
-                bus_info.update({"remainSeatGrade": arvl_bus_remainSeatGrade})
-                bus_info.update({"remainSeatGradeColor": arvl_bus_remainSeatGradeColor})
+                ## bus Now station info parsing
+                if arvl_bus.get('route_list', None) != None and arvl_bus.get('staOrder', None) != None and arvl_bus.get('locationNo1', None) != None:
+                    bus_now_station_info = arvl_bus['route_list'][(int(arvl_bus['staOrder'])-1) - int(arvl_bus['locationNo1'])]
+                    bus_info.update({"nowStationId" : bus_now_station_info.get('stationId', None)})
+                    bus_info.update({"nowStationName" : bus_now_station_info.get('stationName', None)})
+                
+                ## remain seat grade parsing
+                if arvl_bus.get('remainSeatCnt1', '-1') == '-1':
+                    arvl_bus_remainSeatGrade = '-'
+                    arvl_bus_remainSeatGradeColor = 'dimgray'
+                else:
+                    arvl_bus_remainSeatGrade = f"({arvl_bus.get('remainSeatCnt1', '-1')})"
+                    arvl_bus_remainSeatGradeColor = bus_type_color.get(arvl_bus.get('routeTypeCd', None), 'white')
+                bus_info.update({"remainSeatGrade" : arvl_bus_remainSeatGrade})
+                bus_info.update({"remainSeatGradeColor" : arvl_bus_remainSeatGradeColor})
                 
                 arvl_bus_infos.append(bus_info)
+            arvl_bus_infos = sorted(arvl_bus_infos, key=lambda info: int(info["predictTime1"]))
+            
+        # no arvl bus
+        else:
+            bus_info = {}
+            
+            arvl_bus_infos.append(bus_info)
+        print(station_title)
+        # test log write
+        with open('./log/struct.log', 'w', encoding='UTF-8') as f:
+            f.write(json.dumps(arvl_bus_infos))
+        
+        arvl_str = ""
+        arvl_infos = []
+        normal_infos = []
+        for arvl_bus_info in arvl_bus_infos:
+            if arvl_bus_info.get('isArvl', False) == True:
+                arvl_str += f"{arvl_bus_info.get('routeName', '')}, "
+                arvl_infos.append(arvl_bus_info)
+            else:
+                normal_infos.append(arvl_bus_info)
+        if arvl_str != "":
+            arvl_str = arvl_str[:-2]
         
         # create display
         display = Image.new('RGB', self.size, "black")
@@ -311,34 +298,18 @@ class MatrixManager:
         y_loca_row = [0, 13, 26, 39, 52]
         x_loca_col_bus_arvl = [0, 40, 40]
         
-        draw.text((station_align, y_loca_row[0]), station_title, "white", self.font12)
-        
-        with open('./log/struct.log', 'w', encoding='UTF-8') as f:
-            f.write(json.dumps(arvl_bus_infos, indent=4))
-        arvl_bus_infos = sorted(arvl_bus_infos, key=lambda info: int(info["predictTime1"]))
-        
-        arvl_infos = []
-        arvl_str = ""
-        normal_infos = []
-        for arvl_bus_info in arvl_bus_infos:
-            if arvl_bus_info.get('isArvl', False) == True:
-                arvl_str += f"{arvl_bus_info.get('routeName', '')} "
-                arvl_infos.append(arvl_bus_info)
-            else:
-                normal_infos.append(arvl_bus_info)
+        station_title_align = self.get_text_align_space(station_title, self.font12)
+        draw.text((station_title_align, y_loca_row[0]), station_title, "white", self.font12)
         
         for bus_data_list in utils.chunk_list(normal_infos):
             arvl_bus_station_str_loca = []; [arvl_bus_station_str_loca.append({'x_loca': x_loca_col[4], 'overflow': False}) for _ in range(3)]
-            print(f"ASASAS: {arvl_bus_station_str_loca}")
             for frame in range(0, 120):
                 draw.rectangle([(0, y_loca_row[1]), (self.size[0], y_loca_row[4]-1)], outline="black", fill="black")
                 
                 for index, bus_dict in enumerate(bus_data_list):
-                    print(f"GGGGGG: {bus_dict}")
-                    
                     bus_routeTypeCd = bus_dict.get("routeTypeCd", "-1")
                     
-                    draw.bitmap((x_loca_col[0], y_loca_row[index+1]), self.bus_icon, bus_icon_color.get(bus_routeTypeCd, "white"));
+                    draw.bitmap((x_loca_col[0], y_loca_row[index+1]), self.bus_icon, bus_type_color.get(bus_routeTypeCd, "white"));
                     draw.text((x_loca_col[1], y_loca_row[index+1]), bus_dict.get('routeName', ''), "white", self.font12)
                     draw.text((x_loca_col[2], y_loca_row[index+1]), bus_dict.get('remainSeatGrade'), bus_dict.get('remainSeatGradeColor'), self.font12)
                     draw.text((x_loca_col[3], y_loca_row[index+1]), f"{bus_dict.get('predictTime1', '')}분", "aqua", self.font12)
