@@ -14,32 +14,32 @@ try:
     import module.utils as utils
 except Exception as e:
     sys.exit(f'module.utils module import failed : {e}')
-# # import rgbmatrix
-# try:
-#     from rgbmatrix import RGBMatrix, RGBMatrixOptions
-# except Exception as e:
-#     sys.exit(f'RGBMatrix module import failed : {e}')
+# import rgbmatrix
+try:
+    from rgbmatrix import RGBMatrix, RGBMatrixOptions
+except Exception as e:
+    sys.exit(f'RGBMatrix module import failed : {e}')
 
 class MatrixManager:
     def __init__(self, station_datas: dict | None = []) -> None:
-        # # Configuration for the matrix
-        # # https://github.com/hzeller/rpi-rgb-led-matrix/blob/master/include/led-matrix.h#L57
-        # options = RGBMatrixOptions()
-        # options.hardware_mapping = 'adafruit-hat'  # If you have an Adafruit HAT: 'adafruit-hat'
-        # options.rows = 32
-        # options.cols = 64
-        # options.chain_length = 7
-        # # https://github.com/hzeller/rpi-rgb-led-matrix/tree/master/examples-api-use#remapping-coordinates
-        # options.pixel_mapper_config = "V-mapper;Rotate:90"
-        # options.pwm_lsb_nanoseconds = 50
-        # options.gpio_slowdown = 4
-        # options.pwm_bits = 5
-        # options.pwm_dither_bits = 0
-        # options.show_refresh_rate = False
-        # self.matrix = RGBMatrix(options = options)
+        # Configuration for the matrix
+        # https://github.com/hzeller/rpi-rgb-led-matrix/blob/master/include/led-matrix.h#L57
+        options = RGBMatrixOptions()
+        options.hardware_mapping = 'adafruit-hat'  # If you have an Adafruit HAT: 'adafruit-hat'
+        options.rows = 32
+        options.cols = 64
+        options.chain_length = 7
+        # https://github.com/hzeller/rpi-rgb-led-matrix/tree/master/examples-api-use#remapping-coordinates
+        options.pixel_mapper_config = "V-mapper;Rotate:90"
+        options.pwm_lsb_nanoseconds = 50
+        options.gpio_slowdown = 4
+        options.pwm_bits = 5
+        options.pwm_dither_bits = 0
+        options.show_refresh_rate = False
+        self.matrix = RGBMatrix(options = options)
         
-        # self.size = (self.matrix.width, self.matrix.height)
-        self.size = (224, 64)
+        self.size = (self.matrix.width, self.matrix.height)
+        # self.size = (224, 64)
         
         # class var init
         self.logger = utils.create_logger('matrix_manager')
@@ -85,8 +85,8 @@ class MatrixManager:
         text_width = text_bbox[2] - text_bbox[0]  # Right - Left
         return text_width
     
-    def get_text_align_space(self, _text, _font) -> tuple:
-        return int( (self.size[0] - self.get_text_volume(_text, _font)) / 2 )
+    def get_text_align_space(self, _width, _text, _font) -> tuple:
+        return int( (_width - self.get_text_volume(_text, _font)) / 2 )
     
     def show_test_page(self, _test_type: int = 0, _delay_time:int = 1):
         display = Image.new('RGB', self.size, color = 'black')
@@ -178,14 +178,11 @@ class MatrixManager:
         
         return 0
     
-    def show_station_page(self, _show_station_num: int):        
+    def show_station_page(self, _show_station_num: int, _repeat: int = 1):        
         station_data = self.station_datas[_show_station_num]
         # write log
         with open('./log/first-struct.log', 'w', encoding='UTF-8') as f:
             f.write(json.dumps(station_data))
-        # # read log
-        # with open('./log/first-struct.log', 'r', encoding='UTF-8') as f:
-        #     station_data = json.loads(f.read())
         
         # remain_cnt_grade = ['여유', '보통', '혼잡', '매우혼잡']
         # #                         여유       보통    혼잡    매우혼잡  숫자  미정
@@ -256,7 +253,7 @@ class MatrixManager:
                 
                 ## remain seat grade parsing
                 if arvl_bus.get('remainSeatCnt1', '-1') == '-1':
-                    arvl_bus_remainSeatGrade = '-'
+                    arvl_bus_remainSeatGrade = '--'
                     arvl_bus_remainSeatGradeColor = 'dimgray'
                 else:
                     arvl_bus_remainSeatGrade = f"({arvl_bus.get('remainSeatCnt1', '-1')})"
@@ -269,57 +266,98 @@ class MatrixManager:
             
         # no arvl bus
         else:
-            bus_info = {}
-            
-            arvl_bus_infos.append(bus_info)
+            ## ~~~
+            pass
         print(station_title)
         # test log write
         with open('./log/struct.log', 'w', encoding='UTF-8') as f:
             f.write(json.dumps(arvl_bus_infos))
         
-        arvl_str = ""
+        arvl_str_infos = {
+            'text': "",
+        }
         arvl_infos = []
         normal_infos = []
         for arvl_bus_info in arvl_bus_infos:
             if arvl_bus_info.get('isArvl', False) == True:
-                arvl_str += f"{arvl_bus_info.get('routeName', '')}, "
+                arvl_str_infos['text'] += f"{arvl_bus_info.get('routeName', '')}, "
                 arvl_infos.append(arvl_bus_info)
             else:
                 normal_infos.append(arvl_bus_info)
-        if arvl_str != "":
-            arvl_str = arvl_str[:-2]
+        if arvl_str_infos['text'] != "":
+            arvl_str_infos['text'] = arvl_str_infos['text'][:-2]
         
         # create display
         display = Image.new('RGB', self.size, "black")
         draw = ImageDraw.Draw(display)
         draw.fontmode = "1"
         
-        x_loca_col = [0, 10, 63, 93, 130]
-        y_loca_row = [0, 13, 26, 39, 52]
-        x_loca_col_bus_arvl = [0, 40, 40]
+        x_loca = [0, 10, 63, 93, 130]
+        y_loca = [0, 13, 26, 39, 52]
+        x_loca_bus_arvl = [0, 40]
         
-        station_title_align = self.get_text_align_space(station_title, self.font12)
-        draw.text((station_title_align, y_loca_row[0]), station_title, "white", self.font12)
+        # if self.get_text_volume()
+        
+        station_title_align = self.get_text_align_space(self.size[0], station_title, self.font12)
+        draw.text((station_title_align, y_loca[0]), station_title, "white", self.font12)
         
         for bus_data_list in utils.chunk_list(normal_infos):
-            arvl_bus_station_str_loca = []; [arvl_bus_station_str_loca.append({'x_loca': x_loca_col[4], 'overflow': False}) for _ in range(3)]
-            for frame in range(0, 120):
-                draw.rectangle([(0, y_loca_row[1]), (self.size[0], y_loca_row[4]-1)], outline="black", fill="black")
+            arvl_bus_now_station_str_infos = [];
+            bus_now_station_str_width = self.size[0] - x_loca[4]
+            for index, bus_dict in enumerate(bus_data_list):
+                # default value
+                arvl_bus_now_station_str_info = {
+                    'text': bus_dict.get('nowStationName', ''),
+                    'overflow': False,
+                    'x_loca': x_loca[4]
+                }
+                
+                # check overflow
+                if bus_now_station_str_width < self.get_text_volume(bus_dict.get('nowStationName', ''), self.font12):
+                    arvl_bus_now_station_str_info['overflow'] = True
+                    arvl_bus_now_station_str_info['text'] = f"{arvl_bus_now_station_str_info['text']} " * 3
+                
+                arvl_bus_now_station_str_infos.append(arvl_bus_now_station_str_info)
+                
+                
+            
+            for frame in range(0, 220):
+                draw.rectangle([(0, y_loca[1]), (self.size[0], y_loca[4]-1)], fill="black")
                 
                 for index, bus_dict in enumerate(bus_data_list):
+                    if frame >= 40 and arvl_bus_now_station_str_infos[index]['overflow']:
+                        arvl_bus_now_station_str_infos[index]['x_loca'] -= 1
+                        
+                    
                     bus_routeTypeCd = bus_dict.get("routeTypeCd", "-1")
                     
-                    draw.bitmap((x_loca_col[0], y_loca_row[index+1]), self.bus_icon, bus_type_color.get(bus_routeTypeCd, "white"));
-                    draw.text((x_loca_col[1], y_loca_row[index+1]), bus_dict.get('routeName', ''), "white", self.font12)
-                    draw.text((x_loca_col[2], y_loca_row[index+1]), bus_dict.get('remainSeatGrade'), bus_dict.get('remainSeatGradeColor'), self.font12)
-                    draw.text((x_loca_col[3], y_loca_row[index+1]), f"{bus_dict.get('predictTime1', '')}분", "aqua", self.font12)
-                    draw.text((arvl_bus_station_str_loca[index]['x_loca'], y_loca_row[index+1]), f"{bus_dict.get('nowStationName', '')}", "white", self.font12)
+                    # 5 print bus arvl station
+                    draw.text((arvl_bus_now_station_str_infos[index]['x_loca'], y_loca[index+1]), arvl_bus_now_station_str_infos[index]['text'], "white", self.font12)
+                    draw.rectangle((x_loca[0], y_loca[index+1], x_loca[4]-1, y_loca[index+2]-1), fill="black")
+                    
+                    # 1 print bus icon
+                    draw.bitmap((x_loca[0], y_loca[index+1]), self.bus_icon, bus_type_color.get(bus_routeTypeCd, "white"));
+                    
+                    # 2 print route name
+                    draw.text((x_loca[1], y_loca[index+1]), bus_dict.get('routeName', ''), "white", self.font12)
+                    
+                    # 3 print remain seat grade
+                    remain_seat_str_align_val = self.get_text_align_space(x_loca[3]-x_loca[2], bus_dict.get('remainSeatGrade'), self.font12)
+                    draw.text((x_loca[2]+remain_seat_str_align_val, y_loca[index+1]), bus_dict.get('remainSeatGrade'), bus_dict.get('remainSeatGradeColor'), self.font12)
+                    
+                    # 4 print predict time
+                    predict_time_str_align_val = self.get_text_align_space(x_loca[4]-x_loca[3], f"{bus_dict.get('predictTime1', '')}분", self.font12)
+                    draw.text((x_loca[3]+predict_time_str_align_val, y_loca[index+1]), f"{bus_dict.get('predictTime1', '')}분", "aqua", self.font12)
+                    
+                # 2 print arvl bus str
+                draw.text((arvl_str_infos['x_loca'], y_loca[4]), arvl_str_infos['text'], "white", self.font12)
                 
-                draw.text((x_loca_col_bus_arvl[0], y_loca_row[4]), "곧도착:", "white", self.font12)
-                draw.text((x_loca_col_bus_arvl[1], y_loca_row[4]), arvl_str, "white", self.font12)
+                # 1 print arvl bus title
+                draw.rectangle(((0, y_loca[4]), (x_loca_bus_arvl[1]-1, self.size[1])), fill="black")
+                draw.text((x_loca_bus_arvl[0], y_loca[4]), "곧도착:", "white", self.font12)
 
                 self.refresh(display)
-                time.sleep(0.05)
+                time.sleep(0.02)
         
         
     
@@ -365,7 +403,7 @@ class MatrixManager:
             
             now = datetime.datetime.now()
             now_fstr = now.strftime(f'%m/%d({w_info[now.weekday()]}) %H시%M분')
-            date_align = self.get_text_align_space(now_fstr, self.font14b)
+            date_align = self.get_text_align_space(self.size[0], now_fstr, self.font14b)
             draw.text((date_align, y_loca_row[0]), now_fstr, "white", self.font14b)
             draw.text((x_loca_col[0], y_loca_row[1]), "초미세먼지", "white", self.font14b)
             draw.text((x_loca_col[0], y_loca_row[2]), "미세먼지", "white", self.font14b)
@@ -414,7 +452,6 @@ class MatrixManager:
             self.refresh(display)
             time.sleep(0.1)
             
-        
         self.refresh(display)
         print("FUNC END")
         time.sleep(1)
@@ -452,5 +489,5 @@ class MatrixManager:
             draw.text((set_loca[0]+25, set_loca[1]+2), "인터넷 연결을", "white", self.font10)
             draw.text((set_loca[0]+25 , set_loca[1]+13), "확인해주세요.", "white", self.font10)
         
-        display.save('./display.png')
-        # self.matrix.SetImage(display.convert('RGB'))
+        # display.save('./display.png')
+        self.matrix.SetImage(display.convert('RGB'))

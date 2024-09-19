@@ -4,12 +4,8 @@
     "api_logging" : false,
     "busStationList": [
         {
-            "keyword" : "29393",
-            "stationDesc" : "TEST1"
-        },
-        {
-            "keyword" : "47574",
-            "stationDesc" : "TEST2"
+            "keyword" : "29413",
+            "stationDesc" : ""
         }
 	]
 }
