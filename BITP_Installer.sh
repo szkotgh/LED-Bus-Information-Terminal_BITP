@@ -1,5 +1,11 @@
 #!/bin/bash
 
+DIR="$( cd "$( dirname "$0" )" && pwd -P )"
+
+# Get the path of the script
+echo BITP Program Path=\'$DIR\'
+cd $DIR
+
 # Check if the script is running as root
 if [ $(id -u) -ne 0 ]; then
     echo "BITP Installer must be run as root."
@@ -16,11 +22,6 @@ if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
 fi
 
 CMDLINE_FILE="/boot/firmware/cmdline.txt"
-DIR="$( cd "$( dirname "$0" )" && pwd -P )"
-
-# Get the path of the script
-echo BITP Program Path=\'$DIR\'
-cd $DIR
 
 # install module
 echo "Installing requirement python modules..."
