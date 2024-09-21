@@ -83,7 +83,7 @@ echo
 
 # install rgb matrix installer
 echo "Installing RGB Matrix..."
-if sudo bash ./src/rgb-matrix_installer.sh; then
+if sudo bash ./src/rgb-matrix_installer.sh && rm -rf ./rpi-rgb-led-matrix; then
     echo "RGB Matrix installation completed."
 else
     echo
