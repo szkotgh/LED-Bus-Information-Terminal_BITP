@@ -54,7 +54,7 @@ def upload():
         }
         
         if (file_info['ext'] not in utils.ALLOWED_EXTENSIONS):
-            flash(f'지원하지 않는 파일입니다. 지원 확장자: {utils.ALLOWED_EXTENSIONS}', 'error')
+            flash(f'지원하지 않는 파일입니다. 지원 확장자: {', '.join(utils.ALLOWED_EXTENSIONS)}', 'error')
             return redirect(url_for('router.file.home'), 400)
         
         if utils.MAX_STORAGE < (utils.get_upload_folder_useage() + file_size):

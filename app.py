@@ -84,4 +84,4 @@ def error_405(e):
 
 # start application
 if __name__ == '__main__':
-    application.run(WEB_HOST, WEB_PORT, debug=True)
+    application.run(WEB_HOST, WEB_PORT)

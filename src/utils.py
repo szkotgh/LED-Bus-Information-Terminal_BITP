@@ -60,4 +60,3 @@ def get_client_ip(request) -> str:
 
 def gen_hash(data: str | None = str(random.randbytes)) -> str:
     return hashlib.sha256(data.encode('utf-8')).hexdigest()
-    
