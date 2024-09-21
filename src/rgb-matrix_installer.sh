@@ -35,12 +35,14 @@ echo "- Configure boot options"
 echo "Run time ~15 minutes. Some options require reboot."
 echo "EXISTING INSTALLATION, IF ANY, WILL BE OVERWRITTEN."
 echo
-echo -n "CONTINUE? [y/n] "
-read
-if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
-	echo "Canceled. "
-	exit 0
-fi
+# # BITP Config
+# echo -n "CONTINUE? [y/n] "
+# read
+# if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
+# 	echo "Canceled. "
+# 	exit 0
+# fi
+# # BITP Config end
 
 # FEATURE PROMPTS ----------------------------------------------------------
 # Installation doesn't begin until after all user input is taken.
@@ -55,27 +57,31 @@ QUALITY_MOD=0
 # preceded by a number (1 to N), display a prompt, check input until
 # a valid number within the selection range is entered.
 selectN() {
-	args=("${@}")
-	if [[ ${args[0]} = "0" ]]; then
-		OFFSET=0
-	else
-		OFFSET=1
-	fi
-	for ((i=0; i<$#; i++)); do
-		echo $((i+$OFFSET)). ${args[$i]}
-	done
-	echo
-	REPLY=""
-	let LAST=$#+$OFFSET-1
-	while :
-	do
-		echo -n "SELECT $OFFSET-$LAST: "
-		read
-		if [[ $REPLY -ge $OFFSET ]] && [[ $REPLY -le $LAST ]]; then
-			let RESULT=$REPLY-$OFFSET
-			return $RESULT
-		fi
-	done
+    args=("${@}")
+    if [[ ${args[0]} = "0" ]]; then
+        OFFSET=0
+    else
+        OFFSET=1
+    fi
+    for ((i=0; i<$#; i++)); do
+        echo $((i+$OFFSET)). ${args[$i]}
+    done
+    echo
+    REPLY=""
+    let LAST=$#+$OFFSET-1
+    while :
+    do
+        echo -n "SELECT $OFFSET-$LAST: "
+        # # BITP Config
+        # read
+        REPLY=$((OFFSET + 1))
+        echo $REPLY
+        # # BITP Config end
+        if [[ $REPLY -ge $OFFSET ]] && [[ $REPLY -le $LAST ]]; then
+            let RESULT=$REPLY-$OFFSET
+            return $RESULT
+        fi
+    done
 }
 
 OPTION_NAMES=(NO YES)
@@ -119,10 +125,14 @@ if [ $INTERFACE_TYPE -eq 1 ]; then
 	# For matrix HAT, ask about RTC install
 	echo
 	echo -n "Install realtime clock support? [y/n] "
-	read
-	if [[ "$REPLY" =~ (yes|y|Y)$ ]]; then
-		INSTALL_RTC=1
-	fi
+	# # BITP Config
+	# read
+	# if [[ "$REPLY" =~ (yes|y|Y)$ ]]; then
+	# 	INSTALL_RTC=1
+	# fi
+	echo y
+	INSTALL_RTC=1
+	# # BITP Config end
 fi
 
 #echo
@@ -182,11 +192,14 @@ if [ $QUALITY_MOD -eq 0 ]; then
 fi
 echo
 echo -n "CONTINUE? [y/n] "
-read
-if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
-	echo "Canceled. "
-	exit 0
-fi
+# # BITP Config
+# read
+# if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
+# 	echo "Canceled. "
+# 	exit 0
+# fi
+echo y
+# # BITP Config end
 
 # START INSTALL ------------------------------------------------------------
 # All selections are validated at this point...

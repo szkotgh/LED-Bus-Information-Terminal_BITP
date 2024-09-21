@@ -71,16 +71,17 @@ fi
 echo "Service installation completed successfully."
 echo
 
-# # install rgb matrix installer
-# echo "Installing RGB Matrix..."
-# if sudo bash ./src/rgb-matrix_installer.sh; then
-#     echo "RGB Matrix installation completed successfully."
-# else
-#     echo
-#     echo "BITP installation failed."
-#     exit 1
-# fi
-# echo\
+# install rgb matrix installer
+echo "Installing RGB Matrix..."
+if sudo bash ./src/rgb-matrix_installer.sh; then
+    echo "RGB Matrix installation completed."
+else
+    echo
+    echo "BITP installation failed."
+    exit 1
+fi
+echo RGB Matrix installation completed successfully.
+echo
 
 # Add isolcpus=3 option to cmdline.txt
 if grep -q "isolcpus=3" "$CMDLINE_FILE"; then
