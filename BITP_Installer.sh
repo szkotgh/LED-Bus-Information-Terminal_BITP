@@ -102,5 +102,5 @@ for ((i=5; i>=1; i--)); do
     echo "Reboot in $i seconds..."
     sleep 1
 done
-echo "Reboot process started..."
-reboot
+echo "Reboot process started."
+reboot now
