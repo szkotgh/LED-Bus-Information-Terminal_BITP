@@ -14,7 +14,7 @@ if [ $(id -u) -ne 0 ]; then
 fi
 
 echo "This BITP_Installer will reboot after execution."
-echo -n "Do you want to continue? [y/n] "
+echo -n "Do you want to continue? [y/[n]] "
 read
 if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
     echo "Exit by refusing reboot."
