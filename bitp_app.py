@@ -16,11 +16,11 @@ try:
 except Exception as e:
     sys.exit(f'module.bus_manager module import failed : {e}')
 # import module.matrix_manager
-# try:
-#     from module.matrix_manager import MatrixManager
-# except Exception as e:
-#     sys.exit(f'module.matrix_manager module import failed : {e}')
-# # import module.speaker_manager
+try:
+    from module.matrix_manager import MatrixManager
+except Exception as e:
+    sys.exit(f'module.matrix_manager module import failed : {e}')
+# import module.speaker_manager
 try:
     from module.speaker_manager import SpeakerManager
 except Exception as e:
@@ -49,12 +49,11 @@ logger = utils.create_logger('bitp_app')
 
 # program start
 info_manager = InfoManager(SERVICE_KEY, OPTIONS)
-# matrix_manager = MatrixManager()
+matrix_manager = MatrixManager()
 speaker_manager = SpeakerManager(GOOGLE_KEY, {})
-speaker_manager.speak_text("비트피를 시작합니다.")
-# f_serialKey = '-'.join([SERIAL_KEY[i:i+4] for i in range(0, len(SERIAL_KEY), 4)])
-# logger.info(f"start BITP")
-# print(f"prdc_id: {f_serialKey}")
+f_serialKey = '-'.join([SERIAL_KEY[i:i+4] for i in range(0, len(SERIAL_KEY), 4)])
+logger.info(f"start BITP")
+print(f"prdc_id: {f_serialKey}")
 # for i in range(100, -1, -1):
 #     sec_str = i/10
 #     if sec_str >= 5:
@@ -66,25 +65,25 @@ speaker_manager.speak_text("비트피를 시작합니다.")
 # matrix_manager.show_test_page(1, 3)
 # matrix_manager.show_test_page(2, 3)
 
-# matrix_manager.show_text_page(["정보를 불러오는 중입니다 . . . "], 0, 0)
-# info_manager.update_all_info()
+matrix_manager.show_text_page(["정보를 불러오는 중입니다 . . . "], 0, 0)
+info_manager.update_all_info()
 
 # # # etc print
 # # matrix_manager.show_text_page(["한국환경공단 에어코리아 대기오염 정보", "데이터는 실시간 관측된 자료이며, 측정소 현지 사정이나 데이터의 수신상태에 따라 미수신 될 수 있음.", "", "", "출처/데이터 오류 가능성 고지"], _status_prt=False)
 
-# # show main content
-# matrix_manager.update_station_info(info_manager.station_datas)
-# while 1:
-#     for i in range(0, len(info_manager.station_datas)):
-#         for _repeat in range(0, 3):
-#             matrix_manager.check_internet_connection()
-#             # try: 
-#             matrix_manager.show_station_page(i, _repeat=3)
-#             # except Exception as e: matrix_manager.show_text_page(["SHOW STATION PAGE", "에러가 발생하였습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2); print(f"SHOW STATION PAGE ERROR: {e}")
-#             try: matrix_manager.show_station_etc_page(i)
-#             except Exception as e: matrix_manager.show_text_page(["SHOW STATION ETC PAGE", "에러가 발생했습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2); print(f"SHOW STATION ETC PAGE ERROR: {e}")
-#     print("ROOF END")
+# show main content
+matrix_manager.update_station_info(info_manager.station_datas)
+while 1:
+    for i in range(0, len(info_manager.station_datas)):
+        for _repeat in range(0, 3):
+            matrix_manager.check_internet_connection()
+            # try: 
+            matrix_manager.show_station_page(i, _repeat=3)
+            # except Exception as e: matrix_manager.show_text_page(["SHOW STATION PAGE", "에러가 발생하였습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2); print(f"SHOW STATION PAGE ERROR: {e}")
+            try: matrix_manager.show_station_etc_page(i)
+            except Exception as e: matrix_manager.show_text_page(["SHOW STATION ETC PAGE", "에러가 발생했습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2); print(f"SHOW STATION ETC PAGE ERROR: {e}")
+    print("ROOF END")
     
-# print()
-# print('PROGRAM ENDED')
+print()
+print('PROGRAM ENDED')
 
