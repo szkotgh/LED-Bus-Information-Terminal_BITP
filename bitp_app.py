@@ -26,29 +26,26 @@ try:
 except Exception as e:
     sys.exit(f'module.speaker_manager module import failed : {e}')
 
+# define paths
+OPTION_PATH = os.path.join(os.getcwd(), 'src', 'option.json')
+PRCT_INFO_PATH = os.path.join(os.getcwd(), 'src', 'prct_info.json')
+ENV_PATH = os.path.join(os.getcwd(), 'src', '.env')
+
 # option load
 try:
-    with open(os.path.join(os.getcwd(), 'src', 'option.json'), 'r', encoding='UTF-8') as f:
-        OPTIONS = json.loads(f.read())
+    with open(OPTION_PATH, 'r', encoding='UTF-8') as f:
+        OPTION = json.loads(f.read())
 except Exception as e:
     sys.exit(f'option.json load failed : {e}')
     
-# prct_info load
-try:
-    with open(os.path.join(os.getcwd(), 'src', '.prct_info.json'), 'r', encoding='UTF-8') as f:
-        REGI_OPTIONS = json.loads(f.read())
-except Exception as e:
-    sys.exit(f'prct_info.json load failed : {e}')
-
 # get service key
-ENV_PATH = os.path.join(os.getcwd(), 'src', '.env')
 SERVICE_KEY = utils.load_environ(ENV_PATH, 'SERVICE_KEY')
 GOOGLE_KEY = utils.load_environ(ENV_PATH, 'GOOGLE_KEY')
 SERIAL_KEY = utils.load_environ(ENV_PATH, 'SERIAL_KEY')
 logger = utils.create_logger('bitp_app')
 
 # program start
-info_manager = InfoManager(SERVICE_KEY, OPTIONS)
+info_manager = InfoManager(SERVICE_KEY, OPTION)
 matrix_manager = MatrixManager()
 speaker_manager = SpeakerManager(GOOGLE_KEY, {})
 f_serialKey = '-'.join([SERIAL_KEY[i:i+4] for i in range(0, len(SERIAL_KEY), 4)])
