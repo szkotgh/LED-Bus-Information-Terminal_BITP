@@ -22,7 +22,7 @@ except Exception as e:
 
 # info_manager class
 class InfoManager:
-    def __init__(self, _SERVICE_KEY, _OPTIONS:dict):
+    def __init__(self, _SERVICE_KEY, _OPTIONS):
         # Set logger
         self.logger = utils.create_logger('info_manager')
         self.logger.info(f'Logging start. {__class__}')
@@ -66,6 +66,9 @@ class InfoManager:
         self.tomorrow_weather_info = []
         self.tomorrow_need_info = []
         self.weather_api_mgr = weather_api.weather_api_requester(_SERVICE_KEY)
+    
+    def reload_option(self, _OPTIONS):
+        self.OPTIONS = _OPTIONS
     
     def update_station_info(self) -> None:
         self.logger.info("[UpdateStationInfo] - Start updating . . .")

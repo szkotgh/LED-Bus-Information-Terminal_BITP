@@ -21,7 +21,7 @@ except Exception as e:
     sys.exit(f'RGBMatrix module import failed : {e}')
 
 class MatrixManager:
-    def __init__(self, station_datas: dict | None = []) -> None:
+    def __init__(self, station_datas: dict, _OPTIONS) -> None:
         # Configuration for the matrix
         # https://github.com/hzeller/rpi-rgb-led-matrix/blob/master/include/led-matrix.h#L57
         options = RGBMatrixOptions()
@@ -40,6 +40,8 @@ class MatrixManager:
         
         self.size = (self.matrix.width, self.matrix.height)
         # self.size = (224, 64)
+        
+        self.OPTION = _OPTIONS
         
         # class var init
         self.logger = utils.create_logger('matrix_manager')
@@ -63,7 +65,9 @@ class MatrixManager:
         self.bus_lp_icon = Image.open(self.bus_lp_icon_path)
         self.no_wifi_icon_path = os.path.join('src', 'icon', 'no_wifi.png')
         self.no_wifi_icon = Image.open(self.no_wifi_icon_path)
-        
+    
+    def reload_option(self, _OPTIONS):
+        self.OPTIONS = _OPTIONS
         
     def update_station_info(self, station_datas: dict) -> None:
         self.station_datas = station_datas

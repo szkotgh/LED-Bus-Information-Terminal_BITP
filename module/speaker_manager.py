@@ -13,6 +13,9 @@ class SpeakerManager:
         self.API_ERROR_RETRY_COUNT = self.OPTIONS.get('set_api_error_retry_count', 10)
         self.API_TIMEOUT = self.OPTIONS.get('set_api_timeout', 5)
     
+    def reload_option(self, _OPTIONS):
+        self.OPTIONS = _OPTIONS
+    
     def speak_text(self, text):
         url = "https://texttospeech.googleapis.com/v1beta1/voices"
         response = requests.get(url)

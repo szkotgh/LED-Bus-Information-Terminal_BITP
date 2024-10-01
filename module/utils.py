@@ -13,7 +13,7 @@ except Exception as e:
     sys.exit(f"requests module import failed: {e}")
 
 log_time_format = "%Z %x %X"
-log_format = "%(asctime)s %(levelname)s > %(message)s"
+log_format = "%(asctime)s %(levelname)s %(message)s"
 default_time_format = "%Y%m%d%H%M%S"
 
 normalapi_error_code = {
@@ -98,11 +98,11 @@ def get_rst_msg(rst_code, api_type: str = 'normal') -> str:
         return '결과를 알 수 없습니다.'
 
 def create_logger(logger_name, logger_file_path=None, logger_set_level=logging.DEBUG, file_set_level=logging.DEBUG) -> logging.Logger:    
-    if not os.path.exists('log'):
-        os.makedirs('log')
+    if not os.path.exists(os.path.join(os.getcwd(), 'log')):
+        os.makedirs(os.path.join(os.getcwd(), 'log'), exist_ok=True)
     
     if logger_file_path == None:
-        logger_file_path = os.path.join('log', f'{logger_name}.log')
+        logger_file_path = os.path.join(os.getcwd(), 'log', f'{logger_name}.log')
     
     logger = logging.getLogger(logger_name)
     logger.setLevel(logger_set_level)
