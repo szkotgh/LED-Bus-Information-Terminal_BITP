@@ -21,7 +21,7 @@ except Exception as e:
     sys.exit(f'RGBMatrix module import failed : {e}')
 
 class MatrixManager:
-    def __init__(self, station_datas: dict, _OPTIONS) -> None:
+    def __init__(self, _OPTIONS) -> None:
         # Configuration for the matrix
         # https://github.com/hzeller/rpi-rgb-led-matrix/blob/master/include/led-matrix.h#L57
         options = RGBMatrixOptions()
@@ -46,7 +46,8 @@ class MatrixManager:
         # class var init
         if self.OPTION['logging'] == True:
             self.logger = utils.create_logger('matrix_manager')
-        self.station_datas = station_datas
+        
+        self.station_datas = None
         self.station_data_len = 0
         self.network_connected = False
         
@@ -209,9 +210,9 @@ class MatrixManager:
     
     def show_station_page(self, _show_station_num: int, _repeat: int = 1):        
         station_data = self.station_datas[_show_station_num]
-        # write log
-        with open('./log/first-struct.log', 'w', encoding='UTF-8') as f:
-            f.write(json.dumps(station_data))
+        # # write log
+        # with open('./log/first-struct.log', 'w', encoding='UTF-8') as f:
+        #     f.write(json.dumps(station_data))
         
         # remain_cnt_grade = ['여유', '보통', '혼잡', '매우혼잡']
         # #                         여유       보통    혼잡    매우혼잡  숫자  미정
@@ -295,16 +296,21 @@ class MatrixManager:
             
         # no arvl bus
         else:
-            ## ~~~
             pass
-        print(station_title)
-        # test log write
-        with open('./log/struct.log', 'w', encoding='UTF-8') as f:
-            f.write(json.dumps(arvl_bus_infos))
+        
+        x_loca = [0, 10, 63, 93, 130]
+        y_loca = [0, 13, 26, 39, 52]
+        x_loca_bus_arvl = [0, 40]
         
         arvl_str_infos = {
-            'text': "",
+            "text": "",
+            "x_loca": x_loca_bus_arvl[1]
         }
+        
+        print(station_title)
+        # # test log write
+        # with open('./log/struct.log', 'w', encoding='UTF-8') as f:
+        #     f.write(json.dumps(arvl_bus_infos))
         arvl_infos = []
         normal_infos = []
         for arvl_bus_info in arvl_bus_infos:
@@ -320,12 +326,6 @@ class MatrixManager:
         display = Image.new('RGB', self.size, "black")
         draw = ImageDraw.Draw(display)
         draw.fontmode = "1"
-        
-        x_loca = [0, 10, 63, 93, 130]
-        y_loca = [0, 13, 26, 39, 52]
-        x_loca_bus_arvl = [0, 40]
-        
-        # if self.get_text_volume()
         
         station_title_align = self.get_text_align_space(self.size[0], station_title, self.font12)
         draw.text((station_title_align, y_loca[0]), station_title, "white", self.font12)

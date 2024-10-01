@@ -89,7 +89,7 @@ class InfoManager:
         return True
     
     def update_station_info(self) -> None:
-        self.logger.info("[UpdateStationInfo] - Start updating . . .")
+        self.logging("[UpdateStationInfo] - Start updating . . .", "info")
         num = 0
         for station in self.station_datas:
             num += 1
@@ -99,15 +99,15 @@ class InfoManager:
             
             for try_count in range(0, self.API_ERROR_RETRY_COUNT+1):
                 if try_count == self.API_ERROR_RETRY_COUNT:
-                    self.logging(f"[UpdateStationInfo] - API Request fail. [{station['keyword']}]", 'error')
+                    self.logging(f"[UpdateStationInfo] - API Request fail. [{station['keyword']}]", "error")
                     station_info_rst = None
                     break
                 
-                self.logging(f"[UpdateStationInfo] - Updating . . . [{station['keyword']}]({num}/{len(self.station_datas)})", 'info')
+                self.logging(f"[UpdateStationInfo] - Updating . . . [{station['keyword']}]({num}/{len(self.station_datas)})", "info")
                 station_info_rst = self.bus_api_mgr.get_station_info(station['keyword'])
                 
                 if station_info_rst['errorOcrd'] == True:
-                    self.logger(f"[UpdateStationInfo] - API Request fail. retry . . . ({try_count+1}/{self.API_ERROR_RETRY_COUNT})[{station['keyword']}]", 'warning')
+                    self.logging(f"[UpdateStationInfo] - API Request fail. retry . . . ({try_count+1}/{self.API_ERROR_RETRY_COUNT})[{station['keyword']}]", "warning")
                     continue
                 
                 update_succes = True
