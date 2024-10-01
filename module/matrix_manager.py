@@ -44,7 +44,8 @@ class MatrixManager:
         self.OPTION = _OPTIONS
         
         # class var init
-        self.logger = utils.create_logger('matrix_manager')
+        if self.OPTION['logging'] == True:
+            self.logger = utils.create_logger('matrix_manager')
         self.station_datas = station_datas
         self.station_data_len = 0
         self.network_connected = False
@@ -65,6 +66,30 @@ class MatrixManager:
         self.bus_lp_icon = Image.open(self.bus_lp_icon_path)
         self.no_wifi_icon_path = os.path.join('src', 'icon', 'no_wifi.png')
         self.no_wifi_icon = Image.open(self.no_wifi_icon_path)
+    
+    def logging(self, str: str, type="info") -> bool:
+        if self.OPTION['logging'] == False:
+            return False
+        
+        try:
+            self.logger
+        except AttributeError:
+            self.logger = utils.create_logger('info_manager')
+        
+        if type == "debug":
+            self.logger.debug(str)
+        elif type == "info":
+            self.logger.info(str)
+        elif type == "warning" or type == "warn":
+            self.logger.warning(str)
+        elif type == "error":
+            self.logger.error(str)
+        elif type == "critical":
+            self.logger.critical(str)
+        else:
+            self.logger.info(str)
+            
+        return True
     
     def reload_option(self, _OPTIONS):
         self.OPTIONS = _OPTIONS

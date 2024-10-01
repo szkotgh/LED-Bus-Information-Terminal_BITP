@@ -42,15 +42,12 @@ except Exception as e:
 SERVICE_KEY = utils.load_environ(ENV_PATH, 'SERVICE_KEY')
 GOOGLE_KEY = utils.load_environ(ENV_PATH, 'GOOGLE_KEY')
 SERIAL_KEY = utils.load_environ(ENV_PATH, 'SERIAL_KEY')
-logger = utils.create_logger('bitp_app')
+FSERIAL_KEY = '-'.join([SERIAL_KEY[i:i+4] for i in range(0, len(SERIAL_KEY), 4)])
 
 # program start
 info_manager = InfoManager(SERVICE_KEY, OPTION)
 matrix_manager = MatrixManager()
 speaker_manager = SpeakerManager(GOOGLE_KEY, {})
-f_serialKey = '-'.join([SERIAL_KEY[i:i+4] for i in range(0, len(SERIAL_KEY), 4)])
-logger.info(f"start BITP")
-print(f"prdc_id: {f_serialKey}")
 # for i in range(100, -1, -1):
 #     sec_str = i/10
 #     if sec_str >= 5:
@@ -65,8 +62,8 @@ print(f"prdc_id: {f_serialKey}")
 matrix_manager.show_text_page(["정보를 불러오는 중입니다 . . . "], 0, 0)
 info_manager.update_all_info()
 
-# # # etc print
-# # matrix_manager.show_text_page(["한국환경공단 에어코리아 대기오염 정보", "데이터는 실시간 관측된 자료이며, 측정소 현지 사정이나 데이터의 수신상태에 따라 미수신 될 수 있음.", "", "", "출처/데이터 오류 가능성 고지"], _status_prt=False)
+# # etc print
+# matrix_manager.show_text_page(["한국환경공단 에어코리아 대기오염 정보", "데이터는 실시간 관측된 자료이며, 측정소 현지 사정이나 데이터의 수신상태에 따라 미수신 될 수 있음.", "", "", "출처/데이터 오류 가능성 고지"], _status_prt=False)
 
 # show main content
 matrix_manager.update_station_info(info_manager.station_datas)
