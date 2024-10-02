@@ -126,7 +126,6 @@ class weather_api_requester:
             f_response['errorMsg']  = str(ERROR)
             return f_response
         
-        response.text
         response = xmltodict.parse(response.text)
         
         detect_rst = utils.detect_response_error(response)

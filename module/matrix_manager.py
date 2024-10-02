@@ -268,7 +268,7 @@ class MatrixManager:
                 if arvl_bus_route_info.get('apiSuccess', False):
                     bus_info.update({"route_list": arvl_bus_route_info.get('result')})
                 
-                # adding bus info
+                # adding bus info 
                 ## isArvl check
                 if int(arvl_bus.get('locationNo1')) <= 3:
                     arvl_bus['isArvl'] = True
@@ -304,10 +304,10 @@ class MatrixManager:
         
         arvl_str_infos = {
             "text": "",
-            "x_loca": x_loca_bus_arvl[1]
+            "x_loca": x_loca_bus_arvl[1],
+            "overflow": False
         }
         
-        print(station_title)
         # # test log write
         # with open('./log/struct.log', 'w', encoding='UTF-8') as f:
         #     f.write(json.dumps(arvl_bus_infos))
@@ -321,6 +321,11 @@ class MatrixManager:
                 normal_infos.append(arvl_bus_info)
         if arvl_str_infos['text'] != "":
             arvl_str_infos['text'] = arvl_str_infos['text'][:-2]
+        
+        arvl_str_infos['of_size'] = (self.size[0] - x_loca_bus_arvl[1]) - self.get_text_volume(arvl_str_infos['text'], self.font12)
+        if arvl_str_infos['of_size'] < 0:
+            arvl_str_infos['overflow'] = True
+            arvl_bus_infos['text'] = ((arvl_bus_infos['text']+", ")*3)[:-2]
         
         # create display
         display = Image.new('RGB', self.size, "black")
@@ -347,8 +352,6 @@ class MatrixManager:
                     arvl_bus_now_station_str_info['text'] = f"{arvl_bus_now_station_str_info['text']} " * 3
                 
                 arvl_bus_now_station_str_infos.append(arvl_bus_now_station_str_info)
-                
-                
             
             for frame in range(0, 220):
                 draw.rectangle([(0, y_loca[1]), (self.size[0], y_loca[4]-1)], fill="black")
@@ -356,7 +359,6 @@ class MatrixManager:
                 for index, bus_dict in enumerate(bus_data_list):
                     if frame >= 40 and arvl_bus_now_station_str_infos[index]['overflow']:
                         arvl_bus_now_station_str_infos[index]['x_loca'] -= 1
-                        
                     
                     bus_routeTypeCd = bus_dict.get("routeTypeCd", "-1")
                     
@@ -377,18 +379,22 @@ class MatrixManager:
                     # 4 print predict time
                     predict_time_str_align_val = self.get_text_align_space(x_loca[4]-x_loca[3], f"{bus_dict.get('predictTime1', '')}분", self.font12)
                     draw.text((x_loca[3]+predict_time_str_align_val, y_loca[index+1]), f"{bus_dict.get('predictTime1', '')}분", "aqua", self.font12)
-                    
+                
                 # 2 print arvl bus str
+                draw.rectangle(((x_loca_bus_arvl[1], y_loca[4]), (self.size[0], self.size[1])), fill="black")
                 draw.text((arvl_str_infos['x_loca'], y_loca[4]), arvl_str_infos['text'], "white", self.font12)
                 
                 # 1 print arvl bus title
                 draw.rectangle(((0, y_loca[4]), (x_loca_bus_arvl[1]-1, self.size[1])), fill="black")
                 draw.text((x_loca_bus_arvl[0], y_loca[4]), "곧도착:", "white", self.font12)
 
+                if frame >= 39 and arvl_str_infos['overflow']:
+                    if frame % 2 == 0:
+                        arvl_str_infos['x_loca'] -= 1
+                    print(arvl_str_infos['x_loca'], arvl_str_infos['of_size'])
+                
                 self.refresh(display)
                 time.sleep(0.02)
-        
-        
     
     def show_station_etc_page(self, _show_station_num: int, _repeat: int = 50):
         station_data = self.station_datas[_show_station_num]

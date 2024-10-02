@@ -4,11 +4,11 @@
     "logging" : false,
     "busStationList": [
         {
-            "keyword" : "29413",
+            "keyword" : "22010",
             "stationDesc" : ""
         },
         {
-            "keyword" : "22010",
+            "keyword" : "29413",
             "stationDesc" : ""
         }
 	]
