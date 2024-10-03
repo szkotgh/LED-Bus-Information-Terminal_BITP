@@ -305,7 +305,9 @@ class MatrixManager:
         arvl_str_infos = {
             "text": "",
             "x_loca": x_loca_bus_arvl[1],
-            "overflow": False
+            "overflow": False,
+            "frame_cnt": 0,
+            "mv_cnt": 0
         }
         
         # # test log write
@@ -322,10 +324,9 @@ class MatrixManager:
         if arvl_str_infos['text'] != "":
             arvl_str_infos['text'] = arvl_str_infos['text'][:-2]
         
-        arvl_str_infos['of_size'] = (self.size[0] - x_loca_bus_arvl[1]) - self.get_text_volume(arvl_str_infos['text'], self.font12)
-        if arvl_str_infos['of_size'] < 0:
+        arvl_str_infos['of_size'] = self.get_text_volume(arvl_str_infos['text'], self.font12) - (self.size[0] - x_loca_bus_arvl[1])
+        if arvl_str_infos['of_size'] > 0:
             arvl_str_infos['overflow'] = True
-            arvl_bus_infos['text'] = ((arvl_bus_infos['text']+", ")*3)[:-2]
         
         # create display
         display = Image.new('RGB', self.size, "black")
@@ -333,68 +334,119 @@ class MatrixManager:
         draw.fontmode = "1"
         
         station_title_align = self.get_text_align_space(self.size[0], station_title, self.font12)
+        station_title_infos = {
+            'text': station_title,
+            'x_loca': station_title_align,
+            'overflow': False,
+            'frame_cnt': 0,
+            'mv_cnt': 0
+        }
+        if self.get_text_volume(station_title, self.font12) > self.size[0]:
+            station_title_infos['overflow'] = True
+            station_title_infos['of_size'] = self.get_text_volume(station_title, self.font12) - self.size[0]
         draw.text((station_title_align, y_loca[0]), station_title, "white", self.font12)
         
         for bus_data_list in utils.chunk_list(normal_infos):
-            arvl_bus_now_station_str_infos = [];
-            bus_now_station_str_width = self.size[0] - x_loca[4]
-            for index, bus_dict in enumerate(bus_data_list):
-                # default value
-                arvl_bus_now_station_str_info = {
-                    'text': bus_dict.get('nowStationName', ''),
-                    'overflow': False,
-                    'x_loca': x_loca[4]
-                }
+            arvl_bus_end_mv_cnt = None
+            station_title_end_mv_cnt = None
+            for repeat in range(_repeat):
+                print(f"repeat={repeat} **********************************************")
                 
-                # check overflow
-                if bus_now_station_str_width < self.get_text_volume(bus_dict.get('nowStationName', ''), self.font12):
-                    arvl_bus_now_station_str_info['overflow'] = True
-                    arvl_bus_now_station_str_info['text'] = f"{arvl_bus_now_station_str_info['text']} " * 3
-                
-                arvl_bus_now_station_str_infos.append(arvl_bus_now_station_str_info)
-            
-            for frame in range(0, 220):
-                draw.rectangle([(0, y_loca[1]), (self.size[0], y_loca[4]-1)], fill="black")
-                
+                arvl_bus_now_station_str_infos = [];
+                bus_now_station_str_width = self.size[0] - x_loca[4]
                 for index, bus_dict in enumerate(bus_data_list):
-                    if frame >= 40 and arvl_bus_now_station_str_infos[index]['overflow']:
-                        arvl_bus_now_station_str_infos[index]['x_loca'] -= 1
+                    # default value
+                    arvl_bus_now_station_str_info = {
+                        'text': bus_dict.get('nowStationName', ''),
+                        'overflow': False,
+                        'x_loca': x_loca[4]
+                    }
                     
-                    bus_routeTypeCd = bus_dict.get("routeTypeCd", "-1")
+                    # check overflow
+                    if bus_now_station_str_width < self.get_text_volume(bus_dict.get('nowStationName', ''), self.font12):
+                        arvl_bus_now_station_str_info['overflow'] = True
+                        arvl_bus_now_station_str_info['text'] = f"{arvl_bus_now_station_str_info['text']} " * 3
                     
-                    # 5 print bus arvl station
-                    draw.text((arvl_bus_now_station_str_infos[index]['x_loca'], y_loca[index+1]), arvl_bus_now_station_str_infos[index]['text'], "white", self.font12)
-                    draw.rectangle((x_loca[0], y_loca[index+1], x_loca[4]-1, y_loca[index+2]-1), fill="black")
+                    arvl_bus_now_station_str_infos.append(arvl_bus_now_station_str_info)
+            
+                for frame in range(0, 200):
+                    # station title이 overflow일 경우
+                    station_title_infos['frame_cnt'] += 1
+                    if station_title_infos['overflow']:
+                        if station_title_end_mv_cnt == None:
+                            station_title_infos['x_loca'] = 0
+                            station_title_end_mv_cnt = 0
+                            draw.rectangle([(0, y_loca[0]), (self.size[0], y_loca[1]-1)], fill="black")
+                            draw.text((station_title_infos['x_loca'], y_loca[0]), station_title_infos['text'], "white", self.font12)
+                        
+                        if station_title_infos['frame_cnt'] >= 40:
+                            if station_title_end_mv_cnt < station_title_infos['of_size']:
+                                if frame % 2 == 1:
+                                    station_title_end_mv_cnt += 1
+                                    station_title_infos['x_loca'] -= 1
+                                    draw.rectangle([(0, y_loca[0]), (self.size[0], y_loca[1]-1)], fill="black")
+                                    draw.text((station_title_infos['x_loca'], y_loca[0]), station_title_infos['text'], "white", self.font12)
+                            else:
+                                station_title_infos['frame_cnt'] = 0
+                                station_title_infos['mv_cnt'] = 0
+                                station_title_infos['x_loca'] = station_title_align
+                                station_title_end_mv_cnt = None
+                            
+                            
                     
-                    # 1 print bus icon
-                    draw.bitmap((x_loca[0], y_loca[index+1]), self.bus_icon, bus_type_color.get(bus_routeTypeCd, "white"));
+                    draw.rectangle([(0, y_loca[1]), (self.size[0], y_loca[4]-1)], fill="black")
                     
-                    # 2 print route name
-                    draw.text((x_loca[1], y_loca[index+1]), bus_dict.get('routeName', ''), "white", self.font12)
+                    for index, bus_dict in enumerate(bus_data_list):
+                        if frame >= 40 and arvl_bus_now_station_str_infos[index]['overflow']:
+                            arvl_bus_now_station_str_infos[index]['x_loca'] -= 1
+                        
+                        bus_routeTypeCd = bus_dict.get("routeTypeCd", "-1")
+                        
+                        # 5 print bus arvl station
+                        draw.text((arvl_bus_now_station_str_infos[index]['x_loca'], y_loca[index+1]), arvl_bus_now_station_str_infos[index]['text'], "white", self.font12)
+                        draw.rectangle((x_loca[0], y_loca[index+1], x_loca[4]-1, y_loca[index+2]-1), fill="black")
+                        
+                        # 1 print bus icon
+                        draw.bitmap((x_loca[0], y_loca[index+1]), self.bus_icon, bus_type_color.get(bus_routeTypeCd, "white"));
+                        
+                        # 2 print route name
+                        draw.text((x_loca[1], y_loca[index+1]), bus_dict.get('routeName', ''), "white", self.font12)
+                        
+                        # 3 print remain seat grade
+                        remain_seat_str_align_val = self.get_text_align_space(x_loca[3]-x_loca[2], bus_dict.get('remainSeatGrade'), self.font12)
+                        draw.text((x_loca[2]+remain_seat_str_align_val, y_loca[index+1]), bus_dict.get('remainSeatGrade'), bus_dict.get('remainSeatGradeColor'), self.font12)
+                        
+                        # 4 print predict time
+                        predict_time_str_align_val = self.get_text_align_space(x_loca[4]-x_loca[3], f"{bus_dict.get('predictTime1', '')}분", self.font12)
+                        draw.text((x_loca[3]+predict_time_str_align_val, y_loca[index+1]), f"{bus_dict.get('predictTime1', '')}분", "aqua", self.font12)
                     
-                    # 3 print remain seat grade
-                    remain_seat_str_align_val = self.get_text_align_space(x_loca[3]-x_loca[2], bus_dict.get('remainSeatGrade'), self.font12)
-                    draw.text((x_loca[2]+remain_seat_str_align_val, y_loca[index+1]), bus_dict.get('remainSeatGrade'), bus_dict.get('remainSeatGradeColor'), self.font12)
+                    # 2 print arvl bus str
+                    draw.rectangle(((x_loca_bus_arvl[1], y_loca[4]), (self.size[0], self.size[1])), fill="black")
+                    draw.text((arvl_str_infos['x_loca'], y_loca[4]), arvl_str_infos['text'], "white", self.font12)
                     
-                    # 4 print predict time
-                    predict_time_str_align_val = self.get_text_align_space(x_loca[4]-x_loca[3], f"{bus_dict.get('predictTime1', '')}분", self.font12)
-                    draw.text((x_loca[3]+predict_time_str_align_val, y_loca[index+1]), f"{bus_dict.get('predictTime1', '')}분", "aqua", self.font12)
-                
-                # 2 print arvl bus str
-                draw.rectangle(((x_loca_bus_arvl[1], y_loca[4]), (self.size[0], self.size[1])), fill="black")
-                draw.text((arvl_str_infos['x_loca'], y_loca[4]), arvl_str_infos['text'], "white", self.font12)
-                
-                # 1 print arvl bus title
-                draw.rectangle(((0, y_loca[4]), (x_loca_bus_arvl[1]-1, self.size[1])), fill="black")
-                draw.text((x_loca_bus_arvl[0], y_loca[4]), "곧도착:", "white", self.font12)
-
-                if frame >= 39 and arvl_str_infos['overflow']:
-                    if frame % 2 == 0:
-                        arvl_str_infos['x_loca'] -= 1
-                    print(arvl_str_infos['x_loca'], arvl_str_infos['of_size'])
-                
-                self.refresh(display)
-                time.sleep(0.02)
+                    # 1 print arvl bus title
+                    draw.rectangle(((0, y_loca[4]), (x_loca_bus_arvl[1]-1, self.size[1])), fill="black")
+                    draw.text((x_loca_bus_arvl[0], y_loca[4]), "곧도착:", "white", self.font12)
+                    
+                    arvl_str_infos['frame_cnt'] += 1
+                    if arvl_str_infos['frame_cnt'] >= 39 and arvl_str_infos['overflow']:
+                        if frame % 2 == 1:
+                            if not (arvl_str_infos['mv_cnt'] >= arvl_str_infos['of_size']):
+                                arvl_str_infos['x_loca'] -= 1
+                                arvl_str_infos['mv_cnt'] += 1
+                            else:
+                                if arvl_bus_end_mv_cnt == None:
+                                    arvl_bus_end_mv_cnt = 40
+                                else:
+                                    arvl_bus_end_mv_cnt -= 1
+                                    if arvl_bus_end_mv_cnt == 0:
+                                        arvl_str_infos['frame_cnt'] = 0
+                                        arvl_str_infos['mv_cnt'] = 0
+                                        arvl_str_infos['x_loca'] = x_loca_bus_arvl[1]
+                                        arvl_bus_end_mv_cnt = None
+                    
+                    self.refresh(display)
+                    time.sleep(0.02)
     
     def show_station_etc_page(self, _show_station_num: int, _repeat: int = 50):
         station_data = self.station_datas[_show_station_num]
