@@ -75,7 +75,8 @@ while 1:
             matrix_manager.show_station_page(i, _repeat=3)
             # except Exception as e: matrix_manager.show_text_page(["SHOW STATION PAGE", "에러가 발생하였습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2); print(f"SHOW STATION PAGE ERROR: {e}")
             try: matrix_manager.show_station_etc_page(i)
-            except Exception as e: matrix_manager.show_text_page(["SHOW STATION ETC PAGE", "에러가 발생했습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2); print(f"SHOW STATION ETC PAGE ERROR: {e}")
+            except Exception as e: matrix_manager.show_text_page(["SHOW STATION ETC PAGE", "에러가 발생했습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2); print(f"SHOW STATION ETC PAGE ERROR")
+            
     print("ROOF END")
     
 print()

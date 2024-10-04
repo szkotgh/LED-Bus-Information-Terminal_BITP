@@ -6,10 +6,11 @@ import os
 pygame.mixer.init()
 
 # Load music and notice
-music_path = "/home/admin/BITP/src/audio/music1.mp3"
-notice_ef_path = "/home/admin/BITP/src/audio/notice_effect.mp3"
-notice_path = "/home/admin/BITP/src/audio/notice_1.mp3"
-notice_path2 = "/home/admin/BITP/src/audio/notice.mp3"
+music_path = "/home/bituser/BITP/src/audio/music1.mp3"
+music_path = "/home/bituser/BITP/src/audio/悪魔の子.mp3"
+notice_ef_path = "/home/bituser/BITP/src/audio/notice_effect.mp3"
+notice_path = "/home/bituser/BITP/src/audio/notice_1.mp3"
+notice_path2 = "/home/bituser/BITP/src/audio/notice.mp3"
 
 # Set initial volume levels
 music_volume = 1

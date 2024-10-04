@@ -98,7 +98,7 @@ class MatrixManager:
     def update_station_info(self, station_datas: dict) -> None:
         self.station_datas = station_datas
         self.station_data_len = len(station_datas)
-    
+        
     def check_internet_connection(self) -> bool:
         try:
             utils.check_internet_connection()
