@@ -40,7 +40,15 @@ def upload():
             flash('파일을 선택해주세요.', 'error')
             return redirect(url_for('router.file.home'), 400)
 
+        if (file.filename.split('.')[-1] not in utils.ALLOWED_EXTENSIONS):
+            flash(f'지원하지 않는 파일입니다. 지원 확장자: {', '.join(utils.ALLOWED_EXTENSIONS)}', 'error')
+            return redirect(url_for('router.file.home'), 400)
+        
         file_size = len(file.read())
+        if utils.MAX_STORAGE < (utils.get_upload_folder_useage() + file_size):
+            flash('저장공간이 부족합니다.', 'error')
+            return redirect(url_for('router.file.home'), 400)
+        
         file_info = {
             'orgName': file.filename,
             'ext': file.filename.split('.')[-1],
@@ -52,25 +60,15 @@ def upload():
             'uploader_id': session.get('userid'),
             'uploader_name': session.get('username')
         }
-        
-        if (file_info['ext'] not in utils.ALLOWED_EXTENSIONS):
-            flash(f'지원하지 않는 파일입니다. 지원 확장자: {', '.join(utils.ALLOWED_EXTENSIONS)}', 'error')
-            return redirect(url_for('router.file.home'), 400)
-        
-        if utils.MAX_STORAGE < (utils.get_upload_folder_useage() + file_size):
-            flash('저장공간이 부족합니다.', 'error')
-            return redirect(url_for('router.file.home'), 400)
-        
         file.seek(0)
         
         while True:
             file_info['saveName'] = os.path.join(utils.gen_hash() + "." + file_info['ext'])
-            file_info['path'] = os.path.join(utils.UPLOAD_FOLDER_PATH, file_info['saveName'])
-            if not os.path.exists(file_info['path']):
+            file_save_path = os.path.join(utils.UPLOAD_FOLDER_PATH, file_info['saveName'])
+            if not os.path.exists(file_save_path):
                 break
         
-        print(file_info)
-        file.save(file_info['path'])
+        file.save(file_save_path)
         
         try:
             if os.path.exists(utils.FILE_INFO_PATH):
@@ -87,7 +85,7 @@ def upload():
             json.dump(file_infos, json_file, ensure_ascii=False, indent=4)
         
         flash('파일 업로드에 성공하였습니다.', 'success')
-        return redirect(url_for('router.file.home'), 200)
+        return redirect(url_for('router.file.home'), 302)
     
     return render_template('file/upload.html', client_ip=utils.get_client_ip(request), client_id=session.get('userid'),
                            client_name=session.get('username')), 200
@@ -145,18 +143,17 @@ def view(FILENAME):
     except (json.JSONDecodeError, FileNotFoundError):
         file_infos = []
     
-    file_path = None
+    same_file_infos = None
     for file_info in file_infos:
         if file_info['saveName'] == file_name:
-            file_path = file_info['path']
-            file_org_name = file_info['orgName']
+            same_file_infos = file_info
             break
     
-    if file_path == None:
+    if same_file_infos == None:
         flash('존재하지 않는 파일입니다.', 'warning')
-        return redirect(url_for('router.file.home'), 400)
+        return render_template('file/index.html', 400)
     
-    return send_file(file_path, as_attachment=True, download_name=file_org_name)
+    return send_file(os.path.join(utils.UPLOAD_FOLDER_PATH, same_file_infos['saveName']), as_attachment=True, download_name=same_file_infos['orgName'])
 
 @bp.route('/download/<string:FILENAME>', methods=['GET'])
 @login_required

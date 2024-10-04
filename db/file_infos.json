@@ -9,8 +9,7 @@
         "uploadFTime": "2024년 09월 10일 10:32:06",
         "uploader_id": "gaon",
         "uploader_name": "최가온",
-        "saveName": "eb853ab1c09adbfae566449e9c64a47b87b7585704d3cdb4d8f5579e10b321ec.png",
-        "path": "C:\\Users\\gi679\\OneDrive\\바탕 화면\\BIT website-v2\\uploads\\eb853ab1c09adbfae566449e9c64a47b87b7585704d3cdb4d8f5579e10b321ec.png"
+        "saveName": "eb853ab1c09adbfae566449e9c64a47b87b7585704d3cdb4d8f5579e10b321ec.png"
     },
     {
         "orgName": "KakaoTalk_20240911_165418966.jpg",
@@ -22,7 +21,30 @@
         "uploadFTime": "2024년 09월 21일 13:42:20",
         "uploader_id": "admin",
         "uploader_name": "관리자",
-        "saveName": "3a0aa94b3cba73b0b3b0c87c621d3528ae110def6f2f92b29bee35195079c6b6.jpg",
-        "path": "C:\\Users\\gi679\\OneDrive\\바탕 화면\\BIT website-v2\\uploads\\3a0aa94b3cba73b0b3b0c87c621d3528ae110def6f2f92b29bee35195079c6b6.jpg"
+        "saveName": "3a0aa94b3cba73b0b3b0c87c621d3528ae110def6f2f92b29bee35195079c6b6.jpg"
+    },
+    {
+        "orgName": "video.mp4",
+        "ext": "mp4",
+        "size": 1225120,
+        "fSize": "1.17MB",
+        "status": "idle",
+        "uploadTime": "20240922152952",
+        "uploadFTime": "2024년 09월 22일 15:29:52",
+        "uploader_id": "admin",
+        "uploader_name": "관리자",
+        "saveName": "cce99856b8bbda02c9cacb1c7eaadb70b276667c8cc9a4cc1ee6d50234a71c74.mp4"
+    },
+    {
+        "orgName": "bus_icon.jpg",
+        "ext": "jpg",
+        "size": 11460,
+        "fSize": "11.19KB",
+        "status": "idle",
+        "uploadTime": "20241003170311",
+        "uploadFTime": "2024년 10월 03일 17:03:11",
+        "uploader_id": "admin",
+        "uploader_name": "관리자",
+        "saveName": "0034c3d9133e3a1bc1599fd33386aa480713598491af43136f4c0da28d6cf091.jpg"
     }
 ]

@@ -26,7 +26,8 @@ def home():
 def login():
     if 'username' in session:
         flash('이미 로그인되어 있습니다.', 'warning')
-        return redirect(url_for('home'), 302)
+        return render_template('index.html', client_ip=utils.get_client_ip(request), client_id=session.get('userid'),
+                           client_name=session.get('username')), 200
     
     if request.method == 'POST':
         _input_id = request.form.get('userid')
@@ -34,24 +35,25 @@ def login():
         
         if not _input_id or not _input_pw:
             flash('로그인 실패: 아이디와 비밀번호를 입력해주세요.', 'error')
-            return redirect(url_for('login'), 400)
+            return render_template('login.html', client_ip=utils.get_client_ip(request)), 401
 
         # (NAME, LEVEL)
         login_rst = check_login(_input_id, _input_pw)
         if login_rst != False:
             if (login_rst[1] in [0, 1]) == False:
                 flash('로그인 실패: 권한이 없습니다.', 'error')
-                return redirect(url_for('login'), 401)
+                return render_template('login.html', client_ip=utils.get_client_ip(request)), 401
             
             session['userid'] = _input_id
             session['username'] = login_rst[0]
             session['userlevel'] = login_rst[1]
             
             flash(f'({session.get('userid')}) 로그인되었습니다.', 'success')
-            return redirect(url_for('home'), 302)
+            return render_template('index.html', client_ip=utils.get_client_ip(request), client_id=session.get('userid'),
+                                    client_name=session.get('username')), 200
         else:
             flash('로그인 실패: 아이디 또는 비밀번호가 일치하지 않습니다.', 'error')
-            return redirect(url_for('login'), 401)
+            return render_template('login.html', client_ip=utils.get_client_ip(request)), 401
 
     return render_template('login.html', client_ip=utils.get_client_ip(request))
 
@@ -64,14 +66,19 @@ def logout():
     session.pop('userlevel', None)
     return redirect(url_for('login'), 302)
 
-@application.route('/딸배', methods=['GET'])
+@application.route('/보름달', methods=['GET'])
 def ddalbae():
     user_id = session.get('userid')
     
-    if user_id in utils.SPECIAL_USERID:
-        return render_template('index_secret.html'), 200
+    if 'username' not in session:
+        return render_template('error/404.html', client_ip=utils.get_client_ip(request))
     
-    return render_template('error/404.html', client_ip=utils.get_client_ip(request)), 404
+    # if user_id in utils.SPECIAL_USERID:
+        # return render_template('index_secret.html'), 200
+    # return render_template('error/404.html', client_ip=utils.get_client_ip(request)), 404
+
+    return render_template('index_secret.html', client_ip=utils.get_client_ip(request), client_id=session.get('userid'),
+                           client_name=session.get('username')), 200
 
 # error handlers
 @application.errorhandler(404)
@@ -84,4 +91,4 @@ def error_405(e):
 
 # start application
 if __name__ == '__main__':
-    application.run(WEB_HOST, WEB_PORT)
+    application.run(WEB_HOST, WEB_PORT, debug=True)
