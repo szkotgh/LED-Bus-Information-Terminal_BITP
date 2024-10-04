@@ -372,30 +372,26 @@ class MatrixManager:
                 for frame in range(0, 200):
                     # station title이 overflow일 경우
                     station_title_infos['frame_cnt'] += 1
-                    if station_title_infos['overflow']:
-                        if station_title_end_mv_cnt == None:
-                            station_title_infos['x_loca'] = 0
-                            station_title_end_mv_cnt = 0
-                            draw.rectangle([(0, y_loca[0]), (self.size[0], y_loca[1]-1)], fill="black")
-                            draw.text((station_title_infos['x_loca'], y_loca[0]), station_title_infos['text'], "white", self.font12)
-                        
-                        if station_title_infos['frame_cnt'] >= 40:
-                            if station_title_end_mv_cnt < station_title_infos['of_size']:
-                                if frame % 2 == 1:
-                                    station_title_end_mv_cnt += 1
-                                    station_title_infos['x_loca'] -= 1
-                                    draw.rectangle([(0, y_loca[0]), (self.size[0], y_loca[1]-1)], fill="black")
-                                    draw.text((station_title_infos['x_loca'], y_loca[0]), station_title_infos['text'], "white", self.font12)
+                    if station_title_infos['frame_cnt'] >= 39 and station_title_infos['overflow']:
+                        if frame % 2 == 1:
+                            print(station_title_infos['frame_cnt'], station_title_infos['x_loca'], station_title_infos['mv_cnt'], station_title_end_mv_cnt, station_title_infos['of_size'])
+                            if station_title_infos['mv_cnt'] < station_title_infos['of_size']:
+                                station_title_infos['x_loca'] -= 1
+                                station_title_infos['mv_cnt'] += 1
+                                draw.rectangle([(0, y_loca[0]), (self.size[0], y_loca[1]-1)], fill="black")
+                                draw.text((station_title_infos['x_loca'], y_loca[0]), station_title_infos['text'], "white", self.font12)
                             else:
-                                station_title_infos['frame_cnt'] = 0
-                                station_title_infos['mv_cnt'] = 0
-                                station_title_infos['x_loca'] = station_title_align
-                                station_title_end_mv_cnt = None
+                                if station_title_end_mv_cnt == None:
+                                    station_title_end_mv_cnt = 40
+                                else:
+                                    station_title_end_mv_cnt -= 1
+                                    if station_title_end_mv_cnt == 0:
+                                        station_title_infos['frame_cnt'] = 0
+                                        station_title_infos['mv_cnt'] = 0
+                                        station_title_infos['x_loca'] = station_title_align
+                                        station_title_end_mv_cnt = None
                             
-                            
-                    
                     draw.rectangle([(0, y_loca[1]), (self.size[0], y_loca[4]-1)], fill="black")
-                    
                     for index, bus_dict in enumerate(bus_data_list):
                         if frame >= 40 and arvl_bus_now_station_str_infos[index]['overflow']:
                             arvl_bus_now_station_str_infos[index]['x_loca'] -= 1
