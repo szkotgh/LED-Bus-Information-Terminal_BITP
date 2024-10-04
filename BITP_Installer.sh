@@ -15,7 +15,7 @@ fi
 
 echo "This BITP_Installer will reboot after execution."
 echo -n "Do you want to continue? [y/[n]] "
-read -r
+read -r REPLY
 if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
     echo "Exit by refusing reboot."
     exit 1
@@ -24,8 +24,11 @@ fi
 CMDLINE_FILE="/boot/firmware/cmdline.txt"
 
 # install module
+python3 -m pip config set global.break-system-packages true
+python -m pip install --upgrade pip
+pip install --upgrade setuptools
 echo "Installing requirement python modules..."
-if sudo apt install python3-xmltodict && sudo apt install python3-dotenv && sudo apt install python3-flask; then
+if sudo pip install -r requirements.txt; then
     echo "Python modules installed successfully."
 else
     echo
