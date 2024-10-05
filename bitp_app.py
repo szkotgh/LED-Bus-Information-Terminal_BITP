@@ -1,8 +1,8 @@
 import os
 import sys
-import multiprocessing
 import time
 import json
+import threading
 import subprocess
 
 # import module.utils
@@ -48,37 +48,55 @@ FSERIAL_KEY = '-'.join([SERIAL_KEY[i:i+4] for i in range(0, len(SERIAL_KEY), 4)]
 info_manager = InfoManager(SERVICE_KEY, OPTION)
 matrix_manager = MatrixManager(OPTION)
 speaker_manager = SpeakerManager(GOOGLE_KEY, OPTION)
-# for i in range(100, -1, -1):
-#     sec_str = i/10
-#     if sec_str >= 5:
-#         sec_str = int(sec_str)
-#     matrix_manager.show_text_page([f"BIT가 시작됩니다 . . . ({sec_str}s)", "", f"{utils.get_now_ftime()}", f"IP={utils.get_ip()}", f"(v2.1.16) {FSERIAL_KEY}"], 0, 0.1, _status_prt=False)
+for i in range(100, -1, -1):
+    sec_str = i/10
+    if sec_str >= 5:
+        sec_str = int(sec_str)
+    matrix_manager.show_text_page([f"BIT가 시작됩니다 . . . ({sec_str}s)", "", f"{utils.get_now_ftime()}", f"IP={utils.get_ip()}", f"(v2.1.16) {FSERIAL_KEY}"], 0, 0.1, _status_prt=False)
 
-# # show test page
-# matrix_manager.show_test_page(0, 1)
-# matrix_manager.show_test_page(1, 3)
-# matrix_manager.show_test_page(2, 3)
+# show test page
+matrix_manager.show_test_page(0, 1)
+matrix_manager.show_test_page(1, 3)
+matrix_manager.show_test_page(2, 3)
 
 matrix_manager.show_text_page(["정보를 불러오는 중입니다 . . . "], 0, 0)
 info_manager.update_all_info()
+matrix_manager.update_station_info(info_manager.station_datas)
 
-# # etc print
-# matrix_manager.show_text_page(["한국환경공단 에어코리아 대기오염 정보", "데이터는 실시간 관측된 자료이며, 측정소 현지 사정이나 데이터의 수신상태에 따라 미수신 될 수 있음.", "", "", "출처/데이터 오류 가능성 고지"], _status_prt=False)
+# etc print
+matrix_manager.show_text_page(["한국환경공단 에어코리아 대기오염 정보", "데이터는 실시간 관측된 자료이며, 측정소 현지 사정이나 데이터의 수신상태에 따라 미수신 될 수 있음.", "", "", "출처/데이터 오류 가능성 고지"], _status_prt=False)
+
+# thread start
+thread_list = []
+
+def _auto_info_update_target():
+    while True:
+        time.sleep(30)
+        info_manager.update_all_info()
+        matrix_manager.update_station_info(info_manager.station_datas)
+        print("INFO_UPDATED &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+auto_info_update_target = threading.Thread(target=_auto_info_update_target)
+auto_info_update_target.start()
+thread_list.append(auto_info_update_target)
+
+def _auto_internet_check_target():
+    while True:
+        time.sleep(5)
+        matrix_manager.check_internet_connection()
+auto_internet_check_target = threading.Thread(target=_auto_internet_check_target)
+auto_internet_check_target.start()
+thread_list.append(auto_internet_check_target)
 
 # show main content
-matrix_manager.update_station_info(info_manager.station_datas)
 while 1:
     for i in range(0, len(info_manager.station_datas)):
         for _repeat in range(0, 3):
-            matrix_manager.check_internet_connection()
-            # try: 
-            matrix_manager.show_station_page(i, _repeat=3)
-            # except Exception as e: matrix_manager.show_text_page(["SHOW STATION PAGE", "에러가 발생하였습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2); print(f"SHOW STATION PAGE ERROR: {e}")
-            try: matrix_manager.show_station_etc_page(i)
-            except Exception as e: matrix_manager.show_text_page(["SHOW STATION ETC PAGE", "에러가 발생했습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2); print(f"SHOW STATION ETC PAGE ERROR")
+            try: matrix_manager.show_station_page(i, _repeat=3)
+            except Exception as e: matrix_manager.show_text_page(["SHOW STATION PAGE", "에러가 발생하였습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2); print(f"SHOW STATION PAGE ERROR: {e}")
             
-    print("ROOF END")
+            try: matrix_manager.show_station_etc_page(i)
+            except Exception as e: matrix_manager.show_text_page(["SHOW STATION ETC PAGE", "에러가 발생했습니다.", "", f"{utils.get_now_iso_time()}", f"SHOW_STATOIN_PAGE_ERROR: {e}"], _repeat=2); print(f"SHOW STATION ETC PAGE ERROR")
     
 print()
-print('PROGRAM ENDED')
+print('PROGRAM ENDED') 
 

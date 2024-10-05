@@ -468,6 +468,7 @@ class InfoManager:
         self.update_station_arvl_bus()
         self.update_station_arvl_bus_info()
         self.update_station_arvl_bus_route_info()
-        # self.update_weather_info()
-        # self.update_fine_dust_info()
+        self.update_weather_info()
+        self.update_fine_dust_info()
+        
         return 0

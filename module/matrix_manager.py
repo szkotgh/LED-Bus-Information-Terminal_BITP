@@ -208,8 +208,12 @@ class MatrixManager:
         
         return 0
     
-    def show_station_page(self, _show_station_num: int, _repeat: int = 1):        
-        station_data = self.station_datas[_show_station_num]
+    def show_station_page(self, _show_station_num: int, _repeat: int = 1):
+        try:
+            station_data = self.station_datas[_show_station_num]
+        except:
+            self.show_text_page([f"스테이션 페이지 [{_show_station_num}]", "잘못된 인덱스입니다. 인덱스 번호를 확인하세요.", "화면을 표시할 수 없습니다.", "", f"{utils.get_now_iso_time()}"], _repeat=2)
+            return 1
         # # write log
         # with open('./log/first-struct.log', 'w', encoding='UTF-8') as f:
         #     f.write(json.dumps(station_data))
@@ -310,9 +314,6 @@ class MatrixManager:
             "mv_cnt": 0
         }
         
-        # # test log write
-        # with open('./log/struct.log', 'w', encoding='UTF-8') as f:
-        #     f.write(json.dumps(arvl_bus_infos))
         arvl_infos = []
         normal_infos = []
         for arvl_bus_info in arvl_bus_infos:
@@ -334,7 +335,7 @@ class MatrixManager:
         draw.fontmode = "1"
         
         station_title_align = self.get_text_align_space(self.size[0], station_title, self.font12)
-        station_title_infos = {
+        station_title_info = {
             'text': station_title,
             'x_loca': station_title_align,
             'overflow': False,
@@ -342,9 +343,10 @@ class MatrixManager:
             'mv_cnt': 0
         }
         if self.get_text_volume(station_title, self.font12) > self.size[0]:
-            station_title_infos['overflow'] = True
-            station_title_infos['of_size'] = self.get_text_volume(station_title, self.font12) - self.size[0]
-        draw.text((station_title_align, y_loca[0]), station_title, "white", self.font12)
+            station_title_info['overflow'] = True
+            station_title_info['x_loca'] = 0
+            station_title_info['of_size'] = self.get_text_volume(station_title, self.font12) - self.size[0]
+        draw.text((station_title_info['x_loca'], y_loca[0]), station_title, "white", self.font12)
         
         for bus_data_list in utils.chunk_list(normal_infos):
             arvl_bus_end_mv_cnt = None
@@ -371,25 +373,26 @@ class MatrixManager:
             
                 for frame in range(0, 200):
                     # station title이 overflow일 경우
-                    station_title_infos['frame_cnt'] += 1
-                    if station_title_infos['frame_cnt'] >= 39 and station_title_infos['overflow']:
+                    station_title_info['frame_cnt'] += 1
+                    print(f"FRAME={station_title_info['frame_cnt']}")
+                    if station_title_info['frame_cnt'] >= 39 and station_title_info['overflow']:
+                        print(station_title_info['frame_cnt'], station_title_info['x_loca'], station_title_info['mv_cnt'], station_title_end_mv_cnt, station_title_info['of_size'])
                         if frame % 2 == 1:
-                            print(station_title_infos['frame_cnt'], station_title_infos['x_loca'], station_title_infos['mv_cnt'], station_title_end_mv_cnt, station_title_infos['of_size'])
-                            if station_title_infos['mv_cnt'] < station_title_infos['of_size']:
-                                station_title_infos['x_loca'] -= 1
-                                station_title_infos['mv_cnt'] += 1
-                                draw.rectangle([(0, y_loca[0]), (self.size[0], y_loca[1]-1)], fill="black")
-                                draw.text((station_title_infos['x_loca'], y_loca[0]), station_title_infos['text'], "white", self.font12)
+                            if station_title_info['mv_cnt'] < station_title_info['of_size']:
+                                station_title_info['x_loca'] -= 1
+                                station_title_info['mv_cnt'] += 1
                             else:
                                 if station_title_end_mv_cnt == None:
                                     station_title_end_mv_cnt = 40
                                 else:
                                     station_title_end_mv_cnt -= 1
                                     if station_title_end_mv_cnt == 0:
-                                        station_title_infos['frame_cnt'] = 0
-                                        station_title_infos['mv_cnt'] = 0
-                                        station_title_infos['x_loca'] = station_title_align
+                                        station_title_info['frame_cnt'] = 0
+                                        station_title_info['mv_cnt'] = 0
+                                        station_title_info['x_loca'] = 0
                                         station_title_end_mv_cnt = None
+                            draw.rectangle([(0, y_loca[0]), (self.size[0], y_loca[1]-1)], fill="black")
+                            draw.text((station_title_info['x_loca'], y_loca[0]), station_title_info['text'], "white", self.font12)
                             
                     draw.rectangle([(0, y_loca[1]), (self.size[0], y_loca[4]-1)], fill="black")
                     for index, bus_dict in enumerate(bus_data_list):
@@ -486,20 +489,20 @@ class MatrixManager:
             
             now = datetime.datetime.now()
             now_fstr = now.strftime(f'%m/%d({w_info[now.weekday()]}) %H시%M분')
-            date_align = self.get_text_align_space(self.size[0], now_fstr, self.font14b)
-            draw.text((date_align, y_loca_row[0]), now_fstr, "white", self.font14b)
-            draw.text((x_loca_col[0], y_loca_row[1]), "초미세먼지", "white", self.font14b)
-            draw.text((x_loca_col[0], y_loca_row[2]), "미세먼지", "white", self.font14b)
-            draw.text((x_loca_col[0], y_loca_row[3]), "내일의날씨", "white", self.font14b)
-            draw.text((x_loca_col[1], y_loca_row[1]), ":", "white", self.font14b)
-            draw.text((x_loca_col[1], y_loca_row[2]), ":", "white", self.font14b)
-            draw.text((x_loca_col[1], y_loca_row[3]), ":", "white", self.font14b)
+            date_align = self.get_text_align_space(self.size[0], now_fstr, self.font14)
+            draw.text((date_align, y_loca_row[0]), now_fstr, "white", self.font14)
+            draw.text((x_loca_col[0], y_loca_row[1]), "초미세먼지", "white", self.font14)
+            draw.text((x_loca_col[0], y_loca_row[2]), "미세먼지", "white", self.font14)
+            draw.text((x_loca_col[0], y_loca_row[3]), "내일의날씨", "white", self.font14)
+            draw.text((x_loca_col[1], y_loca_row[1]), ":", "white", self.font14)
+            draw.text((x_loca_col[1], y_loca_row[2]), ":", "white", self.font14)
+            draw.text((x_loca_col[1], y_loca_row[3]), ":", "white", self.font14)
             
             # pm10, pm25 finedust info
             if pm10_grade != None:
-                draw.text((x_loca_col[2], y_loca_row[1]), grade_str[pm10_grade], grade_color[pm10_grade], self.font14b)
+                draw.text((x_loca_col[2], y_loca_row[1]), grade_str[pm10_grade], grade_color[pm10_grade], self.font14)
             if pm25_grade != None:
-                draw.text((x_loca_col[2], y_loca_row[2]), grade_str[pm25_grade], grade_color[pm25_grade], self.font14b)
+                draw.text((x_loca_col[2], y_loca_row[2]), grade_str[pm25_grade], grade_color[pm25_grade], self.font14)
             
             if station_weather_info.get('apiSuccess', False) == True:
                 weather_str = '정보없음'
@@ -529,9 +532,8 @@ class MatrixManager:
                     elif weather_tmn != None and weather_tmx != None:
                         weather_str = f"{str(weather_tmn)[:-2]}~{str(weather_tmx)[:-2]}℃"
                 
-                draw.text((x_loca_col[2], y_loca_row[3]), f"{weather_str}", "white", self.font14b)
+                draw.text((x_loca_col[2], y_loca_row[3]), f"{weather_str}", "white", self.font14)
                     
-
             self.refresh(display)
             time.sleep(0.1)
             
