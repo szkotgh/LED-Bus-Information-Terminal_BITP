@@ -89,25 +89,24 @@ FineDust_Grade = {
 }
 
 class weather_api_requester:
-    def __init__(self, SERVICE_KEY):
+    def __init__(self, SERVICE_KEY, _api_timeout=5):
         self.logger = utils.create_logger('weather_api_module')
         self.SERVICE_KEY = SERVICE_KEY
+        self.api_timeout = _api_timeout
 
-    def get_vilage_fcst(self, nx, ny, base_date, base_time, num_of_rows='1000', page_no='1', data_type='JSON'):
+    def get_vilage_fcst(self, nx, ny, base_date, base_time, num_of_rows='1000', page_no='1', data_type='XML'):
         # default response
         f_response = {
             'queryTime'  : utils.get_now_ftime(),
             'apiSuccess' : False,
-            'apiParams'  : f"nx={nx},ny={ny},base_date={base_date},base_time={base_time},num_of_rows={num_of_rows},page_no={page_no},data_type={data_type}",
+            'reqParam'   : f"nx={nx},ny={ny},base_date={base_date},base_time={base_time},num_of_rows={num_of_rows},page_no={page_no},data_type={data_type}",
             'errorOcrd'  : False,
-            'errorMsg'   : None,
-            'rstCode'    : -1,
-            'rstMsg'     : utils.get_rst_msg(-1),
             'result'     : None
         }
         
-        url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'
-        params = {
+        # request
+        req_url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'
+        req_params = {
             'serviceKey' : str(self.SERVICE_KEY),
             'numOfRows'  : str(num_of_rows),
             'pageNo'     : str(page_no),
@@ -119,16 +118,32 @@ class weather_api_requester:
         }
         
         try:
-            response = requests.get(url, params=params)
+            response = requests.get(url=req_url, params=req_params, timeout=self.api_timeout)
             response.raise_for_status()
+            res_content = xmltodict.parse(response.content)
         except Exception as ERROR:
             f_response['errorOcrd'] = True
             f_response['errorMsg']  = str(ERROR)
             return f_response
         
-        response = json.loads(response.text)
+        # response process
+        detect_rst = utils.detect_response_error(res_content)
+        resCode = detect_rst[0]
+        resMsg = detect_rst[1]
+        f_response.update({
+            'resCode' : resCode,
+            'resMsg'  : resMsg
+        })
         
-        detect_rst = utils.detect_response_error(response)
+        if resCode in ['0', '00']:
+            f_response.update({
+                'apiSuccess' : True,
+                'result'     : res_content['response']['body']['items']['item']
+            })
+        
+        return f_response
+        
+        detect_rst = utils.detect_response_error(res_content)
         rstCode = detect_rst['rstCode']
         rstMsg = detect_rst['rstMsg']
         
@@ -139,7 +154,7 @@ class weather_api_requester:
                 'apiParam'   : f"nx={nx},ny={ny},base_date={base_date},base_time={base_time},num_of_rows={num_of_rows},page_no={page_no},data_type={data_type}",
                 'rstCode'    : rstCode,
                 'rstMsg'     : rstMsg,
-                'result'     : response['response']['body']['items']['item']
+                'result'     : res_content['response']['body']['items']['item']
             })
         else:
             f_response.update({
@@ -158,16 +173,14 @@ class weather_api_requester:
         f_response = {
             'queryTime'  : utils.get_now_ftime(),
             'apiSuccess' : False,
-            'apiParams'  : f"returnType={returnType},sidoName={sidoName},ver={ver}",
+            'reqParam'   : f"returnType={returnType},sidoName={sidoName},ver={ver}",
             'errorOcrd'  : False,
-            'errorMsg'   : None,
-            'rstCode'    : -1,
-            'rstMsg'     : utils.get_rst_msg(-1),
             'result'     : None
         }
         
-        url = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty"
-        params = {
+        # request
+        req_url = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty"
+        req_params = {
             "serviceKey" : self.SERVICE_KEY,
             "returnType" : returnType,
             "numOfRows"  : 1000,
@@ -177,36 +190,28 @@ class weather_api_requester:
         }
         
         try:
-            response = requests.get(url, params=params)
+            response = requests.get(url=req_url, params=req_params, timeout=self.api_timeout)
             response.raise_for_status()
+            res_content = xmltodict.parse(response.content)
         except Exception as ERROR:
             f_response['errorOcrd'] = True
             f_response['errorMsg']  = str(ERROR)
             return f_response
         
-        response = xmltodict.parse(response.content)
+        # response process
+        detect_rst = utils.detect_response_error(res_content)
+        resCode = detect_rst[0]
+        resMsg = detect_rst[1]
+        f_response.update({
+            'resCode' : resCode,
+            'resMsg'  : resMsg
+        })
         
-        detect_rst = utils.detect_response_error(response)
-        rstCode = detect_rst['rstCode']
-        rstMsg = detect_rst['rstMsg']
-        
-        if rstCode in ['0', '00']:
+        if resCode in ['0', '00']:
             f_response.update({
-                'queryTime'  : utils.get_now_ftime(),
                 'apiSuccess' : True,
-                'apiParam'   : f"returnType={returnType},sidoName={sidoName},ver={ver}",
-                'rstCode'    : rstCode,
-                'rstMsg'     : rstMsg,
-                'result'     : response['response']['body']['items']['item']
-            })
-        else:
-            f_response.update({
-                'queryTime'  : utils.get_now_ftime(),
-                'apiSuccess' : False,
-                'apiParam'   : f"returnType={returnType},sidoName={sidoName},ver={ver}",
-                'rstCode'    : rstCode,
-                'rstMsg'     : rstMsg,
-                'result'     : None
+                'result'     : res_content['response']['body']['items']['item']
             })
         
         return f_response
+        

@@ -17,6 +17,7 @@ BUS.PY
 | openapi_statu_code |   | Open API 에러코드 오름 (dict) |
 """
 
+import json
 import sys
 import datetime
 
@@ -125,7 +126,7 @@ BUS API REQUESTER
         self.SERVICE_KEY = str(SERVICE_KEY)
         self.api_timeout = _api_timeout
     
-    def get_station_info(self, keyword:str) -> dict:
+    def get_station_info(self, _keyword:str) -> dict:
         r"""
 경기도 정류소 조회
 ------------------
@@ -156,11 +157,8 @@ API 결과는 'result'하위에 저장. 요청 실패 시 'result' None로 반�
         f_response = {
             'queryTime'  : utils.get_now_ftime(),
             'apiSuccess' : False,
-            'apiParam'   : f"keyword={keyword}",
+            'reqParam'   : f"keyword={_keyword}",
             'errorOcrd'  : False,
-            'errorMsg'   : None,
-            'rstCode'    : -1,
-            'rstMsg'     : utils.get_rst_msg(-1),
             'result'     : None
         }
         
@@ -168,45 +166,36 @@ API 결과는 'result'하위에 저장. 요청 실패 시 'result' None로 반�
         request_url = 'http://apis.data.go.kr/6410000/busstationservice/getBusStationList'
         params = {
             'serviceKey' : str(self.SERVICE_KEY),
-            'keyword'    : str(keyword)
+            'keyword'    : str(_keyword)
         }
         
         try:
             response = requests.get(url=request_url, params=params, timeout=self.api_timeout)
             response.raise_for_status()
+            res_content = xmltodict.parse(response.content)
         except Exception as ERROR:
             f_response['errorOcrd'] = True
             f_response['errorMsg']  = str(ERROR)
             return f_response
         
-        response = xmltodict.parse(response.content)
+        # response process
+        detect_rst = utils.detect_response_error(res_content)
+        resCode = detect_rst[0]
+        resMsg = detect_rst[1]
+        f_response.update({
+            'resCode' : resCode,
+            'resMsg'  : resMsg
+        })
         
-        detect_rst = utils.detect_response_error(response)
-        rstCode = detect_rst['rstCode']
-        rstMsg = detect_rst['rstMsg']
-        
-        if rstCode in ['0', '00']:
+        if resCode in ['0', '00']:
             f_response.update({
-                'queryTime'  : utils.get_now_ftime(),
                 'apiSuccess' : True,
-                'apiParam'   : f"keyword={keyword}",
-                'rstCode'    : rstCode,
-                'rstMsg'     : rstMsg,
-                'result'     : response['response']['msgBody']['busStationList'] if type(response['response']['msgBody']['busStationList']) == dict else response['response']['msgBody']['busStationList'][0]
-            })
-        else:
-            f_response.update({
-                'queryTime'  : utils.get_now_ftime(),
-                'apiSuccess' : False,
-                'apiParam'   : f"keyword={keyword}",
-                'rstCode'    : rstCode,
-                'rstMsg'     : rstMsg,
-                'result'     : None
+                'result'     : res_content['response']['msgBody']['busStationList'] if type(res_content['response']['msgBody']['busStationList']) == dict else res_content['response']['msgBody']['busStationList'][0]
             })
         
         return f_response
         
-    def get_bus_arrival(self, stationId:str) -> dict:
+    def get_bus_arrival(self, _stationId:str) -> dict:
         r"""
 경기도 버스도착정보 조회
 ------------------
@@ -239,56 +228,45 @@ API 결과는 'result'하위에 저장. 요청 실패 시 'result' None로 반�
         f_response = {
             'queryTime'  : utils.get_now_ftime(),
             'apiSuccess' : False,
-            'apiParams'  : f"stationId={stationId}",
+            'reqParam'   : f"stationId={_stationId}",
             'errorOcrd'  : False,
-            'errorMsg'   : None,
-            'rstCode'    : -1,
-            'rstMsg'     : utils.get_rst_msg(-1),
             'result'     : None
         }
         
+        # request
         request_url = 'http://apis.data.go.kr/6410000/busarrivalservice/getBusArrivalList'
         params = {
             'serviceKey' : str(self.SERVICE_KEY),
-            'stationId'  : str(stationId)
+            'stationId'  : str(_stationId)
         }
         
         try:
             response = requests.get(url=request_url, params=params, timeout=self.api_timeout)
             response.raise_for_status()
+            res_content = xmltodict.parse(response.content)
         except Exception as ERROR:
             f_response['errorOcrd'] = True
             f_response['errorMsg']  = str(ERROR)
             return f_response
         
-        response = xmltodict.parse(response.content)
+        # response process
+        detect_rst = utils.detect_response_error(res_content)
+        resCode = detect_rst[0]
+        resMsg = detect_rst[1]
+        f_response.update({
+            'resCode' : resCode,
+            'resMsg'  : resMsg
+        })
         
-        detect_rst = utils.detect_response_error(response)
-        rstCode = detect_rst['rstCode']
-        rstMsg = detect_rst['rstMsg']
-        
-        if rstCode in ['0', '00']:
+        if resCode in ['0', '00']:
             f_response.update({
-                'queryTime'  : utils.get_now_ftime(),
                 'apiSuccess' : True,
-                'apiParams'  : f"stationId={stationId}",
-                'rstCode'    : rstCode,
-                'rstMsg'     : rstMsg,
-                'result'     : [response['response']['msgBody']['busArrivalList']] if type(response['response']['msgBody']['busArrivalList']) == dict else response['response']['msgBody']['busArrivalList']
+                'result'     : [res_content['response']['msgBody']['busArrivalList']] if type(res_content['response']['msgBody']['busArrivalList']) == dict else res_content['response']['msgBody']['busArrivalList']
             })
-        else:
-            f_response.update({
-                'queryTime'  : utils.get_now_ftime(),
-                'apiSuccess' : False,
-                'apiParams'  : f"stationId={stationId}",
-                'rstCode'    : rstCode,
-                'rstMsg'     : rstMsg,
-                'result'     : None
-            })        
         
         return f_response
     
-    def get_bus_info(self, routeId:str) -> dict:
+    def get_bus_info(self, _routeId:str) -> dict:
         r"""
 경기도 버스노선 조회/노선정보항목조회
 ------------------
@@ -331,56 +309,45 @@ API 결과는 'result'하위에 저장. 요청 실패 시 'result' None로 반�
         f_response = {
             'queryTime'  : utils.get_now_ftime(),
             'apiSuccess' : False,
-            'apiParams'  : f"routeId={routeId}",
+            'reqParam'   : f"routeId={_routeId}",
             'errorOcrd'  : False,
-            'errorMsg'   : None,
-            'rstCode'    : -1,
-            'rstMsg'     : utils.get_rst_msg(-1),
             'result'     : None
         }
 
+        # request
         request_url = 'http://apis.data.go.kr/6410000/busrouteservice/getBusRouteInfoItem'
         params = {
             'serviceKey' : str(self.SERVICE_KEY),
-            'routeId'    : str(routeId)
+            'routeId'    : str(_routeId)
         }
         
         try:
             response = requests.get(url=request_url, params=params, timeout=self.api_timeout)
             response.raise_for_status()
+            res_content = xmltodict.parse(response.content)
         except Exception as ERROR:
             f_response['errorOcrd'] = True
             f_response['errorMsg']  = str(ERROR)
             return f_response
         
-        response = xmltodict.parse(response.content)
+        # response process
+        detect_rst = utils.detect_response_error(res_content)
+        resCode = detect_rst[0]
+        resMsg = detect_rst[1]
+        f_response.update({
+            'resCode' : resCode,
+            'resMsg'  : resMsg
+        })
         
-        detect_rst = utils.detect_response_error(response)
-        rstCode = detect_rst['rstCode']
-        rstMsg = detect_rst['rstMsg']
-        
-        if rstCode in ['0', '00']:
+        if resCode in ['0', '00']:
             f_response.update({
-                'queryTime'  : utils.get_now_ftime(),
                 'apiSuccess' : True,
-                'apiParams'  : f"routeId={routeId}",
-                'rstCode'    : rstCode,
-                'rstMsg'     : rstMsg,
-                'result'     : response['response']['msgBody']['busRouteInfoItem']
-            })
-        else:
-            f_response.update({
-                'queryTime'  : utils.get_now_ftime(),
-                'apiSuccess' : False,
-                'apiParams'  : f"routeId={routeId}",
-                'rstCode'    : rstCode,
-                'rstMsg'     : rstMsg,
-                'result'     : None
+                'result'     : res_content['response']['msgBody']['busRouteInfoItem']
             })
         
         return f_response
     
-    def get_bus_transit_route(self, routeId:str) -> dict:
+    def get_bus_transit_route(self, _routeId:str) -> dict:
         r"""
 경기도 버스노선 조회/경유정류소목록조회
 ------------------
@@ -412,51 +379,41 @@ API 결과는 'result'하위에 저장. 요청 실패 시 'result' None로 반�
         f_response = {
             'queryTime'  : utils.get_now_ftime(),
             'apiSuccess' : False,
-            'apiParams'  : f"routeId={routeId}",
+            'reqParam'   : f"routeId={_routeId}",
             'errorOcrd'  : False,
-            'errorMsg'   : None,
-            'rstCode'    : -1,
-            'rstMsg'     : utils.get_rst_msg(-1),
             'result'     : None
         }
         
+        # request
         request_url = 'http://apis.data.go.kr/6410000/busrouteservice/getBusRouteStationList'
         params = {
             'serviceKey' : str(self.SERVICE_KEY),
-            'routeId'    : str(routeId)
+            'routeId'    : str(_routeId)
         }
         
         try:
             response = requests.get(url=request_url, params=params, timeout=self.api_timeout)
             response.raise_for_status()
+            res_content = xmltodict.parse(response.content)
         except Exception as ERROR:
             f_response['errorOcrd'] = True
             f_response['errorMsg']  = str(ERROR)
             return f_response
         
-        response = xmltodict.parse(response.content)
+        # response process
+        detect_rst = utils.detect_response_error(res_content)
+        resCode = detect_rst[0]
+        resMsg = detect_rst[1]
+        f_response.update({
+            'resCode' : resCode,
+            'resMsg'  : resMsg
+        })
         
-        detect_rst = utils.detect_response_error(response)
-        rstCode = detect_rst['rstCode']
-        rstMsg = detect_rst['rstMsg']
-        
-        if rstCode in ['0', '00']:
+        if resCode in ['0', '00']:
             f_response.update({
-                'queryTime'  : utils.get_now_ftime(),
                 'apiSuccess' : True,
-                'apiParams'  : f"routeId={routeId}",
-                'rstCode'    : rstCode,
-                'rstMsg'     : rstMsg,
-                'result'     : [response['response']['msgBody']['busRouteStationList']] if (response['response']['msgBody']['busRouteStationList']) == dict else response['response']['msgBody']['busRouteStationList']
-            })
-        else:
-            f_response.update({
-                'queryTime'  : utils.get_now_ftime(),
-                'apiSuccess' : False,
-                'apiParams'  : f"routeId={routeId}",
-                'rstCode'    : rstCode,
-                'rstMsg'     : rstMsg,
-                'result'     : None
+                'result'     : [res_content['response']['msgBody']['busRouteStationList']] if (res_content['response']['msgBody']['busRouteStationList']) == dict else res_content['response']['msgBody']['busRouteStationList']
             })
         
         return f_response
+        
