@@ -52,13 +52,14 @@ class MatrixManager:
         self.network_connected = False
         
         # font load
-        self.font8  = ImageFont.truetype(os.path.join('fonts', 'SCDream4.otf'), 8)
-        self.font10 = ImageFont.truetype(os.path.join('fonts', 'SCDream4.otf'), 11)
-        self.font12 = ImageFont.truetype(os.path.join('fonts', 'SCDream4.otf'), 12)
-        self.font14 = ImageFont.truetype(os.path.join('fonts', 'SCDream4.otf'), 14)
-        self.font14b = ImageFont.truetype(os.path.join('fonts', 'SCDream5.otf'), 14)
-        self.font16 = ImageFont.truetype(os.path.join('fonts', 'SCDream5.otf'), 16)
-        self.font26 = ImageFont.truetype(os.path.join('fonts', 'SCDream8.otf'), 26)
+        font_path = os.path.join(os.getcwd(), 'src', 'fonts')
+        self.font8  = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 8)
+        self.font10 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 11)
+        self.font12 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 12)
+        self.font14 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 14)
+        self.font14b = ImageFont.truetype(os.path.join(font_path, 'SCDream5.otf'), 14)
+        self.font16 = ImageFont.truetype(os.path.join(font_path, 'SCDream5.otf'), 16)
+        self.font26 = ImageFont.truetype(os.path.join(font_path, 'SCDream8.otf'), 26)
         
         # icon load
         self.bus_icon_path = os.path.join('src', 'icon', 'bus.png')
