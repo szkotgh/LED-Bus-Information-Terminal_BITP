@@ -204,7 +204,7 @@ class MatrixManager:
         try:
             station_data = self.station_datas[_show_station_num]
         except:
-            self.show_text_page([f"스테이션 페이지 [{_show_station_num}]", "잘못된 인덱스입니다. 인덱스 번호를 확인하세요.", "화면을 표시할 수 없습니다.", "", f"{utils.get_now_iso_time()}"], _repeat=2)
+            self.show_text_page([f"실시간 버스 정보 화면 [{_show_station_num}]", "잘못된 인덱스입니다. 인덱스 번호를 확인하세요.", "화면을 표시할 수 없습니다.", "", f"{utils.get_now_iso_time()}"], _repeat=2)
             return 1
         # # write log
         # with open('./log/first-struct.log', 'w', encoding='UTF-8') as f:
@@ -235,12 +235,12 @@ class MatrixManager:
         
         # station title data parsing
         if station_info.get('errorOcrd') == True:
-            self.show_text_page([f"스테이션 페이지 [{_show_station_num}]", "API 오류. 페이지를 표시할 수 없습니다.", "", f"KEYWORD={station_keyword}", f"{station_info.get('errorMsg', '알 수 없는 오류입니다.')}"], _repeat=2)
+            self.show_text_page([f"실시간 버스 정보 화면 [{_show_station_num}]", "API 오류. 페이지를 표시할 수 없습니다.", "", f"KEYWORD={station_keyword}", f"{station_info.get('errorMsg', '알 수 없는 오류입니다.')}"], _repeat=2)
             return 1
         if station_info.get('apiSuccess') == False:
             rst_code = station_info.get('rstCode', "-1")
             rst_msg = station_info.get('rstMsg', "알 수 없는 오류입니다.")
-            self.show_text_page([f"스테이션 페이지 [{_show_station_num}]", "데이터 오류. 페이지를 표시할 수 없습니다: 필수 데이터가 없습니다.", "", f"KEYWORD={station_keyword}", f"({rst_code}) {rst_msg}"], _repeat=2)
+            self.show_text_page([f"실시간 버스 정보 화면 [{_show_station_num}]", "데이터 오류. 페이지를 표시할 수 없습니다: 필수 데이터가 없습니다.", "", f"KEYWORD={station_keyword}", f"({rst_code}) {rst_msg}"], _repeat=2)
             return 1
         
         station_title = f"{station_info['result'].get('stationName', '')}"
@@ -439,7 +439,7 @@ class MatrixManager:
         try:
             station_data = self.station_datas[_show_station_num]
         except:
-            self.show_text_page([f"스테이션 부가정보 페이지 [{_show_station_num}]", "잘못된 인덱스입니다. 인덱스 번호를 확인하세요.", "화면을 표시할 수 없습니다.", "", f"{utils.get_now_iso_time()}"], _repeat=2)
+            self.show_text_page([f"실시간 버스 부가정보 화면 [{_show_station_num}]", "잘못된 인덱스입니다. 인덱스 번호를 확인하세요.", "화면을 표시할 수 없습니다.", "", f"{utils.get_now_iso_time()}"], _repeat=2)
             return 1
 
         weather_info  = station_data['weatherInfo']
