@@ -79,7 +79,7 @@ def _auto_internet_check_target():
     while True:
         matrix_manager.network_connected = utils.check_internet_connection()
         print(f"[_auto_internet_check_target] internet status: {matrix_manager.network_connected}")
-        time.sleep(3)
+        time.sleep(5)
 
 auto_internet_check_target = threading.Thread(target=_auto_internet_check_target, daemon=True)
 auto_internet_check_target.start()

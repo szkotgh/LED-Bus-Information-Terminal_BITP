@@ -166,9 +166,9 @@ def detect_response_error(_res_dict:dict, _df_code:str='-1', _df_msg:str='Unknow
     else:
         return (_df_code, _df_msg)
 
-def check_internet_connection():
+def check_internet_connection(_timeout:int=1):
     try:
-        requests.get("http://www.google.com", timeout=1)
+        requests.get("http://www.google.com", timeout=_timeout)
         return True
     except Exception as e:
         return False
