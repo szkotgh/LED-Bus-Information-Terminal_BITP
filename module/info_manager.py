@@ -429,6 +429,7 @@ class InfoManager:
         return 0
 
     def update_all_info(self):
+        self.init_station_datas()
         self.update_station_info()
         self.update_station_arvl_bus()
         self.update_station_arvl_bus_info()
