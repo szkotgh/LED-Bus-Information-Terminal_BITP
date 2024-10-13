@@ -93,14 +93,14 @@ while 1:
         for _repeat in range(0, 2):
             try: matrix_manager.show_station_page(i, _repeat=3)
             except Exception as e:
-                matrix_manager.show_text_page(["SHOW STATION PAGE", "에러가 발생하였습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2);
+                matrix_manager.show_text_page(["SHOW STATION PAGE", "에러가 발생하였습니다.", "", f"{utils.get_now_iso_time()}", f"SHOW_STATION_PAGE_ERROR: {e}"], _repeat=2);
                 print(f"SHOW STATION PAGE ERROR: {e}")
                 with open('station_datas_struct.json', 'w', encoding='UTF-8') as f:
                     f.write(json.dumps(matrix_manager.station_datas, indent=4))
             
             try: matrix_manager.show_station_etc_page(i)
             except Exception as e:
-                matrix_manager.show_text_page(["SHOW STATION ETC PAGE", "에러가 발생했습니다.", "", f"{utils.get_now_iso_time()}", f"SHOW_STATOIN_PAGE_ERROR: {e}"], _repeat=2);
+                matrix_manager.show_text_page(["SHOW STATION ETC PAGE", "에러가 발생했습니다.", "", f"{utils.get_now_iso_time()}", f"SHOW_STATION_ETC_PAGE_ERROR: {e}"], _repeat=2);
                 print(f"SHOW STATION ETC PAGE ERROR")
     
 print()
