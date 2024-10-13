@@ -436,7 +436,4 @@ class InfoManager:
         self.update_fine_dust_info()
         self.update_weather_info()
         
-        with open('station_datas_struct.json', 'w', encoding='UTF-8') as f:
-            f.write(json.dumps(self.station_datas, indent=4))
-        
         return 0

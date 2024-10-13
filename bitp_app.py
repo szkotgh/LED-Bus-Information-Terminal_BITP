@@ -68,9 +68,14 @@ thread_list = []
 def _auto_info_update_target():
     while True:
         time.sleep(30)
-        info_manager.update_all_info()
-        matrix_manager.update_station_info(info_manager.station_datas)
-        print("[_auto_info_update_target] info updated")
+        if matrix_manager.network_connected:
+            info_manager.update_all_info()
+            matrix_manager.update_station_info(info_manager.station_datas)
+            print(f"[_auto_info_update_target] info updated")
+        else:
+            print(f"[_auto_info_update_target] Upload failed: Internet connection has been reported to be poor.")
+            
+            
 auto_info_update_target = threading.Thread(target=_auto_info_update_target, daemon=True)
 auto_info_update_target.start()
 thread_list.append(auto_info_update_target)
@@ -90,10 +95,16 @@ while 1:
     for i in range(0, len(info_manager.station_datas)):
         for _repeat in range(0, 2):
             try: matrix_manager.show_station_page(i, _repeat=3)
-            except Exception as e: matrix_manager.show_text_page(["SHOW STATION PAGE", "에러가 발생하였습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2); print(f"SHOW STATION PAGE ERROR: {e}")
+            except Exception as e:
+                matrix_manager.show_text_page(["SHOW STATION PAGE", "에러가 발생하였습니다.", "", f"{utils.get_now_iso_time()}", f"{e}"], _repeat=2);
+                print(f"SHOW STATION PAGE ERROR: {e}")
+                with open('station_datas_struct.json', 'w', encoding='UTF-8') as f:
+                    f.write(json.dumps(matrix_manager.station_datas, indent=4))
             
             try: matrix_manager.show_station_etc_page(i)
-            except Exception as e: matrix_manager.show_text_page(["SHOW STATION ETC PAGE", "에러가 발생했습니다.", "", f"{utils.get_now_iso_time()}", f"SHOW_STATOIN_PAGE_ERROR: {e}"], _repeat=2); print(f"SHOW STATION ETC PAGE ERROR")
+            except Exception as e:
+                matrix_manager.show_text_page(["SHOW STATION ETC PAGE", "에러가 발생했습니다.", "", f"{utils.get_now_iso_time()}", f"SHOW_STATOIN_PAGE_ERROR: {e}"], _repeat=2);
+                print(f"SHOW STATION ETC PAGE ERROR")
     
 print()
 print('PROGRAM ENDED')
