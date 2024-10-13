@@ -23,22 +23,19 @@ except Exception as e:
 # info_manager class
 class InfoManager:
     def __init__(self, _SERVICE_KEY, _OPTIONS):
-        
         # Init class
+        self.reload_option(_OPTIONS)
         self.SERVICE_KEY = _SERVICE_KEY
-        print(" * InfoManager Regi SERVICE_KEY : ", self.SERVICE_KEY)
-        self.OPTION = _OPTIONS
-        self.API_ERROR_RETRY_COUNT = self.OPTION.get('set_api_error_retry_count', 10)
-        self.API_TIMEOUT = self.OPTION.get('set_api_timeout', 5)
+        self.logging(f" * InfoManager Regi SERVICE_KEY: {self.SERVICE_KEY}")
+        self.API_ERROR_RETRY_COUNT = self.OPTION['api_error_retry_count']
+        self.API_TIMEOUT = self.OPTION['api_timeout']
         
         # Set logger
-        if self.OPTION['logging'] == True:
-            self.logger = utils.create_logger('info_manager')
         self.logging(f'Logging start. {__class__}', 'info')
         
         # Bus info init
         self.station_datas = []
-        self.bus_api_mgr = bus_api.bus_api_requester(self.SERVICE_KEY)
+        self.bus_api_mgr = bus_api.bus_api_requester(self.SERVICE_KEY, _OPTIONS)
         
         self.station_datas = []
         self.init_station_datas()
@@ -49,7 +46,7 @@ class InfoManager:
         self.today_weather_info = []
         self.tomorrow_weather_info = []
         self.tomorrow_need_info = []
-        self.weather_api_mgr = weather_api.weather_api_requester(self.SERVICE_KEY)
+        self.weather_api_mgr = weather_api.weather_api_requester(self.SERVICE_KEY, _OPTIONS)
     
     def reload_option(self, _OPTIONS):
         self.OPTION = _OPTIONS

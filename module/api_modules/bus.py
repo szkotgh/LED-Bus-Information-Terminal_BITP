@@ -121,10 +121,10 @@ BUS API REQUESTER
 
 등록한 SERVICE_KEY는 API 요청 시 사용됩니다.
     """
-    def __init__(self, SERVICE_KEY, _api_timeout=5):
-        self.logger = utils.create_logger('bus_api_requester')
-        self.SERVICE_KEY = str(SERVICE_KEY)
-        self.api_timeout = _api_timeout
+    def __init__(self, _SERVICE_KEY, _OPTIONS):
+        self.SERVICE_KEY = str(_SERVICE_KEY)
+        self.OPTION = _OPTIONS
+        self.api_timeout = self.OPTION['api_timeout']
     
     def get_station_info(self, _keyword:str) -> dict:
         r"""

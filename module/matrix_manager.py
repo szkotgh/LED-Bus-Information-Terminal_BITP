@@ -57,16 +57,16 @@ class MatrixManager:
         self.font10 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 11)
         self.font12 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 12)
         self.font14 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 14)
-        self.font14b = ImageFont.truetype(os.path.join(font_path, 'SCDream5.otf'), 14)
         self.font16 = ImageFont.truetype(os.path.join(font_path, 'SCDream5.otf'), 16)
         self.font26 = ImageFont.truetype(os.path.join(font_path, 'SCDream8.otf'), 26)
         
         # icon load
-        self.bus_icon_path = os.path.join('src', 'icon', 'bus.png')
+        icon_path = os.path.join(os.getcwd(), 'src', 'icon')
+        self.bus_icon_path = os.path.join(icon_path, 'bus.png')
         self.bus_icon = Image.open(self.bus_icon_path)
-        self.bus_lp_icon_path = os.path.join('src', 'icon', 'bus_lp.png')
+        self.bus_lp_icon_path = os.path.join(icon_path, 'bus_lp.png')
         self.bus_lp_icon = Image.open(self.bus_lp_icon_path)
-        self.no_wifi_icon_path = os.path.join('src', 'icon', 'no_wifi.png')
+        self.no_wifi_icon_path = os.path.join(icon_path, 'no_wifi.png')
         self.no_wifi_icon = Image.open(self.no_wifi_icon_path)
     
     def logging(self, str: str, type="info") -> bool:
@@ -99,15 +99,6 @@ class MatrixManager:
     def update_station_info(self, station_datas: dict) -> None:
         self.station_datas = station_datas
         self.station_data_len = len(station_datas)
-        
-    def check_internet_connection(self) -> bool:
-        try:
-            utils.check_internet_connection()
-            self.network_connected = True
-            return True
-        except:
-            self.network_connected = False
-            return False
     
     def get_text_volume(self, text, font) -> int:
         dummy_img = Image.new('RGB', (1, 1))
@@ -353,8 +344,6 @@ class MatrixManager:
             arvl_bus_end_mv_cnt = None
             station_title_end_mv_cnt = None
             for repeat in range(_repeat):
-                print(f"repeat={repeat} **********************************************")
-                
                 arvl_bus_now_station_str_infos = [];
                 bus_now_station_str_width = self.size[0] - x_loca[4]
                 for index, bus_dict in enumerate(bus_data_list):
@@ -375,9 +364,7 @@ class MatrixManager:
                 for frame in range(0, 200):
                     # station title이 overflow일 경우
                     station_title_info['frame_cnt'] += 1
-                    print(f"FRAME={station_title_info['frame_cnt']}")
                     if station_title_info['frame_cnt'] >= 39 and station_title_info['overflow']:
-                        print(station_title_info['frame_cnt'], station_title_info['x_loca'], station_title_info['mv_cnt'], station_title_end_mv_cnt, station_title_info['of_size'])
                         if frame % 2 == 1:
                             if station_title_info['mv_cnt'] < station_title_info['of_size']:
                                 station_title_info['x_loca'] -= 1
@@ -449,9 +436,14 @@ class MatrixManager:
                     time.sleep(0.02)
     
     def show_station_etc_page(self, _show_station_num: int, _repeat: int = 50):
-        station_data = self.station_datas[_show_station_num]
-        station_weather_info = station_data.get('weatherInfo')
-        station_finedust_info = station_data.get('finedustInfo')
+        try:
+            station_data = self.station_datas[_show_station_num]
+        except:
+            self.show_text_page([f"스테이션 부가정보 페이지 [{_show_station_num}]", "잘못된 인덱스입니다. 인덱스 번호를 확인하세요.", "화면을 표시할 수 없습니다.", "", f"{utils.get_now_iso_time()}"], _repeat=2)
+            return 1
+
+        weather_info  = station_data['weatherInfo']
+        finedust_info = station_data['finedustInfo']
         
         x_loca_col  = [0, 70, 77]
         y_loca_row  = [1, 16, 32, 48]
@@ -459,28 +451,56 @@ class MatrixManager:
         grade_str   = ["좋음", "보통", "나쁨", "매우나쁨"]
         grade_color = ["aqua", "lime", "yellow", "orange"]
         
-        # finedust info parsing 
+        # Info Parsing
+        ## finedust info parsing 
         pm10value = None
         pm25value = None
-        
         pm10_grade = None
         pm25_grade = None
-        if station_finedust_info != None:
-            if station_finedust_info.get("apiSuccess", False) == True:
-                pm10value = station_finedust_info.get("result").get("pm10Value", None)
-                pm25value = station_finedust_info.get("result").get("pm25Value", None)
-                if pm10value != None:
-                    pm10value = int(pm10value)
-                    if pm10value < 31: pm10_grade = 0
-                    elif pm10value < 81: pm10_grade = 1
-                    elif pm10value < 151: pm10_grade = 2
-                    else: pm10_grade = 3
-                if pm25value != None:
-                    pm25value = int(pm25value)
-                    if pm25value < 16: pm25_grade = 0
-                    elif pm25value < 36: pm25_grade = 1
-                    elif pm25value < 76: pm25_grade = 2
-                    else: pm25_grade = 3
+        if finedust_info["errorOrcd"] == False and finedust_info["apiSuccess"] == True:
+            finedust_info_rst = finedust_info["result"]
+            pm10value = finedust_info_rst.get("pm10Value", None)
+            pm25value = finedust_info_rst.get("pm25Value", None)
+            if pm10value != None:
+                pm10value = int(pm10value)
+                if pm10value < 31: pm10_grade = 0
+                elif pm10value < 81: pm10_grade = 1
+                elif pm10value < 151: pm10_grade = 2
+                else: pm10_grade = 3
+            if pm25value != None:
+                pm25value = int(pm25value)
+                if pm25value < 16: pm25_grade = 0
+                elif pm25value < 36: pm25_grade = 1
+                elif pm25value < 76: pm25_grade = 2
+                else: pm25_grade = 3
+        ## temp & weather info parsing
+        if weather_info["errorOrcd"] == False and weather_info['apiSuccess'] == True:
+            weather_str = '정보없음'
+            weather_info_rst = weather_info['result']
+            if weather_info_rst['errorOcrd'] == False and weather_info_rst['apiSuccess'] == True:
+                weather_tmn = None
+                weather_tmx = None
+                weather_wts = None
+                
+                for weather_item in weather_info_rst:
+                    if weather_item == None:
+                        break
+                    
+                    item_category = weather_item.get('category', None)
+                    
+                    if item_category == "TMN":
+                        weather_tmn = weather_item.get('fcstValue', None)
+                    elif item_category == "TMX":
+                        weather_tmx = weather_item.get('fcstValue', None)
+                    elif item_category == "WTS":
+                        weather_wts = weather_item.get('fcstValue', None)
+                    else:
+                        continue
+                
+                if weather_tmn != None and weather_tmx != None and weather_wts != None:
+                    weather_str = f"{str(weather_tmn)[:-2]}~{str(weather_tmx)[:-2]}℃ ({weather_wts})"
+                elif weather_tmn != None and weather_tmx != None:
+                    weather_str = f"{str(weather_tmn)[:-2]}~{str(weather_tmx)[:-2]}℃"
         
         # create display
         for i in range(0, _repeat):
@@ -505,33 +525,6 @@ class MatrixManager:
             if pm25_grade != None:
                 draw.text((x_loca_col[2], y_loca_row[2]), grade_str[pm25_grade], grade_color[pm25_grade], self.font14)
             
-            if station_weather_info.get('apiSuccess', False) == True:
-                weather_str = '정보없음'
-                weather_info = station_weather_info.get('result', None)
-                if weather_info != None:
-                    weather_tmn = None
-                    weather_tmx = None
-                    weather_wts = None
-                    
-                    for weather_item in weather_info:
-                        if weather_item == None:
-                            break
-                        
-                        item_category = weather_item.get('category', None)
-                        
-                        if item_category == "TMN":
-                            weather_tmn = weather_item.get('fcstValue', None)
-                        elif item_category == "TMX":
-                            weather_tmx = weather_item.get('fcstValue', None)
-                        elif item_category == "WTS":
-                            weather_wts = weather_item.get('fcstValue', None)
-                        else:
-                            continue
-                    
-                    if weather_tmn != None and weather_tmx != None and weather_wts != None:
-                        weather_str = f"{str(weather_tmn)[:-2]}~{str(weather_tmx)[:-2]}℃ ({weather_wts})"
-                    elif weather_tmn != None and weather_tmx != None:
-                        weather_str = f"{str(weather_tmn)[:-2]}~{str(weather_tmx)[:-2]}℃"
                 
                 draw.text((x_loca_col[2], y_loca_row[3]), f"{weather_str}", "white", self.font14)
                     
@@ -539,7 +532,6 @@ class MatrixManager:
             time.sleep(0.1)
             
         self.refresh(display)
-        print("FUNC END")
         time.sleep(1)
         return 0
         

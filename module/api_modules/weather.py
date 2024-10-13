@@ -89,10 +89,10 @@ FineDust_Grade = {
 }
 
 class weather_api_requester:
-    def __init__(self, SERVICE_KEY, _api_timeout=5):
-        self.logger = utils.create_logger('weather_api_module')
+    def __init__(self, SERVICE_KEY, _OPTIONS):
         self.SERVICE_KEY = SERVICE_KEY
-        self.api_timeout = _api_timeout
+        self.OPTION = _OPTIONS
+        self.api_timeout = self.OPTION['api_timeout']
 
     def get_vilage_fcst(self, nx, ny, base_date, base_time, num_of_rows='1000', page_no='1', data_type='XML'):
         # default response

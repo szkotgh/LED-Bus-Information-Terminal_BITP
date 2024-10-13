@@ -1,14 +1,14 @@
 {
-    "set_api_error_retry_count" : 10,
-    "set_api_timeout" : 5,
+    "api_error_retry_count" : 10,
+    "api_timeout" : 5,
     "logging" : false,
     "busStationList": [
         {
-            "keyword" : "22010",
-            "stationDesc" : "버스열라많네네치킨"
+            "keyword" : "29413",
+            "stationDesc" : ""
         },
         {
-            "keyword" : "29413",
+            "keyword" : "22010",
             "stationDesc" : ""
         }
 	]

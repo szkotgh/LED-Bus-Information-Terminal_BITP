@@ -3,6 +3,7 @@ import sys
 import logging
 import json
 import base64
+import socket
 from hashlib import md5
 import dotenv
 import datetime
@@ -70,14 +71,11 @@ def parse_time(ftime_str: str, time_format: str | None = default_timef) -> datet
 
 def get_ip(_defalut:str = "N/A") -> str:
     try:
-        if os.name == 'nt':
-            ip = subprocess.check_output(['ipconfig']).decode('utf-8').split('\n')
-            ip_address = ip[14].split(':')[-1].strip() if ip else _defalut
-        else:
-            ip = subprocess.check_output(['hostname', '-I']).decode('utf-8').split(' ')
-            ip_address = ip[0] if ip else _defalut
-        ip_address = ip if ip else _defalut
-    except Exception:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("1.1.1.1", 80))
+        ip_address = s.getsockname()[0]
+        s.close()
+    except:
         ip_address = _defalut
     
     return ip_address
@@ -171,8 +169,6 @@ def detect_response_error(_res_dict:dict, _df_code:str='-1', _df_msg:str='Unknow
 def check_internet_connection():
     try:
         requests.get("http://www.google.com", timeout=1)
-        print("[Check_Internet_Connection]", "Connection Success")
         return True
     except Exception as e:
-        print("[Check_Internet_Connection]", f"Connection Error: {e}")
         return False

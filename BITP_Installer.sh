@@ -24,9 +24,9 @@ fi
 CMDLINE_FILE="/boot/firmware/cmdline.txt"
 
 # install module
-python3 -m pip config set global.break-system-packages true
-python -m pip install --upgrade pip
-pip install --upgrade setuptools
+sudo python3 -m pip config set global.break-system-packages true
+sudo python -m pip install --upgrade pip
+sudo pip install --upgrade setuptools
 echo "Installing requirement python modules..."
 if sudo pip install -r requirements.txt; then
     echo "Python modules installed successfully."
