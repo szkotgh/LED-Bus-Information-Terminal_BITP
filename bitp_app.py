@@ -45,26 +45,19 @@ SERIAL_KEY = utils.load_environ(ENV_PATH, 'SERIAL_KEY')
 FSERIAL_KEY = '-'.join([SERIAL_KEY[i:i+4] for i in range(0, len(SERIAL_KEY), 4)])
 
 # program start
+## get manager (3/1)
 info_manager = InfoManager(SERVICE_KEY, OPTION)
 matrix_manager = MatrixManager(OPTION)
 speaker_manager = SpeakerManager(GOOGLE_KEY, OPTION)
+## start text print (3/2)
 # for i in range(100, -1, -1):
 #     sec_str = i/10
 #     if sec_str >= 5:
 #         sec_str = int(sec_str)
 #     matrix_manager.show_text_page([f"BIT가 시작됩니다 . . . ({sec_str}s)", "", f"{utils.get_now_ftime()}", f"IP={utils.get_ip()}", f"(v2.1.16) {FSERIAL_KEY}"], 0, 0.1, _status_prt=False)
 
-# # show test page
-# matrix_manager.show_test_page(0, 1)
-# matrix_manager.show_test_page(1, 3)
-# matrix_manager.show_test_page(2, 3)
-
-# # etc print
-# matrix_manager.show_text_page(["한국환경공단 에어코리아 대기오염 정보", "데이터는 실시간 관측된 자료이며, 측정소 현지 사정이나 데이터의 수신상태에 따라 미수신 될 수 있음.", "", "", "출처/데이터 오류 가능성 고지"], _status_prt=False)
-
-# thread start
+## thread start (3/3)
 thread_list = []
-
 def _auto_info_update_target():
     while True:
         time.sleep(30)
@@ -74,21 +67,25 @@ def _auto_info_update_target():
             print(f"[_auto_info_update_target] info updated")
         else:
             print(f"[_auto_info_update_target] Upload failed: Internet connection has been reported to be poor.")
-            
-            
-auto_info_update_target = threading.Thread(target=_auto_info_update_target, daemon=True)
-auto_info_update_target.start()
-thread_list.append(auto_info_update_target)
-
 def _auto_internet_check_target():
     while True:
         matrix_manager.network_connected = utils.check_internet_connection()
         print(f"[_auto_internet_check_target] internet status: {matrix_manager.network_connected}")
         time.sleep(5)
-
+auto_info_update_target = threading.Thread(target=_auto_info_update_target, daemon=True)
+auto_info_update_target.start()
+thread_list.append(auto_info_update_target)
 auto_internet_check_target = threading.Thread(target=_auto_internet_check_target, daemon=True)
 auto_internet_check_target.start()
 thread_list.append(auto_internet_check_target)
+
+# # show test page
+# matrix_manager.show_test_page(0, 1)
+# matrix_manager.show_test_page(1, 3)
+# matrix_manager.show_test_page(2, 3)
+
+# # etc print
+# matrix_manager.show_text_page(["한국환경공단 에어코리아 대기오염 정보", "데이터는 실시간 관측된 자료이며, 측정소 현지 사정이나 데이터의 수신상태에 따라 미수신 될 수 있음.", "", "", "출처/데이터 오류 가능성 고지"], _status_prt=False)
 
 # show main content
 while 1:

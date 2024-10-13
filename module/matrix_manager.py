@@ -457,7 +457,7 @@ class MatrixManager:
         pm25value = None
         pm10_grade = None
         pm25_grade = None
-        if finedust_info["errorOrcd"] == False and finedust_info["apiSuccess"] == True:
+        if finedust_info["errorOcrd"] == False and finedust_info["apiSuccess"] == True:
             finedust_info_rst = finedust_info["result"]
             pm10value = finedust_info_rst.get("pm10Value", None)
             pm25value = finedust_info_rst.get("pm25Value", None)
@@ -474,7 +474,7 @@ class MatrixManager:
                 elif pm25value < 76: pm25_grade = 2
                 else: pm25_grade = 3
         ## temp & weather info parsing
-        if weather_info["errorOrcd"] == False and weather_info['apiSuccess'] == True:
+        if weather_info["errorOcrd"] == False and weather_info['apiSuccess'] == True:
             weather_str = '정보없음'
             weather_info_rst = weather_info['result']
             if weather_info_rst['errorOcrd'] == False and weather_info_rst['apiSuccess'] == True:
