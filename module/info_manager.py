@@ -418,7 +418,7 @@ class InfoManager:
             else:            
                 self.logging(f"[{log_title}] - Updated. [{station_data['keyword']}]({station_index}/{len(self.station_datas)})", "info")
         
-        self.station_datas[station_index]['finedustInfo'] = fine_dust_rst
+            self.station_datas[station_index]['finedustInfo'] = fine_dust_rst
         
         self.logging(f"[{log_title}] - Updating process end.", "info")
         
