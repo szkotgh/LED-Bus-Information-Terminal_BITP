@@ -206,7 +206,6 @@ class weather_api_requester:
             'resCode' : resCode,
             'resMsg'  : resMsg
         })
-        
         if resCode in ['0', '00']:
             f_response.update({
                 'apiSuccess' : True,

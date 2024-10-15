@@ -49,14 +49,8 @@ FSERIAL_KEY = '-'.join([SERIAL_KEY[i:i+4] for i in range(0, len(SERIAL_KEY), 4)]
 info_manager = InfoManager(SERVICE_KEY, OPTION)
 matrix_manager = MatrixManager(OPTION)
 speaker_manager = SpeakerManager(GOOGLE_KEY, OPTION)
-## start text print (3/2)
-# for i in range(100, -1, -1):
-#     sec_str = i/10
-#     if sec_str >= 5:
-#         sec_str = int(sec_str)
-#     matrix_manager.show_text_page([f"BIT가 시작됩니다 . . . ({sec_str}s)", "", f"{utils.get_now_ftime()}", f"IP={utils.get_ip()}", f"(v2.1.16) {FSERIAL_KEY}"], 0, 0.1, _status_prt=False)
 
-## thread start (3/3)
+## thread start (3/2)
 thread_list = []
 def _auto_info_update_target(_pr_delay_time:int=30):
     while True:
@@ -84,6 +78,14 @@ auto_internet_check_target = threading.Thread(target=_auto_internet_check_target
 auto_internet_check_target.start()
 thread_list.append(auto_internet_check_target)
 
+# start text print (3/3)
+for i in range(100, -1, -1):
+    sec_str = i/10
+    if sec_str >= 5:
+        sec_str = int(sec_str)
+    matrix_manager.show_text_page([f"BIT가 시작됩니다 . . . ({sec_str}s)", "", f"{utils.get_now_ftime()}", f"IP={utils.get_ip()}", f"(v2.1.16) {FSERIAL_KEY}"], 0, 0.1, _status_prt=False)
+
+
 # # show test page
 # matrix_manager.show_test_page(0, 1)
 # matrix_manager.show_test_page(1, 3)
@@ -96,15 +98,17 @@ thread_list.append(auto_internet_check_target)
 while 1:
     for i in range(0, len(info_manager.station_datas)):
         for _repeat in range(0, 3+1):
-            try: matrix_manager.show_station_page(i)
-            except Exception as e:
-                matrix_manager.show_text_page(["SHOW STATION PAGE", "에러가 발생하였습니다.", "", f"{utils.get_now_iso_time()}", f"SHOW_STATION_PAGE_ERROR: {e}"], _repeat=2);
-                print(f"SHOW STATION PAGE ERROR: {e}")
+            # try: 
+            matrix_manager.show_station_page(i)
+            # except Exception as e:
+            #     matrix_manager.show_text_page(["SHOW STATION PAGE", "에러가 발생하였습니다.", "", f"{utils.get_now_iso_time()}", f"SHOW_STATION_PAGE_ERROR: {e}"], _repeat=2);
+            #     print(f"SHOW STATION PAGE ERROR: {e}")
             
-        try: matrix_manager.show_station_etc_page(i)
-        except Exception as e:
-            matrix_manager.show_text_page(["SHOW STATION ETC PAGE", "에러가 발생했습니다.", "", f"{utils.get_now_iso_time()}", f"SHOW_STATION_ETC_PAGE_ERROR: {e}"], _repeat=2);
-            print(f"SHOW STATION ETC PAGE ERROR: {e}")
+        # try: 
+        matrix_manager.show_station_etc_page(i)
+        # except Exception as e:
+        #     matrix_manager.show_text_page(["SHOW STATION ETC PAGE", "에러가 발생했습니다.", "", f"{utils.get_now_iso_time()}", f"SHOW_STATION_ETC_PAGE_ERROR: {e}"], _repeat=2);
+        #     print(f"SHOW STATION ETC PAGE ERROR: {e}")
     
 print()
 print('PROGRAM ENDED')

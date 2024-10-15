@@ -402,14 +402,10 @@ class InfoManager:
             for try_count in range(0, self.API_ERROR_RETRY_COUNT+1):
                 if try_count == self.API_ERROR_RETRY_COUNT:
                     self.logging(f"[{log_title}] - API Request fail. [{station_data['keyword']}]", "error")
-                    fine_dust_rst = False
                     break
                 
                 self.logging(f"[{log_title}] - Updating . . . [{station_data['keyword']}]({station_index}/{len(self.station_datas)})", "info")
                 fine_dust_rst = self.weather_api_mgr.get_fine_dust_info(sidoName=sido_name)
-                
-                with open('fine_dust_struct.json', 'w', encoding='UTF-8') as f:
-                    f.write(json.dumps(fine_dust_rst, indent=4))
                 
                 if fine_dust_rst['errorOcrd'] == True:
                     self.logging(f"[{log_title}] - API Request fail. retry . . . [{station_data['keyword']}]({try_count+1}/{self.API_ERROR_RETRY_COUNT})", "warning")
@@ -422,7 +418,8 @@ class InfoManager:
                 self.logging(f"[{log_title}] - Update Fail. [{station_data['keyword']}]({station_index}/{len(self.station_datas)})", "info")
             else:            
                 self.logging(f"[{log_title}] - Updated. [{station_data['keyword']}]({station_index}/{len(self.station_datas)})", "info")
-                
+        
+        print(f"AAAAAAAAAAA: {fine_dust_rst}")
         self.station_datas[station_index]['finedustInfo'] = fine_dust_rst
         self.logging(f"[{log_title}] - Updating process end.", "info")
         
