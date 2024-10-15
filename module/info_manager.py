@@ -121,7 +121,7 @@ class InfoManager:
         
         self.logging(f"[{log_title}] - Updating process end.", "info")
         
-        return 0;
+        return update_succes
         
     def update_station_arvl_bus(self):
         log_title = "UpdateStationArvlBus"
@@ -161,7 +161,7 @@ class InfoManager:
         
         self.logging(f"[{log_title}] - Updating process end.", "info")
         
-        return 0;
+        return update_succes
         
     def update_station_arvl_bus_info(self):
         log_title = "UpdateStationArvlBusInfo"
@@ -212,7 +212,7 @@ class InfoManager:
                 
         self.logging(f"[{log_title}] - Updating process end.", "info")
         
-        return 0;
+        return update_succes
     
     def update_station_arvl_bus_route_info(self):
         log_title = "UpdateStationArvlBusRouteInfo"
@@ -261,10 +261,7 @@ class InfoManager:
         
         self.logging(f"[{log_title}] - Updating process end.", "info")
         
-        with open('station_datas_struct.json', 'w', encoding='UTF-8') as f:
-            f.write(json.dumps(self.station_datas, indent=4))
-        
-        return 0;
+        return update_succes
     
     def update_weather_info(self, nx="36", ny="127"):
         log_title = "UpdateWeatherInfo"
@@ -377,21 +374,23 @@ class InfoManager:
                 })
                 
                 weather_rst['result'] = tomorrow_need_info
-                station_data['weatherInfo'] = weather_rst
+                
+                self.station_datas[station_index]['arvlBus'] = weather_rst
                 
                 self.logging(f"[{log_title}] - Updated. [{station_data['keyword']}]({station_index+1}/{len(self.station_datas)})", "info")
                         
         self.logging(f"[{log_title}] - Updating process end.", "info")
-        return 0
+        
+        return update_succes
     
     def update_fine_dust_info(self):
         log_title = "UpdateFineDustInfo"
         self.logging(f'[{log_title}] - Start updating . . . ', "info")
         
         for station_index, station_data in enumerate(self.station_datas):
-            # if station_data['stationInfo']['errorOcrd'] == True or station_data['stationInfo']['apiSuccess'] == False:
-            #     self.logging(f"[{log_title}] - Skip. [{station_data['keyword']}]({station_index}/{len(self.station_datas)})", "warning")
-            #     continue
+            if station_data['stationInfo']['errorOcrd'] == True or station_data['stationInfo']['apiSuccess'] == False:
+                self.logging(f"[{log_title}] - Skip. [{station_data['keyword']}]({station_index}/{len(self.station_datas)})", "warning")
+                continue
             
             fine_dust_rst = None
             update_succes = False
@@ -419,8 +418,8 @@ class InfoManager:
             else:            
                 self.logging(f"[{log_title}] - Updated. [{station_data['keyword']}]({station_index}/{len(self.station_datas)})", "info")
         
-        print(f"AAAAAAAAAAA: {fine_dust_rst}")
         self.station_datas[station_index]['finedustInfo'] = fine_dust_rst
+        
         self.logging(f"[{log_title}] - Updating process end.", "info")
         
         return 0
