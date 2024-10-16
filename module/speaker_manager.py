@@ -7,15 +7,15 @@ class SpeakerManager:
         self.API_KEY = GOOGLE_KEY
         self.tmp_path = '/src/audio'
         
-        self.OPTION = _OPTIONS
+        self.load_option(_OPTIONS)
         
-        if self.OPTION['logging'] == True:
-            self.logger = utils.create_logger('speaker_manager')
         self.logging(f"tmp_path : {self.tmp_path}", "info")
         
-        self.API_ERROR_RETRY_COUNT = self.OPTION.get('set_api_error_retry_count', 10)
-        self.API_TIMEOUT = self.OPTION.get('set_api_timeout', 5)
-    
+    def load_option(self, _OPTION):
+        self.OPTION = _OPTION
+        self.API_ERROR_RETRY_COUNT = self.OPTION['api_error_retry_count']
+        self.API_TIMEOUT = self.OPTION['api_timeout']
+        
     def logging(self, str: str, type="info") -> bool:
         if self.OPTION['logging'] == False:
             return False
@@ -39,9 +39,6 @@ class SpeakerManager:
             self.logger.info(str)
             
         return True
-    
-    def reload_option(self, _OPTION):
-        self.OPTION = _OPTION
     
     def speak_text(self, text):
         url = "https://texttospeech.googleapis.com/v1beta1/voices"

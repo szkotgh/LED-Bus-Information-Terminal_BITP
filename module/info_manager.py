@@ -24,11 +24,9 @@ except Exception as e:
 class InfoManager:
     def __init__(self, _SERVICE_KEY, _OPTIONS):
         # Init class
-        self.reload_option(_OPTIONS)
         self.SERVICE_KEY = _SERVICE_KEY
         self.logging(f" * InfoManager Regi SERVICE_KEY: {self.SERVICE_KEY}")
-        self.API_ERROR_RETRY_COUNT = self.OPTION['api_error_retry_count']
-        self.API_TIMEOUT = self.OPTION['api_timeout']
+        self.load_option(_OPTIONS)
         self.is_init = False
         self.is_arvl_bus_info_updated = False
         self.is_etc_info_updated = False
@@ -43,8 +41,10 @@ class InfoManager:
         self.tomorrow_need_info = []
         self.weather_api_mgr = weather_api.weather_api_requester(self.SERVICE_KEY, _OPTIONS)
     
-    def reload_option(self, _OPTIONS):
+    def load_option(self, _OPTIONS):
         self.OPTION = _OPTIONS
+        self.API_ERROR_RETRY_COUNT = self.OPTION['api_error_retry_count']
+        self.API_TIMEOUT = self.OPTION['api_timeout']
     
     def logging(self, str: str, type="info") -> bool:
         if self.OPTION['logging'] == False:

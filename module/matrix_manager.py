@@ -41,12 +41,9 @@ class MatrixManager:
         self.size = (self.matrix.width, self.matrix.height)
         # self.size = (224, 64)
         
-        self.OPTION = _OPTIONS
+        self.load_option(_OPTIONS)
         
-        # class var init
-        if self.OPTION['logging'] == True:
-            self.logger = utils.create_logger('matrix_manager')
-        
+        # class var init     
         self.station_datas = None
         self.station_data_len = 0
         self.network_connected = False
@@ -69,6 +66,9 @@ class MatrixManager:
         self.no_wifi_icon_path = os.path.join(icon_path, 'no_wifi.png')
         self.no_wifi_icon = Image.open(self.no_wifi_icon_path)
     
+    def load_option(self, _OPTIONS):
+        self.OPTIONS = _OPTIONS
+        
     def logging(self, str: str, type="info") -> bool:
         if self.OPTION['logging'] == False:
             return False
@@ -93,9 +93,6 @@ class MatrixManager:
             
         return True
     
-    def reload_option(self, _OPTIONS):
-        self.OPTIONS = _OPTIONS
-        
     def update_station_info(self, station_datas: dict) -> None:
         self.station_datas = station_datas
         self.station_data_len = len(station_datas)
