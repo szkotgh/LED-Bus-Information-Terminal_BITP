@@ -29,18 +29,13 @@ class InfoManager:
         self.logging(f" * InfoManager Regi SERVICE_KEY: {self.SERVICE_KEY}")
         self.API_ERROR_RETRY_COUNT = self.OPTION['api_error_retry_count']
         self.API_TIMEOUT = self.OPTION['api_timeout']
-        
-        # Set logger
-        self.logging(f'Logging start. {__class__}', 'info')
+        self.is_init = False
+        self.is_arvl_bus_info_updated = False
+        self.is_etc_info_updated = False
+        self.station_datas = []
         
         # Bus info init
-        self.station_datas = []
         self.bus_api_mgr = bus_api.bus_api_requester(self.SERVICE_KEY, _OPTIONS)
-        
-        self.station_datas = []
-        self.init_station_datas()
-        
-        self.logging(f" * Regi station list : {self.station_datas}")
         
         # Weather info init
         self.today_weather_info = []
@@ -76,6 +71,7 @@ class InfoManager:
         return True
     
     def init_station_datas(self):
+        self.station_datas = []
         for station in self.OPTION['busStationList']:
             self.station_datas.append({
                 'keyword'          : station['keyword'],
@@ -85,14 +81,16 @@ class InfoManager:
                 'arvlBusInfo'      : [],
                 'arvlBusRouteInfo' : [],
                 'weatherInfo'      : None,
-                'finedustInfo'     : None
+                'finedustInfo'     : None,
             })
     
     def update_station_info(self) -> None:
         log_title = "UpdateStationInfo"
         
         self.logging(f"[{log_title}] - Start updating . . .", "info")
+        
         for station_index, station_data in enumerate(self.station_datas):
+            self.station_datas[station_index]['stationInfo'] = None
             update_succes = False
             station_info_rst = None
             
@@ -127,9 +125,11 @@ class InfoManager:
         log_title = "UpdateStationArvlBus"
 
         self.logging(f"[{log_title}] - Start updating . . . ", "info")
+        
         for station_index, station_data in enumerate(self.station_datas):
+            self.station_datas[station_index]['arvlBus'] = None
+            
             if station_data['stationInfo']['errorOcrd'] == True or station_data['stationInfo']['apiSuccess'] == False:
-                self.station_datas[station_index]['arvlBus'] = None
                 self.logging(f"[{log_title}] - Skip. The data cannot be retrieved. [{station_data['keyword']}]({station_index+1}/{len(self.station_datas)})", "warning")
                 continue
             
@@ -167,21 +167,22 @@ class InfoManager:
         log_title = "UpdateStationArvlBusInfo"
         
         self.logging(f"[{log_title}] - Start updating . . . ", "info")
+        
         for station_index, station_data in enumerate(self.station_datas):
+            self.station_datas[station_index]['arvlBusInfo'] = []
+            
             # Check arvlBus Data
             if station_data['arvlBus']['errorOcrd'] == True or station_data['arvlBus']['apiSuccess'] == False:
-                self.station_datas[station_index]['arvlBusInfo'].append(None)
                 self.logging(f"[{log_title}] - Skip. The data cannot be retrieved. [{station_data['keyword']}]({station_index+1}/{len(self.station_datas)})", "warning")
                 continue
             
             if not station_data['arvlBus']['resCode'] in ["0", "00"]:
-                self.station_datas[station_index]['arvlBusInfo'].append(None)
                 self.logging(f"[{log_title}] - Skip. The data is not in a state where it can be retrieved. [{station_data['keyword']}]({station_index+1}/{len(self.station_datas)})", "warning")
                 continue
             
             # Get arvlBus Infos
             for arvl_index, arvlBus in enumerate(station_data['arvlBus']['result']):
-                arvlBus_routeId = arvlBus.get('routeId', None)
+                arvlBus_routeId = arvlBus['routeId']
                 
                 update_succes = False
                 arvl_bus_info_rst = None
@@ -218,7 +219,10 @@ class InfoManager:
         log_title = "UpdateStationArvlBusRouteInfo"
         
         self.logging(f"[{log_title}] - Start updating . . . ", "info")
+        
         for station_index, station_data in enumerate(self.station_datas):
+            self.station_datas[station_index]['arvlBusRouteInfo'] = []
+            
             # Check arvlBus Data
             if station_data['arvlBus']['errorOcrd'] == True or station_data['arvlBus']['apiSuccess'] == False:
                 self.station_datas[station_index]['arvlBusRouteInfo'].append(None)
@@ -285,14 +289,14 @@ class InfoManager:
         sel_base_time = min(base_time, key=lambda t: abs(int(today_time) - int(t)))
         
         for station_index, station_data in enumerate(self.station_datas):
+            self.station_datas[station_index]['weatherInfo'] = None
+            
             # Check arvlBus Data
             if station_data['stationInfo']['errorOcrd'] == True or station_data['stationInfo']['apiSuccess'] == False:
-                station_data['weatherInfo'] = None
                 self.logging(f"[{log_title}] - Skip. The data cannot be retrieved. [{station_data['keyword']}]({station_index+1}/{len(self.station_datas)})", "warning")
                 continue
             
             if not station_data['stationInfo']['resCode'] in ["0", "00"]:
-                station_data['weatherInfo'] = None
                 self.logging(f"[{log_title}] - Skip. The data is not in a state where it can be retrieved. [{station_data['keyword']}]({station_index+1}/{len(self.station_datas)})", "warning")
                 continue
             
@@ -325,7 +329,7 @@ class InfoManager:
             elif weather_rst['apiSuccess'] == False:
                 self.logging(f"[{log_title}] - Update Fail. [{station_data['keyword']}]({station_index+1}/{len(self.station_datas)})", "warning")
             
-            elif update_succes == True:
+            else:
                 today_weather_info = []
                 tomorrow_weather_info = []
                 tomorrow_need_info = []
@@ -375,7 +379,7 @@ class InfoManager:
                 
                 weather_rst['result'] = tomorrow_need_info
                 
-                self.station_datas[station_index]['arvlBus'] = weather_rst
+                self.station_datas[station_index]['weatherInfo'] = weather_rst
                 
                 self.logging(f"[{log_title}] - Updated. [{station_data['keyword']}]({station_index+1}/{len(self.station_datas)})", "info")
                         
@@ -385,11 +389,14 @@ class InfoManager:
     
     def update_fine_dust_info(self):
         log_title = "UpdateFineDustInfo"
+        
         self.logging(f'[{log_title}] - Start updating . . . ', "info")
         
         for station_index, station_data in enumerate(self.station_datas):
+            self.station_datas[station_index]['finedustInfo'] = None
+            
             if station_data['stationInfo']['errorOcrd'] == True or station_data['stationInfo']['apiSuccess'] == False:
-                self.logging(f"[{log_title}] - Skip. [{station_data['keyword']}]({station_index}/{len(self.station_datas)})", "warning")
+                self.logging(f"[{log_title}] - Skip. [{station_data['keyword']}]({station_index+1}/{len(self.station_datas)})", "warning")
                 continue
             
             fine_dust_rst = None
@@ -403,7 +410,7 @@ class InfoManager:
                     self.logging(f"[{log_title}] - API Request fail. [{station_data['keyword']}]", "error")
                     break
                 
-                self.logging(f"[{log_title}] - Updating . . . [{station_data['keyword']}]({station_index}/{len(self.station_datas)})", "info")
+                self.logging(f"[{log_title}] - Updating . . . [{station_data['keyword']}]({station_index+1}/{len(self.station_datas)})", "info")
                 fine_dust_rst = self.weather_api_mgr.get_fine_dust_info(sidoName=sido_name)
                 
                 if fine_dust_rst['errorOcrd'] == True:
@@ -414,23 +421,117 @@ class InfoManager:
                 break
             
             if update_succes == False:
-                self.logging(f"[{log_title}] - Update Fail. [{station_data['keyword']}]({station_index}/{len(self.station_datas)})", "info")
-            else:            
-                self.logging(f"[{log_title}] - Updated. [{station_data['keyword']}]({station_index}/{len(self.station_datas)})", "info")
-        
+                self.logging(f"[{log_title}] - Update Fail. [{station_data['keyword']}]({station_index+1}/{len(self.station_datas)})", "info")
+            else:
+                for fine_dust_item in fine_dust_rst['result']:
+                    if fine_dust_item['stationName'] == admin_dist:
+                        fine_dust_rst['result'] = fine_dust_item
+                        break
+                self.logging(f"[{log_title}] - Updated. [{station_data['keyword']}]({station_index+1}/{len(self.station_datas)})", "info")
+
             self.station_datas[station_index]['finedustInfo'] = fine_dust_rst
         
         self.logging(f"[{log_title}] - Updating process end.", "info")
         
-        return 0
+        return update_succes
 
-    def update_all_info(self):
-        self.init_station_datas()
-        self.update_station_info()
-        self.update_station_arvl_bus()
-        self.update_station_arvl_bus_info()
-        self.update_station_arvl_bus_route_info()
-        self.update_fine_dust_info()
-        self.update_weather_info()
+    def init_info(self):
+        log_title = "InitInfo"
         
-        return 0
+        self.is_init = False
+        self.logging(f"[{log_title}] - Initializing start", "info")
+        self.init_station_datas()
+        for retry_count in range(0, self.API_ERROR_RETRY_COUNT+1):
+            update_rst = self.update_station_info()
+            if update_rst == True:
+                self.is_init = True
+                break
+            self.logging(f"[{log_title}] - Update Fail. Retry . . . ({retry_count+1}/{self.API_ERROR_RETRY_COUNT})", "warning")
+        
+        if self.is_init == False:
+            self.logging(f"[{log_title}] - Initializing Fail.", "error")
+            return self.is_init
+        self.logging(f"[{log_title}] - Initializing Success.", "info")
+        return self.is_init
+    
+    def init_arvl_bus_info(self):
+        log_title = "InitArvlBusInfo"
+        
+        self.is_arvl_bus_info_updated = False
+        self.logging(f"[{log_title}] - Start Initializing . . . ", "info")
+        if self.is_init == False:
+            self.logging(f"[{log_title}] - Not initialized. Initializing cancel.", "error")
+            return False
+        
+        arvl_bus_updated = False
+        for retry_count in range(0, self.API_ERROR_RETRY_COUNT+1):
+            update_rst = self.update_station_arvl_bus()
+            if update_rst == True:
+                arvl_bus_updated = True
+                break
+            self.logging(f"[{log_title}] - Update Fail. Retry . . . ({retry_count+1}/{self.API_ERROR_RETRY_COUNT})", "warning")
+        if arvl_bus_updated == False:
+            self.logging(f"[{log_title}] - Initializing Fail.", "error")
+            return False
+        
+        arvl_bus_route_info_updated = False
+        for retry_count in range(0, self.API_ERROR_RETRY_COUNT+1):
+            update_rst = self.update_station_arvl_bus_info()
+            if update_rst == True:
+                arvl_bus_route_info_updated = True
+                break
+            self.logging(f"[{log_title}] - Update Fail. Retry . . . ({retry_count+1}/{self.API_ERROR_RETRY_COUNT})", "warning")
+        if arvl_bus_route_info_updated == False:
+            self.logging(f"[{log_title}] - Initializing Fail.", "error")
+            return False
+        
+        arvl_bus_route_info_updated = False
+        for retry_count in range(0, self.API_ERROR_RETRY_COUNT+1):
+            update_rst = self.update_station_arvl_bus_route_info()
+            if update_rst == True:
+                arvl_bus_route_info_updated = True
+                break
+            self.logging(f"[{log_title}] - Update Fail. Retry . . . ({retry_count+1}/{self.API_ERROR_RETRY_COUNT})", "warning")
+        if arvl_bus_route_info_updated == False:
+            self.logging(f"[{log_title}] - Initializing Fail.", "error")
+            return False
+        
+        self.is_arvl_bus_info_updated = True
+        self.logging(f"[{log_title}] - Initializing process end.", "info")
+        return True
+        
+    def init_etc_info(self):
+        log_title = "InitEtcInfo"
+        
+        self.is_etc_info_updated = False
+        self.logging(f"[{log_title}] - Start Initializing . . . ", "info")
+        
+        if self.is_init == False:
+            self.logging(f"[{log_title}] - Not initialized. Update cancel.", "error")
+            return False
+        
+        fine_dust_info_updated = False
+        for retry_count in range(0, self.API_ERROR_RETRY_COUNT+1):
+            update_rst = self.update_fine_dust_info()
+            if update_rst == True:
+                fine_dust_info_updated = True
+                break
+            self.logging(f"[{log_title}] - Update Fail. Retry . . . ({retry_count+1}/{self.API_ERROR_RETRY_COUNT})", "warning")
+        if fine_dust_info_updated == False:
+            self.logging(f"[{log_title}] - Initializing Fail.", "error")
+            return False
+        
+        weather_info_updated = False
+        for retry_count in range(0, self.API_ERROR_RETRY_COUNT+1):
+            update_rst = self.update_weather_info()
+            if update_rst == True:
+                weather_info_updated = True
+                break
+            self.logging(f"[{log_title}] - Update Fail. Retry . . . ({retry_count+1}/{self.API_ERROR_RETRY_COUNT})", "warning")
+        if weather_info_updated == False:
+            self.logging(f"[{log_title}] - Initializing Fail.", "error")
+            return False
+
+        self.is_etc_info_updated = True
+        self.logging(f"[{log_title}] - Initializing process end.", "info")
+        return True

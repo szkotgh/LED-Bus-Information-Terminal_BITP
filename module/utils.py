@@ -69,10 +69,10 @@ def parse_time(ftime_str: str, time_format: str | None = default_timef) -> datet
     time = datetime.datetime.strptime(ftime_str, time_format)
     return time
 
-def get_ip(_defalut:str = "N/A") -> str:
+def get_ip(_defalut: str = "N/A", _ext_ip: str = '1.1.1.1') -> str:
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(("1.1.1.1", 80))
+        s.connect((_ext_ip, 80))
         ip_address = s.getsockname()[0]
         s.close()
     except:
