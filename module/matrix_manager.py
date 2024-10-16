@@ -43,7 +43,7 @@ class MatrixManager:
         
         self.load_option(_OPTIONS)
         
-        # class var init     
+        # class var init        
         self.station_datas = None
         self.station_data_len = 0
         self.network_connected = False
