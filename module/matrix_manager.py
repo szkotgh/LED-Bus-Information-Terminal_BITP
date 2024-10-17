@@ -22,6 +22,8 @@ except Exception as e:
 
 class MatrixManager:
     def __init__(self, _OPTIONS) -> None:
+        self.load_option(_OPTIONS)
+        
         # Configuration for the matrix
         # https://github.com/hzeller/rpi-rgb-led-matrix/blob/master/include/led-matrix.h#L57
         options = RGBMatrixOptions()
@@ -40,8 +42,6 @@ class MatrixManager:
         
         self.size = (self.matrix.width, self.matrix.height)
         # self.size = (224, 64)
-        
-        self.load_option(_OPTIONS)
         
         # class var init        
         self.station_datas = None
@@ -203,6 +203,8 @@ class MatrixManager:
         except:
             self.show_text_page([f"실시간 버스 정보 화면 [{_show_station_num}]", "잘못된 인덱스입니다. 인덱스 번호를 확인하세요.", "화면을 표시할 수 없습니다.", "", f"{utils.get_now_iso_time()}"], _repeat=1)
             return 1
+        
+        
         # # write log
         # with open('./log/first-struct.log', 'w', encoding='UTF-8') as f:
         #     f.write(json.dumps(station_data))
@@ -439,7 +441,7 @@ class MatrixManager:
             self.show_text_page([f"실시간 버스 부가정보 화면 [{_show_station_num}]", "잘못된 인덱스입니다. 인덱스 번호를 확인하세요.", "화면을 표시할 수 없습니다.", "", f"{utils.get_now_iso_time()}"], _repeat=1)
             return 1
 
-        weather_info  = station_data['weatherInfo']
+        weather_info = station_data['weatherInfo']
         finedust_info = station_data['finedustInfo']
         
         x_loca_col  = [0, 70, 77]
@@ -470,34 +472,35 @@ class MatrixManager:
                 elif pm25value < 36: pm25_grade = 1
                 elif pm25value < 76: pm25_grade = 2
                 else: pm25_grade = 3
+            
         ## temp & weather info parsing
         if weather_info["errorOcrd"] == False and weather_info['apiSuccess'] == True:
             weather_str = '정보없음'
             weather_info_rst = weather_info['result']
-            if weather_info_rst['errorOcrd'] == False and weather_info_rst['apiSuccess'] == True:
-                weather_tmn = None
-                weather_tmx = None
-                weather_wts = None
+            
+            weather_tmn = None
+            weather_tmx = None
+            weather_wts = None
+            
+            for weather_item in weather_info_rst:
+                if weather_item == None:
+                    break
                 
-                for weather_item in weather_info_rst:
-                    if weather_item == None:
-                        break
-                    
-                    item_category = weather_item.get('category', None)
-                    
-                    if item_category == "TMN":
-                        weather_tmn = weather_item.get('fcstValue', None)
-                    elif item_category == "TMX":
-                        weather_tmx = weather_item.get('fcstValue', None)
-                    elif item_category == "WTS":
-                        weather_wts = weather_item.get('fcstValue', None)
-                    else:
-                        continue
+                item_category = weather_item.get('category', None)
                 
-                if weather_tmn != None and weather_tmx != None and weather_wts != None:
-                    weather_str = f"{str(weather_tmn)[:-2]}~{str(weather_tmx)[:-2]}℃ ({weather_wts})"
-                elif weather_tmn != None and weather_tmx != None:
-                    weather_str = f"{str(weather_tmn)[:-2]}~{str(weather_tmx)[:-2]}℃"
+                if item_category == "TMN":
+                    weather_tmn = weather_item.get('fcstValue', None)
+                elif item_category == "TMX":
+                    weather_tmx = weather_item.get('fcstValue', None)
+                elif item_category == "WTS":
+                    weather_wts = weather_item.get('fcstValue', None)
+                else:
+                    continue
+            
+            if weather_tmn != None and weather_tmx != None and weather_wts != None:
+                weather_str = f"{str(weather_tmn)[:-2]}~{str(weather_tmx)[:-2]}℃ ({weather_wts})"
+            elif weather_tmn != None and weather_tmx != None:
+                weather_str = f"{str(weather_tmn)[:-2]}~{str(weather_tmx)[:-2]}℃"
         
         # create display
         for i in range(0, _repeat):

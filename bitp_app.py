@@ -52,11 +52,19 @@ speaker_manager = SpeakerManager(GOOGLE_KEY, OPTION)
 
 ## thread start (3/2)
 thread_list = []
+def _auto_internet_check_target(_pr_delay_time:int=5):
+    while True:
+        matrix_manager.network_connected = utils.check_internet_connection()
+        print(f"[_auto_internet_check_target] internet status: {matrix_manager.network_connected}")
+        time.sleep(_pr_delay_time)
 def _auto_info_update_target(_pr_delay_time:int=30):
+    info_manager.init_info()
     while True:
         print(f"[_auto_info_update_target] info update started")
         if matrix_manager.network_connected:
-            info_manager.update_all_info()
+            info_manager.init_arvl_bus_info()
+            info_manager.init_arvl_bus_info()
+            info_manager.init_etc_info()
             matrix_manager.update_station_info(info_manager.station_datas)
             with open('station_datas_struct.json', 'w', encoding='UTF-8') as f:
                 f.write(json.dumps(matrix_manager.station_datas, indent=4))
@@ -66,17 +74,12 @@ def _auto_info_update_target(_pr_delay_time:int=30):
             time.sleep(5)
             continue
         time.sleep(_pr_delay_time)
-def _auto_internet_check_target(_pr_delay_time:int=5):
-    while True:
-        matrix_manager.network_connected = utils.check_internet_connection()
-        print(f"[_auto_internet_check_target] internet status: {matrix_manager.network_connected}")
-        time.sleep(_pr_delay_time)
-auto_info_update_target = threading.Thread(target=_auto_info_update_target, daemon=True)
-auto_info_update_target.start()
-thread_list.append(auto_info_update_target)
 auto_internet_check_target = threading.Thread(target=_auto_internet_check_target, daemon=True)
 auto_internet_check_target.start()
 thread_list.append(auto_internet_check_target)
+auto_info_update_target = threading.Thread(target=_auto_info_update_target, daemon=True)
+auto_info_update_target.start()
+thread_list.append(auto_info_update_target)
 
 # start text print (3/3)
 for i in range(100, -1, -1):

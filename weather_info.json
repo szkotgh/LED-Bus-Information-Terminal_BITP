@@ -1,0 +1,60 @@
+{
+    "queryTime": "20241017205914",
+    "apiSuccess": true,
+    "reqParam": "nx=127,ny=37,base_date=20241017,base_time=2000,num_of_rows=1000,page_no=1,data_type=XML",
+    "errorOcrd": false,
+    "result": [
+        {
+            "baseDate": "20241017",
+            "baseTime": "2000",
+            "category": "TMN",
+            "fcstDate": "20241018",
+            "fcstTime": "0600",
+            "fcstValue": "20.0",
+            "nx": "37",
+            "ny": "127"
+        },
+        {
+            "baseDate": "20241017",
+            "baseTime": "2000",
+            "category": "TMX",
+            "fcstDate": "20241018",
+            "fcstTime": "1500",
+            "fcstValue": "20.0",
+            "nx": "37",
+            "ny": "127"
+        },
+        {
+            "baseDate": "20241017",
+            "baseTime": "2000",
+            "category": "SKY",
+            "fcstDate": "20241018",
+            "fcstTime": "2000",
+            "fcstValue": "4",
+            "nx": "37",
+            "ny": "127"
+        },
+        {
+            "baseDate": "20241017",
+            "baseTime": "2000",
+            "category": "PTY",
+            "fcstDate": "20241018",
+            "fcstTime": "2000",
+            "fcstValue": "1",
+            "nx": "37",
+            "ny": "127"
+        },
+        {
+            "baseDate": "20241017",
+            "baseTime": "2000",
+            "category": "WTS",
+            "fcstDate": "20241018",
+            "fcstTime": "2000",
+            "fcstValue": "\ube44",
+            "nx": "36",
+            "ny": "127"
+        }
+    ],
+    "resCode": "00",
+    "resMsg": "NORMAL_SERVICE"
+}
