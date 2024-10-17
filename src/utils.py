@@ -4,6 +4,7 @@ import json
 import os
 import random
 import subprocess
+import psutil
 
 DB_PATH = os.path.join(os.getcwd(), 'db')
 FILE_INFO_PATH = os.path.join(os.getcwd(), 'db', 'file_infos.json')
@@ -68,3 +69,12 @@ def get_client_ip(request) -> str:
 
 def gen_hash(data: str | None = str(random.randbytes)) -> str:
     return hashlib.sha256(data.encode('utf-8')).hexdigest()
+
+def get_system_info() -> float:
+    system_info = {
+        'cpu_usage': psutil.cpu_percent(interval=1),
+        'memory_usage': psutil.virtual_memory().percent,
+        'disk_usage': psutil.disk_usage('/').percent,
+        'success': True
+    }
+    return system_info

@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<style>
+    table, tr {
+        padding: 0% 10% 0% 10%;    
+    }
+    td {
+        padding: 0 10px;
+    }
+    
+    #usage-containor {
+        width: 50%;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+
+    .usage-bar {
+        width: 16%;
+        background-color: #f3f3f3;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    .usage-bar-fill {
+        height: 10px;
+        background-color: #4caf50;
+        text-align: center;
+        color: white;
+        width: 0%;
+    }
+</style>
+
+<h1>시스템 관리</h1>
+<hr>
+
+<h3>웹서비스</h3>
+<p>웹서비스를 관리합니다.</p>
+<table>
+    <tr>
+        <th>웹서비스 재부팅</th>
+        <td><button type="button" class="btn btn-primary btn-sm" id="web-reboot-btn">재부팅</button></td>
+    </tr>
+</table>
+<br>
+
+<h3>BIT 관리</h3>
+<p>BIT를 관리합니다.</p>
+<br>
+
+<div>
+    <div id="usage-containor" class="usage-bar">
+        <span id="cpu-usage-title">CPU: 0%</span>
+        <div id="cpu-usage-bar" class="usage-bar-fill" style="width: 0%;"></div>
+    </div>
+
+    <div id="usage-containor" class="usage-bar">
+        <span id="ram-usage-title">RAM: 0%</span>
+        <div id="ram-usage-bar" class="usage-bar-fill" style="width: 0%;"></div>
+    </div>
+
+    <div id="usage-containor" class="usage-bar">
+        <span id="disk-usage-title">DISK: 0%</span>
+        <div id="disk-usage-bar" class="usage-bar-fill" style="width: 0%;"></div>
+    </div>
+</div>
+
+<hr>
+<a href="/">홈으로</a>
+
+<script>
+    const webRebootBtn = document.getElementById('web-reboot-btn')
+    webRebootBtn.addEventListener('click', () => {
+        if (confirm('웹서비스를 재부팅하시겠습니까?\n로그인 정보가 모두 사라집니다.')) {
+            window.location.href = '/manage/reboot'
+        }
+    })
+
+    const cpu_usage_title = document.getElementById('cpu-usage-title')
+    const cpu_usage_bar = document.getElementById('cpu-usage-bar')
+    const ram_usage_title = document.getElementById('ram-usage-title')
+    const ram_usage_bar = document.getElementById('ram-usage-bar')
+    const disk_usage_title = document.getElementById('disk-usage-title')
+    const disk_usage_bar = document.getElementById('disk-usage-bar')
+    function updateUsage() {
+        let cpu_usage = 0
+        let ram_usage = 0
+        let disk_usage = 0
+        fetch('/manage/system_usage')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success === false) {
+                    cpu_usage_title.innerText = `CPU: Login required`
+                    ram_usage_title.innerText = `RAM: Login required`
+                    disk_usage_title.innerText = `DISK: Login required`
+                    cpu_usage_bar.style.width = `0`
+                    ram_usage_bar.style.width = `0`
+                    disk_usage_bar.style.width = `0`
+                }
+                else {
+                    cpu_usage_title.innerText = `CPU: ${data.cpu_usage}%`
+                    ram_usage_title.innerText = `RAM: ${data.memory_usage}%`
+                    disk_usage_title.innerText = `DISK: ${data.disk_usage}%`
+                    cpu_usage_bar.style.width = `${data.cpu_usage}%`
+                    ram_usage_bar.style.width = `${data.memory_usage}%`
+                    disk_usage_bar.style.width = `${data.disk_usage}%`
+                }
+            })
+    }
+    setInterval(updateUsage, 1000)
+
+    
+</script>
+{% endblock %}
