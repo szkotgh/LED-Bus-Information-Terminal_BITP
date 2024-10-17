@@ -25,8 +25,8 @@ class InfoManager:
     def __init__(self, _SERVICE_KEY, _OPTIONS):
         # Init class
         self.SERVICE_KEY = _SERVICE_KEY
-        self.logging(f" * InfoManager Regi SERVICE_KEY: {self.SERVICE_KEY}")
         self.load_option(_OPTIONS)
+        self.logging(f" * InfoManager Regi SERVICE_KEY: {self.SERVICE_KEY}")
         self.is_init = False
         self.is_arvl_bus_info_updated = False
         self.is_etc_info_updated = False
