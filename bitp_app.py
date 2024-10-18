@@ -65,7 +65,12 @@ def _auto_info_update_target(_pr_delay_time:int=30):
             info_manager.init_arvl_bus_info()
             info_manager.init_arvl_bus_info()
             info_manager.init_etc_info()
-            matrix_manager.update_station_info(info_manager.station_datas)
+            
+            if info_manager.is_init and info_manager.is_arvl_bus_info_updated and info_manager.is_etc_info_updated:
+                matrix_manager.update_station_info(info_manager.station_datas)
+                print(f"[_auto_info_update_target] matrix_manager info updated")
+            else:
+                print(f"[_auto_info_update_target] matrix_manager update canceled. info_manager.is_init: {info_manager.is_init}, info_manager.is_arvl_bus_info_updated: {info_manager.is_arvl_bus_info_updated}, info_manager.is_etc_info_updated: {info_manager.is_etc_info_updated}")
             with open('station_datas_struct.json', 'w', encoding='UTF-8') as f:
                 f.write(json.dumps(matrix_manager.station_datas, indent=4))
             print(f"[_auto_info_update_target] info updated")

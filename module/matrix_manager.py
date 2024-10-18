@@ -227,13 +227,13 @@ class MatrixManager:
         
         station_keyword = station_data.get('keyword', '읽기실패')
         station_desc = station_data.get('stationDesc', None)
-        station_info = station_data.get('stationInfo')
+        station_info = station_data.get('stationInfo', None)
         station_arvl_bus = station_data.get('arvlBus')
         station_arvl_bus_info = station_data.get('arvlBusInfo')
         station_arvl_bus_route_info = station_data.get('arvlBusRouteInfo')
         
         # station title data parsing
-        if station_info.get('errorOcrd') == True:
+        if station_info['errorOcrd'] == True:
             self.show_text_page([f"실시간 버스 정보 화면 [{_show_station_num}]", "API 오류. 페이지를 표시할 수 없습니다.", "", f"KEYWORD={station_keyword}", f"{station_info.get('errorMsg', '알 수 없는 오류입니다.')}"], _repeat=2)
             return 1
         if station_info.get('apiSuccess') == False:
@@ -251,10 +251,11 @@ class MatrixManager:
         # arvl bus data parsing
         arvl_bus_infos = []
         if station_arvl_bus.get('apiSuccess') == True:
-            for index, arvl_bus in enumerate(station_arvl_bus.get('result')):
+            for index, arvl_bus in enumerate(station_arvl_bus['result']):
                 bus_info = arvl_bus
                 
                 # arvl bus info parsing
+                print(f"AAAA: {index}")
                 arvl_bus_info = station_arvl_bus_info[index]
                 if arvl_bus_info.get('apiSuccess', False):
                     bus_info.update(arvl_bus_info.get('result'))
