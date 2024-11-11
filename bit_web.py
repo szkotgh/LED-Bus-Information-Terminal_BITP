@@ -50,7 +50,7 @@ class BITApp():
                     session['username'] = login_rst[0]
                     session['userlevel'] = login_rst[1]
                     
-                    flash(f'({session.get('userid')}) 로그인되었습니다.', 'success')
+                    flash(f"({session.get('userid')}) 로그인되었습니다.", 'success')
                     return render_template('index.html', client_ip=utils.get_client_ip(request), client_id=session.get('userid'),
                                             client_name=session.get('username')), 200
                 else:
@@ -62,7 +62,7 @@ class BITApp():
         @self.application.route('/logout', methods=['GET'])
         @login_required
         def logout():
-            flash(f'({session.get('userid')}) 로그아웃되었습니다.', 'warning')
+            flash(f"({session.get('userid')}) 로그아웃되었습니다.", 'warning')
             session.pop('userid', None)
             session.pop('username', None)
             session.pop('userlevel', None)

@@ -1,0 +1,19 @@
+  File "/home/szkot/website/app.py", line 51
+    flash(f'({session.get('userid')}) 로그인되었습니다.', 'success')
+                           ^^^^^^
+SyntaxError: f-string: unmatched '('
+  File "/home/szkot/website/app.py", line 51
+    flash(f'({session.get('userid')}) 로그인되었습니다.', 'success')
+                           ^^^^^^
+SyntaxError: f-string: unmatched '('
+  File "/home/szkot/website/app.py", line 51
+    flash(f'({session.get('userid')}) 로그인되었습니다.', 'success')
+                           ^^^^^^
+SyntaxError: f-string: unmatched '('
+Traceback (most recent call last):
+  File "/home/szkot/website/app.py", line 3, in <module>
+    from bit_web import BITApp
+  File "/home/szkot/website/bit_web.py", line 53
+    flash(f'({session.get('userid')}) 로그인되었습니다.', 'success')
+                           ^^^^^^
+SyntaxError: f-string: unmatched '('

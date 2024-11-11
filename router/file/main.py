@@ -41,7 +41,7 @@ def upload():
             return redirect(url_for('router.file.home'), 400)
 
         if (file.filename.split('.')[-1] not in utils.ALLOWED_EXTENSIONS):
-            flash(f'지원하지 않는 파일입니다. 지원 확장자: {', '.join(utils.ALLOWED_EXTENSIONS)}', 'error')
+            flash(f"지원하지 않는 파일입니다. 지원 확장자: {', '.join(utils.ALLOWED_EXTENSIONS)}", 'error')
             return redirect(url_for('router.file.home'), 400)
         
         file_size = len(file.read())
