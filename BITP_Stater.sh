@@ -13,4 +13,4 @@ echo BITP Program Path=\'$DIR\'
 cd $DIR
 
 # Start the BITP program without sudo
-python3 bitp_app.py
+python3 bitp_manager.py

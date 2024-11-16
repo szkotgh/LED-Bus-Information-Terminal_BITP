@@ -26,14 +26,15 @@ def display_image():
     image_path = './src/icon'
     station_icon = Image.open(os.path.join(image_path, 'everline_station.png'))
     train_icon = Image.open(os.path.join(image_path, 'everline_train.png'))
+    reverse_train_icon = train_icon.transpose(Image.FLIP)
 
-    RECTANGLE_TOP = 51
-    RECTANGLE_BOTTOM = 55
+    RECTANGLE_TOP = 30
+    RECTANGLE_BOTTOM = 34
     ICON_MARGIN = 20
 
     # Calculate positions to center the icon within the rectangle and at 20 pixels from left and right
     center_x = (matrix_size[0] - station_icon.width) // 2
-    center_y = (RECTANGLE_TOP+1) + (RECTANGLE_BOTTOM - RECTANGLE_TOP - station_icon.height) // 2
+    center_y = RECTANGLE_TOP + (RECTANGLE_BOTTOM - RECTANGLE_TOP - station_icon.height) // 2
     left_x = ICON_MARGIN
     right_x = matrix_size[0] - station_icon.width - ICON_MARGIN
 
@@ -42,7 +43,7 @@ def display_image():
     draw = ImageDraw.Draw(canvas)
     draw.fontmode = "1"
     
-    station_title = "고진역"
+    station_title = "[Everline RTC] Gojin"
     station_title_center = (matrix_size[0] - len(station_title) * 6) // 2
     
     train_x = -20
@@ -54,7 +55,8 @@ def display_image():
         canvas.paste(station_icon, (left_x, center_y))
         canvas.paste(station_icon, (right_x, center_y))
         
-        canvas.paste(train_icon, (train_x, center_y))
+        canvas.paste(train_icon, (train_x, center_y-5))
+        canvas.paste(reverse_train_icon, (matrix_size[0]-train_x, center_y-5))
         
         refresh(canvas)
         time.sleep(0.01)

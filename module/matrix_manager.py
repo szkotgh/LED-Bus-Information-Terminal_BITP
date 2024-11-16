@@ -135,6 +135,25 @@ class MatrixManager:
         draw.rectangle(((0, 0), (self.size[0], self.size[1])), "black")
         self.refresh(display, status_prt=False)
         
+    def error_page(self, error_str, page_time = 3):
+        image_path = './src/icon'
+        error_icon = Image.open(os.path.join(image_path, 'error_icon.png'))
+
+        canvas = Image.new('RGB', self.size, "black")
+        draw = ImageDraw.Draw(canvas)
+        draw.fontmode = "1"
+        
+        for i in range((page_time * 10), 0, -1):
+            draw.rectangle([(0, 0), self.size], fill=(0, 0, 0))
+            canvas.paste(error_icon, (0, 0))
+            draw.text((32, 0), "Error ", fill=(255, 255, 255), font=ImageFont.load_default(16))
+            draw.text((32, 16), "System error occurred.", fill=(255, 255, 255), font=ImageFont.load_default(16))
+            draw.text((0, 34), error_str, fill=(255, 255, 255), font=ImageFont.load_default(12))
+            draw.text((0, 48), f"System will reboot after {i/10}s", fill=(255, 255, 255), font=ImageFont.load_default(12))
+            
+            self.refresh(canvas, False)
+            time.sleep(0.1)
+        
     def show_text_page(self, _set_text: str | list = "", _first_show_time: int | float = 1, _end_show_time: int | float = 1, _repeat: int = 1, _status_prt: bool = True):
         if isinstance(_set_text, str):
             texts = [_set_text]
