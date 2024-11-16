@@ -5,7 +5,7 @@ After=multi-user.target
 
 [Service]
 Type=simple
-ExecStart=/bin/bash /home/bituser/BITP/BITP_Stater.sh
+ExecStart=/bin/bash /usr/local/LED-Bus-Information-Terminal_BITP/BITP_Stater.sh
 Restart=on-failure
 RestartSec=5
 
