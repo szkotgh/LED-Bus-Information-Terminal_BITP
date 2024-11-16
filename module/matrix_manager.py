@@ -21,7 +21,9 @@ except Exception as e:
     sys.exit(f'RGBMatrix module import failed : {e}')
 
 class MatrixManager:
-    def __init__(self, _OPTIONS) -> None:
+    def __init__(self, _OPTIONS, _speaker_manager) -> None:
+        self.speaker_manager = _speaker_manager
+        
         self.load_option(_OPTIONS)
         
         # Configuration for the matrix
@@ -50,12 +52,12 @@ class MatrixManager:
         
         # font load
         font_path = os.path.join(os.getcwd(), 'src', 'fonts')
-        self.font8  = ImageFont.truetype(os.path.join(font_path, 'SCDream4.ttf'), 8)
-        self.font10 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.ttf'), 11)
-        self.font12 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.ttf'), 12)
-        self.font14 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.ttf'), 14)
-        self.font16 = ImageFont.truetype(os.path.join(font_path, 'SCDream5.ttf'), 16)
-        self.font26 = ImageFont.truetype(os.path.join(font_path, 'SCDream8.ttf'), 26)
+        self.font8  = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 8)
+        self.font10 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 11)
+        self.font12 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 12)
+        self.font14 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 14)
+        self.font16 = ImageFont.truetype(os.path.join(font_path, 'SCDream5.otf'), 16)
+        self.font26 = ImageFont.truetype(os.path.join(font_path, 'SCDream8.otf'), 26)
         
         # icon load
         icon_path = os.path.join(os.getcwd(), 'src', 'icon')
@@ -255,7 +257,6 @@ class MatrixManager:
                 bus_info = arvl_bus
                 
                 # arvl bus info parsing
-                print(f"AAAA: {index}")
                 arvl_bus_info = station_arvl_bus_info[index]
                 if arvl_bus_info.get('apiSuccess', False):
                     bus_info.update(arvl_bus_info.get('result'))

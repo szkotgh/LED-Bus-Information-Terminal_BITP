@@ -46,9 +46,9 @@ FSERIAL_KEY = '-'.join([SERIAL_KEY[i:i+4] for i in range(0, len(SERIAL_KEY), 4)]
 
 # program start
 ## get manager (3/1)
-info_manager = InfoManager(SERVICE_KEY, OPTION)
-matrix_manager = MatrixManager(OPTION)
 speaker_manager = SpeakerManager(GOOGLE_KEY, OPTION)
+info_manager = InfoManager(SERVICE_KEY, OPTION)
+matrix_manager = MatrixManager(OPTION, speaker_manager)
 
 ## thread start (3/2)
 thread_list = []
