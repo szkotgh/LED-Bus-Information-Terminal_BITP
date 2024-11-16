@@ -9,5 +9,5 @@ sudo bash /usr/local/LED-Bus-Information-Terminal_BITP/BITP_Installer.sh
 * SMPS 300W
 * Raspberry Pi 4B
 * Adafruit LED Matrix Hat
-* [data.go.kr](data.go.kr) Serial Key
+* [data.go.kr](https://data.go.kr) Serial Key
 * Google TTS API Key
