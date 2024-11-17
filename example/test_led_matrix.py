@@ -1,7 +1,14 @@
 import os
+import sys
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
 import time
+import datetime
 from PIL import Image, ImageDraw, ImageFont
+sys.path.append(os.path.join(os.getcwd()))
+from module.everline_api import everline_api
+
+everline = everline_api.EverlineAPI()
+everline.auto_update(1)
 
 options = RGBMatrixOptions()
 options.hardware_mapping = 'adafruit-hat'
@@ -24,41 +31,103 @@ def refresh(display):
 
 def display_image():
     image_path = './src/icon'
-    station_icon = Image.open(os.path.join(image_path, 'everline_station.png'))
-    train_icon = Image.open(os.path.join(image_path, 'everline_train.png'))
-    reverse_train_icon = train_icon.transpose(Image.FLIP)
+    station_icon = Image.open(os.path.join(image_path, 'everline_station.png')).convert("RGBA")
+    train_icon = Image.open(os.path.join(image_path, 'everline_train.png')).convert("RGBA")
+    reverse_train_icon = train_icon.transpose(Image.FLIP_LEFT_RIGHT)
+    font_path = os.path.join(os.getcwd(), 'src', 'fonts')
+    font8  = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 8)
+    font10 = ImageFont.truetype(os.path.join(font_path, 'SCDream5.otf'), 10)
+    font11 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 11)
+    font12 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 12)
+    font14 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 14)
+    font16 = ImageFont.truetype(os.path.join(font_path, 'SCDream5.otf'), 16)
+    font26 = ImageFont.truetype(os.path.join(font_path, 'SCDream8.otf'), 26)
 
     RECTANGLE_TOP = 30
-    RECTANGLE_BOTTOM = 34
-    ICON_MARGIN = 20
 
     # Calculate positions to center the icon within the rectangle and at 20 pixels from left and right
     center_x = (matrix_size[0] - station_icon.width) // 2
-    center_y = RECTANGLE_TOP + (RECTANGLE_BOTTOM - RECTANGLE_TOP - station_icon.height) // 2
-    left_x = ICON_MARGIN
-    right_x = matrix_size[0] - station_icon.width - ICON_MARGIN
+    center_y = RECTANGLE_TOP + (RECTANGLE_TOP+4 - RECTANGLE_TOP - station_icon.height) // 2
+    left_x = 5
+    right_x = 206
+    train_center_x = 102
+    train_back_x = 2
+    train_next_x = 202
 
     # Draw Image
-    canvas = Image.new('RGB', matrix_size, "black")
+    canvas = Image.new('RGBA', matrix_size, (0, 0, 0, 0))
     draw = ImageDraw.Draw(canvas)
     draw.fontmode = "1"
     
-    station_title = "[Everline RTC] Gojin"
-    station_title_center = (matrix_size[0] - len(station_title) * 6) // 2
+    base_station = "Y121"
+    back_station = "Y120"
+    next_station = "Y122"
+    
+    station_title = f"[에버라인 운행정보] {everline_api.STATION_CODE[base_station]}역"
+    title_bbox = font11.getbbox(station_title)
+    title_width = title_bbox[2] - title_bbox[0]
+    station_title_center = (matrix_size[0] - title_width) // 2
     
     train_x = -20
     while True:
-        draw.rectangle([(0, 0), matrix_size], fill=(0, 0, 0))
-        draw.text((station_title_center, 0), station_title, fill=(255, 255, 255))
-        draw.rectangle([(0, RECTANGLE_TOP), (matrix_size[0], RECTANGLE_BOTTOM)], fill=(100, 100, 100))
-        canvas.paste(station_icon, (center_x, center_y))
-        canvas.paste(station_icon, (left_x, center_y))
-        canvas.paste(station_icon, (right_x, center_y))
+        now_hhmm = datetime.datetime.now().strftime('%H%M')
+        train_infos = everline.get_train_info()
         
-        canvas.paste(train_icon, (train_x, center_y-5))
-        canvas.paste(reverse_train_icon, (matrix_size[0]-train_x, center_y-5))
+        draw.rectangle([(0, 0), matrix_size], fill=(0, 0, 0, 0))
+        draw.text((station_title_center, 0), station_title, fill=(255, 255, 255, 255), font=font11)
+        draw.line([(0, RECTANGLE_TOP+1), (matrix_size[0], RECTANGLE_TOP+1)], fill=(100, 100, 100, 255), width=5)
         
-        refresh(canvas)
+        # Draw train
+        if train_infos != None:
+            for train_info in train_infos:
+                if train_info['StCode'] in [base_station, back_station, next_station]:
+                    if train_info['StatusCode'] == everline_api.TRAIN_START:
+                        
+                        if train_info['updownCode'] == everline_api.TRAIN_UPWARD:
+                            if train_info['StCode'] == base_station:
+                                canvas.paste(train_icon, (train_center_x-int(train_info['driveRate']), center_y-5), train_icon)
+                            if train_info['StCode'] == back_station:
+                                canvas.paste(reverse_train_icon, (train_back_x-int(train_info['driveRate']), center_y-5), reverse_train_icon)
+                            if train_info['StCode'] == next_station:
+                                canvas.paste(train_icon, (train_next_x-int(train_info['driveRate']), center_y-5), train_icon)
+                                
+                        if train_info['updownCode'] == everline_api.TRAIN_DOWNWARD:
+                            if train_info['StCode'] == base_station:
+                                canvas.paste(train_icon, (train_center_x+int(train_info['driveRate']), center_y-5), train_icon)
+                            if train_info['StCode'] == back_station:
+                                canvas.paste(reverse_train_icon, (train_back_x+int(train_info['driveRate']), center_y-5), reverse_train_icon)
+                            if train_info['StCode'] == next_station:
+                                canvas.paste(train_icon, (train_next_x+int(train_info['driveRate']), center_y-5), train_icon)
+                    
+                    if train_info['StatusCode'] == everline_api.TRAIN_STOP:
+                        if train_info['StCode'] == base_station:
+                            canvas.paste(train_icon, (train_center_x, center_y-5), train_icon)
+                        if train_info['StCode'] == back_station:
+                            canvas.paste(reverse_train_icon, (train_back_x, center_y-5), reverse_train_icon)
+                        if train_info['StCode'] == next_station:
+                            canvas.paste(train_icon, (train_next_x, center_y-5), train_icon)
+        
+        # Draw station icons
+        canvas.paste(station_icon, (center_x, center_y), station_icon)
+        draw.text((left_x, RECTANGLE_TOP+8), f"{everline_api.STATION_CODE[back_station]}역", fill=(200, 200, 255, 255), font=font8)
+        canvas.paste(station_icon, (left_x, center_y), station_icon)
+        draw.text((center_x-5, RECTANGLE_TOP+8), f"{everline_api.STATION_CODE[base_station]}역", fill=(200, 200, 255, 255), font=font8)
+        canvas.paste(station_icon, (right_x, center_y), station_icon)
+        draw.text((right_x-11, RECTANGLE_TOP+8), f"{everline_api.STATION_CODE[next_station]}역", fill=(200, 200, 255, 255), font=font8)
+        
+        # Draw train interval
+        train_interval = None
+        if datetime.date.today().weekday()  >= 5:
+            train_interval = everline_api.get_train_interval(now_hhmm, True)
+        else:
+            train_interval = everline_api.get_train_interval(now_hhmm)
+        
+        if train_interval != None:
+            draw.text((0, matrix_size[1]-11), f"열차는 매 {train_interval}분마다 운행합니다.", fill=(255, 255, 255, 255), font=font10)
+        else:
+            draw.text((0, matrix_size[1]-11), "열차가 운행하지 않는 시각입니다.", fill=(255, 255, 255, 255), font=font10)
+            
+        refresh(canvas.convert("RGB"))
         time.sleep(0.01)
         train_x += 1
         if train_x > matrix_size[0]:
