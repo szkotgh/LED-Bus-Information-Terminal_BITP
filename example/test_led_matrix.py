@@ -8,7 +8,7 @@ sys.path.append(os.path.join(os.getcwd()))
 from module.everline_api import everline_api
 
 everline = everline_api.EverlineAPI()
-everline.auto_update(1)
+everline.auto_update(2)
 
 options = RGBMatrixOptions()
 options.hardware_mapping = 'adafruit-hat'
@@ -70,6 +70,8 @@ def display_image():
     
     train_x = -20
     while True:
+        everline.auto_update(2)
+        
         now_hhmm = datetime.datetime.now().strftime('%H%M')
         train_infos = everline.get_train_info()
         
@@ -82,30 +84,38 @@ def display_image():
             for train_info in train_infos:
                 if train_info['StCode'] in [base_station, back_station, next_station]:
                     if train_info['StatusCode'] == everline_api.TRAIN_START:
-                        
                         if train_info['updownCode'] == everline_api.TRAIN_UPWARD:
                             if train_info['StCode'] == base_station:
-                                canvas.paste(train_icon, (train_center_x-int(train_info['driveRate']), center_y-5), train_icon)
-                            if train_info['StCode'] == back_station:
-                                canvas.paste(reverse_train_icon, (train_back_x-int(train_info['driveRate']), center_y-5), reverse_train_icon)
-                            if train_info['StCode'] == next_station:
-                                canvas.paste(train_icon, (train_next_x-int(train_info['driveRate']), center_y-5), train_icon)
+                                canvas.paste(train_icon, (train_center_x-int(train_info['driveRate']), center_y-4), train_icon)
+                            elif train_info['StCode'] == back_station:
+                                canvas.paste(train_icon, (train_back_x-int(train_info['driveRate']), center_y-4), train_icon)
+                            elif train_info['StCode'] == next_station:
+                                canvas.paste(train_icon, (train_next_x-int(train_info['driveRate']), center_y-4), train_icon)
                                 
-                        if train_info['updownCode'] == everline_api.TRAIN_DOWNWARD:
+                        elif train_info['updownCode'] == everline_api.TRAIN_DOWNWARD:
                             if train_info['StCode'] == base_station:
-                                canvas.paste(train_icon, (train_center_x+int(train_info['driveRate']), center_y-5), train_icon)
-                            if train_info['StCode'] == back_station:
-                                canvas.paste(reverse_train_icon, (train_back_x+int(train_info['driveRate']), center_y-5), reverse_train_icon)
-                            if train_info['StCode'] == next_station:
-                                canvas.paste(train_icon, (train_next_x+int(train_info['driveRate']), center_y-5), train_icon)
+                                canvas.paste(reverse_train_icon, (train_center_x+int(train_info['driveRate']), center_y-4), reverse_train_icon)
+                            elif train_info['StCode'] == back_station:
+                                canvas.paste(reverse_train_icon, (train_back_x+int(train_info['driveRate']), center_y-4), reverse_train_icon)
+                            elif train_info['StCode'] == next_station:
+                                canvas.paste(reverse_train_icon, (train_next_x+int(train_info['driveRate']), center_y-4), reverse_train_icon)
                     
                     if train_info['StatusCode'] == everline_api.TRAIN_STOP:
-                        if train_info['StCode'] == base_station:
-                            canvas.paste(train_icon, (train_center_x, center_y-5), train_icon)
-                        if train_info['StCode'] == back_station:
-                            canvas.paste(reverse_train_icon, (train_back_x, center_y-5), reverse_train_icon)
-                        if train_info['StCode'] == next_station:
-                            canvas.paste(train_icon, (train_next_x, center_y-5), train_icon)
+                        if train_info['updownCode'] == everline_api.TRAIN_UPWARD:
+                            if train_info['StCode'] == base_station:
+                                canvas.paste(train_icon, (train_center_x, center_y-4), train_icon)
+                            elif train_info['StCode'] == back_station:
+                                canvas.paste(train_icon, (train_back_x, center_y-4), train_icon)
+                            elif train_info['StCode'] == next_station:
+                                canvas.paste(train_icon, (train_next_x, center_y-4), train_icon)
+                        
+                        elif train_info['updownCode'] == everline_api.TRAIN_DOWNWARD:
+                            if train_info['StCode'] == base_station:
+                                canvas.paste(reverse_train_icon, (train_center_x, center_y-4), reverse_train_icon)
+                            elif train_info['StCode'] == back_station:
+                                canvas.paste(reverse_train_icon, (train_back_x, center_y-4), reverse_train_icon)
+                            elif train_info['StCode'] == next_station:
+                                canvas.paste(reverse_train_icon, (train_next_x, center_y-4), reverse_train_icon)
         
         # Draw station icons
         canvas.paste(station_icon, (center_x, center_y), station_icon)
