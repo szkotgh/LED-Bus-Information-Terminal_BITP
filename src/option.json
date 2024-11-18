@@ -9,9 +9,9 @@
         }
 	],
     "everline" : {
-        "refreshInterval": 2,
-        "baseStation": "Y111",
-        "backStation": "Y110",
-        "nextStation": "Y112"
+        "refreshInterval": 1,
+        "backStation": "Y120",
+        "baseStation": "Y121",
+        "nextStation": "Y122"
     }
 }
