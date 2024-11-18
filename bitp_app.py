@@ -73,7 +73,7 @@ class BITPApp:
             time.sleep(_pr_delay_time)
 
     def _auto_info_update_target(self, _pr_delay_time:int=30):
-        self.info_manager.ini2t_info()
+        self.info_manager.init_info()
         while True:
             print(f"[_auto_info_update_target] info update started")
             if self.matrix_manager.network_connected:
@@ -108,3 +108,4 @@ class BITPApp:
             for _repeat in range(0, 3+1):
                 self.matrix_manager.show_station_page(i)
             self.matrix_manager.show_station_etc_page(i)
+            self.matrix_manager.show_everline_page(15)

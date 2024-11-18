@@ -21,7 +21,7 @@ options.pwm_lsb_nanoseconds = 50
 options.gpio_slowdown = 4
 options.pwm_bits = 5
 options.pwm_dither_bits = 0
-options.show_refresh_rate = True
+options.show_refresh_rate = False
 
 matrix = RGBMatrix(options=options)
 matrix_size = (matrix.width, matrix.height)
@@ -35,7 +35,7 @@ def display_image():
     train_icon = Image.open(os.path.join(image_path, 'everline_train.png')).convert("RGBA")
     reverse_train_icon = train_icon.transpose(Image.FLIP_LEFT_RIGHT)
     font_path = os.path.join(os.getcwd(), 'src', 'fonts')
-    font8  = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 8)
+    font8  = ImageFont.truetype(os.path.join(font_path, 'SCDream5.otf'), 8)
     font10 = ImageFont.truetype(os.path.join(font_path, 'SCDream5.otf'), 10)
     font11 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 11)
     font12 = ImageFont.truetype(os.path.join(font_path, 'SCDream4.otf'), 12)
@@ -59,9 +59,9 @@ def display_image():
     draw = ImageDraw.Draw(canvas)
     draw.fontmode = "1"
     
-    base_station = "Y121"
-    back_station = "Y120"
-    next_station = "Y122"
+    back_station = "Y110"
+    base_station = "Y111"
+    next_station = "Y112"
     
     station_title = f"[에버라인 운행정보] {everline_api.STATION_CODE[base_station]}역"
     title_bbox = font11.getbbox(station_title)
@@ -73,10 +73,12 @@ def display_image():
         everline.auto_update(2)
         
         now_hhmm = datetime.datetime.now().strftime('%H%M')
+        title_now_hhmm = datetime.datetime.now().strftime('%H:%M')
         train_infos = everline.get_train_info()
         
         draw.rectangle([(0, 0), matrix_size], fill=(0, 0, 0, 0))
-        draw.text((station_title_center, 0), station_title, fill=(255, 255, 255, 255), font=font11)
+        draw.text((station_title_center, 0), station_title, fill=(255, 255, 255), font=font11)
+        draw.text((195, 0), f"{title_now_hhmm}", fill=(150, 150, 150), font=ImageFont.load_default(size=10))
         draw.line([(0, RECTANGLE_TOP+1), (matrix_size[0], RECTANGLE_TOP+1)], fill=(100, 100, 100, 255), width=5)
         
         # Draw train

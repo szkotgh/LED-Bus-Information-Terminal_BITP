@@ -7,5 +7,11 @@
             "keyword" : "29413",
             "stationDesc" : ""
         }
-	]
+	],
+    "everline" : {
+        "refreshInterval": 2,
+        "baseStation": "Y111",
+        "backStation": "Y110",
+        "nextStation": "Y112"
+    }
 }
