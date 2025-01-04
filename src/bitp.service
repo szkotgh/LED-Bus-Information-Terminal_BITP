@@ -1,0 +1,13 @@
+[Unit]
+Description=Bus Information Terminal Project
+Documentation=https://github.com/suzukaotto/LED-Bus-Information-Terminal_BITP.git
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /usr/local/LED-Bus-Information-Terminal_BITP/stater.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
