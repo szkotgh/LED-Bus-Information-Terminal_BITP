@@ -41,3 +41,5 @@ fi
 echo "Service started successfully."
 
 sudo systemctl status "$SERVICE_NAME" --no-pager
+
+exit 0

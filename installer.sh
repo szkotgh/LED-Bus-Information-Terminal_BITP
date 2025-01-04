@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "$0" )" && pwd -P )"
+CMDLINE_FILE="/boot/firmware/cmdline.txt"
 
 # Get the path of the script
 echo BITP Program Path=\'$DIR\'
@@ -21,8 +22,6 @@ if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
     exit 1
 fi
 
-CMDLINE_FILE="/boot/firmware/cmdline.txt"
-
 # install module
 sudo python3 -m pip config set global.break-system-packages true
 sudo python -m pip install --upgrade pip
@@ -37,42 +36,15 @@ else
 fi
 echo
 
-# install service
+# Install service
 echo "Installing service..."
-## copy service file
-if sudo cp ./src/bitp.service /lib/systemd/system/bitp.service; then
-    echo ".service file copied successfully."
+if $DIR/src/service_regi.sh; then
+    echo "Service registered successfully."
+    exit 0
 else
-    echo
     echo "BITP installation failed."
     exit 1
 fi
-## change permission
-if sudo chmod 644 /lib/systemd/system/bitp.service; then
-    echo "Service permission changed successfully."
-else
-    echo
-    echo "BITP installation failed."
-    exit 1
-fi
-## reload daemon
-if sudo systemctl daemon-reload; then
-    echo "Daemon reloaded successfully."
-else
-    echo
-    echo "BITP installation failed."
-    exit 1
-fi
-## enable service
-if sudo systemctl enable bitp.service; then
-    echo "Service enabled successfully."
-else
-    echo
-    echo "BITP installation failed."
-    exit 1
-fi
-echo "Service installation completed successfully."
-echo
 
 # Add isolcpus=3 option to cmdline.txt
 if grep -q "isolcpus=3" "$CMDLINE_FILE"; then
@@ -86,7 +58,7 @@ echo
 
 # install rgb matrix installer
 echo "Installing RGB Matrix..."
-if sudo bash ./src/rgb-matrix_installer.sh && rm -rf ./rpi-rgb-led-matrix; then
+if bash $DIR/src/rgb-matrix_installer.sh && rm -rf $DIR/rpi-rgb-led-matrix; then
     echo "RGB Matrix installation completed."
 else
     echo
