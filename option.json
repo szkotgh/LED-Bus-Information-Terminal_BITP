@@ -1,0 +1,17 @@
+{
+    "api_error_retry_count" : 10,
+    "api_timeout" : 5,
+    "logging" : true,
+    "busStationList": [
+        {
+            "keyword" : "29413",
+            "stationDesc" : ""
+        }
+	],
+    "everline" : {
+        "refreshInterval": 1,
+        "backStation": "Y120",
+        "baseStation": "Y121",
+        "nextStation": "Y122"
+    }
+}
