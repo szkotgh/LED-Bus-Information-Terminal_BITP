@@ -23,6 +23,7 @@ if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
 fi
 
 # install module
+sudo apt install python3-pip
 sudo python3 -m pip config set global.break-system-packages true
 sudo python -m pip install --upgrade pip
 sudo pip install --upgrade setuptools
@@ -40,7 +41,6 @@ echo
 echo "Installing service..."
 if $DIR/src/service_regi.sh; then
     echo "Service registered successfully."
-    exit 0
 else
     echo "BITP installation failed."
     exit 1
