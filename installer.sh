@@ -2,6 +2,8 @@
 
 DIR="$( cd "$( dirname "$0" )" && pwd -P )"
 CMDLINE_FILE="/boot/firmware/cmdline.txt"
+RULES_FILE="/etc/udev/rules.d/99-usb-serial.rules"
+RULE_CONTENT='KERNEL=="ttyUSB[0-9]*", MODE="0666", OWNER="root", GROUP="root"'
 
 # Get the path of the script
 echo BITP Program Path=\'$DIR\'
@@ -23,50 +25,67 @@ if [[ ! "$REPLY" =~ ^(yes|y|Y)$ ]]; then
 fi
 
 # install module
-sudo apt install python3-pip
-sudo python3 -m pip config set global.break-system-packages true
-sudo python -m pip install --upgrade pip
-sudo pip install --upgrade setuptools
-echo "Installing requirement python modules..."
-if sudo pip install -r requirements.txt; then
-    echo "Python modules installed successfully."
-else
-    echo
+{
+    sudo apt install python3-pip &&
+    sudo python3 -m pip config set global.break-system-packages true &&
+    sudo python -m pip install --upgrade pip &&
+    sudo pip install --upgrade setuptools &&
+    echo "Installing requirement python modules..." &&
+    sudo pip install -r requirements.txt
+} || {
     echo "BITP installation failed."
     exit 1
-fi
+}
+echo "Python modules installed successfully."
 echo
 
 # Install service
-echo "Installing service..."
-if $DIR/src/service_regi.sh; then
-    echo "Service registered successfully."
-else
+{
+    echo "Installing service..." &&
+    $DIR/src/service_regi.sh
+} || {
     echo "BITP installation failed."
     exit 1
-fi
+}
+echo "Service registered successfully."
+echo
 
 # Add isolcpus=3 option to cmdline.txt
-if grep -q "isolcpus=3" "$CMDLINE_FILE"; then
-    echo "isolcpus=3 option already exists."
-else
-    echo "Adding isolcpus=3 option to $CMDLINE_FILE..."
-    sed -i 's/$/ isolcpus=3/' "$CMDLINE_FILE"
-    echo "isolcpus=3 option added successfully."
-fi
+{
+    if grep -q "isolcpus=3" "$CMDLINE_FILE"; then
+        echo "isolcpus=3 option already exists."
+    else
+        echo "Adding isolcpus=3 option to $CMDLINE_FILE..." &&
+        sed -i 's/$/ isolcpus=3/' "$CMDLINE_FILE" &&
+        echo "isolcpus=3 option added successfully."
+    fi
+} || {
+    echo "BITP installation failed."
+    exit 1
+}
 echo
 
 # install rgb matrix installer
-echo "Installing RGB Matrix..."
-if bash $DIR/src/rgb-matrix_installer.sh && rm -rf $DIR/rpi-rgb-led-matrix; then
-    echo "RGB Matrix installation completed."
-else
-    echo
+{
+    echo "Installing RGB Matrix..." &&
+    bash $DIR/src/rgb-matrix_installer.sh &&
+    rm -rf $DIR/rpi-rgb-led-matrix
+} || {
     echo "BITP installation failed."
     exit 1
-fi
-echo RGB Matrix installation completed successfully.
+}
+echo "RGB Matrix installation completed successfully."
 echo
+
+# Add udev rule for USB serial
+{
+    echo "$RULE_CONTENT" | sudo tee "$RULES_FILE" > /dev/null &&
+    sudo udevadm control --reload-rules &&
+    sudo udevadm trigger
+} || {
+    echo "An error occurred during the udev rule setup process"
+    exit 1
+}
 
 # complete installation
 echo "BITP installation completed successfully."
