@@ -25,7 +25,11 @@ def get_all_states():
     return send_command(command)
 
 def set_device_state(device, state):
-    command = {"command": "SET", "variable": device, "state": state}
+    command = {"command": "SET", "variables": {device: state}}
+    return send_command(command)
+
+def set_multiple_device_states(devices):
+    command = {"command": "SET", "variables": devices}
     return send_command(command)
 
 while True:
@@ -35,9 +39,15 @@ while True:
         print("Failed to get status")
         continue
     
-    set_device_state('LED1', status.get('BUTTON1'))
-    set_device_state('LED2', status.get('BUTTON2'))
-    if status.get('LED1')==True or status.get('LED2')==True:
+    devices_to_set = {
+        'LED1': status.get('BUTTON1', False),
+        'LED2': status.get('BUTTON2', False),
+        'RELAY1': status.get('LED1', False),
+        'RELAY2': status.get('LED2', False)
+    }
+    set_multiple_device_states(devices_to_set)
+
+    if status.get('LED1') == True or status.get('LED2') == True:
         set_device_state('LED3', True)
         set_device_state('LED4', False)
     else:

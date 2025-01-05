@@ -42,7 +42,7 @@ void loop() {
 }
 
 void handleCommand(String command) {
-  StaticJsonDocument<256> doc;
+  StaticJsonDocument<512> doc;
   DeserializationError error = deserializeJson(doc, command);
 
   if (error) {
@@ -56,17 +56,20 @@ void handleCommand(String command) {
     String variable = doc["variable"];
     sendState(variable);
   } else if (doc["command"] == "SET") {
-    String variable = doc["variable"];
-    bool state = doc["state"];
+    JsonObject variables = doc["variables"];
+    for (JsonPair kv : variables) {
+      String variable = kv.key().c_str();
+      bool state = kv.value().as<bool>();
 
-    if (variable == "LED1") setLED(LED1, 0, state);
-    else if (variable == "LED2") setLED(LED2, 1, state);
-    else if (variable == "LED3") setLED(LED3, 2, state);
-    else if (variable == "LED4") setLED(LED4, 3, state);
-    else if (variable == "RELAY1") setRelay(RELAY1, 0, state);
-    else if (variable == "RELAY2") setRelay(RELAY2, 1, state);
-    else if (variable == "RELAY3") setRelay(RELAY3, 2, state);
-    else if (variable == "RELAY4") setRelay(RELAY4, 3, state);
+      if (variable == "LED1") setLED(LED1, 0, state);
+      else if (variable == "LED2") setLED(LED2, 1, state);
+      else if (variable == "LED3") setLED(LED3, 2, state);
+      else if (variable == "LED4") setLED(LED4, 3, state);
+      else if (variable == "RELAY1") setRelay(RELAY1, 0, state);
+      else if (variable == "RELAY2") setRelay(RELAY2, 1, state);
+      else if (variable == "RELAY3") setRelay(RELAY3, 2, state);
+      else if (variable == "RELAY4") setRelay(RELAY4, 3, state);
+    }
   }
 }
 
