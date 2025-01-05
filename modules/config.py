@@ -1,7 +1,7 @@
 import os
 import json
 from PIL import Image, ImageFont
-from rgbmatrix import RGBMatrix, RGBMatrixOptions
+from rgbmatrix import RGBMatrixOptions
 
 PWR_PATH = os.getcwd()
 OPTION_PATH = os.path.join(PWR_PATH, 'src', 'option.json')
@@ -22,8 +22,6 @@ MATRIX_OPTIONS.gpio_slowdown = 4
 MATRIX_OPTIONS.pwm_bits = 5
 MATRIX_OPTIONS.pwm_dither_bits = 0
 MATRIX_OPTIONS.show_refresh_rate = False
-matrix = RGBMatrix(options = MATRIX_OPTIONS)
-MATRIX_SIZE = (matrix.width, matrix.height)
 
 # Font path
 FONT_PATH = os.path.join(os.getcwd(), 'src', 'fonts')
