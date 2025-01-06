@@ -2,13 +2,15 @@ import os
 import json
 from PIL import Image, ImageFont
 from rgbmatrix import RGBMatrixOptions
+import modules.utils as utils
 
 PWR_PATH = os.getcwd()
 OPTION_PATH = os.path.join(PWR_PATH, 'src', 'option.json')
 
-# Load option
+# Required variables
 with open(OPTION_PATH, 'r') as f:
-    OPTION = json.load(f)
+    OPTIONS = json.load(f)
+SERVICE_KEY = utils.get_env_key('SERVICE_KEY')
 
 # Matrix optiokn
 MATRIX_OPTIONS = RGBMatrixOptions()
