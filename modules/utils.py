@@ -13,15 +13,15 @@ from dotenv import load_dotenv
 from hashlib import md5
 from PIL import Image, ImageDraw, ImageFont
 
-# Excute
-ENV_PATH = os.path.join(os.getcwd(), '.env')
-load_dotenv(ENV_PATH)
 
 # Variables
-env_file_path = ''
 log_time_format = "%Z %x %X"
 log_format = "%(asctime)s %(levelname)8s %(message)s"
 default_timef = "%Y%m%d%H%M%S"
+ENV_PATH = os.path.join(os.getcwd(), '.env')
+
+# Excute
+load_dotenv(ENV_PATH)
 
 # Functions
 def get_env_key(key_name: str) -> dict:
@@ -43,7 +43,7 @@ def get_mac_address() -> str:
 def get_now_iso_time() -> str:
     return datetime.datetime.now().isoformat()
 
-def get_now_time(format: str = default_timef) -> str:
+def get_now_ftime(format: str = default_timef) -> str:
     return datetime.datetime.now().strftime(format)
 
 def get_ip(default: str = "N/A", ext_ip: str = '1.1.1.1') -> str:
@@ -68,3 +68,34 @@ def get_text_volume(text, font) -> int:
     text_bbox = draw.textbbox((0, 0), text, font=font)
     text_width = text_bbox[2] - text_bbox[0]  # Right - Left
     return text_width
+
+def detect_response_error(_res_dict:dict, _df_code:str='-1', _df_msg:str='Unknown Error') -> tuple:     
+    'return: (res_code, res_msg)'
+    
+    # Normal Response
+    if "response" in _res_dict and "msgHeader" in _res_dict["response"]:
+        res_code = _res_dict["response"]["msgHeader"]["resultCode"]
+        res_msg  = _res_dict["response"]["msgHeader"]["resultMessage"]
+        return (res_code, res_msg)
+    
+    # Findust Response
+    elif "response" in _res_dict and "header" in _res_dict["response"]:
+        res_code = _res_dict["response"]["header"]["resultCode"]
+        res_msg  = _res_dict["response"]["header"]["resultMsg"]
+        return (res_code, res_msg)
+    
+    # Weather Response
+    elif "response" in _res_dict and "body" in _res_dict["response"]:
+        res_code = _res_dict["response"]["body"]["header"]["resultCode"]
+        res_msg  = _res_dict["response"]["body"]["header"]["resultMsg"]
+        return (res_code, res_msg)
+    
+    # OpenAPI Response
+    elif "OpenAPI_ServiceResponse" in _res_dict and "cmmMsgHeader" in _res_dict["OpenAPI_ServiceResponse"]:
+        res_code = _res_dict["OpenAPI_ServiceResponse"]["cmmMsgHeader"]["returnReasonCode"]
+        res_msg  = _res_dict["OpenAPI_ServiceResponse"]["cmmMsgHeader"]["errMsg"]
+        return (res_code, res_msg)
+    
+    # Unknown Response
+    else:
+        return (_df_code, _df_msg)

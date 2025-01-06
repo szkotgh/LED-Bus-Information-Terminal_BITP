@@ -11,6 +11,7 @@ OPTION_PATH = os.path.join(PWR_PATH, 'src', 'option.json')
 with open(OPTION_PATH, 'r') as f:
     OPTIONS = json.load(f)
 SERVICE_KEY = utils.get_env_key('SERVICE_KEY')
+GOOGLE_API_KEY = utils.get_env_key('GOOGLE_API_KEY')
 
 # Matrix optiokn
 MATRIX_OPTIONS = RGBMatrixOptions()
