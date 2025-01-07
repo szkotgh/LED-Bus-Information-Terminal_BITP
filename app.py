@@ -3,6 +3,4 @@ from modules.userCtrl_manager import get_state, set_states
 matrix = matrix_manager.MatrixPages()
 
 while True:
-    state = get_state()
-    if state == None:
-        continue
+    matrix.everline_page(1000000000)

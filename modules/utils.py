@@ -69,6 +69,9 @@ def get_text_volume(text, font) -> int:
     text_width = text_bbox[2] - text_bbox[0]  # Right - Left
     return text_width
 
+def get_text_align_space(_width, _text, _font) -> tuple:
+    return int( (_width - get_text_volume(_text, _font)) / 2 )
+
 def detect_response_error(_res_dict:dict, _df_code:str='-1', _df_msg:str='Unknown Error') -> tuple:     
     'return: (res_code, res_msg)'
     
