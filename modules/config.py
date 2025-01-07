@@ -2,7 +2,6 @@ import os
 import json
 from PIL import Image, ImageFont
 from rgbmatrix import RGBMatrixOptions
-import modules.utils as utils
 
 PWR_PATH = os.getcwd()
 OPTION_PATH = os.path.join(PWR_PATH, 'src', 'option.json')
@@ -10,8 +9,6 @@ OPTION_PATH = os.path.join(PWR_PATH, 'src', 'option.json')
 # Required variables
 with open(OPTION_PATH, 'r') as f:
     OPTIONS = json.load(f)
-SERVICE_KEY = utils.get_env_key('SERVICE_KEY')
-GOOGLE_API_KEY = utils.get_env_key('GOOGLE_API_KEY')
 
 # Matrix optiokn
 MATRIX_OPTIONS = RGBMatrixOptions()
@@ -30,6 +27,7 @@ MATRIX_OPTIONS.show_refresh_rate = False
 FONT_PATH = os.path.join(os.getcwd(), 'src', 'fonts')
 SCD4_FONT_8  = ImageFont.truetype(os.path.join(FONT_PATH, 'SCDream4.otf'), 8)
 SCD4_FONT_10 = ImageFont.truetype(os.path.join(FONT_PATH, 'SCDream4.otf'), 11)
+SCD4_FONT_11 = ImageFont.truetype(os.path.join(FONT_PATH, 'SCDream4.otf'), 11)
 SCD4_FONT_12 = ImageFont.truetype(os.path.join(FONT_PATH, 'SCDream4.otf'), 12)
 SCD4_FONT_14 = ImageFont.truetype(os.path.join(FONT_PATH, 'SCDream4.otf'), 14)
 SCD4_FONT_16 = ImageFont.truetype(os.path.join(FONT_PATH, 'SCDream5.otf'), 16)
@@ -37,9 +35,15 @@ SCD4_FONT_26 = ImageFont.truetype(os.path.join(FONT_PATH, 'SCDream8.otf'), 26)
 
 # Icon load
 ICON_PATH = os.path.join(os.getcwd(), 'src', 'icon')
+## bus icon
 BUS_ICON_PATH = os.path.join(ICON_PATH, 'bus.png')
 BUS_ICON = Image.open(BUS_ICON_PATH)
 BUS_LP_ICON_PATH = os.path.join(ICON_PATH, 'bus_lp.png')
 BUS_LP_ICON = Image.open(BUS_LP_ICON_PATH)
 NO_WIFI_ICON_PATH = os.path.join(ICON_PATH, 'no_wifi.png')
 NO_WIFI_ICON = Image.open(NO_WIFI_ICON_PATH)
+## everline icon
+EVERLINE_STATION_ICON_PATH = os.path.join(ICON_PATH, 'everline_station.png')
+EVERLINE_STATION_ICON = Image.open(EVERLINE_STATION_ICON_PATH)
+EVERLINE_TRAIN_ICON_PATH = os.path.join(ICON_PATH, 'everline_train.png')
+EVERLINE_TRAIN_ICON = Image.open(EVERLINE_TRAIN_ICON_PATH)

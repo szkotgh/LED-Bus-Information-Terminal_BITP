@@ -58,7 +58,7 @@ def get_station_info(_keyword: str) -> dict:
 
     request_url = 'http://apis.data.go.kr/6410000/busstationservice/getBusStationList'
     params = {
-        'serviceKey': str(config.SERVICE_KEY),
+        'serviceKey': str(utils.get_env_key('SERVICE_KEY')),
         'keyword': str(_keyword)
     }
 
@@ -86,7 +86,7 @@ def get_bus_arrival(_stationId: str) -> dict:
 
     request_url = 'http://apis.data.go.kr/6410000/busarrivalservice/getBusArrivalList'
     params = {
-        'serviceKey': str(config.SERVICE_KEY),
+        'serviceKey': str(utils.get_env_key('SERVICE_KEY')),
         'stationId': str(_stationId)
     }
 
@@ -114,7 +114,7 @@ def get_bus_info(_routeId: str) -> dict:
 
     request_url = 'http://apis.data.go.kr/6410000/busrouteservice/getBusRouteInfoItem'
     params = {
-        'serviceKey': str(config.SERVICE_KEY),
+        'serviceKey': str(utils.get_env_key('SERVICE_KEY')),
         'routeId': str(_routeId)
     }
 
@@ -142,7 +142,7 @@ def get_bus_transit_route(_routeId: str) -> dict:
 
     request_url = 'http://apis.data.go.kr/6410000/busrouteservice/getBusRouteStationList'
     params = {
-        'serviceKey': str(config.SERVICE_KEY),
+        'serviceKey': str(utils.get_env_key('SERVICE_KEY')),
         'routeId': str(_routeId)
     }
 

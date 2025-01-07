@@ -66,7 +66,7 @@ def get_vilage_fcst(nx, ny, base_date, base_time, num_of_rows='1000', page_no='1
 
     req_url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'
     req_params = {
-        'serviceKey': str(utils.get_env_key('SERVICE_KEY')),
+        'serviceKey': str(config.utils.get_env_key('SERVICE_KEY')),
         'numOfRows': str(num_of_rows),
         'pageNo': str(page_no),
         'dataType': str(data_type),
@@ -100,7 +100,7 @@ def get_fine_dust_info(returnType="xml", sidoName="경기", ver="1.0"):
 
     req_url = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty"
     req_params = {
-        "serviceKey": utils.get_env_key('SERVICE_KEY'),
+        "serviceKey": config.utils.get_env_key('SERVICE_KEY'),
         "returnType": returnType,
         "numOfRows": 1000,
         "pageNo": 1,
