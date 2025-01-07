@@ -26,6 +26,7 @@ MATRIX_OPTIONS.show_refresh_rate = False
 # Font path
 FONT_PATH = os.path.join(os.getcwd(), 'src', 'fonts')
 SCD4_FONT_8  = ImageFont.truetype(os.path.join(FONT_PATH, 'SCDream4.otf'), 8)
+SCD4_FONT_9  = ImageFont.truetype(os.path.join(FONT_PATH, 'SCDream4.otf'), 9)
 SCD4_FONT_10 = ImageFont.truetype(os.path.join(FONT_PATH, 'SCDream4.otf'), 11)
 SCD4_FONT_11 = ImageFont.truetype(os.path.join(FONT_PATH, 'SCDream4.otf'), 11)
 SCD4_FONT_12 = ImageFont.truetype(os.path.join(FONT_PATH, 'SCDream4.otf'), 12)

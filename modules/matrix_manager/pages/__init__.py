@@ -1,7 +1,3 @@
-
-# import modules.matrix_manager.pages.bus_station_page     as bus_station_page
-# import modules.matrix_manager.pages.bus_station_etc_page as bus_station_etc_page
-
 class MatrixPages:
     def __init__(self):
         pass
@@ -22,10 +18,12 @@ class MatrixPages:
             return 1
         return 0
     
+    def clear_page(self):
+        import modules.matrix_manager.pages.clear_page as clear_page
+        clear_page.show_clear_page()
+        return 0
+    
     def everline_page(self, _show_time_sec: int = 15):
         import modules.matrix_manager.pages.everline_page as everline_page
-        try:
-            everline_page.show_everline_page(_show_time_sec)
-        except:
-            return 1
+        everline_page.show_everline_page(_show_time_sec)
         return 0
