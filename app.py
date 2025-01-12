@@ -1,6 +1,8 @@
 import modules.matrix_manager as matrix_manager
-from modules.userCtrl_manager import get_state, set_states
-matrix = matrix_manager.MatrixPages()
+import modules.info_manager as info_manager
+matrix = matrix_manager
 
 while True:
-    matrix.everline_page(1000000000)
+    # matrix.matrix_pages.bus_station_etc_page(0, 10)
+    print(info_manager.service.control_pannel.status_devices)
+    matrix.matrix_pages.start_page(10)

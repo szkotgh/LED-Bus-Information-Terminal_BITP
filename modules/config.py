@@ -10,7 +10,7 @@ OPTION_PATH = os.path.join(PWR_PATH, 'src', 'option.json')
 with open(OPTION_PATH, 'r') as f:
     OPTIONS = json.load(f)
 
-# Matrix optiokn
+# Matrix option
 MATRIX_OPTIONS = RGBMatrixOptions()
 MATRIX_OPTIONS.hardware_mapping = 'adafruit-hat'  # If you have an Adafruit HAT: 'adafruit-hat'
 MATRIX_OPTIONS.rows = 32
@@ -19,7 +19,7 @@ MATRIX_OPTIONS.chain_length = 7
 MATRIX_OPTIONS.pixel_mapper_config = "V-mapper;Rotate:90" # https://github.com/hzeller/rpi-rgb-led-matrix/tree/master/examples-api-use#remapping-coordinates
 MATRIX_OPTIONS.pwm_lsb_nanoseconds = 50
 MATRIX_OPTIONS.gpio_slowdown = 4
-MATRIX_OPTIONS.pwm_bits = 5
+MATRIX_OPTIONS.pwm_bits = 4
 MATRIX_OPTIONS.pwm_dither_bits = 0
 MATRIX_OPTIONS.show_refresh_rate = False
 

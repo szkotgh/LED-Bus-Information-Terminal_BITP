@@ -1,3 +1,4 @@
+import time
 from PIL import Image, ImageDraw, ImageFont
 import modules.matrix_manager as matrix_manager
 import modules.info_manager as info_manager
@@ -8,7 +9,15 @@ def show_station_page(_show_station_num: int):
     try:
         station_data = info_manager.service.station_datas[_show_station_num]
     except:
-        matrix_manager.Pages.show_text_page([f"실시간 버스 정보 화면 [{_show_station_num}]", "잘못된 인덱스입니다. 인덱스 번호를 확인하세요.", "화면을 표시할 수 없습니다.", "", f"{utils.get_now_iso_time()}"], _repeat=1)
+        matrix_manager.matrix_pages.text_page(
+            [
+                f"[ 실시간 버스 정보 화면 ]",
+                f"역 정보가 잘못 선택되었습니다.",
+                f"화면을 표시할 수 없습니다. 입력된 정보({_show_station_num})를 확인하십시오.",
+                f"",
+                f"{utils.get_now_iso_time()}"
+            ]
+            , _repeat=1)
         return 1
     
     # # write log
@@ -40,12 +49,12 @@ def show_station_page(_show_station_num: int):
     
     # station title data parsing
     if station_info['errorOcrd'] == True:
-        matrix_manager.Pages.show_text_page([f"실시간 버스 정보 화면 [{_show_station_num}]", "API 오류. 페이지를 표시할 수 없습니다.", "", f"KEYWORD={station_keyword}", f"{station_info.get('errorMsg', '알 수 없는 오류입니다.')}"], _repeat=2)
+        matrix_manager.matrix_pages.show_text_page([f"실시간 버스 정보 화면 [{_show_station_num}]", "API 오류. 페이지를 표시할 수 없습니다.", "", f"KEYWORD={station_keyword}", f"{station_info.get('errorMsg', '알 수 없는 오류입니다.')}"], _repeat=2)
         return 1
     if station_info.get('apiSuccess') == False:
         rst_code = station_info.get('rstCode', "-1")
         rst_msg = station_info.get('rstMsg', "알 수 없는 오류입니다.")
-        matrix_manager.Pages.show_text_page([f"실시간 버스 정보 화면 [{_show_station_num}]", "데이터 오류. 페이지를 표시할 수 없습니다: 필수 데이터가 없습니다.", "", f"KEYWORD={station_keyword}", f"({rst_code}) {rst_msg}"], _repeat=2)
+        matrix_manager.matrix_pages.show_text_page([f"실시간 버스 정보 화면 [{_show_station_num}]", "데이터 오류. 페이지를 표시할 수 없습니다: 필수 데이터가 없습니다.", "", f"KEYWORD={station_keyword}", f"({rst_code}) {rst_msg}"], _repeat=2)
         return 1
     
     station_title = f"{station_info['result'].get('stationName', '')}"
@@ -187,10 +196,10 @@ def show_station_page(_show_station_num: int):
                                 station_title_info['mv_cnt'] = 0
                                 station_title_info['x_loca'] = 0
                                 station_title_end_mv_cnt = None
-                    draw.rectangle([(0, y_loca[0]), (size[0], y_loca[1]-1)], fill="black")
-                    draw.text((station_title_info['x_loca'], y_loca[0]), station_title_info['text'], "white", font12)
+                    draw.rectangle([(0, y_loca[0]), (matrix_manager.MATRIX_SIZE[0], y_loca[1]-1)], fill="black")
+                    draw.text((station_title_info['x_loca'], y_loca[0]), station_title_info['text'], "white", config.SCD4_FONT_12)
                     
-            draw.rectangle([(0, y_loca[1]), (size[0], y_loca[4]-1)], fill="black")
+            draw.rectangle([(0, y_loca[1]), (matrix_manager.MATRIX_SIZE[0], y_loca[4]-1)], fill="black")
             for index, bus_dict in enumerate(bus_data_list):
                 if frame >= 40 and arvl_bus_now_station_str_infos[index]['overflow']:
                     arvl_bus_now_station_str_infos[index]['x_loca'] -= 1
@@ -198,30 +207,30 @@ def show_station_page(_show_station_num: int):
                 bus_routeTypeCd = bus_dict.get("routeTypeCd", "-1")
                 
                 # 5 print bus arvl station
-                draw.text((arvl_bus_now_station_str_infos[index]['x_loca'], y_loca[index+1]), arvl_bus_now_station_str_infos[index]['text'], "white", font12)
+                draw.text((arvl_bus_now_station_str_infos[index]['x_loca'], y_loca[index+1]), arvl_bus_now_station_str_infos[index]['text'], "white", config.SCD4_FONT_12)
                 draw.rectangle((x_loca[0], y_loca[index+1], x_loca[4]-1, y_loca[index+2]-1), fill="black")
                 
                 # 1 print bus icon
-                draw.bitmap((x_loca[0], y_loca[index+1]), bus_icon, bus_type_color.get(bus_routeTypeCd, "white"));
+                draw.bitmap((x_loca[0], y_loca[index+1]), config.BUS_ICON, bus_type_color.get(bus_routeTypeCd, "white"));
                 
                 # 2 print route name
-                draw.text((x_loca[1], y_loca[index+1]), bus_dict.get('routeName', ''), "white", font12)
+                draw.text((x_loca[1], y_loca[index+1]), bus_dict.get('routeName', ''), "white", config.SCD4_FONT_12)
                 
                 # 3 print remain seat grade
-                remain_seat_str_align_val = utils.get_text_align_space(x_loca[3]-x_loca[2], bus_dict.get('remainSeatGrade'), font12)
-                draw.text((x_loca[2]+remain_seat_str_align_val, y_loca[index+1]), bus_dict.get('remainSeatGrade'), bus_dict.get('remainSeatGradeColor'), font12)
+                remain_seat_str_align_val = utils.get_text_align_space(x_loca[3]-x_loca[2], bus_dict.get('remainSeatGrade'), config.SCD4_FONT_12)
+                draw.text((x_loca[2]+remain_seat_str_align_val, y_loca[index+1]), bus_dict.get('remainSeatGrade'), bus_dict.get('remainSeatGradeColor'), config.SCD4_FONT_12)
                 
                 # 4 print predict time
-                predict_time_str_align_val = utils.get_text_align_space(x_loca[4]-x_loca[3], f"{bus_dict.get('predictTime1', '')}분", font12)
-                draw.text((x_loca[3]+predict_time_str_align_val, y_loca[index+1]), f"{bus_dict.get('predictTime1', '')}분", "aqua", font12)
+                predict_time_str_align_val = utils.get_text_align_space(x_loca[4]-x_loca[3], f"{bus_dict.get('predictTime1', '')}분", config.SCD4_FONT_12)
+                draw.text((x_loca[3]+predict_time_str_align_val, y_loca[index+1]), f"{bus_dict.get('predictTime1', '')}분", "aqua", config.SCD4_FONT_12)
             
             # 2 print arvl bus str
-            draw.rectangle(((x_loca_bus_arvl[1], y_loca[4]), (size[0], size[1])), fill="black")
-            draw.text((arvl_str_infos['x_loca'], y_loca[4]), arvl_str_infos['text'], "white", font12)
+            draw.rectangle(((x_loca_bus_arvl[1], y_loca[4]), (matrix_manager.MATRIX_SIZE[0], matrix_manager.MATRIX_SIZE[1])), fill="black")
+            draw.text((arvl_str_infos['x_loca'], y_loca[4]), arvl_str_infos['text'], "white", config.SCD4_FONT_12)
             
             # 1 print arvl bus title
-            draw.rectangle(((0, y_loca[4]), (x_loca_bus_arvl[1]-1, size[1])), fill="black")
-            draw.text((x_loca_bus_arvl[0], y_loca[4]), "곧도착:", "white", font12)
+            draw.rectangle(((0, y_loca[4]), (x_loca_bus_arvl[1]-1, matrix_manager.MATRIX_SIZE[1])), fill="black")
+            draw.text((x_loca_bus_arvl[0], y_loca[4]), "곧도착:", "white", config.SCD4_FONT_12)
             
             arvl_str_infos['frame_cnt'] += 1
             if arvl_str_infos['frame_cnt'] >= 39 and arvl_str_infos['overflow']:
@@ -240,5 +249,5 @@ def show_station_page(_show_station_num: int):
                                 arvl_str_infos['x_loca'] = x_loca_bus_arvl[1]
                                 arvl_bus_end_mv_cnt = None
             
-            refresh(display)
+            matrix_manager.refresh(display)
             time.sleep(0.02)

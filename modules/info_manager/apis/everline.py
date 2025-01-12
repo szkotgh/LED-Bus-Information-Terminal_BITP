@@ -110,8 +110,8 @@ def cal_percent(_part, _whole, _round=2, _max=100):
 class EverlineAPI:
     '''# Everline API Class
     ## Methods'''
-    def __init__(self, req_url="https://everlinecu.com/api/api009.json"):
-        self.req_url = req_url
+    def __init__(self, _req_url="https://everlinecu.com/api/api009.json"):
+        self.req_url = _req_url
         self.data = None
         self.last_update = None
         self.auto_update_thread = None

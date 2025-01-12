@@ -12,9 +12,17 @@
         ]
 	},
     "everline" : {
-        "refreshInterval": 1,
+        "reqUrl": "https://everlinecu.com/api/api009.json",
+        "refreshInterval": 2,
         "backStation": "Y120",
         "baseStation": "Y121",
         "nextStation": "Y122"
+    },
+    "network" : {
+        "reqUrl": "http://www.google.com",
+        "refreshInterval": 1
+    },
+    "control_pannel" : {
+        "refreshInterval": 1
     }
 }

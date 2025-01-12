@@ -46,6 +46,9 @@ def get_now_iso_time() -> str:
 def get_now_ftime(format: str = default_timef) -> str:
     return datetime.datetime.now().strftime(format)
 
+def chunk_list(lst: list, _chunk_size=3) -> list:
+    return [lst[i:i + _chunk_size] for i in range(0, len(lst), _chunk_size)]
+
 def get_ip(default: str = "N/A", ext_ip: str = '1.1.1.1') -> str:
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
