@@ -3,3 +3,6 @@ __pycache__/
 
 .env
 log/
+
+/src/audio/music1.mp3
+/src/audio/music2.mp3
