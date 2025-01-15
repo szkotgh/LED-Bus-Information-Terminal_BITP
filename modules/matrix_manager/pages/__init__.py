@@ -22,10 +22,15 @@ class MatrixPages:
         test_page.show_test_page(_test_type, _delay_time)
         return 0
         
-    def text_page(self, _set_text: str | list = "", _first_show_time: int | float = 1, _end_show_time: int | float = 1, _repeat: int = 1, _status_prt: bool = True):
+    def text_page(self, _set_text: str | list = "", _first_show_time: int | float = 1, _end_show_time: int | float = 1, _repeat: int = 1, _text_color: str = 'white', _status_prt: bool = True):
         import modules.matrix_manager.pages.text_page as text_page
-        text_page.show_text_page(_set_text, _first_show_time, _end_show_time, _repeat, _status_prt)
+        text_page.show_text_page(_set_text, _first_show_time, _end_show_time, _repeat, _text_color, _status_prt)
         return 0
+    
+    def exit_page(self, _set_text: str | list = "", _first_show_time: int | float = 1, _end_show_time: int | float = 1, _repeat: int = 1, _text_color: str = 'white', _status_prt: bool = True, _exit_code: int = 1):
+        import modules.matrix_manager.pages.text_page as text_page
+        text_page.show_text_page(_set_text, _first_show_time, _end_show_time, _repeat, _text_color, _status_prt)
+        exit(_exit_code)
     
     def clear_page(self):
         import modules.matrix_manager.pages.clear_page as clear_page

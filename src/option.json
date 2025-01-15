@@ -23,8 +23,8 @@
         "refreshInterval": 1
     },
     "control_pannel" : {
-        "refreshInterval": 1,
         "serialPort": "/dev/ttyUSB0",
-        "serialBps": 115200
+        "serialBps": 115200,
+        "refreshInterval": 0.2
     }
 }
