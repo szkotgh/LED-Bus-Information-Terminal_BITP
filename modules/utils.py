@@ -1,12 +1,8 @@
 import os
-import sys
-
-import logging
-import json
-import base64
 import socket
 import uuid
 import datetime
+import xmltodict
 import requests
 import modules.config as config
 from dotenv import load_dotenv
@@ -48,6 +44,10 @@ def get_now_ftime(format: str = default_timef) -> str:
 
 def chunk_list(lst: list, _chunk_size=3) -> list:
     return [lst[i:i + _chunk_size] for i in range(0, len(lst), _chunk_size)]
+
+def xml_to_dict(_xml_string):
+    data_dict = xmltodict.parse(_xml_string)
+    return data_dict
 
 def get_ip(default: str = "N/A", ext_ip: str = '1.1.1.1') -> str:
     try:
@@ -105,3 +105,40 @@ def detect_response_error(_res_dict:dict, _df_code:str='-1', _df_msg:str='Unknow
     # Unknown Response
     else:
         return (_df_code, _df_msg)
+    
+def request_get_http(_url:str, _params:dict, _result_index:list) -> requests.Response:
+    f_response = {
+        'queryTime'  : get_now_ftime(),
+        'apiSuccess' : False,
+        'errorOcrd'  : False,
+        'errorMsg'   : 'Undefined',
+        'result'     : None,
+        'resCode'    : '-1',
+        'resMsg'     : 'Undefined'
+    }
+    
+    try:
+        result = requests.get(_url, params=_params)
+        result.raise_for_status()
+        result_dict = xml_to_dict(result.text)
+    except Exception as e:
+        f_response['errorOcrd'] = True
+        f_response['errorMsg'] = str(e)
+        return f_response
+    
+    res_code, res_msg = detect_response_error(result_dict)
+    f_response.update({
+        'apiSuccess': True,
+        'resCode'   : res_code,
+        'resMsg'    : res_msg
+    })
+    
+    if res_code in ['0', '00']:
+        result = result_dict
+        for index in _result_index:
+            result = result[index]
+        f_response.update({
+            'result': result
+        })
+    
+    return f_response
