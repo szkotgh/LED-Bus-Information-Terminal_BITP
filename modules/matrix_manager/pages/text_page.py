@@ -4,7 +4,7 @@ import modules.config as config
 import modules.utils as utils
 import modules.matrix_manager as matrix_manager
 
-def show_text_page(_set_text: str | list = "", _first_show_time: int | float = 1, _end_show_time: int | float = 1, _repeat: int = 1, _text_color: str = 'white', _status_prt: bool = True):
+def show_text_page(_set_text: str | list = "", _first_show_time: int | float = 1, _end_show_time: int | float = 1, _repeat: int = 1, _text_color: str = 'white', _status_prt: bool = True, _is_exit_signal: bool = False):
     if isinstance(_set_text, str):
         texts = [_set_text]
     elif isinstance(_set_text, list):
@@ -23,7 +23,7 @@ def show_text_page(_set_text: str | list = "", _first_show_time: int | float = 1
             if i < len(x_loca_row):
                 draw.text((1, x_loca_row[i]), str(text), _text_color, config.SCD4_FONT_12)
 
-        matrix_manager.refresh(canvas, status_prt=_status_prt)
+        matrix_manager.refresh(canvas, status_prt=_status_prt, is_exit_signal=_is_exit_signal)
         time.sleep(_first_show_time)
 
         moving_texts = [text for text, width in zip(texts, text_widths) if width > display_width]
@@ -52,7 +52,7 @@ def show_text_page(_set_text: str | list = "", _first_show_time: int | float = 1
                     if i < len(x_loca_row):
                         draw.text((1, x_loca_row[i]), str(text), _text_color, config.SCD4_FONT_12)
 
-            matrix_manager.refresh(canvas, status_prt=_status_prt)
+            matrix_manager.refresh(canvas, status_prt=_status_prt, is_exit_signal=_is_exit_signal)
 
             time.sleep(0.01)
 

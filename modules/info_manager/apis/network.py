@@ -20,14 +20,14 @@ class NetworkManager:
         self.auto_update_enabled = True
     
     def check_internet_connection(self, _ext_ip: str = '1.1.1.1'):
+        # get wan ip
         try:
             ip_response = requests.get('https://api.ipify.org?format=json', timeout=self._timeout)
             self.wan_ip = ip_response.json().get('ip', self._default_ip)
-            self.is_internet_connected = True
         except Exception as e:
             self.wan_ip = self._default_ip
-            self.is_internet_connected = False
         
+        # get lan ip
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             s.connect((_ext_ip, 80))
@@ -36,11 +36,19 @@ class NetworkManager:
         except Exception as e:
             self.lan_ip = self._default_ip
         
+        # check internet connection
+        try:
+            requests.get(self._req_url, timeout=self._timeout)
+            self.is_internet_connected = True
+        except Exception as e:
+            self.is_internet_connected = False
+        
         self.last_connection_time = utils.get_now_ftime()
         
         return True
         
     def start_auto_update(self, _interval=1):
+        import modules.control_manager as control_manager
         """Start auto update thread"""
         if self.auto_update_thread is not None:
             return False
@@ -52,6 +60,8 @@ class NetworkManager:
                     break
                 
                 self.check_internet_connection()
+                
+                control_manager.control_pannel.led_control(_internet=self.is_internet_connected)
                 
                 time.sleep(_interval)
 

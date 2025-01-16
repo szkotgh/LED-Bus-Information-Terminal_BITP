@@ -5,7 +5,6 @@ import modules.info_manager.apis.bus as bus
 import modules.info_manager.apis.weather as weather
 import modules.info_manager.apis.everline as everline
 import modules.info_manager.apis.network as network
-import modules.info_manager.apis.control_pannel as control_pannel
 
 class InfoManager:
     def __init__(self, SERVICE_KEY):
@@ -15,8 +14,6 @@ class InfoManager:
         
         self.network = network.NetworkManager(_req_url=config.OPTIONS['network']['reqUrl'], _timeout=config.OPTIONS['api_timeout'])
         self.network.start_auto_update(_interval=config.OPTIONS['network']['refreshInterval'])
-        
-        self.control_pannel = control_pannel.ControlPannel(_arduino_port=config.OPTIONS['control_pannel']['serialPort'], _arduino_bps=config.OPTIONS['control_pannel']['serialBps'])
         
         with open('./station_datas_struct.json', 'r') as f:
             self.station_datas = json.load(f)

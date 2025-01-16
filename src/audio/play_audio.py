@@ -8,4 +8,4 @@ pygame.mixer.music.set_volume(0.3)
 pygame.mixer.music.play()
 
 while pygame.mixer.music.get_busy():
-    pygame.time.Clock().tick(10)
+    pygame.time.Clock().tick(1000)

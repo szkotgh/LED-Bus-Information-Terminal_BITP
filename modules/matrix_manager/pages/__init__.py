@@ -1,15 +1,18 @@
+import os
+
+
 class MatrixPages:
     def __init__(self):
         pass
     
-    def start_page(self, _show_msec):
+    def start_page(self, _show_msec: int, _status_prt: bool = False):
         import modules.matrix_manager.pages.start_page as start_page
-        start_page.show_start_page(_show_msec)
+        start_page.show_start_page(_show_msec, _status_prt)
         return 0
     
     def bus_station_page(self, _station_index: int):
         import modules.matrix_manager.pages.bus_station_page as bus_station_page
-        bus_station_page.show_station_page(_station_index, )
+        bus_station_page.show_station_page(_station_index)
         return 0
     
     def bus_station_etc_page(self, _station_index: int, _show_time_sec: int):
@@ -27,10 +30,14 @@ class MatrixPages:
         text_page.show_text_page(_set_text, _first_show_time, _end_show_time, _repeat, _text_color, _status_prt)
         return 0
     
-    def exit_page(self, _set_text: str | list = "", _first_show_time: int | float = 1, _end_show_time: int | float = 1, _repeat: int = 1, _text_color: str = 'white', _status_prt: bool = True, _exit_code: int = 1):
+    def exit_page(self, _set_text: str | list = "", _first_show_time: int | float = 1, _end_show_time: int | float = 1, _repeat: int = 1, _text_color: str = 'white', _status_prt: bool = True, _exit_code: int = 0):
         import modules.matrix_manager.pages.text_page as text_page
-        text_page.show_text_page(_set_text, _first_show_time, _end_show_time, _repeat, _text_color, _status_prt)
-        exit(_exit_code)
+        import modules.matrix_manager as matrix_manager
+        matrix_manager.IS_EXITED = True
+        text_page.show_text_page(_set_text, _first_show_time, _end_show_time, _repeat, _text_color, _status_prt, _is_exit_signal=True)
+        for i in range(5, 0, -1):
+            text_page.show_text_page([f'BIT를 종료합니다.', f'종료 신호를 받았습니다. 종료 코드: {_exit_code}', '', '', f'{i}초 뒤 자동으로 종료됩니다 . . .'], 0, 1, 1, 'white', _status_prt=False, _is_exit_signal=True)
+        os._exit(_exit_code)
     
     def clear_page(self):
         import modules.matrix_manager.pages.clear_page as clear_page
