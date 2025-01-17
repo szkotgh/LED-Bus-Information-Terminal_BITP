@@ -3,11 +3,17 @@
     "api_timeout" : 5,
     "logging" : true,
     "bus": {
-        "refreshInterval": 30,
+        "arvlBusRefreshInterval": 30,
+        "weatherInfoRefreshInterval": 300,
+        "finedustInfoRefreshInterval": 3600,
         "stations": [
             {
-                "keyword" : "29413",
-                "stationDesc" : ""
+                "keyword" : "47307",
+                "stationDesc" : "덕영고방면"
+            },
+            {
+                "keyword" : "47574",
+                "stationDesc" : "용마초교 방면"
             }
         ]
 	},

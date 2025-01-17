@@ -1,7 +1,7 @@
 import json
 import modules.utils as utils
 import modules.config as config
-import modules.info_manager.apis.bus as bus
+import modules.info_manager.apis.bus_station as bus_station
 import modules.info_manager.apis.weather as weather
 import modules.info_manager.apis.everline as everline
 import modules.info_manager.apis.network as network
@@ -15,7 +15,6 @@ class InfoManager:
         self.network = network.NetworkManager(_req_url=config.OPTIONS['network']['reqUrl'], _timeout=config.OPTIONS['api_timeout'])
         self.network.start_auto_update(_interval=config.OPTIONS['network']['refreshInterval'])
         
-        with open('./station_datas_struct.json', 'r') as f:
-            self.station_datas = json.load(f)
-
+        self.station_datas = [bus_station.BusStationAPI(SERVICE_KEY, init_station_data) for init_station_data in config.OPTIONS['bus']['stations']]
+        
 service = InfoManager(utils.get_env_key('SERVICE_KEY'))

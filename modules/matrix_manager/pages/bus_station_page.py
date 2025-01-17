@@ -1,28 +1,11 @@
 import time
 from PIL import Image, ImageDraw, ImageFont
 import modules.matrix_manager as matrix_manager
-import modules.info_manager as info_manager
 import modules.utils as utils
 import modules.config as config
 
-def show_station_page(_show_station_num: int):
-    try:
-        station_data = info_manager.service.station_datas[_show_station_num]
-    except:
-        matrix_manager.matrix_pages.text_page(
-            [
-                f"[ 실시간 버스 정보 화면 ]",
-                f"역 정보가 잘못 선택되었습니다.",
-                f"화면을 표시할 수 없습니다. 입력된 정보({_show_station_num})를 확인하십시오.",
-                f"",
-                f"{utils.get_now_iso_time()}"
-            ]
-            , _repeat=1)
-        return 1
-    
-    # # write log
-    # with open('./log/first-struct.log', 'w', encoding='UTF-8') as f:
-    #     f.write(json.dumps(station_data))
+def show_station_page(_show_station_data):
+    station_data = _show_station_data
     
     # remain_cnt_grade = ['여유', '보통', '혼잡', '매우혼잡']
     # #                         여유       보통    혼잡    매우혼잡  숫자  미정
@@ -49,12 +32,12 @@ def show_station_page(_show_station_num: int):
     
     # station title data parsing
     if station_info['errorOcrd'] == True:
-        matrix_manager.matrix_pages.show_text_page([f"실시간 버스 정보 화면 [{_show_station_num}]", "API 오류. 페이지를 표시할 수 없습니다.", "", f"KEYWORD={station_keyword}", f"{station_info.get('errorMsg', '알 수 없는 오류입니다.')}"], _repeat=2)
+        matrix_manager.matrix_pages.show_text_page([f"실시간 버스 정보 화면 [{_show_station_data}]", "API 오류. 페이지를 표시할 수 없습니다.", "", f"KEYWORD={station_keyword}", f"{station_info.get('errorMsg', '알 수 없는 오류입니다.')}"], _repeat=2)
         return 1
     if station_info.get('apiSuccess') == False:
         rst_code = station_info.get('rstCode', "-1")
         rst_msg = station_info.get('rstMsg', "알 수 없는 오류입니다.")
-        matrix_manager.matrix_pages.show_text_page([f"실시간 버스 정보 화면 [{_show_station_num}]", "데이터 오류. 페이지를 표시할 수 없습니다: 필수 데이터가 없습니다.", "", f"KEYWORD={station_keyword}", f"({rst_code}) {rst_msg}"], _repeat=2)
+        matrix_manager.matrix_pages.show_text_page([f"실시간 버스 정보 화면 [{_show_station_data}]", "데이터 오류. 페이지를 표시할 수 없습니다: 필수 데이터가 없습니다.", "", f"KEYWORD={station_keyword}", f"({rst_code}) {rst_msg}"], _repeat=2)
         return 1
     
     station_title = f"{station_info['result'].get('stationName', '')}"

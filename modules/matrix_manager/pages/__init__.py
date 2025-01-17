@@ -1,23 +1,22 @@
 import os
 
-
 class MatrixPages:
     def __init__(self):
         pass
     
-    def start_page(self, _show_msec: int, _status_prt: bool = False):
+    def start_page(self, _show_sec: int, _status_prt: bool = False):
         import modules.matrix_manager.pages.start_page as start_page
-        start_page.show_start_page(_show_msec, _status_prt)
+        start_page.show_start_page(_show_sec, _status_prt)
         return 0
     
-    def bus_station_page(self, _station_index: int):
+    def bus_station_page(self, _show_station_struct):
         import modules.matrix_manager.pages.bus_station_page as bus_station_page
-        bus_station_page.show_station_page(_station_index)
+        bus_station_page.show_station_page(_show_station_struct)
         return 0
     
-    def bus_station_etc_page(self, _station_index: int, _show_time_sec: int):
+    def bus_station_etc_page(self, _show_station_struct, _show_time_sec: int):
         import modules.matrix_manager.pages.bus_station_etc_page as bus_station_etc_page
-        bus_station_etc_page.show_station_etc_page(_station_index, _show_time_sec)
+        bus_station_etc_page.show_station_etc_page(_show_station_struct, _show_time_sec)
         return 0
     
     def test_page(self, _test_type: int = 0, _delay_time:int = 1):
@@ -33,10 +32,16 @@ class MatrixPages:
     def exit_page(self, _set_text: str | list = "", _first_show_time: int | float = 1, _end_show_time: int | float = 1, _repeat: int = 1, _text_color: str = 'white', _status_prt: bool = True, _exit_code: int = 0):
         import modules.matrix_manager.pages.text_page as text_page
         import modules.matrix_manager as matrix_manager
+        import modules.control_manager as control_manager
+        
         matrix_manager.IS_EXITED = True
         text_page.show_text_page(_set_text, _first_show_time, _end_show_time, _repeat, _text_color, _status_prt, _is_exit_signal=True)
         for i in range(5, 0, -1):
             text_page.show_text_page([f'BIT를 종료합니다.', f'종료 신호를 받았습니다. 종료 코드: {_exit_code}', '', '', f'{i}초 뒤 자동으로 종료됩니다 . . .'], 0, 1, 1, 'white', _status_prt=False, _is_exit_signal=True)
+        
+        control_manager.control_pannel.init_device()
+        self.clear_page()
+        
         os._exit(_exit_code)
     
     def clear_page(self):

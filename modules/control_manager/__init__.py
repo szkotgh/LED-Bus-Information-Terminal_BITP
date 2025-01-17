@@ -8,7 +8,7 @@ import modules.utils as utils
 
 class ControlPannel:
     def __init__(self, _arduino_port, _arduino_bps):
-        self.default_device_states = {'LED1': False, 'LED2': False, 'LED3': False, 'LED4': False, 'RELAY1': True, 'RELAY2': True, 'RELAY3': True, 'RELAY4': False}
+        self.default_device_states = {'LED1': False, 'LED2': False, 'LED3': False, 'LED4': False, 'RELAY1': True, 'RELAY2': True, 'RELAY3': False, 'RELAY4': False}
         
         try:
             self.arduino = serial.Serial(_arduino_port, _arduino_bps, timeout=0)
@@ -26,7 +26,6 @@ class ControlPannel:
                 self.set_states(self.default_device_states)
                 matrix_manager.matrix_pages.text_page(['컨트롤 판넬 연결 성공', '실행 중 . . .'], 0, 0, _text_color='lime', _status_prt=False)
                 self.button_auto_detect()
-                
                 matrix_manager.matrix_pages.text_page(['컨트롤 판넬 연결 성공'], 0, 1, _text_color='lime', _status_prt=False)
             else:
                 raise Exception("Control pannel connection failed")
@@ -53,6 +52,9 @@ class ControlPannel:
     def set_states(self, devices):
         command = {"command": "SET", "variables": devices}
         return self.send_command(command)
+    
+    def init_device(self):
+        return self.set_states(self.default_device_states)
     
     def led_control(self, _power: bool = None, _audio: bool = None, _internet: bool = None, _error: bool = None):
         command = {}
@@ -81,7 +83,7 @@ class ControlPannel:
         return self.set_states(command)
     
     def button_auto_detect(self):
-        def sensor_detect():
+        def button_detect():
             previous_button1_state = None
             previous_button2_state = None
 
@@ -97,7 +99,7 @@ class ControlPannel:
                     self.led_control(_power=button1_state)
                     previous_button1_state = button1_state
                     if button1_state == False:
-                        matrix_manager.matrix_pages.exit_page(['전원이 꺼집니다.', '전원버튼이 비활성화 되어있습니다.', '', '', 'BIT가 종료됩니다. 전원을 제거 후 다시 연결해 BIT를 켜십시오.'], 1, 1, 2,  _text_color='orange', _status_prt=False, _exit_code=0)
+                        matrix_manager.matrix_pages.exit_page(['BIT를 종료합니다.', '전원버튼이 비활성화 되어있습니다.', '', '', '전원을 재연결해 BIT를 켜십시오.'], 0, 5,  _text_color='orange', _status_prt=False, _exit_code=0)
                     
                 if button2_state != previous_button2_state:
                     self.led_control(_audio=button2_state)
@@ -106,12 +108,8 @@ class ControlPannel:
                     
                 time.sleep(config.OPTIONS['control_pannel']['refreshInterval'])
         
-        t = threading.Thread(target=sensor_detect)
+        t = threading.Thread(target=button_detect)
         t.daemon = True
         t.start()    
-        
-            
-            
-        
         
 control_pannel = ControlPannel(_arduino_port=config.OPTIONS['control_pannel']['serialPort'], _arduino_bps=config.OPTIONS['control_pannel']['serialBps'])

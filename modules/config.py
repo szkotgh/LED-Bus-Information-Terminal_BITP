@@ -5,10 +5,13 @@ from rgbmatrix import RGBMatrixOptions
 
 PWR_PATH = os.getcwd()
 OPTION_PATH = os.path.join(PWR_PATH, 'src', 'option.json')
+VERSOIN_PATH = os.path.join(PWR_PATH, 'VERSION')
 
 # Required variables
 with open(OPTION_PATH, 'r') as f:
     OPTIONS = json.load(f)
+with open(VERSOIN_PATH, 'r') as f:
+    VERSION = f.read()
 
 # Matrix option
 MATRIX_OPTIONS = RGBMatrixOptions()

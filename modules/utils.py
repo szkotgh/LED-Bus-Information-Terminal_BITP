@@ -36,6 +36,9 @@ def get_mac_address() -> str:
     mac = ':'.join(['{:02x}'.format((uuid.getnode() >> elements) & 0xff) for elements in range(0,2*6,2)])
     return mac
 
+def get_now_datetime() -> datetime.datetime:
+    return datetime.datetime.now()
+
 def get_now_iso_time() -> str:
     return datetime.datetime.now().isoformat()
 
@@ -118,27 +121,33 @@ def request_get_http(_url:str, _params:dict, _result_index:list) -> requests.Res
     }
     
     try:
-        result = requests.get(_url, params=_params)
-        result.raise_for_status()
-        result_dict = xml_to_dict(result.text)
+        for i in range(config.OPTIONS['api_error_retry_count'] + 1):
+            if i == config.OPTIONS['api_error_retry_count']:
+                raise Exception('API Error Retry Count Over')
+            
+            result = requests.get(_url, params=_params, timeout=config.OPTIONS['api_timeout'])
+            result.raise_for_status()
+            result_dict = xml_to_dict(result.text)
+            
+            res_code, res_msg = detect_response_error(result_dict)
+            f_response.update({
+                'apiSuccess': True,
+                'resCode'   : res_code,
+                'resMsg'    : res_msg
+            })
+            
+            if res_code in ['0', '00']:
+                result = result_dict
+                for index in _result_index:
+                    result = result[index]
+                f_response.update({
+                    'result': result
+                })
+                break
+        
     except Exception as e:
         f_response['errorOcrd'] = True
         f_response['errorMsg'] = str(e)
         return f_response
-    
-    res_code, res_msg = detect_response_error(result_dict)
-    f_response.update({
-        'apiSuccess': True,
-        'resCode'   : res_code,
-        'resMsg'    : res_msg
-    })
-    
-    if res_code in ['0', '00']:
-        result = result_dict
-        for index in _result_index:
-            result = result[index]
-        f_response.update({
-            'result': result
-        })
     
     return f_response

@@ -67,6 +67,7 @@ class NetworkManager:
 
         self.auto_update_enabled = True
         self.auto_update_thread = threading.Thread(target=update, daemon=True)
+        self.auto_update_thread.daemon = True
         self.auto_update_thread.start()
         
         return True

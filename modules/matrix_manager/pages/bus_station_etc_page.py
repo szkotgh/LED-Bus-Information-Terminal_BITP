@@ -6,17 +6,11 @@ import modules.utils as utils
 import modules.matrix_manager as matrix_manager
 import modules.info_manager as info_manager
 
-def show_station_etc_page(_show_station_num: int, _show_time_sec: int):
-    try:
-        station_data = info_manager.service.station_datas[_show_station_num]
-    except:
-        matrix_manager.matrix_pages.show_text_page([f"실시간 버스 부가정보 화면 [{_show_station_num}]", "잘못된 인덱스입니다. 인덱스 번호를 확인하세요.", "화면을 표시할 수 없습니다.", "", f"{utils.get_now_iso_time()}"], _repeat=1)
-        return 1
-    
+def show_station_etc_page(_show_station_struct, _show_time_sec: int):
     _start_time = datetime.datetime.now()
 
-    weather_info = station_data['weatherInfo']
-    finedust_info = station_data['finedustInfo']
+    weather_info = _show_station_struct['weatherInfo']
+    finedust_info = _show_station_struct['finedustInfo']
     
     x_loca_col  = [0, 70, 77]
     y_loca_row  = [1, 16, 32, 48]
