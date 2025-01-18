@@ -1,0 +1,33 @@
+{
+    "queryTime": "20250118201854",
+    "apiSuccess": true,
+    "errorOcrd": false,
+    "errorMsg": "Undefined",
+    "result": {
+        "so2Grade": "1",
+        "coFlag": null,
+        "khaiValue": "92",
+        "so2Value": "0.003",
+        "coValue": "1.0",
+        "pm25Flag": null,
+        "pm10Flag": null,
+        "o3Grade": "1",
+        "pm10Value": "48",
+        "khaiGrade": "2",
+        "pm25Value": "31",
+        "sidoName": "경기",
+        "no2Flag": null,
+        "no2Grade": "2",
+        "o3Flag": null,
+        "pm25Grade": "2",
+        "so2Flag": null,
+        "dataTime": "2025-01-18 20:00",
+        "coGrade": "1",
+        "no2Value": "0.052",
+        "stationName": "김량장동",
+        "pm10Grade": "2",
+        "o3Value": "0.002"
+    },
+    "resCode": "00",
+    "resMsg": "NORMAL_CODE"
+}

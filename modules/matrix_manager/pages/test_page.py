@@ -29,6 +29,3 @@ def show_test_page(_test_type: int = 0, _delay_time:int = 1):
             draw.line((x, 0, x, matrix_manager.MATRIX_SIZE[1]), fill='white')
         matrix_manager.refresh(display, status_prt=False)
         time.sleep(_delay_time)
-    
-    draw.rectangle(((0, 0), (matrix_manager.MATRIX_SIZE[0], matrix_manager.MATRIX_SIZE[1])), "black")
-    matrix_manager.refresh(display, status_prt=False)

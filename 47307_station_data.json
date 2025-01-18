@@ -1,0 +1,18 @@
+{
+    "queryTime": "20250118201854",
+    "apiSuccess": true,
+    "errorOcrd": false,
+    "errorMsg": "Undefined",
+    "result": {
+        "centerYn": "N",
+        "districtCd": "2",
+        "mobileNo": "47307",
+        "regionName": "용인",
+        "stationId": "228000439",
+        "stationName": "서울병원",
+        "x": "127.2149",
+        "y": "37.2402167"
+    },
+    "resCode": "0",
+    "resMsg": "정상적으로 처리되었습니다."
+}

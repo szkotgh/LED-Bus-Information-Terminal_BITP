@@ -108,8 +108,8 @@ def detect_response_error(_res_dict:dict, _df_code:str='-1', _df_msg:str='Unknow
     # Unknown Response
     else:
         return (_df_code, _df_msg)
-    
-def request_get_http(_url:str, _params:dict, _result_index:list) -> requests.Response:
+
+def gen_response() -> dict:
     f_response = {
         'queryTime'  : get_now_ftime(),
         'apiSuccess' : False,
@@ -119,6 +119,10 @@ def request_get_http(_url:str, _params:dict, _result_index:list) -> requests.Res
         'resCode'    : '-1',
         'resMsg'     : 'Undefined'
     }
+    return f_response
+
+def request_get_http(_url:str, _params:dict, _result_index:list) -> requests.Response:
+    f_response = gen_response()
     
     try:
         for i in range(config.OPTIONS['api_error_retry_count'] + 1):
@@ -131,7 +135,6 @@ def request_get_http(_url:str, _params:dict, _result_index:list) -> requests.Res
             
             res_code, res_msg = detect_response_error(result_dict)
             f_response.update({
-                'apiSuccess': True,
                 'resCode'   : res_code,
                 'resMsg'    : res_msg
             })
@@ -141,13 +144,16 @@ def request_get_http(_url:str, _params:dict, _result_index:list) -> requests.Res
                 for index in _result_index:
                     result = result[index]
                 f_response.update({
+                    'apiSuccess': True,
                     'result': result
                 })
                 break
         
     except Exception as e:
-        f_response['errorOcrd'] = True
-        f_response['errorMsg'] = str(e)
+        f_response.update({
+            'errorOcrd': True,
+            'errorMsg' : str(e)
+        })
         return f_response
     
     return f_response

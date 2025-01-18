@@ -4,12 +4,9 @@ import time
 import queue
 import pygame
 import requests
-import modules.utils
 
 class AudioManager:
-    def __init__(self, _GOOGLE_API_KEY):
-        self._GOOGLE_API_KEY = _GOOGLE_API_KEY
-        
+    def __init__(self):        
         self.audio_queue = queue.Queue()
         self.audio_volume = 1
         
@@ -32,11 +29,11 @@ class AudioManager:
     def add_notification(self, _path):
         self.notification_queue.put(_path)
 
-    def tts_play(self, _text):
+    def tts_play(self, _text, _GOOGLE_API_KEY):
         response = requests.post(
             'https://texttospeech.googleapis.com/v1/text:synthesize',
             headers={
-                'X-Goog-Api-Key': self._GOOGLE_API_KEY,
+                'X-Goog-Api-Key': _GOOGLE_API_KEY,
                 'Content-Type': 'application/json'
             },
             json={
@@ -60,7 +57,7 @@ class AudioManager:
         )
         
         audio_data = response.json()['audioContent']
-        with open('audio/tts.mp3', 'wb') as f:
+        with open('src/tts.mp3', 'wb') as f:
             f.write(base64.b64decode(audio_data))
             
         self.add_notification('audio/tts.mp3')
@@ -104,4 +101,4 @@ class AudioManager:
                     audio_channel.set_volume(self.audio_volume)
                 time.sleep(0.1)
                 
-master = AudioManager(modules.utils.get_env_key('GOOGLE_API_KEY'))
+master = AudioManager()

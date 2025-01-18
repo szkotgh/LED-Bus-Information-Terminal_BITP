@@ -34,11 +34,11 @@ class BusStationAPI:
     def __init__(self, _service_key, _init_station_data):
         self.service_key = _service_key
         
-        self.init_station_data = _init_station_data
-        self.station_data = {}
-        self.station_finedust_data = {}
-        self.station_weather_data = {}
-        self.arvl_bus_data = {}
+        self.init_station_data     = _init_station_data
+        self.station_data          = utils.gen_response()
+        self.arvl_bus_data         = utils.gen_response()
+        self.station_finedust_data = utils.gen_response()
+        self.station_weather_data  = utils.gen_response()
     
         self.is_station_data_inited = False
         self.last_arvl_bus_data_update_time = None
@@ -55,7 +55,7 @@ class BusStationAPI:
         result = utils.request_get_http(req_url, req_params, ['response', 'msgBody', 'busStationList'])
         self.station_data = result
         
-        if self.station_data['resCode'] in ['0', '00']:
+        if self.station_data['apiSuccess'] == True:
             self.is_station_data_inited = True
     
     def get_arvl_bus_data(self):
@@ -66,14 +66,14 @@ class BusStationAPI:
         }
         
         result = utils.request_get_http(req_url, req_params, ['response', 'msgBody', 'busArrivalList'])
+        self.arvl_bus_data = result
         
-        if result['resCode'] in ['0', '00']:
+        if self.arvl_bus_data['apiSuccess'] == True:
             self.last_arvl_bus_data_update_time = utils.get_now_datetime()
         
-        if type(result['result']) != list:
-            result['result'] = [] if result['result'] == None else [result['result']]
+        if type(self.arvl_bus_data['result']) != list:
+            self.arvl_bus_data['result'] = [] if self.arvl_bus_data['result'] == None else [self.arvl_bus_data['result']]
         
-        self.arvl_bus_data = result
     
     def get_arvl_bus_info_data(self, _route_id):
         req_url = 'http://apis.data.go.kr/6410000/busrouteservice/getBusRouteInfoItem'
@@ -98,12 +98,10 @@ class BusStationAPI:
     def update_arvl_bus_data(self):
         self.get_arvl_bus_data()
         
-        if (self.arvl_bus_data['resCode'] in ['0', '00']) == False:
+        if self.arvl_bus_data['apiSuccess'] == False:
             return False
         
         arvl_bus_list = self.arvl_bus_data['result']
-        if type(arvl_bus_list) != list:
-            arvl_bus_list = [arvl_bus_list]
             
         for index, arvl_bus in enumerate(arvl_bus_list):
             route_id = arvl_bus['routeId']
@@ -115,7 +113,7 @@ class BusStationAPI:
                 'busRouteInfo': arvl_bus_route_info
             })
         
-    def update_station_fine_dust_data(self, stationDong, returnType="xml", sidoName="경기", ver="1.0"):
+    def update_station_fine_dust_data(self, stationDong, sidoName, returnType="xml", ver="1.0"):
         req_url = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty"
         req_params = {
             "serviceKey": self.service_key,
@@ -129,13 +127,13 @@ class BusStationAPI:
         result = utils.request_get_http(req_url, req_params, ['response', 'body', 'items', 'item'])
         self.station_finedust_data = result
         
-        if self.station_finedust_data['resCode'] in ['0', '00']:
+        if self.station_finedust_data['apiSuccess'] == True:
             for result_item in self.station_finedust_data['result']:
                 if result_item['stationName'] == stationDong:
                     self.station_finedust_data['result'] = result_item
                     break
     
-    def update_station_weather_data(self, nx, ny, base_date, base_time, num_of_rows='1000', page_no='1', data_type='XML'):
+    def update_station_weather_data(self, nx: int, ny: int, base_date, base_time, num_of_rows='1000', page_no='1', data_type='XML'):
         req_url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'
         req_params = {
             'serviceKey': self.service_key,
@@ -144,12 +142,13 @@ class BusStationAPI:
             'dataType': str(data_type),
             'base_date': str(base_date),
             'base_time': str(base_time),
-            'nx': str(ny),  # ? bus api 부분에서 nx, ny를 거꾸로 줌...
-            'ny': str(nx)
+            'nx': int(nx),
+            'ny': int(ny)
         }
 
         result = utils.request_get_http(req_url, req_params, ['response', 'body', 'items', 'item'])
         self.station_weather_data = result
+        
         return result
         
     def auto_update_station_arvl_bus(self):
@@ -163,7 +162,10 @@ class BusStationAPI:
                     break
                 
                 time.sleep(config.OPTIONS['bus']['arvlBusRefreshInterval'])
-                
+            
+            with open(f'{self.init_station_data["keyword"]}_station_data.json', 'w', encoding='utf-8') as f:
+                json.dump(self.station_data, f, indent=4, ensure_ascii=False)
+            
             # arvl bus auto data update
             while True:
                 self.update_arvl_bus_data()
@@ -173,7 +175,7 @@ class BusStationAPI:
         
         def update_station_finedust():
             while True:
-                self.update_station_fine_dust_data('김량장동')
+                self.update_station_fine_dust_data('김량장동', "경기")
                 with open(f'{self.init_station_data["keyword"]}_finedust_data.json', 'w', encoding='utf-8') as f:
                     json.dump(self.station_finedust_data, f, indent=4, ensure_ascii=False)
                 time.sleep(config.OPTIONS['bus']['finedustInfoRefreshInterval'])
@@ -189,8 +191,8 @@ class BusStationAPI:
             
             # wait for finedust data init
             while True:
-                station_x = self.station_data['result']['x']
-                station_y = self.station_data['result']['y']
+                station_x = int(float(self.station_data['result']['x']))
+                station_y = int(float(self.station_data['result']['y']))
                 
                 today_datetime = utils.get_now_datetime()
                 today_date = today_datetime.strftime("%Y%m%d")
@@ -198,7 +200,7 @@ class BusStationAPI:
                 
                 sel_base_time = min(base_time, key=lambda t: abs(int(today_time) - int(t)))
                 
-                self.update_station_weather_data(station_x, station_y, today_date, sel_base_time)
+                self.update_station_weather_data(station_y, station_x, today_date, sel_base_time)   # ? bus api 부분에서 nx, ny를 거꾸로 줌...
                 with open(f'{self.init_station_data["keyword"]}_weather_data.json', 'w', encoding='utf-8') as f:
                     json.dump(self.station_weather_data, f, indent=4, ensure_ascii=False)
                 time.sleep(config.OPTIONS['bus']['weatherInfoRefreshInterval'])

@@ -3,18 +3,17 @@ from PIL import Image, ImageDraw, ImageFont
 import modules.matrix_manager as matrix_manager
 import modules.utils as utils
 import modules.config as config
+from modules.info_manager.apis.bus_station import BusStationAPI
 
-def show_station_page(_show_station_data):
-    station_data = _show_station_data
-    
-    # remain_cnt_grade = ['여유', '보통', '혼잡', '매우혼잡']
-    # #                         여유       보통    혼잡    매우혼잡  숫자  미정
-    # remain_cnt_grade_color = ['magenta', 'lime', 'yellow', 'red', 'red', 'lime']
-    # remain_cnt_number_print_route_type = ['11', '43', '51']
+def show_station_page(_show_station_struct: BusStationAPI, _show_page_time_sec: int):
+    # 일반시내버스, 마을버스 등 잔여 좌석 현황 관련 변수. 현재는 제공되지 않아 사용하지 않음.
+    remain_cnt_grade = ['여유', '보통', '혼잡', '매우혼잡']
+    #                         여유       보통    혼잡    매우혼잡  숫자  미정
+    remain_cnt_grade_color = ['magenta', 'lime', 'yellow', 'red', 'red', 'lime']
+    remain_cnt_number_print_route_type = ['11', '43', '51']
     
     bus_type_color = {
-        None : "white",       # 모를 때
-        "-1" : "white",       
+        None : "white",       # 알 수 없음 
         "11" : "red",         # 직행좌석형시내버스 (5001, 5005)
         "13" : "lime",        # 일반형시내버스 (66-4, 10)
         "14" : "red",         # 광역급행형시내버스
@@ -23,41 +22,30 @@ def show_station_page(_show_station_data):
         "51" : "sienna"       # 리무진공항버스(8165)
     }
     
-    station_keyword = station_data.get('keyword', '읽기실패')
-    station_desc = station_data.get('stationDesc', None)
-    station_info = station_data.get('stationInfo', None)
-    station_arvl_bus = station_data.get('arvlBus')
-    station_arvl_bus_info = station_data.get('arvlBusInfo')
-    station_arvl_bus_route_info = station_data.get('arvlBusRouteInfo')
+    init_station_data = _show_station_struct.init_station_data
+    station_data      = _show_station_struct.station_data
+    arvl_bus_data     = _show_station_struct.arvl_bus_data
     
-    # station title data parsing
-    if station_info['errorOcrd'] == True:
-        matrix_manager.matrix_pages.show_text_page([f"실시간 버스 정보 화면 [{_show_station_data}]", "API 오류. 페이지를 표시할 수 없습니다.", "", f"KEYWORD={station_keyword}", f"{station_info.get('errorMsg', '알 수 없는 오류입니다.')}"], _repeat=2)
-        return 1
-    if station_info.get('apiSuccess') == False:
-        rst_code = station_info.get('rstCode', "-1")
-        rst_msg = station_info.get('rstMsg', "알 수 없는 오류입니다.")
-        matrix_manager.matrix_pages.show_text_page([f"실시간 버스 정보 화면 [{_show_station_data}]", "데이터 오류. 페이지를 표시할 수 없습니다: 필수 데이터가 없습니다.", "", f"KEYWORD={station_keyword}", f"({rst_code}) {rst_msg}"], _repeat=2)
+    # station data parsing and station title str create
+    station_title = None
+    if station_data['errorOcrd'] == False and station_data['apiSuccess'] == True:
+        station_title = f"{station_data['result']['stationName']} [{station_data['result']['mobileNo']}] {init_station_data['stationDesc']}"
+    else:
+        matrix_manager.matrix_pages.text_page([f"실시간 정류소 페이지", f"필수 정보가 누락되어 화면을 표시할 수 없습니다.", f"[{station_data['resCode']}] {station_data['resMsg']}", f"", f"정보가 불러와지면 화면을 표시하겠습니다."], 1, 1, _text_color="orange")
         return 1
     
-    station_title = f"{station_info['result'].get('stationName', '')}"
-    if station_info['result'].get('mobileNo', None) != None:
-        station_title += f" [{station_info['result']['mobileNo']}]"
-    if station_desc != None:
-        station_title += f" {station_desc}"
-        
     # arvl bus data parsing
     arvl_bus_infos = []
-    if station_arvl_bus.get('apiSuccess') == True:
-        for index, arvl_bus in enumerate(station_arvl_bus['result']):
+    if arvl_bus_data.get('apiSuccess') == True:
+        for index, arvl_bus in enumerate(arvl_bus_data['result']):
             bus_info = arvl_bus
             
             # arvl bus info parsing
-            arvl_bus_info = station_arvl_bus_info[index]
+            arvl_bus_info = arvl_bus['busInfo']
             if arvl_bus_info.get('apiSuccess', False):
                 bus_info.update(arvl_bus_info.get('result'))
             
-            arvl_bus_route_info = station_arvl_bus_route_info[index]
+            arvl_bus_route_info = arvl_bus['busRouteInfo']
             if arvl_bus_route_info.get('apiSuccess', False):
                 bus_info.update({"route_list": arvl_bus_route_info.get('result')})
             
@@ -89,7 +77,7 @@ def show_station_page(_show_station_data):
         
     # no arvl bus
     else:
-        pass
+        arvl_bus_infos
     
     x_loca = [0, 10, 63, 93, 130]
     y_loca = [0, 13, 26, 39, 52]
@@ -234,3 +222,10 @@ def show_station_page(_show_station_data):
             
             matrix_manager.refresh(display)
             time.sleep(0.02)
+    
+    if arvl_bus_infos == []:
+        draw.text((x_loca_bus_arvl[0], y_loca[4]), "곧도착:", "white", config.SCD4_FONT_12)
+        matrix_manager.refresh(display)
+        time.sleep(_show_page_time_sec)
+    
+    return 0

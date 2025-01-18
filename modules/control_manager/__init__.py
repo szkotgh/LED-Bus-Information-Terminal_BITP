@@ -88,26 +88,29 @@ class ControlPannel:
             previous_button2_state = None
 
             while True:
-                states = self.get_state()
-                if not states:
-                    continue
+                try:
+                    states = self.get_state()
+                    if not states:
+                        continue
 
-                button1_state = states.get('BUTTON1', False)
-                button2_state = states.get('BUTTON2', False)
-                
-                if button1_state != previous_button1_state:
-                    self.led_control(_power=button1_state)
-                    previous_button1_state = button1_state
-                    if button1_state == False:
-                        matrix_manager.matrix_pages.exit_page(['BIT를 종료합니다.', '전원버튼이 비활성화 되어있습니다.', '', '', '전원을 재연결해 BIT를 켜십시오.'], 0, 5,  _text_color='orange', _status_prt=False, _exit_code=0)
+                    button1_state = states.get('BUTTON1', True)
+                    button2_state = states.get('BUTTON2', False)
                     
-                if button2_state != previous_button2_state:
-                    self.led_control(_audio=button2_state)
-                    self.audio_control(_on=button2_state)
-                    previous_button2_state = button2_state
-                    
-                time.sleep(config.OPTIONS['control_pannel']['refreshInterval'])
-        
+                    if button1_state != previous_button1_state:
+                        self.led_control(_power=button1_state)
+                        previous_button1_state = button1_state
+                        if button1_state == False:
+                            matrix_manager.matrix_pages.exit_page(['BIT를 종료합니다.', '전원버튼이 비활성화 되어있습니다.', '', '', '전원을 재연결해 BIT를 켜십시오.'], 0, 5,  _text_color='orange', _status_prt=False, _exit_code=0)
+                        
+                    if button2_state != previous_button2_state:
+                        self.led_control(_audio=button2_state)
+                        self.audio_control(_on=button2_state)
+                        previous_button2_state = button2_state
+                        
+                    time.sleep(config.OPTIONS['control_pannel']['refreshInterval'])
+                except Exception as e:
+                    time.sleep(1)
+
         t = threading.Thread(target=button_detect)
         t.daemon = True
         t.start()    

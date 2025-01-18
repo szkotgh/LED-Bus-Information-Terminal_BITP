@@ -9,9 +9,9 @@ class MatrixPages:
         start_page.show_start_page(_show_sec, _status_prt)
         return 0
     
-    def bus_station_page(self, _show_station_struct):
+    def bus_station_page(self, _show_station_struct, _show_page_time_sec: int):
         import modules.matrix_manager.pages.bus_station_page as bus_station_page
-        bus_station_page.show_station_page(_show_station_struct)
+        bus_station_page.show_station_page(_show_station_struct, _show_page_time_sec)
         return 0
     
     def bus_station_etc_page(self, _show_station_struct, _show_time_sec: int):
