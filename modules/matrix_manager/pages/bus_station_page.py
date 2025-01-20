@@ -41,11 +41,13 @@ def show_station_page(_show_station_struct: BusStationAPI, _show_page_time_sec: 
             bus_info = arvl_bus
             
             # arvl bus info parsing
-            arvl_bus_info = arvl_bus['busInfo']
+            arvl_bus_info = arvl_bus.get('busInfo', {})
             if arvl_bus_info.get('apiSuccess', False):
                 bus_info.update(arvl_bus_info.get('result'))
+            else:
+                continue
             
-            arvl_bus_route_info = arvl_bus['busRouteInfo']
+            arvl_bus_route_info = arvl_bus.get('busRouteInfo', {})
             if arvl_bus_route_info.get('apiSuccess', False):
                 bus_info.update({"route_list": arvl_bus_route_info.get('result')})
             
@@ -185,7 +187,7 @@ def show_station_page(_show_station_struct: BusStationAPI, _show_page_time_sec: 
                 draw.bitmap((x_loca[0], y_loca[index+1]), config.BUS_ICON, bus_type_color.get(bus_routeTypeCd, "white"));
                 
                 # 2 print route name
-                draw.text((x_loca[1], y_loca[index+1]), bus_dict.get('routeName', ''), "white", config.SCD4_FONT_12)
+                draw.text((x_loca[1], y_loca[index+1]), bus_dict.get('routeName', 'Null'), "white", config.SCD4_FONT_12)
                 
                 # 3 print remain seat grade
                 remain_seat_str_align_val = utils.get_text_align_space(x_loca[3]-x_loca[2], bus_dict.get('remainSeatGrade'), config.SCD4_FONT_12)
