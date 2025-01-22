@@ -41,12 +41,14 @@ def show_station_page(_show_station_struct: BusStationAPI, _show_page_time_sec: 
             bus_info = arvl_bus
             
             # arvl bus info parsing
+            ## 버스 노선 세부 정보는 필수. 불러올 수 없으면 출력할 수 없음(없으면 버스 종류, 노선 번호를 불러오지 못함)
             arvl_bus_info = arvl_bus.get('busInfo', {})
             if arvl_bus_info.get('apiSuccess', False):
                 bus_info.update(arvl_bus_info.get('result'))
             else:
                 continue
             
+            ## 버스 노선 경유 정류소 정보는 선택, 없어도 출력 가능(현재 정류소 출력용)
             arvl_bus_route_info = arvl_bus.get('busRouteInfo', {})
             if arvl_bus_route_info.get('apiSuccess', False):
                 bus_info.update({"route_list": arvl_bus_route_info.get('result')})
@@ -75,6 +77,8 @@ def show_station_page(_show_station_struct: BusStationAPI, _show_page_time_sec: 
             bus_info.update({"remainSeatGradeColor" : arvl_bus_remainSeatGradeColor})
             
             arvl_bus_infos.append(bus_info)
+        # sort arvl bus info
+        ## 도착 시간을 기준으로 정렬함.
         arvl_bus_infos = sorted(arvl_bus_infos, key=lambda info: int(info["predictTime1"]))
         
     # no arvl bus

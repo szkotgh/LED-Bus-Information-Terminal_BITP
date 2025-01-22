@@ -3,9 +3,9 @@ import modules.info_manager as info_manager
 import modules.utils as utils
 
 matrix_manager.matrix_pages.test_page(0, 1)
-# matrix_manager.matrix_pages.test_page(1, 3)
-# matrix_manager.matrix_pages.test_page(2, 3)
-# matrix_manager.matrix_pages.start_page(15)
+matrix_manager.matrix_pages.test_page(1, 3)
+matrix_manager.matrix_pages.test_page(2, 3)
+matrix_manager.matrix_pages.start_page(15)
 while True:
     for i in range(0, len(info_manager.service.station_datas)):
         for repeat in range(3):
