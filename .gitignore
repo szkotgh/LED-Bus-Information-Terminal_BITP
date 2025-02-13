@@ -4,5 +4,5 @@ __pycache__/
 .env
 log/
 
-/src/audio/music1.mp3
-/src/audio/music2.mp3
+/src/audio/test_music1.mp3
+/src/audio/test_music2.mp3

@@ -9,6 +9,11 @@ class MatrixPages:
         start_page.show_start_page(_show_sec, _status_prt)
         return 0
     
+    def init_test_internet_connected_page(self, _show_sec: int, _status_prt: bool = False):
+        import modules.matrix_manager.pages.init_test_internet_connected_page as init_test_internet_connected_page
+        init_test_internet_connected_page.show_start_page(_show_sec, _status_prt)
+        return 0
+    
     def bus_station_page(self, _show_station_struct, _show_page_time_sec: int):
         import modules.matrix_manager.pages.bus_station_page as bus_station_page
         bus_station_page.show_station_page(_show_station_struct, _show_page_time_sec)

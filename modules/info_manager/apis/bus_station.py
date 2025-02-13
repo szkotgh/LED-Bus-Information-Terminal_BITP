@@ -203,6 +203,11 @@ class BusStationAPI:
                 self.update_station_weather_data(station_y, station_x, today_date, sel_base_time)   # ? bus api 부분에서 nx, ny를 거꾸로 줌...
                 with open(f'{self.init_station_data["keyword"]}_weather_data.json', 'w', encoding='utf-8') as f:
                     json.dump(self.station_weather_data, f, indent=4, ensure_ascii=False)
+                
+                if self.station_weather_data['apiSuccess'] == False:
+                    time.sleep(1)
+                    continue
+                
                 time.sleep(config.OPTIONS['bus']['weatherInfoRefreshInterval'])
         
         # Threads

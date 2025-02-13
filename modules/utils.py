@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 from hashlib import md5
 from PIL import Image, ImageDraw, ImageFont
 
-
 # Variables
 log_time_format = "%Z %x %X"
 log_format = "%(asctime)s %(levelname)8s %(message)s"
@@ -44,6 +43,9 @@ def get_now_iso_time() -> str:
 
 def get_now_ftime(format: str = default_timef) -> str:
     return datetime.datetime.now().strftime(format)
+
+def text_to_datetime(format: str = default_timef):
+    return datetime.datetime.strptime(format, default_timef)
 
 def chunk_list(lst: list, _chunk_size=3) -> list:
     return [lst[i:i + _chunk_size] for i in range(0, len(lst), _chunk_size)]

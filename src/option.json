@@ -2,6 +2,10 @@
     "api_error_retry_count" : 10,
     "api_timeout" : 5,
     "logging" : true,
+    "web": {
+        "host": "0.0.0.0",
+        "port": 8080
+    },
     "bus": {
         "arvlBusRefreshInterval": 30,
         "weatherInfoRefreshInterval": 300,
