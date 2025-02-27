@@ -6,13 +6,22 @@
     <title>BIT0001</title>
 </head>
 <body>
-    <button onclick="confirmAction('/control/restart_bit', 'Restart BIT Program?')">Restart BIT</button>
-    <button onclick="confirmAction('/control/reboot', 'Reboot System?')">Reboot System</button>
+    <h1>Test BIT Web page</h1>
+    <hr>
+    <h3><a href="/">Root</a>&nbsp;&gt;&nbsp;<a href="/control">Control Page</a><h3>
+    <hr>
+    <button onclick="confirmAction('/control/restart_bit', 'BIT를 재시작하시겠습니까?')">BIT 재시작</button>
+    <button onclick="confirmAction('/control/shutdown_bit', 'BIT를 종료하시겠습니까?')">BIT 종료</button>
 
     <script>
         function confirmAction(url, message) {
             if (confirm(message)) {
-                location.href = url;
+                let password = prompt("비밀번호를 입력하십시오.");
+                if (password) {
+                    location.href = `${url}?password=${encodeURIComponent(password)}`;
+                } else {
+                    alert("비밀번호는 필수입니다.");
+                }
             }
         }
     </script>

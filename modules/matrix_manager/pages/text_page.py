@@ -64,6 +64,6 @@ def show_text_page(_set_text: str | list = "", _first_show_time: int | float = 1
                 break
     
     if isinstance(_set_text, list) and ( len(_set_text) > 5 ):
-        show_text_page(_set_text[5:], _first_show_time, _end_show_time, _repeat)
+        show_text_page(_set_text[5:], _first_show_time, _end_show_time, _repeat, _text_color, _status_prt, _is_exit_signal)
     
     return 0

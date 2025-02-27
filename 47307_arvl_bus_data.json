@@ -1,26 +1,26 @@
 {
-    "queryTime": "20250213190627",
+    "queryTime": "20250227184237",
     "apiSuccess": true,
     "errorOcrd": false,
     "errorMsg": "Undefined",
     "result": [
         {
             "flag": "PASS",
-            "locationNo1": "1",
+            "locationNo1": "3",
             "locationNo2": null,
             "lowPlate1": "0",
             "lowPlate2": "0",
-            "plateNo1": "경기78아8627",
+            "plateNo1": "경기78아1625",
             "plateNo2": null,
-            "predictTime1": "1",
+            "predictTime1": "5",
             "predictTime2": null,
             "remainSeatCnt1": "-1",
             "remainSeatCnt2": "-1",
-            "routeId": "228000021",
-            "staOrder": "6",
+            "routeId": "228000136",
+            "staOrder": "12",
             "stationId": "228000439",
             "busInfo": {
-                "queryTime": "20250213190627",
+                "queryTime": "20250227184237",
                 "apiSuccess": true,
                 "errorOcrd": false,
                 "errorMsg": "Undefined",
@@ -30,28 +30,28 @@
                     "companyTel": "031-321-3721",
                     "districtCd": "2",
                     "downFirstTime": "06:30",
-                    "downLastTime": "21:30",
-                    "endMobileNo": "29465",
-                    "endStationId": "228001150",
-                    "endStationName": "신원아파트",
-                    "peekAlloc": "15",
+                    "downLastTime": "23:10",
+                    "endMobileNo": "47675",
+                    "endStationId": "228000384",
+                    "endStationName": "마성리",
+                    "peekAlloc": "20",
                     "regionName": "용인",
-                    "routeId": "228000021",
-                    "routeName": "8",
+                    "routeId": "228000136",
+                    "routeName": "2",
                     "routeTypeCd": "13",
                     "routeTypeName": "일반형시내버스",
                     "startMobileNo": "47634",
                     "startStationId": "228001552",
                     "startStationName": "(임시)용인터미널",
-                    "upFirstTime": "06:00",
-                    "upLastTime": "21:00",
-                    "nPeekAlloc": "35"
+                    "upFirstTime": "06:05",
+                    "upLastTime": "22:20",
+                    "nPeekAlloc": "120"
                 },
                 "resCode": "0",
                 "resMsg": "정상적으로 처리되었습니다."
             },
             "busRouteInfo": {
-                "queryTime": "20250213190627",
+                "queryTime": "20250227184237",
                 "apiSuccess": true,
                 "errorOcrd": false,
                 "errorMsg": "Undefined",
@@ -72,11 +72,83 @@
                         "centerYn": "N",
                         "districtCd": "2",
                         "regionName": "용인",
-                        "stationId": "277102443",
+                        "stationId": "277102487",
                         "stationName": "터미널사거리(경유)",
-                        "x": "127.2092",
-                        "y": "37.2341167",
+                        "x": "127.2076667",
+                        "y": "37.2331833",
                         "stationSeq": "2",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29418",
+                        "regionName": "용인",
+                        "stationId": "228000752",
+                        "stationName": "처인구청후문",
+                        "x": "127.2026333",
+                        "y": "37.2330167",
+                        "stationSeq": "3",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29416",
+                        "regionName": "용인",
+                        "stationId": "228000751",
+                        "stationName": "문예회관입구",
+                        "x": "127.2003833",
+                        "y": "37.2330333",
+                        "stationSeq": "4",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29411",
+                        "regionName": "용인",
+                        "stationId": "228000750",
+                        "stationName": "주공아파트",
+                        "x": "127.1966833",
+                        "y": "37.2343167",
+                        "stationSeq": "5",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29412",
+                        "regionName": "용인",
+                        "stationId": "228000446",
+                        "stationName": "중앙지구대",
+                        "x": "127.1988167",
+                        "y": "37.23475",
+                        "stationSeq": "6",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29420",
+                        "regionName": "용인",
+                        "stationId": "228000445",
+                        "stationName": "처인구청.용인헌혈의집",
+                        "x": "127.2035833",
+                        "y": "37.23485",
+                        "stationSeq": "7",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29425",
+                        "regionName": "용인",
+                        "stationId": "228000444",
+                        "stationName": "용인시장.시장약국",
+                        "x": "127.2066833",
+                        "y": "37.2354333",
+                        "stationSeq": "8",
                         "turnYn": "N"
                     },
                     {
@@ -88,7 +160,7 @@
                         "stationName": "용인중앙시장역",
                         "x": "127.2087833",
                         "y": "37.2372333",
-                        "stationSeq": "3",
+                        "stationSeq": "9",
                         "turnYn": "N"
                     },
                     {
@@ -100,7 +172,7 @@
                         "stationName": "공설운동장",
                         "x": "127.2109833",
                         "y": "37.2375",
-                        "stationSeq": "4",
+                        "stationSeq": "10",
                         "turnYn": "N"
                     },
                     {
@@ -112,7 +184,7 @@
                         "stationName": "용마초교",
                         "x": "127.2140333",
                         "y": "37.2372",
-                        "stationSeq": "5",
+                        "stationSeq": "11",
                         "turnYn": "N"
                     },
                     {
@@ -124,7 +196,7 @@
                         "stationName": "서울병원",
                         "x": "127.2149",
                         "y": "37.2402167",
-                        "stationSeq": "6",
+                        "stationSeq": "12",
                         "turnYn": "N"
                     },
                     {
@@ -136,7 +208,7 @@
                         "stationName": "덕영고등학교.고림5통마을회관",
                         "x": "127.2171667",
                         "y": "37.2433833",
-                        "stationSeq": "7",
+                        "stationSeq": "13",
                         "turnYn": "N"
                     },
                     {
@@ -148,7 +220,7 @@
                         "stationName": "고림고등학교",
                         "x": "127.22045",
                         "y": "37.2469667",
-                        "stationSeq": "8",
+                        "stationSeq": "14",
                         "turnYn": "N"
                     },
                     {
@@ -160,7 +232,7 @@
                         "stationName": "단사마을",
                         "x": "127.22235",
                         "y": "37.2493",
-                        "stationSeq": "9",
+                        "stationSeq": "15",
                         "turnYn": "N"
                     },
                     {
@@ -172,7 +244,7 @@
                         "stationName": "명성주유소",
                         "x": "127.2244",
                         "y": "37.2501",
-                        "stationSeq": "10",
+                        "stationSeq": "16",
                         "turnYn": "N"
                     },
                     {
@@ -184,7 +256,7 @@
                         "stationName": "예진마을입구",
                         "x": "127.22705",
                         "y": "37.24905",
-                        "stationSeq": "11",
+                        "stationSeq": "17",
                         "turnYn": "N"
                     },
                     {
@@ -196,7 +268,7 @@
                         "stationName": "고림초등학교",
                         "x": "127.2282667",
                         "y": "37.2464",
-                        "stationSeq": "12",
+                        "stationSeq": "18",
                         "turnYn": "N"
                     },
                     {
@@ -208,7 +280,7 @@
                         "stationName": "인정피렌체아파트",
                         "x": "127.2297333",
                         "y": "37.2461333",
-                        "stationSeq": "13",
+                        "stationSeq": "19",
                         "turnYn": "N"
                     },
                     {
@@ -220,7 +292,67 @@
                         "stationName": "용샘주유소",
                         "x": "127.2303333",
                         "y": "37.2484",
-                        "stationSeq": "14",
+                        "stationSeq": "20",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29918",
+                        "regionName": "용인",
+                        "stationId": "228000275",
+                        "stationName": "임원",
+                        "x": "127.2332667",
+                        "y": "37.2508667",
+                        "stationSeq": "21",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "47624",
+                        "regionName": "용인",
+                        "stationId": "228001274",
+                        "stationName": "예원마을앞",
+                        "x": "127.2378833",
+                        "y": "37.2542333",
+                        "stationSeq": "22",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "47623",
+                        "regionName": "용인",
+                        "stationId": "228000273",
+                        "stationName": "코아루아파트",
+                        "x": "127.2366333",
+                        "y": "37.2578",
+                        "stationSeq": "23",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "47197",
+                        "regionName": "용인",
+                        "stationId": "228001780",
+                        "stationName": "예원마을",
+                        "x": "127.2375333",
+                        "y": "37.254",
+                        "stationSeq": "24",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29919",
+                        "regionName": "용인",
+                        "stationId": "228000270",
+                        "stationName": "임원",
+                        "x": "127.2331833",
+                        "y": "37.25095",
+                        "stationSeq": "25",
                         "turnYn": "N"
                     },
                     {
@@ -232,7 +364,7 @@
                         "stationName": "영화마을.이삭아파트",
                         "x": "127.2254667",
                         "y": "37.2525333",
-                        "stationSeq": "15",
+                        "stationSeq": "26",
                         "turnYn": "N"
                     },
                     {
@@ -244,7 +376,7 @@
                         "stationName": "느티나무",
                         "x": "127.2251833",
                         "y": "37.2561167",
-                        "stationSeq": "16",
+                        "stationSeq": "27",
                         "turnYn": "N"
                     },
                     {
@@ -256,7 +388,7 @@
                         "stationName": "크렌시아빌리지",
                         "x": "127.2232667",
                         "y": "37.2576667",
-                        "stationSeq": "17",
+                        "stationSeq": "28",
                         "turnYn": "N"
                     },
                     {
@@ -268,7 +400,7 @@
                         "stationName": "에코타운",
                         "x": "127.2228667",
                         "y": "37.2608",
-                        "stationSeq": "18",
+                        "stationSeq": "29",
                         "turnYn": "N"
                     },
                     {
@@ -280,7 +412,7 @@
                         "stationName": "보평",
                         "x": "127.2236",
                         "y": "37.2623333",
-                        "stationSeq": "19",
+                        "stationSeq": "30",
                         "turnYn": "N"
                     },
                     {
@@ -292,7 +424,7 @@
                         "stationName": "보평마을.비전교회",
                         "x": "127.22415",
                         "y": "37.2653167",
-                        "stationSeq": "20",
+                        "stationSeq": "31",
                         "turnYn": "N"
                     },
                     {
@@ -304,7 +436,7 @@
                         "stationName": "고림동.삼정그린뷰",
                         "x": "127.22335",
                         "y": "37.2663333",
-                        "stationSeq": "21",
+                        "stationSeq": "32",
                         "turnYn": "N"
                     },
                     {
@@ -316,7 +448,7 @@
                         "stationName": "힐스테이트둔전",
                         "x": "127.22035",
                         "y": "37.2660667",
-                        "stationSeq": "22",
+                        "stationSeq": "33",
                         "turnYn": "N"
                     },
                     {
@@ -328,7 +460,7 @@
                         "stationName": "인정프린스아파트",
                         "x": "127.2159167",
                         "y": "37.2655",
-                        "stationSeq": "23",
+                        "stationSeq": "34",
                         "turnYn": "N"
                     },
                     {
@@ -340,79 +472,259 @@
                         "stationName": "둔전역",
                         "x": "127.2136833",
                         "y": "37.2666333",
-                        "stationSeq": "24",
+                        "stationSeq": "35",
                         "turnYn": "N"
                     },
                     {
                         "centerYn": "N",
                         "districtCd": "2",
-                        "mobileNo": "29465",
+                        "mobileNo": "29455",
                         "regionName": "용인",
-                        "stationId": "228001150",
-                        "stationName": "신원아파트",
-                        "x": "127.2155167",
-                        "y": "37.2683333",
-                        "stationSeq": "25",
+                        "stationId": "228000329",
+                        "stationName": "둔전역.인정멜로디아파트",
+                        "x": "127.2131",
+                        "y": "37.2673667",
+                        "stationSeq": "36",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29941",
+                        "regionName": "용인",
+                        "stationId": "228000407",
+                        "stationName": "성웅아파트",
+                        "x": "127.2094167",
+                        "y": "37.2681167",
+                        "stationSeq": "37",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29943",
+                        "regionName": "용인",
+                        "stationId": "228000406",
+                        "stationName": "영문중학교",
+                        "x": "127.2078833",
+                        "y": "37.2715667",
+                        "stationSeq": "38",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29945",
+                        "regionName": "용인",
+                        "stationId": "228000405",
+                        "stationName": "영문1리",
+                        "x": "127.2072333",
+                        "y": "37.2738167",
+                        "stationSeq": "39",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29947",
+                        "regionName": "용인",
+                        "stationId": "228000386",
+                        "stationName": "영문리",
+                        "x": "127.2056",
+                        "y": "37.2761167",
+                        "stationSeq": "40",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "47343",
+                        "regionName": "용인",
+                        "stationId": "228002092",
+                        "stationName": "영문2리",
+                        "x": "127.2006",
+                        "y": "37.2766333",
+                        "stationSeq": "41",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29951",
+                        "regionName": "용인",
+                        "stationId": "228000385",
+                        "stationName": "마성1리",
+                        "x": "127.1969",
+                        "y": "37.27705",
+                        "stationSeq": "42",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "47971",
+                        "regionName": "용인",
+                        "stationId": "228002076",
+                        "stationName": "에버힐스마을입구",
+                        "x": "127.1912167",
+                        "y": "37.27955",
+                        "stationSeq": "43",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "47675",
+                        "regionName": "용인",
+                        "stationId": "228000384",
+                        "stationName": "마성리",
+                        "x": "127.1892833",
+                        "y": "37.2805833",
+                        "stationSeq": "44",
                         "turnYn": "Y"
                     },
                     {
                         "centerYn": "N",
                         "districtCd": "2",
-                        "mobileNo": "29470",
+                        "mobileNo": "47625",
                         "regionName": "용인",
-                        "stationId": "228001152",
-                        "stationName": "포곡농협둔전지점",
-                        "x": "127.2174",
-                        "y": "37.2692167",
-                        "stationSeq": "26",
+                        "stationId": "228000383",
+                        "stationName": "마성리",
+                        "x": "127.1885333",
+                        "y": "37.28075",
+                        "stationSeq": "45",
                         "turnYn": "N"
                     },
                     {
                         "centerYn": "N",
                         "districtCd": "2",
-                        "mobileNo": "47784",
+                        "mobileNo": "47972",
                         "regionName": "용인",
-                        "stationId": "228002296",
-                        "stationName": "둔전14리",
-                        "x": "127.22175",
-                        "y": "37.2686",
-                        "stationSeq": "27",
+                        "stationId": "228002077",
+                        "stationName": "에버힐스마을입구",
+                        "x": "127.19105",
+                        "y": "37.2794333",
+                        "stationSeq": "46",
                         "turnYn": "N"
                     },
                     {
                         "centerYn": "N",
                         "districtCd": "2",
-                        "mobileNo": "47748",
+                        "mobileNo": "29952",
                         "regionName": "용인",
-                        "stationId": "228001784",
-                        "stationName": "둔전초등학교",
-                        "x": "127.2247333",
-                        "y": "37.2680333",
-                        "stationSeq": "28",
+                        "stationId": "228000382",
+                        "stationName": "마성1리",
+                        "x": "127.1972333",
+                        "y": "37.2768167",
+                        "stationSeq": "47",
                         "turnYn": "N"
                     },
                     {
                         "centerYn": "N",
                         "districtCd": "2",
-                        "mobileNo": "47583",
+                        "mobileNo": "47965",
                         "regionName": "용인",
-                        "stationId": "228000281",
-                        "stationName": "동우산업앞",
-                        "x": "127.2289333",
-                        "y": "37.2671833",
-                        "stationSeq": "29",
+                        "stationId": "228002052",
+                        "stationName": "영문2리",
+                        "x": "127.2007167",
+                        "y": "37.2765167",
+                        "stationSeq": "48",
                         "turnYn": "N"
                     },
                     {
                         "centerYn": "N",
                         "districtCd": "2",
-                        "mobileNo": "47275",
+                        "mobileNo": "29948",
                         "regionName": "용인",
-                        "stationId": "228000280",
-                        "stationName": "영화2차",
-                        "x": "127.22545",
-                        "y": "37.2660833",
-                        "stationSeq": "30",
+                        "stationId": "228000381",
+                        "stationName": "영문리",
+                        "x": "127.2056667",
+                        "y": "37.2759833",
+                        "stationSeq": "49",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29946",
+                        "regionName": "용인",
+                        "stationId": "228000404",
+                        "stationName": "영문1리",
+                        "x": "127.20695",
+                        "y": "37.2738833",
+                        "stationSeq": "50",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29944",
+                        "regionName": "용인",
+                        "stationId": "228000403",
+                        "stationName": "영문중학교",
+                        "x": "127.2077667",
+                        "y": "37.2714667",
+                        "stationSeq": "51",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29942",
+                        "regionName": "용인",
+                        "stationId": "228000402",
+                        "stationName": "성웅아파트",
+                        "x": "127.2093",
+                        "y": "37.2681167",
+                        "stationSeq": "52",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29456",
+                        "regionName": "용인",
+                        "stationId": "228000313",
+                        "stationName": "둔전역.인정멜로디아파트",
+                        "x": "127.2130333",
+                        "y": "37.26715",
+                        "stationSeq": "53",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29938",
+                        "regionName": "용인",
+                        "stationId": "228000293",
+                        "stationName": "인정프린스아파트",
+                        "x": "127.2157667",
+                        "y": "37.2653667",
+                        "stationSeq": "54",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29572",
+                        "regionName": "용인",
+                        "stationId": "228000996",
+                        "stationName": "힐스테이트둔전",
+                        "x": "127.2202833",
+                        "y": "37.2659",
+                        "stationSeq": "55",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29936",
+                        "regionName": "용인",
+                        "stationId": "228000292",
+                        "stationName": "고림동.삼정그린뷰",
+                        "x": "127.2229",
+                        "y": "37.2661833",
+                        "stationSeq": "56",
                         "turnYn": "N"
                     },
                     {
@@ -424,7 +736,7 @@
                         "stationName": "보평마을.비전교회",
                         "x": "127.22405",
                         "y": "37.2653667",
-                        "stationSeq": "31",
+                        "stationSeq": "57",
                         "turnYn": "N"
                     },
                     {
@@ -436,7 +748,7 @@
                         "stationName": "보평",
                         "x": "127.22355",
                         "y": "37.2625",
-                        "stationSeq": "32",
+                        "stationSeq": "58",
                         "turnYn": "N"
                     },
                     {
@@ -448,7 +760,7 @@
                         "stationName": "에코타운",
                         "x": "127.2220333",
                         "y": "37.2596",
-                        "stationSeq": "33",
+                        "stationSeq": "59",
                         "turnYn": "N"
                     },
                     {
@@ -460,7 +772,7 @@
                         "stationName": "크렌시아빌리지",
                         "x": "127.2232667",
                         "y": "37.2575833",
-                        "stationSeq": "34",
+                        "stationSeq": "60",
                         "turnYn": "N"
                     },
                     {
@@ -472,7 +784,7 @@
                         "stationName": "느티나무",
                         "x": "127.2251",
                         "y": "37.2560833",
-                        "stationSeq": "35",
+                        "stationSeq": "61",
                         "turnYn": "N"
                     },
                     {
@@ -484,7 +796,67 @@
                         "stationName": "영화마을.이삭아파트",
                         "x": "127.2251667",
                         "y": "37.2524167",
-                        "stationSeq": "36",
+                        "stationSeq": "62",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29918",
+                        "regionName": "용인",
+                        "stationId": "228000275",
+                        "stationName": "임원",
+                        "x": "127.2332667",
+                        "y": "37.2508667",
+                        "stationSeq": "63",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "47624",
+                        "regionName": "용인",
+                        "stationId": "228001274",
+                        "stationName": "예원마을앞",
+                        "x": "127.2378833",
+                        "y": "37.2542333",
+                        "stationSeq": "64",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "47623",
+                        "regionName": "용인",
+                        "stationId": "228000273",
+                        "stationName": "코아루아파트",
+                        "x": "127.2366333",
+                        "y": "37.2578",
+                        "stationSeq": "65",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "47197",
+                        "regionName": "용인",
+                        "stationId": "228001780",
+                        "stationName": "예원마을",
+                        "x": "127.2375333",
+                        "y": "37.254",
+                        "stationSeq": "66",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29919",
+                        "regionName": "용인",
+                        "stationId": "228000270",
+                        "stationName": "임원",
+                        "x": "127.2331833",
+                        "y": "37.25095",
+                        "stationSeq": "67",
                         "turnYn": "N"
                     },
                     {
@@ -496,7 +868,7 @@
                         "stationName": "용샘주유소",
                         "x": "127.2302333",
                         "y": "37.24845",
-                        "stationSeq": "37",
+                        "stationSeq": "68",
                         "turnYn": "N"
                     },
                     {
@@ -508,7 +880,7 @@
                         "stationName": "고림초등학교",
                         "x": "127.2282667",
                         "y": "37.2464",
-                        "stationSeq": "38",
+                        "stationSeq": "69",
                         "turnYn": "N"
                     },
                     {
@@ -520,7 +892,7 @@
                         "stationName": "인정피렌체아파트",
                         "x": "127.2297333",
                         "y": "37.2461333",
-                        "stationSeq": "39",
+                        "stationSeq": "70",
                         "turnYn": "N"
                     },
                     {
@@ -532,7 +904,7 @@
                         "stationName": "예진마을입구",
                         "x": "127.2271833",
                         "y": "37.2492",
-                        "stationSeq": "40",
+                        "stationSeq": "71",
                         "turnYn": "N"
                     },
                     {
@@ -544,7 +916,7 @@
                         "stationName": "명성주유소",
                         "x": "127.2242833",
                         "y": "37.2503167",
-                        "stationSeq": "41",
+                        "stationSeq": "72",
                         "turnYn": "N"
                     },
                     {
@@ -556,7 +928,7 @@
                         "stationName": "단사마을",
                         "x": "127.22225",
                         "y": "37.2493333",
-                        "stationSeq": "42",
+                        "stationSeq": "73",
                         "turnYn": "N"
                     },
                     {
@@ -568,7 +940,7 @@
                         "stationName": "고림고등학교",
                         "x": "127.2202667",
                         "y": "37.2470333",
-                        "stationSeq": "43",
+                        "stationSeq": "74",
                         "turnYn": "N"
                     },
                     {
@@ -580,7 +952,7 @@
                         "stationName": "덕영고등학교.고림5통마을회관",
                         "x": "127.2164667",
                         "y": "37.24295",
-                        "stationSeq": "44",
+                        "stationSeq": "75",
                         "turnYn": "N"
                     },
                     {
@@ -592,7 +964,7 @@
                         "stationName": "서울병원",
                         "x": "127.21465",
                         "y": "37.23995",
-                        "stationSeq": "45",
+                        "stationSeq": "76",
                         "turnYn": "N"
                     },
                     {
@@ -604,7 +976,7 @@
                         "stationName": "용마초교",
                         "x": "127.21405",
                         "y": "37.2378333",
-                        "stationSeq": "46",
+                        "stationSeq": "77",
                         "turnYn": "N"
                     },
                     {
@@ -616,7 +988,7 @@
                         "stationName": "공설운동장",
                         "x": "127.21105",
                         "y": "37.23765",
-                        "stationSeq": "47",
+                        "stationSeq": "78",
                         "turnYn": "N"
                     },
                     {
@@ -628,7 +1000,79 @@
                         "stationName": "용인중앙시장역",
                         "x": "127.2083833",
                         "y": "37.2375167",
-                        "stationSeq": "48",
+                        "stationSeq": "79",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29428",
+                        "regionName": "용인",
+                        "stationId": "228000449",
+                        "stationName": "용인시장.시장약국",
+                        "x": "127.2066833",
+                        "y": "37.2356",
+                        "stationSeq": "80",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29419",
+                        "regionName": "용인",
+                        "stationId": "228000448",
+                        "stationName": "처인구청.용인헌혈의집",
+                        "x": "127.2028833",
+                        "y": "37.235",
+                        "stationSeq": "81",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29413",
+                        "regionName": "용인",
+                        "stationId": "228000447",
+                        "stationName": "중앙지구대.로하스용인병원",
+                        "x": "127.19855",
+                        "y": "37.2349167",
+                        "stationSeq": "82",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29410",
+                        "regionName": "용인",
+                        "stationId": "228001299",
+                        "stationName": "주공아파트",
+                        "x": "127.1961167",
+                        "y": "37.2342167",
+                        "stationSeq": "83",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29415",
+                        "regionName": "용인",
+                        "stationId": "228001300",
+                        "stationName": "문예회관입구",
+                        "x": "127.1998",
+                        "y": "37.2327833",
+                        "stationSeq": "84",
+                        "turnYn": "N"
+                    },
+                    {
+                        "centerYn": "N",
+                        "districtCd": "2",
+                        "mobileNo": "29417",
+                        "regionName": "용인",
+                        "stationId": "228000774",
+                        "stationName": "처인구청후문",
+                        "x": "127.2027333",
+                        "y": "37.2327333",
+                        "stationSeq": "85",
                         "turnYn": "N"
                     },
                     {
@@ -640,7 +1084,7 @@
                         "stationName": "용인터미널",
                         "x": "127.21105",
                         "y": "37.2330333",
-                        "stationSeq": "49",
+                        "stationSeq": "86",
                         "turnYn": "N"
                     }
                 ],
@@ -650,21 +1094,21 @@
         },
         {
             "flag": "PASS",
-            "locationNo1": "7",
-            "locationNo2": "29",
+            "locationNo1": "26",
+            "locationNo2": "54",
             "lowPlate1": "0",
             "lowPlate2": "0",
-            "plateNo1": "경기78아9578",
-            "plateNo2": "경기78아9552",
-            "predictTime1": "8",
-            "predictTime2": "36",
+            "plateNo1": "경기78아9552",
+            "plateNo2": "경기78아9555",
+            "predictTime1": "30",
+            "predictTime2": "68",
             "remainSeatCnt1": "-1",
             "remainSeatCnt2": "-1",
             "routeId": "241426001",
             "staOrder": "67",
             "stationId": "228000439",
             "busInfo": {
-                "queryTime": "20250213190627",
+                "queryTime": "20250227184237",
                 "apiSuccess": true,
                 "errorOcrd": false,
                 "errorMsg": "Undefined",
@@ -695,7 +1139,7 @@
                 "resMsg": "정상적으로 처리되었습니다."
             },
             "busRouteInfo": {
-                "queryTime": "20250213190628",
+                "queryTime": "20250227184237",
                 "apiSuccess": true,
                 "errorOcrd": false,
                 "errorMsg": "Undefined",
@@ -1630,7 +2074,7 @@
                         "mobileNo": "47592",
                         "regionName": "용인",
                         "stationId": "228000198",
-                        "stationName": "현대아파트",
+                        "stationName": "현대아파트.다보스병원앞",
                         "x": "127.2098667",
                         "y": "37.23125",
                         "stationSeq": "78",

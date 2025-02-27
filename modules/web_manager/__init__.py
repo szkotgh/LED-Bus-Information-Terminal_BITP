@@ -38,5 +38,4 @@ class FlaskAppRunner:
     def run_flask(self):
         self.app.run(host=self.host, port=self.port, debug=False, use_reloader=False)
 
-
-webservice = FlaskAppRunner(config.OPTIONS['web']['host'], config.OPTIONS['web']['port'])
+service = FlaskAppRunner(config.OPTIONS['web']['host'], config.OPTIONS['web']['port'])

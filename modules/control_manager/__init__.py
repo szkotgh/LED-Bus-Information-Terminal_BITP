@@ -113,6 +113,6 @@ class ControlPannel:
 
         t = threading.Thread(target=button_detect)
         t.daemon = True
-        t.start()    
-        
-control_pannel = ControlPannel(_arduino_port=config.OPTIONS['control_pannel']['serialPort'], _arduino_bps=config.OPTIONS['control_pannel']['serialBps'])
+        t.start()
+
+service = ControlPannel(_arduino_port=config.OPTIONS['control_pannel']['serialPort'], _arduino_bps=config.OPTIONS['control_pannel']['serialBps'])

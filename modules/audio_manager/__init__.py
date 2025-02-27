@@ -4,9 +4,13 @@ import time
 import queue
 import pygame
 import requests
+import os
+
+TTS_TEMP_PATH = './temp_tts.mp3'
 
 class AudioManager:
-    def __init__(self):        
+    def __init__(self):
+        
         self.audio_queue = queue.Queue()
         self.audio_volume = 1
         
@@ -55,15 +59,24 @@ class AudioManager:
                 }
             }
         )
+
+        response_data = response.json()
+        if 'audioContent' not in response_data:
+            print("TTS 생성 실패:", response_data)
+            return
         
-        audio_data = response.json()['audioContent']
-        with open('src/tts.mp3', 'wb') as f:
+        audio_data = response_data['audioContent']
+        
+        with open(TTS_TEMP_PATH, 'wb') as f:
             f.write(base64.b64decode(audio_data))
-            
-        self.add_notification('audio/tts.mp3')
+        
+        # wait until file is created
+        while not os.path.exists(TTS_TEMP_PATH):
+            time.sleep(0.1)
+        
+        self.add_notification(TTS_TEMP_PATH)
     
     def run_audio(self):
-        pygame.mixer.init()
         while True:
             if not self.audio_queue.empty():
                 current_path = self.audio_queue.get()
@@ -72,7 +85,6 @@ class AudioManager:
                 time.sleep(1)
     
     def run_notification(self):
-        pygame.mixer.init()
         while True:
             if not self.notification_queue.empty():
                 current_path = self.notification_queue.get()
@@ -83,17 +95,25 @@ class AudioManager:
                 time.sleep(1)
 
     def play_audio(self, path, is_notification):
+        if not os.path.exists(path):
+            print(f"오류: 파일 {path} 이(가) 존재하지 않습니다.")
+            return
+        
+        sound = pygame.mixer.Sound(path)
+
         if is_notification:
             notification_channel = pygame.mixer.Channel(1)
             notification_channel.set_volume(self.notification_volume)
-            notification_channel.play(pygame.mixer.Sound(path))
+            notification_channel.play(sound)
+            
             while notification_channel.get_busy():
                 notification_channel.set_volume(self.notification_volume)
                 time.sleep(0.1)
         else:
             audio_channel = pygame.mixer.Channel(0)
             audio_channel.set_volume(self.audio_volume)
-            audio_channel.play(pygame.mixer.Sound(path))
+            audio_channel.play(sound)
+
             while audio_channel.get_busy():
                 if self.is_notificating:
                     audio_channel.set_volume(self.notificating_audio_volume)
@@ -101,4 +121,4 @@ class AudioManager:
                     audio_channel.set_volume(self.audio_volume)
                 time.sleep(0.1)
                 
-master = AudioManager()
+service = AudioManager()

@@ -33,29 +33,47 @@ def show_station_page(_show_station_struct: BusStationAPI, _show_page_time_sec: 
     else:
         matrix_manager.matrix_pages.text_page(
             [
-                "실시간 정류소 페이지",
+                "실시간 정류소 페이지 오류",
                 "필수 정보가 누락되어 화면을 표시할 수 없습니다.",
                 f"[{station_data['resCode']}] {station_data['resMsg']}",
                 "",
-                "정보가 불러와지면 화면을 표시하겠습니다."
+                "정보가 준비되면 화면을 표시하겠습니다."
             ],
             1, 1, _text_color="orange"
         )
         return 1
     
-    # data refresh time check
+    # 버스 정보 갱신 시간 확인
     if utils.text_to_datetime(arvl_bus_data['queryTime']) < (datetime.now() - timedelta(minutes=3)):
         time_diff = int(float((datetime.now() - utils.text_to_datetime(arvl_bus_data['queryTime'])).total_seconds()))
         matrix_manager.matrix_pages.text_page(
             [
-            "실시간 정류소 페이지",
-            f"화면에 표시되는 {station_data['result']['stationName']}[{station_data['result']['mobileNo']}]역 데이터의 갱신 시간이 오래되었습니다.",
-            f"마지막 갱신시간: {time_diff}초 전",
-            "",
-            "앱을 통해 버스 정보를 확인하십시오 . . ."
-            ]
+                "실시간 정류소 페이지 오류",
+                f"화면에 표시되는 {station_data['result']['stationName']}[{station_data['result']['mobileNo']}]역의 마지막 정보 갱신이 오래되었습니다.",
+                f"마지막 정보 갱신: {time_diff}초 전",
+                "",
+                "앱을 통해 버스 정보를 확인하십시오 . . ."
+            ],
+            1, 1, _text_color="orange"
         )
+    elif utils.text_to_datetime(arvl_bus_data['queryTime']) < (datetime.now() - timedelta(seconds=config.OPTIONS['bus']['refreshCycleErrorTime'])):
+        ## option.json 설정값에 따른 갱신 시간 초과 시 재시작
+        notice_repeat = 3
+        for i in range(notice_repeat):
+            time_diff = int(float((datetime.now() - utils.text_to_datetime(arvl_bus_data['queryTime'])).total_seconds()))
+            matrix_manager.matrix_pages.text_page(
+                [
+                    "실시간 정류소 페이지 오류",
+                    f"화면에 표시되는 {station_data['result']['stationName']}[{station_data['result']['mobileNo']}]역의 마지막 정보 갱신이 오래되었습니다.",
+                    f"마지막 정보 갱신: {time_diff}초 전",
+                    "",
+                    "앱을 통해 버스 정보를 확인하십시오 . . .",
+                    f"프로그램을 재시작합니다. ({notice_repeat}/{i+1})"
+                ]
+            , _text_color="red")
+        matrix_manager.matrix_pages.exit_page(['오류 발생', '버스 데이터 갱신이 오래되었습니다.', '', '', 'BIT를 더 이상 실행할 수 없습니다 . . . 프로그램을 재시작합니다.'], 1, 1, 2, _text_color='orange', _status_prt=False, _exit_code=1)
     
+    # 곧 도착 버스 정보 준비
     arvl_bus_infos = []
     if arvl_bus_data.get('apiSuccess'):
         for arvl_bus in arvl_bus_data['result']:
@@ -105,8 +123,9 @@ def show_station_page(_show_station_struct: BusStationAPI, _show_page_time_sec: 
         "mv_cnt": 0
     }
     
-    arvl_infos = []
-    normal_infos = []
+    # 곧 도착 버스 정보 선별
+    arvl_infos = []   # 곧 도착 버스 정보(도착까지 3정거장 이하)
+    normal_infos = [] # 도착 예정 버스 정보
     for arvl_bus_info in arvl_bus_infos:
         if arvl_bus_info.get('isArvl'):
             if arvl_bus_info.get('remainSeatCnt1', '-1') == '-1':
@@ -116,6 +135,7 @@ def show_station_page(_show_station_struct: BusStationAPI, _show_page_time_sec: 
             arvl_infos.append(arvl_bus_info)
         else:
             normal_infos.append(arvl_bus_info)
+    
     if arvl_str_infos['text']:
         arvl_str_infos['text'] = arvl_str_infos['text'][:-2]
     

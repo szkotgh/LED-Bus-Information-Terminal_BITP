@@ -10,6 +10,7 @@
         "arvlBusRefreshInterval": 30,
         "weatherInfoRefreshInterval": 300,
         "finedustInfoRefreshInterval": 3600,
+        "refreshCycleErrorTime": 600,
         "stations": [
             {
                 "keyword" : "47307",
@@ -23,7 +24,7 @@
 	},
     "everline" : {
         "reqUrl": "https://everlinecu.com/api/api009.json",
-        "refreshInterval": 2,
+        "refreshInterval": 0.1,
         "backStation": "Y120",
         "baseStation": "Y121",
         "nextStation": "Y122"

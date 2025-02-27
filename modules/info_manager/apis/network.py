@@ -61,7 +61,7 @@ class NetworkManager:
                 
                 self.check_internet_connection()
                 
-                control_manager.control_pannel.led_control(_internet=self.is_internet_connected)
+                control_manager.service.led_control(_internet=self.is_internet_connected)
                 
                 time.sleep(_interval)
 

@@ -46,6 +46,9 @@ def show_everline_page(_show_time_sec: int = 15):
         now_hhmm = datetime.datetime.now().strftime('%H%M')
         title_now_hhmm = datetime.datetime.now().strftime('%H:%M')
         train_infos = info_manager.service.everline_api.get_train_info()
+        # 인터넷 연결 시에만 열차 정보 로드
+        if info_manager.service.network.is_internet_connected == False:
+            train_infos = False
         
         draw.rectangle([(0, 0), matrix_manager.MATRIX_SIZE], fill=(0, 0, 0, 0))
         draw.text((station_title_center, 0), station_title, fill=(255, 255, 255), font=config.SCD4_FONT_11)
@@ -110,8 +113,7 @@ def show_everline_page(_show_time_sec: int = 15):
         else:
             train_interval_str = "열차가 운행하지 않는 시각입니다."
         draw.text((0, matrix_manager.MATRIX_SIZE[1]-11), train_interval_str, fill=(255, 255, 255, 255), font=config.SCD4_FONT_10)
-            
-            
+        
         matrix_manager.refresh(canvas.convert("RGB"))
         time.sleep(0.01)
         train_x += 1

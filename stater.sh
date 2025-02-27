@@ -14,4 +14,4 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 # Start the server
-sudo python3 app.py
+sudo python3 main.py

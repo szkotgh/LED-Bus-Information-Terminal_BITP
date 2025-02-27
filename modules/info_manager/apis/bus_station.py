@@ -163,21 +163,31 @@ class BusStationAPI:
                 
                 time.sleep(config.OPTIONS['bus']['arvlBusRefreshInterval'])
             
+            # logging station data
+            station_data_write_temp = self.station_data.copy()
             with open(f'{self.init_station_data["keyword"]}_station_data.json', 'w', encoding='utf-8') as f:
-                json.dump(self.station_data, f, indent=4, ensure_ascii=False)
+                json.dump(station_data_write_temp, f, indent=4, ensure_ascii=False)
             
             # arvl bus auto data update
             while True:
                 self.update_arvl_bus_data()
+                
+                # logging arvl bus data
+                arvl_bus_data_write_temp = self.arvl_bus_data.copy()
                 with open(f'{self.init_station_data["keyword"]}_arvl_bus_data.json', 'w', encoding='utf-8') as f:
-                    json.dump(self.arvl_bus_data, f, indent=4, ensure_ascii=False)
+                    json.dump(arvl_bus_data_write_temp, f, indent=4, ensure_ascii=False)
+                
                 time.sleep(config.OPTIONS['bus']['arvlBusRefreshInterval'])
         
         def update_station_finedust():
             while True:
                 self.update_station_fine_dust_data('김량장동', "경기")
+                
+                # logging finedust data
+                station_finedust_data_write_temp = self.station_finedust_data.copy()
                 with open(f'{self.init_station_data["keyword"]}_finedust_data.json', 'w', encoding='utf-8') as f:
-                    json.dump(self.station_finedust_data, f, indent=4, ensure_ascii=False)
+                    json.dump(station_finedust_data_write_temp, f, indent=4, ensure_ascii=False)
+                
                 time.sleep(config.OPTIONS['bus']['finedustInfoRefreshInterval'])
         
         def update_station_weather():
@@ -201,8 +211,11 @@ class BusStationAPI:
                 sel_base_time = min(base_time, key=lambda t: abs(int(today_time) - int(t)))
                 
                 self.update_station_weather_data(station_y, station_x, today_date, sel_base_time)   # ? bus api 부분에서 nx, ny를 거꾸로 줌...
+                
+                # logging weather data
+                station_weather_data_write_temp = self.station_weather_data.copy()
                 with open(f'{self.init_station_data["keyword"]}_weather_data.json', 'w', encoding='utf-8') as f:
-                    json.dump(self.station_weather_data, f, indent=4, ensure_ascii=False)
+                    json.dump(station_weather_data_write_temp, f, indent=4, ensure_ascii=False)
                 
                 if self.station_weather_data['apiSuccess'] == False:
                     time.sleep(1)

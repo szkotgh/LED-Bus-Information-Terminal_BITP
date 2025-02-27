@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 class MatrixPages:
     def __init__(self):
@@ -43,9 +44,13 @@ class MatrixPages:
         text_page.show_text_page(_set_text, _first_show_time, _end_show_time, _repeat, _text_color, _status_prt, _is_exit_signal=True)
         for i in range(5, 0, -1):
             text_page.show_text_page([f'BIT를 종료합니다.', f'종료 신호를 받았습니다. 종료 코드: {_exit_code}', '', '', f'{i}초 뒤 자동으로 종료됩니다 . . .'], 0, 1, 1, 'white', _status_prt=False, _is_exit_signal=True)
+        text_page.show_text_page([], 0, 1, 1, 'white', _status_prt=False, _is_exit_signal=True)
         
-        control_manager.control_pannel.init_device()
-        self.clear_page()
+        control_manager.service.init_device()
+        
+        # if _exit_code == 0:
+        #     subprocess.run(["/bin/systemctl", "poweroff", "-i"], check=True)
+        #     os._exit(_exit_code)
         
         os._exit(_exit_code)
     
