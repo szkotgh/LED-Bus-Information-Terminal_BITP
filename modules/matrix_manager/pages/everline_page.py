@@ -32,7 +32,7 @@ def show_everline_page(_show_time_sec: int = 15):
     base_station = ev_options['baseStation']
     next_station = ev_options['nextStation']
     
-    station_title = f"[에버라인 운행정보] {info_manager.service.everline.STATION_CODE[base_station]}역"
+    station_title = f"[에버라인] {info_manager.service.everline.STATION_CODE[base_station]}역"
     title_bbox = config.SCD4_FONT_11.getbbox(station_title)
     title_width = title_bbox[2] - title_bbox[0]
     station_title_center = (matrix_manager.MATRIX_SIZE[0] - title_width) // 2
@@ -59,24 +59,33 @@ def show_everline_page(_show_time_sec: int = 15):
         if train_infos != None:
             for train_info in train_infos:
                 if train_info['StCode'] in [base_station, back_station, next_station]:
+                    # 유동 시 출력
                     if train_info['StatusCode'] == info_manager.service.everline.TRAIN_START:
+                        ## 도착 안했으면 100되어도 85으로 제한
+                        train_drive_rate_for_move = train_info['driveRate']
+                        if train_drive_rate_for_move >= 85:
+                            train_drive_rate_for_move = 85
+                        
+                        ## 열차 아이콘 출력
                         if train_info['updownCode'] == info_manager.service.everline.TRAIN_UPWARD:
                             if train_info['StCode'] == base_station:
-                                canvas.paste(train_icon, (train_center_x-int(train_info['driveRate']), center_y-4), train_icon)
+                                canvas.paste(train_icon, (train_center_x-int(train_drive_rate_for_move), center_y-4), train_icon)
                             elif train_info['StCode'] == back_station:
-                                canvas.paste(train_icon, (train_back_x-int(train_info['driveRate']), center_y-4), train_icon)
+                                canvas.paste(train_icon, (train_back_x-int(train_drive_rate_for_move), center_y-4), train_icon)
                             elif train_info['StCode'] == next_station:
-                                canvas.paste(train_icon, (train_next_x-int(train_info['driveRate']), center_y-4), train_icon)
+                                canvas.paste(train_icon, (train_next_x-int(train_drive_rate_for_move), center_y-4), train_icon)
                                 
                         elif train_info['updownCode'] == info_manager.service.everline.TRAIN_DOWNWARD:
                             if train_info['StCode'] == base_station:
-                                canvas.paste(reverse_train_icon, (train_center_x+int(train_info['driveRate']), center_y-4), reverse_train_icon)
+                                canvas.paste(reverse_train_icon, (train_center_x+int(train_drive_rate_for_move), center_y-4), reverse_train_icon)
                             elif train_info['StCode'] == back_station:
-                                canvas.paste(reverse_train_icon, (train_back_x+int(train_info['driveRate']), center_y-4), reverse_train_icon)
+                                canvas.paste(reverse_train_icon, (train_back_x+int(train_drive_rate_for_move), center_y-4), reverse_train_icon)
                             elif train_info['StCode'] == next_station:
-                                canvas.paste(reverse_train_icon, (train_next_x+int(train_info['driveRate']), center_y-4), reverse_train_icon)
+                                canvas.paste(reverse_train_icon, (train_next_x+int(train_drive_rate_for_move), center_y-4), reverse_train_icon)
                     
+                    # 정차 시 출력
                     if train_info['StatusCode'] == info_manager.service.everline.TRAIN_STOP:
+                        ## 열차 아이콘 출력
                         if train_info['updownCode'] == info_manager.service.everline.TRAIN_UPWARD:
                             if train_info['StCode'] == base_station:
                                 canvas.paste(train_icon, (train_center_x, center_y-4), train_icon)

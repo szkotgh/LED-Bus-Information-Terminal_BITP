@@ -24,7 +24,7 @@
 	},
     "everline" : {
         "reqUrl": "https://everlinecu.com/api/api009.json",
-        "refreshInterval": 0.1,
+        "refreshInterval": 2,
         "backStation": "Y120",
         "baseStation": "Y121",
         "nextStation": "Y122"

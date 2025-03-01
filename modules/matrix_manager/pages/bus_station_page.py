@@ -45,6 +45,7 @@ def show_station_page(_show_station_struct: BusStationAPI, _show_page_time_sec: 
     
     # 버스 정보 갱신 시간 확인
     if utils.text_to_datetime(arvl_bus_data['queryTime']) < (datetime.now() - timedelta(minutes=3)):
+        ## 갱신 시간이 3분 이상일 경우 경고 출력
         time_diff = int(float((datetime.now() - utils.text_to_datetime(arvl_bus_data['queryTime'])).total_seconds()))
         matrix_manager.matrix_pages.text_page(
             [
@@ -56,7 +57,7 @@ def show_station_page(_show_station_struct: BusStationAPI, _show_page_time_sec: 
             ],
             1, 1, _text_color="orange"
         )
-    elif utils.text_to_datetime(arvl_bus_data['queryTime']) < (datetime.now() - timedelta(seconds=config.OPTIONS['bus']['refreshCycleErrorTime'])):
+    if utils.text_to_datetime(arvl_bus_data['queryTime']) < (datetime.now() - timedelta(seconds=config.OPTIONS['bus']['refreshCycleErrorTime'])):
         ## option.json 설정값에 따른 갱신 시간 초과 시 재시작
         notice_repeat = 3
         for i in range(notice_repeat):
@@ -64,7 +65,7 @@ def show_station_page(_show_station_struct: BusStationAPI, _show_page_time_sec: 
             matrix_manager.matrix_pages.text_page(
                 [
                     "실시간 정류소 페이지 오류",
-                    f"화면에 표시되는 {station_data['result']['stationName']}[{station_data['result']['mobileNo']}]역의 마지막 정보 갱신이 오래되었습니다.",
+                    f"화면에 표시되는 {station_data['result']['stationName']}[{station_data['result']['mobileNo']}]역의 마지막 정보 갱신이 너무 오래되었습니다.",
                     f"마지막 정보 갱신: {time_diff}초 전",
                     "",
                     "앱을 통해 버스 정보를 확인하십시오 . . .",
