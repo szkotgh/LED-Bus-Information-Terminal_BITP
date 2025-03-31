@@ -31,7 +31,7 @@ class ControlPannel:
                 raise Exception("Control pannel connection failed")
         except Exception as e:
             self.arduino = None
-            matrix_manager.matrix_pages.exit_page(['컨트롤 판넬 연결 실패', '컨트롤 판넬에 연결할 수 없습니다.', '', '', 'BIT를 부팅할 수 없습니다 . . . 컨트롤 판넬을 점검하십시오.'], 1, 1, 2, _text_color='orange', _status_prt=False, _exit_code=1)
+            matrix_manager.matrix_pages.text_page(['컨트롤 판넬 연결 실패', '컨트롤 판넬에 연결할 수 없습니다.', '', '', '관련 기능 조작이 불가합니다 . . . 컨트롤 판넬을 점검하십시오.'], 1, 1, 2, _text_color='orange', _status_prt=False)
 
     def send_command(self, command):
         try:
